@@ -1,0 +1,132 @@
+ Rohdatenausgabeformat (rawdata.csv) und Backup file:
+
+  Feld	Inhalt        Maßeinheit
+  -----+-------------+---------------------------------------------------------------
+   0	Datum         [JJJJ-MM-TT]       aus Dateiname
+   1	Zeit          [hh:mm]            Feld 0
+   2	Leistung      [W]                Feld 14 
+   3	Energie       [Wh]               ertrag:=ertrag+Leistung*Intervall/3600;
+   4    Temperatur WR [°C]               Feld 15
+   5	Spannung 1    [/10 --> V]        Feld 1
+   6	Strom 1       [mA]               Feld 2
+   7	Spannung 2    [/10 --> V]        Feld 4
+   8	Strom 2       [mA]               Feld 5
+   9	Spannung 3    [/10 --> V]        - - {0}
+  10	Strom 3       [mA]               - - {0}
+  11    Netzspannung  [V]                Feld 7 + Feld 9 + Feld 11 / 3 
+  12    Netzfrequenz  [/100 --> Hz]      - - {50,00 Hz}
+  13    Meßintervall  [sec]              errechnet oder mit Defaultwert überschrieben 
+  14    Isolationswiderstand [kOhm]      - - {0}
+  -----------------------------------------------------------------------------------
+
+
+http://www.photovoltaikforum.com/datenlogger-f5/wr-kaco-14-0-tl3-t63406-s10.html#p611423
+
+Vielleicht kann ja jemand anderes noch die fehlenden Lücken schliessen und damit einen schönen Importer für Sonnenertrag o.ä. basteln. Die aktuellen Werte kann man mittels http://ip.adresse.des.wr/realtime.csv abfragen.
+
+
+ Seit kurzem gibt es einen Firmware Update v1.16 für die TL3-Serie. Die Installation ist über einen USB Stick einfach machbar. Eine wesentliche Neuerung ist das neue Format der .csv Datei. Sie enthält nun alle Zahlenwerte entsprechend den physikalischen Einheiten d.h. man braucht sie nicht mehr umzurechnen. Ein Beispiel / Auszug:
+
+Header:
+WR-Typ;Seriennummer;RS485-Adresse;IP-Adresse;Ertrag[kWh]
+Powador 10.0 TL3;10.0TL01172594;1;192.168.0.101;42.17
+
+Daten (erster...x-ter...letzter Record):
+Uhrzeit;Udc1[V];Idc1[A];Pdc1[W];Udc2[V];Idc2[A];Pdc2[W];Uac1[V];Iac1[A];Uac2[V];Iac2[A];Uac3[V];Iac3[A];Pdc[W];Pac[W];Tsys[°C]
+05:58:15;0.0;0.00;0;0.0;0.00;0;208.4;0.00;209.4;0.00;208.8;0.00;0;0;6.2
+...
+14:14:02;498.3;3.29;1642;528.1;3.46;1832;233.1;4.92;234.0;4.93;234.1;4.88;3475;3389;47.4
+14:15:04;490.7;3.98;1957;523.6;4.34;2274;233.3;5.94;234.4;5.96;234.4;5.91;4231;4130;47.3
+14:16:06;476.1;4.23;2015;539.0;4.45;2403;233.1;6.21;234.4;6.24;234.2;6.18;4419;4313;47.2
+...
+20:37:55;0.0;0.00;0;0.0;0.00;0;192.5;0.00;193.3;0.00;193.1;0.00;0;0;4.3
+
+ein paar Beobachtungen:
+
+    die verwendete Auflösung entspricht wahrscheinlich der Messgenauigkeit (Zeit hh:mm:ss, Spannung 0.0[V], Strom 0.00[A], Leistung 0[W], Temperatur 0.0[°C])
+    die Daten haben nun die gleiche Logginggrate, wie in der .usr Datei. Vorher erhielt ich bei einer 1-minütigen am WR eingestellten Loggingrate in der .usr Datei ca. alle 60s Werte, aber nur ca. alle 5min (jeden fünften Wert) in der .csv Datei, d.h. die .csv Dateien zeigten bis anhin bestenfalls eine 5-minütige Loggingrate.
+    Das Webinterface hat sich nur oberflächlich in der Handhabung leicht geändert - die Auswahl der Detailanzeigen sind jetzt in einem Untermenu
+    Die 'life' Daten im Webinterface werden bei mir alle ca 30s nachgeführt der Graph jedoch nicht
+    klicke ich im Webinterface auf "Data export", erhalte ich die entsprechende .csv Datei. Die Abrufzeit dieser .csv Dateien dauert bei mir jedoch sehr lange. Zuerst dachte ich, dass die Fernabfrage nicht funktioniert - nach einer halben Minute habe ich abgebrochen - nun warte ich länger d.h >1min erst dann erhalte ich die Datei bzw. ändert sich der Graph, wenn ich einen anderen Tag anfordere. Da in meinem Setup nichts verändert wurde (gleiche Hardware, gleiche Installation), geh ich davon aus, dass es Änderungen in der Firmware gab, welche diese Verzögerung bewirken.
+    Ich weiss nicht, ob mittlerweile die Dateneinträge in der .usr und .csv Datei identisch sind, bisher unterschieden sie sich
+
+
+weitere Angaben / WR Einstellungen:
+
+DHCP
+Bietet die Optionen „Ein“ und „Aus“, um die automatische Konfiguration mithilfe eines DHCPServers zu aktivieren oder zu deaktivieren. Wenn DHCP aktiviert ist, werden IP-Adresse, Subnetzmaske, Gateway-Adresse und DNS-Server-Adresse automatisch aus dem Netzwerk (typischerweise von einem Router mit direkter Internetverbindung) bezogen und die dies betreffenden nachfolgenden Menüpunkte („IP-Adresse“, „Subnetzmaske“, „Gateway“, „DNSServer“) werden ausgeblendet, da eine manuelle Konfiguration entfällt.
+
+IP-Adresse (nur sichtbar, wenn DHCP ausgeschaltet ist)
+In diesem Dialog kann dem Wechselrichter eine statische IP-Adresse zugewiesen werden. Es stehen vier Textfelder mit je drei Stellen zum Setzen einer gültigen IP-Adresse gemäß IPv4- Protokoll zur Verfügung. Diese Einstellung war in der bisherigen Menüführung im Dialog „Ethernet“ zu finden.
+
+
+
+
+
+Kaco Powador Dateistruktur
+
+
+ 2012.CSV     --> yearly file
+ 201211.CSV   --> monthly file
+ 20121123.CSV --> daily files
+ 20121124.CSV
+ 20121125.CSV
+ 20121126.CSV
+ 20121127.CSV
+
+
+Sortierte Dateiliste in FileList:
+
+F:\Lazarus\Privat\PVausw\Kaco_LOG\2011.CSV
+F:\Lazarus\Privat\PVausw\Kaco_LOG\201111.CSV
+F:\Lazarus\Privat\PVausw\Kaco_LOG\20111123.CSV
+F:\Lazarus\Privat\PVausw\Kaco_LOG\20111124.CSV
+F:\Lazarus\Privat\PVausw\Kaco_LOG\20111125.CSV
+F:\Lazarus\Privat\PVausw\Kaco_LOG\20111126.CSV
+F:\Lazarus\Privat\PVausw\Kaco_LOG\20111127.CSV
+F:\Lazarus\Privat\PVausw\Kaco_LOG\2012.CSV
+F:\Lazarus\Privat\PVausw\Kaco_LOG\201211.CSV
+F:\Lazarus\Privat\PVausw\Kaco_LOG\20121123.CSV
+F:\Lazarus\Privat\PVausw\Kaco_LOG\20121124.CSV
+F:\Lazarus\Privat\PVausw\Kaco_LOG\20121125.CSV
+F:\Lazarus\Privat\PVausw\Kaco_LOG\20121126.CSV
+F:\Lazarus\Privat\PVausw\Kaco_LOG\20121127.CSV
+
+
+Kaco monthly file:
+
+WR-Typ;Seriennummer;RS485-Adresse;IP-Adresse;Ertrag[kWh]
+Powador 14.0 TL3;14.0TL01215269;1;192.168.178.38;23.85Datum;E[Wh]
+22/11/2012;0
+23/11/2012;1314
+24/11/2012;12541
+...
+
+Kaco daily file:
+
+Uhrzeit ;Udc1[V];Idc1[A];Pdc1[W];Udc2[V];Idc2[A];Pdc2[W];Uac1[V];Iac1[A];Uac2[V];Iac2[A];Uac3[V];Iac3[A];Pdc[W];Pac[W];Tsys[°C]
+08:24:25;    5.9;   0.00;      0;    5.9;   0.00;      0;  199.5;   0.00;  200.1;   0.00;  199.5;   0.00;     0;     0;     6.2
+11:20:52;  375.7;   0.49;    184;  381.6;   0.43;    164;  227.2;   0.50;  228.7;   0.50;  228.3;   0.50;   350;   346;    34.6
+
+
+
+  Feld	Inhalt        Maßeinheit
+  -----+-------------+-------------
+   0    Uhrzeit       [hh:mm:ss]
+   1    Udc1[V]       [/10 --> V] 
+   2    Idc1[A]       [*10 --> mA]
+   3    Pdc1[W]      
+   4    Udc2[V]       [/10 --> V] 
+   5    Idc2[A]       [*10 --> mA]
+   6    Pdc2[W]      
+   7    Uac1[V]       
+   8    Iac1[A]
+   9    Uac2[V]
+  10    Iac2[A]
+  11    Uac3[V]
+  12    Iac3[A]
+  13    Pdc[W]
+  14    Pac[W]        [W] 
+  15    Tsys[°C]      [/10 --> °C]
+
+

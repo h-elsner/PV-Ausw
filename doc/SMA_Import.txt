@@ -1,0 +1,71 @@
+ Rohdatenausgabeformat (rawdata.csv) und Backup file:
+
+  Feld	Inhalt        Maßeinheit
+  -----+-------------+----------------------------------------------------
+   0	Datum         [JJJJ-MM-TT]       Feld 0
+   1	Zeit          [hh:mm]            Feld 1
+   2	Leistung      [W]                *1000
+   3	Energie       [Wh]               *1000
+   4    Temperatur WR [°C]               - - {18}
+   5	Spannung 1    [/10 --> V]        - -
+   6	Strom 1       [mA]               - -
+   7	Spannung 2    [/10 --> V]        - -
+   8	Strom 2       [mA]               - -
+   9	Spannung 3    [/10 --> V]        - - {0}
+  10	Strom 3       [mA]               - - {0}
+  11    Netzspannung  [V]                - - {230 V}
+  12    Netzfrequenz  [/100 --> Hz]      - - {50,00 Hz}
+  13    Meßintervall  [sec]              errechnet oder Defaultwert (300s) 
+  14    Isolationswiderstand [kOhm]      - - {0}
+  ------------------------------------------------------------------------
+
+
+sep=;
+Version CSV1|Tool SE|Linebreaks CR/LF|Delimiter semicolon|Decimalpoint comma|Precision 3
+
+;SN: 304601306;SN: 304601306
+;STP 7000TL-20;STP 7000TL-20
+;304601306;304601306
+;Gesamtertrag;Leistung
+;Counter;Analog
+dd.MM.yyyy HH:mm:ss;kWh;kW
+19.11.2012 13:15:00;0,000
+19.11.2012 13:20:00;0,059;0,708
+19.11.2012 13:25:00;0,075;0,192
+...
+
+
+SMA-spot
+
+Direkter Download Link aktuelle Version für Windows:
+http://sma-spot.googlecode.com/files/SM ... _Win32.zip
+http://code.google.com/p/sma-spot
+
+
+Gefunden in der Diskussion hier:
+http://www.photovoltaikforum.com/apps-f114/sma-sunny-explorer-momentane-dc-werte-auslesen-und-t87957-s20.html
+
+
+
+sep=;
+Version CSV1|Tool SMAspot2.0.5|Linebreaks CR/LF|Delimiter semicolon|Decimalpoint comma|Precision 3
+
+;SN: 2100468700
+;SB4000TL-20
+;2100468700
+;Watt;Watt;Amp;Amp;Volt;Volt;Watt;Watt;Watt;Amp;Amp;Amp;Volt;Volt;Volt;Watt;Watt;%;kWh;kWh;Hz;Hours;Hours;%;Status;Status
+DateTime;Pdc1;Pdc2;Idc1;Idc2;Udc1;Udc2;Pac1;Pac2;Pac3;Iac1;Iac2;Iac3;Uac1;Uac2;Uac3;PdcTot;PacTot;Efficiency;EToday;ETotal;Frequency;OperatingTime;FeedInTime;BT_Signal;Condition;GridRelay
+
+11/04/2013 06:25:01;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;5367,335;0,000;5291,068;5115,342;78,824;OK;?
+
+11/04/2013 06:30:21;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;5367,335;0,000;5291,068;5115,342;79,608;OK;?
+
+11/04/2013 06:35:11;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;0,000;5367,335;0,000;5291,068;5115,342;78,824;OK;?
+
+ ...
+11/04/2013 07:40:03;31,000;21,000;0,107;0,074;300,930;293,940;36,000;0,000;0,000;0,160;0,000;0,000;226,110;0,000;0,000;52,000;36,000;69,231;0,008;5367,343;49,970;5290,747;5115,611;80,000;OK;Closed
+
+11/04/2013 07:45:13;36,000;23,000;0,121;0,080;301,210;294,040;45,000;0,000;0,000;0,204;0,000;0,000;226,630;0,000;0,000;59,000;45,000;76,271;0,012;5367,347;49,990;5290,833;5115,697;78,824;OK;Closed
+
+
+

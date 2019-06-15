@@ -1,0 +1,128 @@
+SMA-spot
+
+Direkter Download Link aktuelle Version f¸r Windows:
+http://sma-spot.googlecode.com/files/SM ... _Win32.zip
+http://code.google.com/p/sma-spot
+
+
+Gefunden in der Diskussion hier:
+http://www.photovoltaikforum.com/apps-f114/sma-sunny-explorer-momentane-dc-werte-auslesen-und-t87957-s20.html
+
+
+Mehr hier:
+http://forum.solaranalyzer.de/viewtopic.php?f=6&p=930
+ 
+
+Rohdatenausgabeformat (rawdata.csv) und Backup file:
+
+  Feld	Inhalt        Maﬂeinheit
+  -----+-------------+---------------------------------------------------------------
+   0	Datum         [JJJJ-MM-TT]       Feld 0 (dd/mm/yyyy)
+   1	Zeit          [hh:mm]            Feld 0 (hh:mm:ss) 
+   2	Leistung      [W]                Feld 18 
+   3	Energie       [Wh]               Feld 20
+   4    Temperatur WR [∞C]               - - {18}
+   5	Spannung 1    [/10 --> V]        Feld 6
+   6	Strom 1       [mA]               Feld 4
+   7	Spannung 2    [/10 --> V]        Feld 7
+   8	Strom 2       [mA]               Feld 5
+   9	Spannung 3    [/10 --> V]        - - {0}
+  10	Strom 3       [mA]               - - {0}
+  11    Netzspannung  [V]                Feld 14 oder Feld 15 oder Feld 16
+  12    Netzfrequenz  [/100 --> Hz]      Feld 22
+  13    Meﬂintervall  [sec]              errechnet oder eingestellter CRON-Wert (300s)
+  14    Isolationswiderstand [kOhm]      - - {0}
+  -----------------------------------------------------------------------------------
+
+
+
+=========== Data set 1 ==================
+ 0 DatumZeit: DateTime
+ 2 Watt     : Pdc1  
+ 3 Watt     : Pdc2
+ 4 Amp      : Idc1                  *
+ 5 Amp      : Idc2                  *
+ 6 Volt     : Udc1                  *
+ 7 Volt     : Udc2                  *
+ 8 Watt     : Pac1
+ 9 Watt     : Pac2
+10 Watt     : Pac3
+11 Amp      : Iac1
+12 Amp      : Iac2
+13 Amp      : Iac3
+14 Volt     : Uac1                  *
+15 Volt     : Uac2                  *
+16 Volt     : Uac3                  *
+17 Watt     : PdcTot
+18 Watt     : PacTot                *
+19 %        : Efficiency
+20 kWh      : EToday                *
+21 kWh      : ETotal
+22 Hz       : Frequency             *
+23 Hours    : OperatingTime
+24 Hours    : FeedInTime
+25 %        : BT_Signal
+26 Status   : Condition
+27 Status   : GridRelay
+
+
+=========== Data set 2 ==================
+DatumZeit: 11/04/2013 06:25:07
+Watt     : 0,000
+Watt     : 0,000
+Amp      : 0,000
+Amp      : 0,000
+Volt     : 0,000
+Volt     : 0,000
+Watt     : 0,000
+Watt     : 0,000
+Watt     : 0,000
+Amp      : 0,000
+Amp      : 0,000
+Amp      : 0,000
+Volt     : 0,000
+Volt     : 0,000
+Volt     : 0,000
+Watt     : 0,000
+Watt     : 0,000
+%        : 0,000
+kWh      : 0,000
+kWh      : 7243,479
+Hz       : 0,000
+Hours    : 5368,752
+Hours    : 5219,047
+%        : 65,098
+Status   : OK
+Status   : ?
+
+
+=========== Data set 3 ==================
+DatumZeit: 11/04/2013 08:20:23
+Watt     : 43,000
+Watt     : 55,000
+Amp      : 0,149
+Amp      : 0,180
+Volt     : 297,040
+Volt     : 309,720
+Watt     : 97,000
+Watt     : 0,000
+Watt     : 0,000
+Amp      : 0,432
+Amp      : 0,000
+Amp      : 0,000
+Volt     : 225,720
+Volt     : 0,000
+Volt     : 0,000
+Watt     : 98,000
+Watt     : 98,000
+%        : 98,980
+kWh      : 0,102
+kWh      : 7243,582
+Hz       : 50,000
+Hours    : 5369,338
+Hours    : 5220,102
+%        : 65,490
+Status   : OK
+Status   : Closed
+
+

@@ -1,0 +1,32 @@
+Datenrettung bei Serverausfall:
+
+Ich würde versuchen, die Daten mit der folgenden Prozedur zu retten. Das geht aber nur, wenn das Aufzeichnungsintervall auf 10 min eingestellt ist. Bei minütlicher Aufzeichnung ist schon nach rund 3 Tagen Schluß und der Puffer voll.
+
+
+1. Einloggen in Webserver
+2. Den Wechselrichter auswählen (auf die Seriennummer klicken)
+3. Log --> Datenprotokoll --> Protokoll exportieren (dauert etwas)
+4. Man erhält eine Datei {seriennummer}_datalog.csv zum Download --> Diese Datei auf dem PC speichern.
+5. Converter1.exe aus der Zip-datei auspacken und starten
+6. Den FTP account oben eingeben (nur für Dateiname Ergebnisdatei - kann man auch selber umbenennen)
+7. Die *_datalog.csv mit "Load datalog" öffnen und Button "Convert all" drücken.
+
+Für jeden Tag, der noch da ist wird eine Datei angelegt, die die verlorenen ersetzen kann.
+
+Es gibt natürlich ein paar Einschränkungen, da im Datalog nicht alle Daten so drin sind, wie beim FTP Warehouse.
+
+U_AC und I_AC sollten eigentlich Mittelwerte aus UAC_L1..3 bzw. IAC_L1..3 sein.
+Zur Vereinfachung habe ich hier die mittlere Phase genommen SplitList[17] (Netzspannung L2) bzw. SplitList[20] (Netzstrom L2).
+
+Einige Werte, wie z.B Frequenz, sollten eigentlich gerundet werden. Das habe auch erst mal ignoriert.
+
+S ..          Betriebsart?? (zur Zeit Ganzzahlanteil von Betriebsart)
+E_WR, M_WR    default '0' was ist, weiß ich nicht
+R_DC          default '0'
+PC            default '1000'
+PCS           default '0.0'
+PCS_LL        default '0'
+COS_PHI_LL    default '0'
+S_COS_PHI     default '0'
+
+Ich hoffe, das hilft.
