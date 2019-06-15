@@ -1,0 +1,4012 @@
+object Form1: TForm1
+  Left = 1077
+  Height = 645
+  Top = 121
+  Width = 827
+  AllowDropFiles = True
+  ClientHeight = 645
+  ClientWidth = 827
+  Constraints.MinHeight = 400
+  Constraints.MinWidth = 730
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnDropFiles = FormDropFiles
+  OnResize = FormResize
+  Position = poDefaultPosOnly
+  LCLVersion = '1.8.4.0'
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 622
+    Width = 827
+    Panels = <    
+      item
+        Width = 100
+      end    
+      item
+        Width = 150
+      end    
+      item
+        Width = 50
+      end>
+    SimplePanel = False
+  end
+  object GroupBox1: TGroupBox
+    Left = 8
+    Height = 88
+    Top = 8
+    Width = 809
+    Anchors = [akTop, akLeft, akRight]
+    ClientHeight = 68
+    ClientWidth = 805
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 1
+    OnClick = GroupBox1Click
+    object BitBtn1: TBitBtn
+      Left = 6
+      Height = 30
+      Top = 8
+      Width = 136
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000000000610B0000610B00000000000000000000FF00FFFF00FF
+        B89F8E4E2E1C4E2E1C4E2E1C4E2E1C4E2E1C4E2E1C4E2E1C4E2E1C4E2E1C4E2E
+        1C4E2E1C4E2E1CFF00FFFF00FFFF00FFB89F8EE9DED8A48B7AA48B7AA48B7AA4
+        8B7AA48B7AA48B7AA48B7AA48B7AA48B7AA48B7A4E2E1CFF00FFFF00FFFF00FF
+        B89F8EEDE3DEE9DED8E5D9D3E2D4CCDECEC6DAC9C0D7C4BAD3BFB4D0BAADD0BA
+        ADA48B7A4E2E1CFF00FFFF00FFFF00FFB89F8EF0E9E5EDE3DE008100E5D9D329
+        9D27299D2756B453D7C4BAD3BFB4D0BAADA48B7A4E2E1CFF00FFFF00FFFF00FF
+        B89F8EF3EEEBF0E9E500810000810000810000810000810056B453D7C4BAD3BF
+        B4A48B7A4E2E1CFF00FFFF00FFFF00FFB89F8EF7F3F2F3EEEB00810033BD6B00
+        8100E5D9D3E2D4CC00810056B453D7C4BAA48B7A4E2E1CFF00FFFF00FFFF00FF
+        B89F8EFBFAF8F7F3F2008100008100008100008100E5D9D3E2D4CC008100DAC9
+        C0A48B7A4E2E1CFF00FFFF00FFFF00FFB89F8EFFFFFFFBFAF8F7F3F2F3EEEBF0
+        E9E5EDE3DEE9DED8E5D9D3E2D4CCDECEC6A48B7A4E2E1CFF00FFFF00FFFF00FF
+        B89F8EFFFFFF008100FCFCFCFAF7F6008100008100008100008100E7DCD5E3D7
+        CFA48B7A4E2E1CFF00FFFF00FFFF00FFB89F8EFFFFFFADD59D008100FCFCFCFA
+        F7F600810033BD6B008100EAE1DCE7DCD5A48B7A4E2E1CFF00FFFF00FFFF00FF
+        B89F8EFFFFFFFFFFFFADD59D008100008100008100008100008100EEE6E2C9AD
+        9DA48B7A4E2E1CFF00FFFF00FFFF00FFB89F8EFFFFFFFFFFFFFFFFFFADD59D29
+        9D27299D27FAF7F6008100B89F8E4E2E1C4E2E1C4E2E1CFF00FFFF00FFFF00FF
+        B89F8EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFCFCFCFAF7F6B89F8EEFE5
+        DED0BAAD4E2E1CFF00FFFF00FFFF00FFB89F8EFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFCFCFCB89F8ED0BAAD4E2E1CFF00FFFF00FFFF00FFFF00FF
+        B89F8EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB89F8E4E2E
+        1CFF00FFFF00FFFF00FFFF00FFFF00FFB89F8EB89F8EB89F8EB89F8EB89F8EB8
+        9F8EB89F8EB89F8EB89F8EB89F8EFF00FFFF00FFFF00FFFF00FF
+      }
+      OnClick = BitBtn1Click
+      TabOrder = 0
+    end
+    object ProgressBar1: TProgressBar
+      Left = 6
+      Height = 10
+      Top = 48
+      Width = 754
+      Anchors = [akTop, akLeft, akRight]
+      TabOrder = 4
+    end
+    object BitBtn3: TBitBtn
+      Left = 659
+      Height = 30
+      Top = 8
+      Width = 136
+      Anchors = [akTop, akRight]
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        18000000000000030000C40E0000C40E00000000000000000000FF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF40
+        779340759140748F40728C40708AFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FF407B985FBCD84EADCB40A0C03888A63888A64070
+        8AFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF407F9C72CDE76B
+        C7E25FBCD84EADCB40A0C040A0C03888A64086A3FF00FFFF00FFFF00FFFF00FF
+        FF00FFFF00FF4084A182DBF37AD4ED72CDE76BC7E25FBCD84EADCB40A0C040A0
+        C040728CFF00FFFF00FFFF00FFFF00FFFF00FF4089A690E8FF89E2FA82DBF37A
+        D4ED72CDE76BC7E25FBCD84EADCB40A0C040748FFF00FFFF00FFFF00FFFF00FF
+        408EAC90E8FF90E8FF4086A389E2FA82DBF37AD4ED72CDE76BC7E25FBCD84EAD
+        CB407591FF00FFFF00FFFF00FF4093B290E8FF90E8FF408BA94089A690E8FF40
+        7E9B82DBF340799572CDE7407B985FBCD8407793FF00FFFF00FFFF00FFFF00FF
+        4093B24091AFFF00FF408BA990E8FF40819E89E2FA407C987AD4ED407D9A6BC7
+        E2407995FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF408EAC90E8FF40
+        83A090E8FF407E9B82DBF3407F9C72CDE7407B98FF00FFFF00FFFF00FFFF00FF
+        FF00FFFF00FFFF00FF4091AF90E8FF4086A390E8FF40819E89E2FA40829F7AD4
+        ED407D9AFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF4093B290E8FF40
+        89A790E8FF4083A090E8FF4084A140829FFF00FFFF00FFFF00FFFF00FFFF00FF
+        FF00FFFF00FFFF00FF4096B590E8FF408CAA90E8FF4086A390E8FF4086A3FF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF4093B140
+        90AE90E8FF4089A74086A3FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FFFF00FF4093B14090AE408CAAFF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+        00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+      }
+      OnClick = BitBtn3Click
+      TabOrder = 3
+    end
+    object BitBtn4: TBitBtn
+      Left = 149
+      Height = 30
+      Top = 8
+      Width = 136
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        180000000000000000003A0B00003A0B00000000000000000000FF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+        FFFF00FFFF00FFFF00FF556E773C5768354C5C2D4151283746212D3C1B253315
+        1C291014200B0D18060610545A65FF00FFFF00FFFF00FFFF00FF57707977899C
+        559CC21080C21080C21080C2107BBB1070A6106592105A7F105577102F45FF00
+        FFFF00FFFF00FFFF00FF5C767F66B8D777899C8AE1FF75DAFF62D3FC52C4F444
+        B5EE37A7E62A9AE01C89D7104D66363A45FF00FFFF00FFFF00FF627B8468D8FF
+        77899C8FB4BF8AE1FF75DAFF62D3FC52C4F444B5EE37A7E62A9AE01C89D7102F
+        45FF00FFFF00FFFF00FF6680897DDDFF66B8D777899CA0E7FF8AE1FF75DAFF62
+        D3FC52C4F444B5EE37A7E62A9AE0104D66363A45FF00FFFF00FF6B868F90E3FF
+        7DDDFF77899C8FB4BFA0E7FF8AE1FF75DAFF62D3FC52C4F444B5EE37A7E61C89
+        D7102F45FF00FFFF00FF708B95A5E9FF90E3FF66B8D777899CAFEBFF66D7FF66
+        D7FF66D7FF66D7FF66D7FF66D7FF66D7FF3692C23C5768FF00FF76919AAFEBFF
+        A5E9FF90E3FF779CAF779CAF779CAF779CAF7497A96E909F68889763808E5D79
+        8458727B566F7AFF00FF77929CAFEBFFAFEBFFA5E9FF90E3FF7DDDFF68D8FF59
+        CAF84BBCF03FB0EA32A3E32796DD556E77FF00FFFF00FFFF00FF77929CAFEBFF
+        AFEBFFAFEBFFA5E9FF90E3FF556E77556E77556E77556E77556E77556E77556E
+        77FF00FFFF00FFFF00FF77929C74A3B6AFEBFFAFEBFFAFEBFF556E77FF00FFFF
+        00FFFF00FFFF00FFFF00FFFF00FF801C00801C00801C00801C00FF00FF77929C
+        6E89925F7982556E77FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+        FF801C00AC5625801C00FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+        00FFFF00FFFF00FFFF00FFFF00FFFF00FFAC5625801C00801C00FF00FFFF00FF
+        FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF801C00AC5625FF00FFAC56
+        25801C00FF00FF801C00FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+        00FFFF00FFFF00FF801C00801C00801C00FF00FFFF00FFFF00FF
+      }
+      OnClick = BitBtn4Click
+      TabOrder = 1
+    end
+    object BitBtn5: TBitBtn
+      Left = 293
+      Height = 30
+      Top = 8
+      Width = 136
+      Glyph.Data = {
+        36030000424D3603000000000000360000002800000010000000100000000100
+        180000000000000000003A0B00003A0B00000000000000000000FF00FFFF00FF
+        522A1B522A1B522A1B522A1B522A1B522A1B522A1B522A1B522A1B522A1B522A
+        1B522A1B522A1B522A1BFF00FFC05754C47F79BC757056402FAF9E96B4AAA5BB
+        B0AABBB0AABBB0AABBB0AA735B4C7B2B287B2B287B2B28522A1BFF00FFC05754
+        CB8883C47F7956402F1A0F0B44362DFFFFFFFFFFFFFFFFFFEBDCD4735B4C7F2E
+        2C7B2B287B2B28522A1BFF00FFC05754D3928CCB888356402F00000020130DFF
+        FFFFF4EDE9EBDCD4D8BBAB735B4C8736347F2E2C7B2B28522A1BFF00FFC05754
+        DA9C96D3928C56402F56402F56402F56402F56402F56402F56402F56402F8E3F
+        3C8736347F2E2C522A1BFF00FFC05754E7ABA5E0A19CD79791CF8E88C7837FBC
+        7570B56C68AD645EA65A569E504D9647448E3F3C873634522A1BFF00FFC05754
+        EBB0AAE7ABA5E0A19CD79791CF8E88C7837FC07A75B8706CB16864AA5E5A9E50
+        4D9647448E3F3C522A1BFF00FFC05754EBB0AAEBB0AAB84841B84841B84841B8
+        4841B84841B84841B84841B84841B84841A15551994C48522A1BFF00FFC05754
+        EBB0AAB84841F8F2EFF3E9E3EEE0D9E9D9CFE5D1C6E0CABCDCC2B4D8BBABD8BB
+        ABB84841A15551522A1BFF00FFC05754EBB0AAB84841FFFFFFFBF6F4F6EDE9F0
+        E3DEEBDCD4E6D5CAE2CEC1DEC6B8D9BFAFB84841AA5E5A522A1BFF00FFC05754
+        EBB0AAB84841FFFFFFFFFFFFFBF6F4F6EDE9F0E3DEEBDCD4E6D5CAE2CEC1DEC6
+        B8B84841B16864522A1BFF00FFC05754EBB0AAB84841FFFFFFFFFFFFFFFFFFFB
+        F6F4F6EDE9F0E3DEEBDCD4E6D5CAE2CEC1B84841B8706C522A1BFF00FFC05754
+        EBB0AAB84841FFFFFFFFFFFFFFFFFFFFFFFFFBF6F4F6EDE9F0E3DEEBDCD4E6D5
+        CAB84841C47F79522A1BFF00FFC05754EBB0AAB84841FFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFBF6F4F6EDE9F0E3DEEBDCD4B84841000000522A1BFF00FFC05754
+        EBB0AAB84841FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBF6F4F6EDE9F0E3
+        DEB84841B8706C522A1BFF00FFC05754C05754C05754C05754C05754C05754C0
+        5754C05754C05754C05754C05754C05754C05754C05754C05754
+      }
+      OnClick = BitBtn5Click
+      TabOrder = 2
+    end
+    object Shape4: TShape
+      Left = 767
+      Height = 10
+      Top = 48
+      Width = 28
+      Anchors = [akTop, akRight]
+      Brush.Color = clDefault
+      Shape = stRoundRect
+    end
+  end
+  object PageControl1: TPageControl
+    Left = 8
+    Height = 515
+    Top = 104
+    Width = 810
+    ActivePage = TabSheet1
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    ParentShowHint = False
+    ShowHint = True
+    TabIndex = 0
+    TabOrder = 2
+    OnChange = PageControl1Change
+    OnMouseUp = PageControl1MouseUp
+    object TabSheet1: TTabSheet
+      ClientHeight = 487
+      ClientWidth = 802
+      object ComboBox1: TComboBox
+        Left = 10
+        Height = 23
+        Hint = 'Tag auswählen'
+        Top = 174
+        Width = 118
+        ItemHeight = 15
+        OnChange = ComboBox1Change
+        OnDblClick = ComboBox1Change
+        TabOrder = 1
+      end
+      object Chart4: TChart
+        Left = 136
+        Height = 487
+        Top = 0
+        Width = 666
+        AxisList = <        
+          item
+            Marks.LabelBrush.Style = bsClear
+            Minors = <>
+            Title.LabelFont.Orientation = 900
+            Title.Visible = True
+            Title.LabelBrush.Style = bsClear
+          end        
+          item
+            Alignment = calBottom
+            Marks.Format = '%2:s'
+            Marks.LabelBrush.Style = bsClear
+            Marks.OverlapPolicy = opHideNeighbour
+            Marks.Source = DateTimeIntervalChartSource1
+            Marks.Style = smsLabel
+            Minors = <>
+            Title.LabelBrush.Style = bsClear
+            ZPosition = 200
+          end>
+        ExtentSizeLimit.UseXMax = True
+        ExtentSizeLimit.XMax = 20
+        Foot.Brush.Color = clBtnFace
+        Foot.Font.Color = clBlue
+        Title.Brush.Color = clBtnFace
+        Title.Font.Color = clBlue
+        Title.Text.Strings = (
+          'Tag'
+        )
+        Title.Visible = True
+        Toolset = ChartToolset1
+        OnDrawReticule = Chart4DrawReticule
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        PopupMenu = PopupMenu2
+        OnMouseUp = Chart4MouseUp
+        object Chart4LineSeries1: TLineSeries
+          Marks.LabelBrush.Color = clMoneyGreen
+          LinePen.Color = clBlue
+        end
+        object Chart4LineSeries2: TLineSeries
+          LinePen.Color = clLime
+        end
+        object Chart4LineSeries3: TLineSeries
+          LinePen.Color = clFuchsia
+        end
+        object Chart4LineSeries4: TLineSeries
+          LinePen.Color = clRed
+        end
+      end
+      object SpeedButton1: TSpeedButton
+        Left = 10
+        Height = 32
+        Hint = 'zurück'
+        Top = 206
+        Width = 38
+        Glyph.Data = {
+          66010000424D6601000000000000760000002800000014000000140000000100
+          040000000000F000000000000000000000000000000010000000000000000000
+          BF0000BF000000BFBF00BF000000BF00BF00BFBF0000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00777777777777
+          7777777700007777777777777777777700007777777777777777777700007777
+          77777C7777777777000077777777CC777777777700007777777CCC7777777777
+          0000777777CCCC7777777777000077777CCCCCCCCCCCC77700007777CCCCCCCC
+          CCCCC7770000777CCCCCCCCCCCCCC7770000777FCCCCCCCCCCCCC77700007777
+          FCCCCCCCCCCCC777000077777FCCCCFFFFFFF7770000777777FCCC7777777777
+          00007777777FCC7777777777000077777777FC77777777770000777777777F77
+          7777777700007777777777777777777700007777777777777777777700007777
+          77777777777777770000
+        }
+        OnClick = SpeedButton1Click
+      end
+      object SpeedButton2: TSpeedButton
+        Left = 84
+        Height = 32
+        Hint = 'vorwärts'
+        Top = 206
+        Width = 38
+        Glyph.Data = {
+          66010000424D6601000000000000760000002800000014000000140000000100
+          040000000000F000000000000000000000000000000010000000000000000000
+          BF0000BF000000BFBF00BF000000BF00BF00BFBF0000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00777777777777
+          7777777700007777777777777777777700007777777777777777777700007777
+          777777C77777777700007777777777CC7777777700007777777777CCC7777777
+          00007777777777CCCC7777770000777CCCCCCCCCCCC777770000777CCCCCCCCC
+          CCCC77770000777CCCCCCCCCCCCCC7770000777CCCCCCCCCCCCCF7770000777C
+          CCCCCCCCCCCF77770000777FFFFFFFCCCCF7777700007777777777CCCF777777
+          00007777777777CCF777777700007777777777CF7777777700007777777777F7
+          7777777700007777777777777777777700007777777777777777777700007777
+          77777777777777770000
+        }
+        OnClick = SpeedButton2Click
+      end
+      object Label2: TLabel
+        Left = 11
+        Height = 15
+        Top = 248
+        Width = 3
+        Caption = ':'
+        ParentColor = False
+      end
+      object Label3: TLabel
+        Left = 11
+        Height = 15
+        Top = 264
+        Width = 17
+        Caption = 'kW'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label4: TLabel
+        Left = 10
+        Height = 15
+        Top = 296
+        Width = 3
+        Caption = ':'
+        ParentColor = False
+      end
+      object Label5: TLabel
+        Left = 10
+        Height = 15
+        Top = 312
+        Width = 24
+        Caption = 'kWh'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label6: TLabel
+        Left = 10
+        Height = 15
+        Top = 352
+        Width = 3
+        Caption = ':'
+        ParentColor = False
+      end
+      object Label7: TLabel
+        Left = 10
+        Height = 15
+        Top = 368
+        Width = 6
+        Caption = '€'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label20: TLabel
+        Left = 10
+        Height = 15
+        Top = 328
+        Width = 53
+        Caption = 'kWh/kWp'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object RadioGroup2: TRadioGroup
+        Left = 11
+        Height = 136
+        Top = 8
+        Width = 117
+        AutoFill = True
+        Caption = 'Anzeige'
+        ChildSizing.LeftRightSpacing = 6
+        ChildSizing.TopBottomSpacing = 6
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+        ChildSizing.EnlargeVertical = crsHomogenousChildResize
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 1
+        OnClick = RadioGroup2Click
+        TabOrder = 0
+      end
+      object Shape1: TShape
+        Left = 10
+        Height = 22
+        Top = 416
+        Width = 22
+        Brush.Color = clDefault
+        Shape = stRoundSquare
+      end
+      object Shape2: TShape
+        Left = 51
+        Height = 22
+        Top = 416
+        Width = 22
+        Brush.Color = clDefault
+        Shape = stRoundSquare
+      end
+      object Shape3: TShape
+        Left = 91
+        Height = 22
+        Top = 416
+        Width = 22
+        Brush.Color = clDefault
+        Shape = stRoundSquare
+      end
+      object Label39: TLabel
+        Left = 11
+        Height = 15
+        Top = 393
+        Width = 42
+        Caption = 'Strings: '
+        ParentColor = False
+      end
+      object CheckBox8: TCheckBox
+        Left = 10
+        Height = 19
+        Top = 152
+        Width = 20
+        OnChange = CheckBox8Change
+        TabOrder = 3
+      end
+      object DateEdit1: TDateEdit
+        Left = 47
+        Height = 32
+        Top = 206
+        Width = 1
+        CalendarDisplaySettings = [dsShowHeadings, dsShowDayNames]
+        OnAcceptDate = DateEdit1AcceptDate
+        DateOrder = doNone
+        ButtonWidth = 36
+        AutoSize = False
+        AutoSelect = False
+        DirectInput = False
+        NumGlyphs = 1
+        MaxLength = 0
+        TabOrder = 4
+      end
+    end
+    object TabSheet2: TTabSheet
+      ClientHeight = 487
+      ClientWidth = 802
+      object ComboBox2: TComboBox
+        Left = 12
+        Height = 23
+        Hint = 'Monat auswählen'
+        Top = 15
+        Width = 105
+        ItemHeight = 15
+        OnChange = ComboBox2Change
+        OnDblClick = ComboBox2Change
+        TabOrder = 0
+      end
+      object Chart2: TChart
+        Left = 130
+        Height = 487
+        Top = 0
+        Width = 666
+        AxisList = <        
+          item
+            Marks.Format = '%0:.4g'
+            Marks.LabelBrush.Style = bsClear
+            Marks.Style = smsCustom
+            Minors = <>
+            Title.LabelFont.Orientation = 900
+            Title.Visible = True
+            Title.LabelBrush.Style = bsClear
+          end        
+          item
+            Grid.Visible = False
+            Alignment = calBottom
+            Marks.Format = '%2:s'
+            Marks.LabelBrush.Style = bsClear
+            Marks.Source = ListChartSource1
+            Marks.Style = smsLabel
+            Minors = <>
+            Title.LabelBrush.Style = bsClear
+          end>
+        Foot.Brush.Color = clBtnFace
+        Foot.Font.Color = clBlue
+        Title.Brush.Color = clBtnFace
+        Title.Font.Color = clBlue
+        Title.Text.Strings = (
+          'Monat'
+        )
+        Title.Visible = True
+        Toolset = ChartToolset2
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        PopupMenu = PopupMenu1
+        OnDblClick = Chart2DblClick
+        object Chart2BarSeries1: TBarSeries
+          Marks.Distance = 1
+          Marks.Visible = False
+          Marks.Format = '%0:.9g'
+          Marks.LabelBrush.Color = clSkyBlue
+          Marks.Style = smsValue
+          BarBrush.Color = clSkyBlue
+          Source = ListChartSource1
+        end
+        object Chart2ConstantLine1: TConstantLine
+          Active = False
+          Pen.Color = clRed
+          Position = 0
+        end
+        object Chart2ConstantLine2: TConstantLine
+          Active = False
+          Pen.Color = clGreen
+          Position = 0
+        end
+      end
+      object SpeedButton3: TSpeedButton
+        Left = 75
+        Height = 32
+        Hint = '1 Monat vorwärts'
+        Top = 48
+        Width = 42
+        Glyph.Data = {
+          66010000424D6601000000000000760000002800000014000000140000000100
+          040000000000F000000000000000000000000000000010000000000000000000
+          BF0000BF000000BFBF00BF000000BF00BF00BFBF0000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00777777777777
+          7777777700007777777777777777777700007777777777777777777700007777
+          777777C77777777700007777777777CC7777777700007777777777CCC7777777
+          00007777777777CCCC7777770000777CCCCCCCCCCCC777770000777CCCCCCCCC
+          CCCC77770000777CCCCCCCCCCCCCC7770000777CCCCCCCCCCCCCF7770000777C
+          CCCCCCCCCCCF77770000777FFFFFFFCCCCF7777700007777777777CCCF777777
+          00007777777777CCF777777700007777777777CF7777777700007777777777F7
+          7777777700007777777777777777777700007777777777777777777700007777
+          77777777777777770000
+        }
+        OnClick = SpeedButton3Click
+      end
+      object SpeedButton4: TSpeedButton
+        Left = 11
+        Height = 32
+        Hint = '1 Monat zurück'
+        Top = 48
+        Width = 42
+        Glyph.Data = {
+          66010000424D6601000000000000760000002800000014000000140000000100
+          040000000000F000000000000000000000000000000010000000000000000000
+          BF0000BF000000BFBF00BF000000BF00BF00BFBF0000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00777777777777
+          7777777700007777777777777777777700007777777777777777777700007777
+          77777C7777777777000077777777CC777777777700007777777CCC7777777777
+          0000777777CCCC7777777777000077777CCCCCCCCCCCC77700007777CCCCCCCC
+          CCCCC7770000777CCCCCCCCCCCCCC7770000777FCCCCCCCCCCCCC77700007777
+          FCCCCCCCCCCCC777000077777FCCCCFFFFFFF7770000777777FCCC7777777777
+          00007777777FCC7777777777000077777777FC77777777770000777777777F77
+          7777777700007777777777777777777700007777777777777777777700007777
+          77777777777777770000
+        }
+        OnClick = SpeedButton4Click
+      end
+      object Label8: TLabel
+        Left = 12
+        Height = 15
+        Top = 128
+        Width = 3
+        Caption = ':'
+        ParentColor = False
+        ParentFont = False
+      end
+      object Label9: TLabel
+        Left = 12
+        Height = 15
+        Top = 144
+        Width = 17
+        Caption = 'kW'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label10: TLabel
+        Left = 12
+        Height = 15
+        Top = 208
+        Width = 3
+        Caption = ':'
+        ParentColor = False
+      end
+      object Label11: TLabel
+        Left = 12
+        Height = 15
+        Top = 224
+        Width = 24
+        Caption = 'kWh'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label12: TLabel
+        Left = 12
+        Height = 15
+        Top = 272
+        Width = 3
+        Caption = ':'
+        ParentColor = False
+      end
+      object Label13: TLabel
+        Left = 12
+        Height = 15
+        Top = 288
+        Width = 6
+        Caption = '€'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label21: TLabel
+        Left = 12
+        Height = 15
+        Top = 240
+        Width = 53
+        Caption = 'kWh/kWp'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label41: TLabel
+        Left = 12
+        Height = 15
+        Top = 168
+        Width = 22
+        Caption = 'Soll:'
+        ParentColor = False
+      end
+      object Label42: TLabel
+        Left = 13
+        Height = 15
+        Top = 184
+        Width = 24
+        Caption = 'kWh'
+        ParentColor = False
+      end
+      object CheckBox10: TCheckBox
+        Left = 13
+        Height = 19
+        Top = 94
+        Width = 20
+        OnChange = CheckBox10Change
+        TabOrder = 2
+      end
+    end
+    object TabSheet3: TTabSheet
+      ClientHeight = 487
+      ClientWidth = 802
+      object ComboBox3: TComboBox
+        Left = 12
+        Height = 23
+        Hint = 'Jahr auswählen'
+        Top = 15
+        Width = 105
+        ItemHeight = 15
+        OnChange = ComboBox3Change
+        OnDblClick = ComboBox3Change
+        TabOrder = 0
+      end
+      object Chart3: TChart
+        Left = 128
+        Height = 487
+        Top = 0
+        Width = 668
+        AxisList = <        
+          item
+            Marks.LabelBrush.Style = bsClear
+            Minors = <>
+            Title.LabelFont.Orientation = 900
+            Title.Visible = True
+            Title.LabelBrush.Style = bsClear
+          end        
+          item
+            Grid.Visible = False
+            Alignment = calBottom
+            Marks.Format = '%2:s'
+            Marks.LabelBrush.Style = bsClear
+            Marks.Source = ListChartSource2
+            Marks.Style = smsLabel
+            Minors = <>
+            Title.LabelBrush.Style = bsClear
+          end>
+        Foot.Brush.Color = clBtnFace
+        Foot.Font.Color = clBlue
+        Title.Brush.Color = clBtnFace
+        Title.Font.Color = clBlue
+        Title.Text.Strings = (
+          'Jahr'
+        )
+        Title.Visible = True
+        Toolset = ChartToolset2
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        PopupMenu = PopupMenu1
+        OnDblClick = Chart3DblClick
+        object Chart3BarSeries2: TBarSeries
+          BarBrush.Color = clMoneyGreen
+          BarWidthPercent = 60
+        end
+        object Chart3BarSeries1: TBarSeries
+          Legend.Multiplicity = lmPoint
+          Marks.Distance = 0
+          Marks.Format = '%0:.9g'
+          Marks.LabelBrush.Color = clSkyBlue
+          Marks.Style = smsValue
+          BarBrush.Color = clSkyBlue
+          BarOffsetPercent = 20
+          BarWidthPercent = 60
+          Source = ListChartSource2
+        end
+        object Chart3ConstantLine1: TConstantLine
+          Active = False
+          Pen.Color = clRed
+          Position = 0
+        end
+        object Chart3ConstantLine2: TConstantLine
+          Active = False
+          Pen.Color = clGreen
+          Position = 0
+        end
+      end
+      object SpeedButton5: TSpeedButton
+        Left = 75
+        Height = 32
+        Hint = '1 Jahr vorwärts'
+        Top = 48
+        Width = 42
+        Glyph.Data = {
+          66010000424D6601000000000000760000002800000014000000140000000100
+          040000000000F000000000000000000000000000000010000000000000000000
+          BF0000BF000000BFBF00BF000000BF00BF00BFBF0000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00777777777777
+          7777777700007777777777777777777700007777777777777777777700007777
+          777777C77777777700007777777777CC7777777700007777777777CCC7777777
+          00007777777777CCCC7777770000777CCCCCCCCCCCC777770000777CCCCCCCCC
+          CCCC77770000777CCCCCCCCCCCCCC7770000777CCCCCCCCCCCCCF7770000777C
+          CCCCCCCCCCCF77770000777FFFFFFFCCCCF7777700007777777777CCCF777777
+          00007777777777CCF777777700007777777777CF7777777700007777777777F7
+          7777777700007777777777777777777700007777777777777777777700007777
+          77777777777777770000
+        }
+        OnClick = SpeedButton5Click
+      end
+      object SpeedButton6: TSpeedButton
+        Left = 11
+        Height = 32
+        Hint = '1 Jahr zurück'
+        Top = 48
+        Width = 42
+        Glyph.Data = {
+          66010000424D6601000000000000760000002800000014000000140000000100
+          040000000000F000000000000000000000000000000010000000000000000000
+          BF0000BF000000BFBF00BF000000BF00BF00BFBF0000C0C0C000808080000000
+          FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00777777777777
+          7777777700007777777777777777777700007777777777777777777700007777
+          77777C7777777777000077777777CC777777777700007777777CCC7777777777
+          0000777777CCCC7777777777000077777CCCCCCCCCCCC77700007777CCCCCCCC
+          CCCCC7770000777CCCCCCCCCCCCCC7770000777FCCCCCCCCCCCCC77700007777
+          FCCCCCCCCCCCC777000077777FCCCCFFFFFFF7770000777777FCCC7777777777
+          00007777777FCC7777777777000077777777FC77777777770000777777777F77
+          7777777700007777777777777777777700007777777777777777777700007777
+          77777777777777770000
+        }
+        OnClick = SpeedButton6Click
+      end
+      object Label14: TLabel
+        Left = 13
+        Height = 15
+        Top = 128
+        Width = 3
+        Caption = ':'
+        ParentColor = False
+      end
+      object Label15: TLabel
+        Left = 13
+        Height = 15
+        Top = 144
+        Width = 17
+        Caption = 'kW'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label16: TLabel
+        Left = 12
+        Height = 15
+        Top = 176
+        Width = 3
+        Caption = ':'
+        ParentColor = False
+      end
+      object Label17: TLabel
+        Left = 12
+        Height = 15
+        Top = 192
+        Width = 24
+        Caption = 'kWh'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label18: TLabel
+        Left = 13
+        Height = 15
+        Top = 240
+        Width = 3
+        Caption = ':'
+        ParentColor = False
+      end
+      object Label19: TLabel
+        Left = 13
+        Height = 15
+        Top = 256
+        Width = 6
+        Caption = '€'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label22: TLabel
+        Left = 13
+        Height = 15
+        Top = 208
+        Width = 53
+        Caption = 'kWh/kWp'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label23: TLabel
+        Left = 13
+        Height = 15
+        Top = 288
+        Width = 3
+        Caption = ':'
+        ParentColor = False
+      end
+      object Label24: TLabel
+        Left = 13
+        Height = 15
+        Top = 304
+        Width = 53
+        Caption = 'kWh/kWp'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object CheckBox7: TCheckBox
+        Left = 12
+        Height = 19
+        Top = 93
+        Width = 20
+        OnChange = CheckBox7Change
+        TabOrder = 1
+      end
+    end
+    object TabSheet4: TTabSheet
+      ClientHeight = 487
+      ClientWidth = 802
+      object RadioGroup1: TRadioGroup
+        Left = 5
+        Height = 217
+        Top = 7
+        Width = 119
+        AutoFill = True
+        Caption = 'Auswertung'
+        ChildSizing.LeftRightSpacing = 6
+        ChildSizing.TopBottomSpacing = 6
+        ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+        ChildSizing.EnlargeVertical = crsHomogenousChildResize
+        ChildSizing.ShrinkHorizontal = crsScaleChilds
+        ChildSizing.ShrinkVertical = crsScaleChilds
+        ChildSizing.Layout = cclLeftToRightThenTopToBottom
+        ChildSizing.ControlsPerLine = 1
+        ClientHeight = 197
+        ClientWidth = 115
+        Items.Strings = (
+          'Peakleistung'
+          'Start/Ende'
+          'Ertragsdauer'
+          'Ertrag'
+          'Spez. JE'
+          'Ertrag relativ'
+          'Netzspannung'
+          'Netzfrequenz'
+          'WR-Temperatur'
+        )
+        OnClick = RadioGroup1Click
+        TabOrder = 0
+      end
+      object Chart1: TChart
+        Left = 130
+        Height = 487
+        Top = 0
+        Width = 666
+        AxisList = <        
+          item
+            Marks.Format = '%2:s'
+            Marks.LabelBrush.Style = bsClear
+            Marks.Style = smsLegend
+            Minors = <>
+            Title.LabelFont.Orientation = 900
+            Title.Visible = True
+            Title.Caption = 'Häufigkeit'
+            Title.LabelBrush.Style = bsClear
+          end        
+          item
+            Intervals.NiceSteps = '0.5|1.0'
+            Alignment = calBottom
+            Marks.LabelBrush.Style = bsClear
+            Marks.OverlapPolicy = opHideNeighbour
+            Minors = <>
+            Title.Visible = True
+            Title.Caption = 'Einheit'
+            Title.LabelBrush.Style = bsClear
+          end>
+        Foot.Brush.Color = clBtnFace
+        Foot.Font.Color = clBlue
+        Title.Brush.Color = clBtnFace
+        Title.Font.Color = clBlue
+        Title.Text.Strings = (
+          'Statistik'
+        )
+        Title.Visible = True
+        Toolset = ChartToolset1
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        PopupMenu = PopupMenu1
+        OnMouseUp = Chart1MouseUp
+        object Chart1BarSeries1: TBarSeries
+          Marks.Format = '%2:s:  %0:.6g'
+          Marks.LabelBrush.Color = clCream
+          Marks.Style = smsCustom
+          BarBrush.Color = clSkyBlue
+          BarWidthPercent = 100
+        end
+        object Chart1BarSeries2: TBarSeries
+          BarBrush.Color = clSkyBlue
+        end
+        object Chart1LineSeries1: TLineSeries
+          LinePen.Color = clGreen
+          LinePen.Width = 2
+        end
+        object Chart1LineSeries2: TLineSeries
+          LinePen.Color = clRed
+          LinePen.Width = 2
+        end
+        object Chart1ConstantLine1: TConstantLine
+          Active = False
+          Pen.Color = clRed
+          Position = 0
+        end
+        object Chart1ConstantLine2: TConstantLine
+          Active = False
+          Pen.Color = clGreen
+          Position = 0
+        end
+      end
+      object Label30: TLabel
+        Left = 5
+        Height = 15
+        Top = 408
+        Width = 53
+        Caption = 'kWh/kWp'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label31: TLabel
+        Left = 5
+        Height = 15
+        Top = 392
+        Width = 3
+        Caption = ':'
+        ParentColor = False
+      end
+      object Label32: TLabel
+        Left = 5
+        Height = 15
+        Top = 360
+        Width = 6
+        Caption = '€'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label33: TLabel
+        Left = 5
+        Height = 15
+        Top = 344
+        Width = 3
+        Caption = ':'
+        ParentColor = False
+      end
+      object Label34: TLabel
+        Left = 5
+        Height = 15
+        Top = 312
+        Width = 53
+        Caption = 'kWh/kWp'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label35: TLabel
+        Left = 4
+        Height = 15
+        Top = 296
+        Width = 24
+        Caption = 'kWh'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label36: TLabel
+        Left = 5
+        Height = 15
+        Top = 280
+        Width = 3
+        Caption = ':'
+        ParentColor = False
+      end
+      object Label37: TLabel
+        Left = 6
+        Height = 15
+        Top = 248
+        Width = 17
+        Caption = 'kW'
+        ParentColor = False
+        ParentShowHint = False
+        ShowHint = True
+      end
+      object Label38: TLabel
+        Left = 6
+        Height = 15
+        Top = 232
+        Width = 3
+        Caption = ':'
+        ParentColor = False
+      end
+    end
+    object TabSheet10: TTabSheet
+      ClientHeight = 487
+      ClientWidth = 802
+      object GroupBox8: TGroupBox
+        Left = 4
+        Height = 138
+        Top = 336
+        Width = 232
+        ClientHeight = 118
+        ClientWidth = 228
+        TabOrder = 1
+        object RadioGroup3: TRadioGroup
+          Left = 8
+          Height = 96
+          Top = 0
+          Width = 105
+          AutoFill = True
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.TopBottomSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 76
+          ClientWidth = 101
+          Items.Strings = (
+            'Tag'
+            'Monat'
+            'Jahr'
+            'Alles'
+          )
+          OnClick = RadioGroup3Click
+          TabOrder = 0
+          TabStop = True
+        end
+        object ComboBox4: TComboBox
+          Left = 126
+          Height = 23
+          Top = 16
+          Width = 96
+          ItemHeight = 15
+          OnChange = ComboBox4Change
+          TabOrder = 1
+          Text = 'Day'
+        end
+        object Label47: TLabel
+          Left = 126
+          Height = 15
+          Top = 0
+          Width = 15
+          Caption = 'Sel'
+          ParentColor = False
+        end
+        object BitBtn11: TBitBtn
+          Left = 126
+          Height = 30
+          Top = 80
+          Width = 96
+          Glyph.Data = {
+            36030000424D3603000000000000360000002800000010000000100000000100
+            1800000000000003000000000000000000000000000000000000FFFFFF000000
+            FFFFFF000000000000FFFFFF000000000000FFFFFF000000000000FFFFFF0000
+            00000000FFFFFF00000020202000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000202020000000DFDFDF
+            DFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDF
+            DFDFDFDFDFDFDF6F6F6F0000009090903F3F005F5F006060606060607F7F0020
+            2000C0C0C03F3F005F5F006060606060607F7F0020200060606000000060DFDF
+            3F7F3FBFBF00606060606060FFFF00404000C0C0C07F7F00BFBF006060606060
+            60FFFF00404000606060000000C0C0C000BFBF205F3F303030003F3FFFFF0040
+            4000C0C0C07F7F00BFBF00606060606060FFFF00404000606060000000C0C0C0
+            7F7F003FFFBF00BFBF30EFEF3F7F3F404000C0C0C07F7F00BFBF006060606060
+            60FFFF00404000606060000000C0C0C07F7F00BFBF00609F9F6060603FFFBF00
+            3F3FC0C0C07F7F00BFBF00303030003F3FFFFF00404000606060000000C0C0C0
+            7F7F00BFBF00606060606060FFFF0020DFBF306F6F7F7F009F9F0000BFBF30EF
+            EF3F7F3F404000606060000000C0C0C07F7F00BFBF00606060606060FFFF0040
+            400030EFEF3F7F3F00BFBF609F9F6060603FFFFF003F3F606060000000C0C0C0
+            7F7F00BFBF00606060606060FFFF7F5F5F00C0C0C000BFBF7FBF3F606060C0C0
+            C060606030EFEF003F3F000000C0C0C07F7F00BFBF00606060C0C0C060606090
+            9090C0C0C07F7F00BFBF00606060C0C0C0C0C0C0C0C0C0306F6F000000CFCFCF
+            7F7F3FDFDF3F606060CFCFCFCFCFCFCFCFCFCFCFCF7F7F7F7F7F3F9F9F9FCFCF
+            CFCFCFCFCFCFCF6F6F6F000000DFDFDF9F9F9F6F6F6FDFDFDFDFDFDFDFDFDFDF
+            DFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDF6F6F6F202020000000
+            0000000000000000000000000000000000000000000000000000000000000000
+            00000000000000202020FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+          }
+          OnClick = BitBtn11Click
+          TabOrder = 3
+        end
+        object ComboBox5: TComboBox
+          Left = 126
+          Height = 23
+          Top = 40
+          Width = 96
+          ItemHeight = 15
+          OnChange = ComboBox5Change
+          TabOrder = 2
+          Text = 'Day'
+        end
+        object CheckBox11: TCheckBox
+          Left = 14
+          Height = 19
+          Top = 96
+          Width = 84
+          Caption = 'CheckBox11'
+          OnChange = CheckBox11Change
+          TabOrder = 4
+        end
+      end
+      object GroupBox9: TGroupBox
+        Left = 4
+        Height = 328
+        Top = 8
+        Width = 232
+        Caption = 'Y-Achsen'
+        ClientHeight = 308
+        ClientWidth = 228
+        TabOrder = 0
+        object RadioGroup4: TRadioGroup
+          Left = 7
+          Height = 304
+          Top = 0
+          Width = 101
+          AutoFill = True
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.TopBottomSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 284
+          ClientWidth = 97
+          Items.Strings = (
+            'P_AC'
+            'P_DC*'
+            'P_DC-P_AC*'
+            'E_DAY'
+            'U_AC'
+            'F_AC'
+            'T_WR'
+            'U_DC1'
+            'I_DC1'
+            'U_DC2'
+            'I_DC2'
+            'U_DC3'
+            'I_DC3'
+            'P_DC1*'
+            'P_DC2*'
+            'P_DC3*'
+            'R_DC'
+          )
+          TabOrder = 0
+          TabStop = True
+        end
+        object RadioGroup5: TRadioGroup
+          Left = 118
+          Height = 304
+          Top = 0
+          Width = 104
+          AutoFill = True
+          ChildSizing.LeftRightSpacing = 6
+          ChildSizing.TopBottomSpacing = 6
+          ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+          ChildSizing.EnlargeVertical = crsHomogenousChildResize
+          ChildSizing.ShrinkHorizontal = crsScaleChilds
+          ChildSizing.ShrinkVertical = crsScaleChilds
+          ChildSizing.Layout = cclLeftToRightThenTopToBottom
+          ChildSizing.ControlsPerLine = 1
+          ClientHeight = 284
+          ClientWidth = 100
+          Items.Strings = (
+            'P_AC'
+            'P_DC*'
+            'P_DC-P_AC*'
+            'E_DAY'
+            'U_AC'
+            'F_AC'
+            'T_WR'
+            'U_DC1'
+            'I_DC1'
+            'U_DC2'
+            'I_DC2'
+            'U_DC3'
+            'I_DC3'
+            'P_DC1*'
+            'P_DC2*'
+            'P_DC3*'
+            'R_DC'
+          )
+          TabOrder = 1
+        end
+      end
+      object Chart5: TChart
+        Left = 243
+        Height = 487
+        Top = 0
+        Width = 552
+        AxisList = <        
+          item
+            Marks.LabelBrush.Style = bsClear
+            Minors = <>
+            Title.LabelFont.Orientation = 900
+            Title.Visible = True
+            Title.LabelBrush.Style = bsClear
+            Transformations = ChartAxisTransformations1
+          end        
+          item
+            Alignment = calBottom
+            Marks.Format = '%2:s'
+            Marks.LabelBrush.Style = bsClear
+            Marks.OverlapPolicy = opHideNeighbour
+            Marks.Source = DateTimeIntervalChartSource3
+            Marks.Style = smsLegend
+            Minors = <>
+            Title.LabelBrush.Style = bsClear
+          end        
+          item
+            Grid.Visible = False
+            Alignment = calRight
+            Marks.LabelBrush.Style = bsClear
+            Minors = <>
+            Title.LabelFont.Orientation = 900
+            Title.Visible = True
+            Title.LabelBrush.Style = bsClear
+            Transformations = ChartAxisTransformations2
+          end>
+        ExtentSizeLimit.UseXMax = True
+        ExtentSizeLimit.XMax = 20
+        Foot.Brush.Color = clBtnFace
+        Foot.Font.Color = clBlue
+        Title.Brush.Color = clBtnFace
+        Title.Font.Color = clBlue
+        Title.Text.Strings = (
+          'TAChart'
+        )
+        Toolset = ChartToolset1
+        OnDrawReticule = Chart5DrawReticule
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        PopupMenu = PopupMenu3
+        OnMouseUp = Chart5MouseUp
+        object Chart5LineSeries1: TLineSeries
+          AxisIndexY = 0
+        end
+        object Chart5LineSeries2: TLineSeries
+          AxisIndexY = 2
+          LinePen.Color = clRed
+        end
+      end
+    end
+    object TabSheet6: TTabSheet
+      ClientHeight = 487
+      ClientWidth = 802
+      object PageControl2: TPageControl
+        Left = 4
+        Height = 480
+        Top = 8
+        Width = 790
+        ActivePage = TabSheet9
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        TabIndex = 2
+        TabOrder = 0
+        OnChange = PageControl2Change
+        object TabSheet7: TTabSheet
+          ClientHeight = 469
+          ClientWidth = 788
+          object GroupBox2: TGroupBox
+            Left = 4
+            Height = 192
+            Top = 8
+            Width = 764
+            Anchors = [akTop, akLeft, akRight]
+            ClientHeight = 172
+            ClientWidth = 760
+            ParentColor = False
+            ParentFont = False
+            TabOrder = 0
+            object Label1: TLabel
+              Left = 9
+              Height = 15
+              Top = 10
+              Width = 7
+              Caption = 'V'
+              ParentColor = False
+            end
+            object DirectoryEdit1: TDirectoryEdit
+              Left = 9
+              Height = 23
+              Top = 30
+              Width = 277
+              ShowHidden = False
+              ButtonWidth = 23
+              NumGlyphs = 1
+              Color = clCream
+              MaxLength = 0
+              TabOrder = 0
+              OnChange = DirectoryEdit1Change
+            end
+            object SpinEdit1: TSpinEdit
+              Left = 487
+              Height = 23
+              Top = 80
+              Width = 200
+              Color = clCream
+              OnChange = SpinEdit1Change
+              TabOrder = 3
+            end
+            object LabeledEdit1: TLabeledEdit
+              Left = 487
+              Height = 23
+              Top = 30
+              Width = 200
+              Color = clCream
+              EditLabel.AnchorSideLeft.Control = LabeledEdit1
+              EditLabel.AnchorSideRight.Control = LabeledEdit1
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit1
+              EditLabel.Left = 487
+              EditLabel.Height = 15
+              EditLabel.Top = 12
+              EditLabel.Width = 200
+              EditLabel.Caption = 'LabeledEdit1'
+              EditLabel.ParentColor = False
+              TabOrder = 1
+              Text = '*'
+              OnChange = LabeledEdit1Change
+            end
+            object Label25: TLabel
+              Left = 9
+              Height = 15
+              Top = 62
+              Width = 9
+              Caption = 'H'
+              ParentColor = False
+            end
+            object Label26: TLabel
+              Left = 487
+              Height = 15
+              Top = 62
+              Width = 7
+              Caption = 'Z'
+              ParentColor = False
+            end
+            object FileNameEdit1: TFileNameEdit
+              Left = 9
+              Height = 23
+              Top = 80
+              Width = 277
+              DialogOptions = []
+              FilterIndex = 0
+              HideDirectories = False
+              ButtonWidth = 23
+              NumGlyphs = 1
+              Color = clCream
+              MaxLength = 0
+              TabOrder = 2
+              OnChange = FileNameEdit1Change
+            end
+            object CheckBox1: TCheckBox
+              Left = 9
+              Height = 19
+              Top = 112
+              Width = 20
+              OnChange = CheckBox1Change
+              TabOrder = 4
+            end
+            object RadioGroup6: TRadioGroup
+              Left = 315
+              Height = 152
+              Top = 10
+              Width = 158
+              AutoFill = True
+              Caption = 'RadioGroup6'
+              ChildSizing.LeftRightSpacing = 6
+              ChildSizing.TopBottomSpacing = 6
+              ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+              ChildSizing.EnlargeVertical = crsHomogenousChildResize
+              ChildSizing.ShrinkHorizontal = crsScaleChilds
+              ChildSizing.ShrinkVertical = crsScaleChilds
+              ChildSizing.Layout = cclLeftToRightThenTopToBottom
+              ChildSizing.ControlsPerLine = 1
+              ClientHeight = 132
+              ClientWidth = 154
+              Items.Strings = (
+                'Danfoss TLX Pro'
+                'Kaco Powador'
+                'SMA Sunny Boy'
+                'SMA Spot'
+                'Danfoss DW Migration'
+              )
+              OnClick = RadioGroup6Click
+              TabOrder = 5
+            end
+            object Label54: TLabel
+              Left = 487
+              Height = 15
+              Top = 112
+              Width = 40
+              Caption = 'Label54'
+              ParentColor = False
+            end
+            object SpinEdit3: TSpinEdit
+              Left = 487
+              Height = 23
+              Top = 136
+              Width = 71
+              OnChange = SpinEdit3Change
+              TabOrder = 6
+            end
+          end
+          object GroupBox3: TGroupBox
+            Left = 4
+            Height = 144
+            Top = 208
+            Width = 764
+            Anchors = [akTop, akLeft, akRight]
+            ClientHeight = 124
+            ClientWidth = 760
+            TabOrder = 1
+            object LabeledEdit2: TLabeledEdit
+              Left = 9
+              Height = 23
+              Top = 32
+              Width = 200
+              Color = clMoneyGreen
+              EditLabel.AnchorSideLeft.Control = LabeledEdit2
+              EditLabel.AnchorSideTop.Side = asrCenter
+              EditLabel.AnchorSideRight.Control = LabeledEdit2
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit2
+              EditLabel.Left = 9
+              EditLabel.Height = 15
+              EditLabel.Top = 14
+              EditLabel.Width = 200
+              EditLabel.Caption = 'LabeledEdit2'
+              EditLabel.ParentColor = False
+              TabOrder = 0
+              OnChange = LabeledEdit2Change
+            end
+            object LabeledEdit3: TLabeledEdit
+              Left = 9
+              Height = 23
+              Top = 80
+              Width = 200
+              Color = clMoneyGreen
+              EditLabel.AnchorSideLeft.Control = LabeledEdit3
+              EditLabel.AnchorSideRight.Control = LabeledEdit3
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit3
+              EditLabel.Left = 9
+              EditLabel.Height = 15
+              EditLabel.Top = 62
+              EditLabel.Width = 200
+              EditLabel.Caption = 'LabeledEdit3'
+              EditLabel.ParentColor = False
+              TabOrder = 1
+              OnChange = LabeledEdit3Change
+            end
+            object LabeledEdit4: TLabeledEdit
+              Left = 487
+              Height = 23
+              Top = 32
+              Width = 200
+              Color = clMoneyGreen
+              EditLabel.AnchorSideLeft.Control = LabeledEdit4
+              EditLabel.AnchorSideRight.Control = LabeledEdit4
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit4
+              EditLabel.Left = 487
+              EditLabel.Height = 15
+              EditLabel.Top = 14
+              EditLabel.Width = 200
+              EditLabel.Caption = 'LabeledEdit4'
+              EditLabel.ParentColor = False
+              TabOrder = 2
+              OnChange = LabeledEdit4Change
+            end
+            object LabeledEdit15: TLabeledEdit
+              Left = 487
+              Height = 23
+              Top = 80
+              Width = 200
+              Color = clMoneyGreen
+              EditLabel.AnchorSideLeft.Control = LabeledEdit15
+              EditLabel.AnchorSideRight.Control = LabeledEdit15
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit15
+              EditLabel.Left = 487
+              EditLabel.Height = 15
+              EditLabel.Top = 62
+              EditLabel.Width = 200
+              EditLabel.Caption = 'LabeledEdit15'
+              EditLabel.ParentColor = False
+              TabOrder = 3
+              OnChange = LabeledEdit15Change
+            end
+            object Label49: TLabel
+              Left = 238
+              Height = 15
+              Top = 9
+              Width = 40
+              Caption = 'Label49'
+              Color = clDefault
+              ParentColor = False
+              Transparent = False
+            end
+            object LabeledEdit17: TLabeledEdit
+              Left = 286
+              Height = 23
+              Top = 32
+              Width = 112
+              Color = clMoneyGreen
+              EditLabel.AnchorSideTop.Control = LabeledEdit17
+              EditLabel.AnchorSideTop.Side = asrCenter
+              EditLabel.AnchorSideRight.Control = LabeledEdit17
+              EditLabel.AnchorSideBottom.Control = LabeledEdit17
+              EditLabel.AnchorSideBottom.Side = asrBottom
+              EditLabel.Left = 243
+              EditLabel.Height = 15
+              EditLabel.Top = 36
+              EditLabel.Width = 40
+              EditLabel.Caption = 'String 1'
+              EditLabel.ParentColor = False
+              LabelPosition = lpLeft
+              TabOrder = 4
+              OnChange = LabeledEdit17Change
+            end
+            object LabeledEdit18: TLabeledEdit
+              Left = 286
+              Height = 23
+              Top = 56
+              Width = 112
+              Color = clMoneyGreen
+              EditLabel.AnchorSideTop.Control = LabeledEdit18
+              EditLabel.AnchorSideTop.Side = asrCenter
+              EditLabel.AnchorSideRight.Control = LabeledEdit18
+              EditLabel.AnchorSideBottom.Control = LabeledEdit18
+              EditLabel.AnchorSideBottom.Side = asrBottom
+              EditLabel.Left = 243
+              EditLabel.Height = 15
+              EditLabel.Top = 60
+              EditLabel.Width = 40
+              EditLabel.Caption = 'String 2'
+              EditLabel.ParentColor = False
+              LabelPosition = lpLeft
+              TabOrder = 5
+              OnChange = LabeledEdit17Change
+            end
+            object LabeledEdit19: TLabeledEdit
+              Left = 286
+              Height = 23
+              Top = 80
+              Width = 112
+              Color = clMoneyGreen
+              EditLabel.AnchorSideTop.Control = LabeledEdit19
+              EditLabel.AnchorSideTop.Side = asrCenter
+              EditLabel.AnchorSideRight.Control = LabeledEdit19
+              EditLabel.AnchorSideBottom.Control = LabeledEdit19
+              EditLabel.AnchorSideBottom.Side = asrBottom
+              EditLabel.Left = 243
+              EditLabel.Height = 15
+              EditLabel.Top = 84
+              EditLabel.Width = 40
+              EditLabel.Caption = 'String 3'
+              EditLabel.ParentColor = False
+              LabelPosition = lpLeft
+              TabOrder = 6
+              OnChange = LabeledEdit17Change
+            end
+          end
+        end
+        object TabSheet8: TTabSheet
+          ClientHeight = 469
+          ClientWidth = 788
+          object GroupBox4: TGroupBox
+            Left = 12
+            Height = 216
+            Top = 16
+            Width = 771
+            Anchors = [akTop, akLeft, akRight]
+            ClientHeight = 196
+            ClientWidth = 767
+            TabOrder = 0
+            object LabeledEdit5: TLabeledEdit
+              Left = 9
+              Height = 23
+              Top = 24
+              Width = 118
+              Color = clCream
+              EditLabel.AnchorSideLeft.Control = LabeledEdit5
+              EditLabel.AnchorSideRight.Control = LabeledEdit5
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit5
+              EditLabel.Left = 9
+              EditLabel.Height = 15
+              EditLabel.Top = 6
+              EditLabel.Width = 118
+              EditLabel.Caption = 'LabeledEdit5'
+              EditLabel.ParentColor = False
+              TabOrder = 0
+              OnChange = LabeledEdit5Change
+            end
+            object TrackBar1: TTrackBar
+              Left = 150
+              Height = 37
+              Top = 30
+              Width = 168
+              Min = 1
+              OnChange = TrackBar1Change
+              Position = 1
+              TabOrder = 1
+            end
+            object Label27: TLabel
+              Left = 150
+              Height = 15
+              Top = 64
+              Width = 7
+              Caption = 'g'
+              ParentColor = False
+            end
+            object Label28: TLabel
+              Left = 279
+              Height = 15
+              Top = 64
+              Width = 5
+              Caption = 's'
+              ParentColor = False
+            end
+            object Label29: TLabel
+              Left = 165
+              Height = 15
+              Top = 8
+              Width = 40
+              Caption = 'Label29'
+              ParentColor = False
+            end
+            object StringGrid1: TStringGrid
+              Left = 347
+              Height = 49
+              Top = 31
+              Width = 340
+              Color = clCream
+              ColCount = 12
+              Columns = <              
+                item
+                  Title.Caption = 'Jan'
+                  Width = 28
+                end              
+                item
+                  Title.Caption = 'Feb'
+                  Width = 28
+                end              
+                item
+                  Title.Caption = 'Mrz'
+                  Width = 28
+                end              
+                item
+                  Title.Caption = 'Apr'
+                  Width = 28
+                end              
+                item
+                  Title.Caption = 'Mai'
+                  Width = 28
+                end              
+                item
+                  Title.Caption = 'Jun'
+                  Width = 28
+                end              
+                item
+                  Title.Caption = 'Jul'
+                  Width = 28
+                end              
+                item
+                  Title.Caption = 'Aug'
+                  Width = 28
+                end              
+                item
+                  Title.Caption = 'Sep'
+                  Width = 28
+                end              
+                item
+                  Title.Caption = 'Okt'
+                  Width = 28
+                end              
+                item
+                  Title.Caption = 'Nov'
+                  Width = 28
+                end              
+                item
+                  Title.Caption = 'Dez'
+                  Width = 28
+                end>
+              DefaultColWidth = 28
+              DefaultRowHeight = 23
+              FixedCols = 0
+              Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goSmoothScroll]
+              RowCount = 2
+              ScrollBars = ssNone
+              TabOrder = 2
+              OnClick = StringGrid1Click
+              OnEnter = StringGrid1Click
+              OnExit = StringGrid1Click
+            end
+            object Label40: TLabel
+              Left = 347
+              Height = 15
+              Top = 8
+              Width = 40
+              Caption = 'Label40'
+              ParentColor = False
+            end
+            object Label43: TLabel
+              Left = 9
+              Height = 15
+              Top = 112
+              Width = 40
+              Caption = 'Label43'
+              ParentColor = False
+            end
+            object SpinEdit2: TSpinEdit
+              Left = 9
+              Height = 23
+              Top = 136
+              Width = 120
+              Color = clCream
+              MaxValue = 6000
+              MinValue = 10
+              OnChange = SpinEdit2Change
+              TabOrder = 3
+              Value = 10
+            end
+            object Label44: TLabel
+              Left = 166
+              Height = 15
+              Top = 112
+              Width = 40
+              Caption = 'Label44'
+              ParentColor = False
+            end
+            object TrackBar2: TTrackBar
+              Left = 150
+              Height = 37
+              Top = 140
+              Width = 168
+              Max = 20
+              Min = 1
+              OnChange = TrackBar2Change
+              Position = 1
+              TabOrder = 4
+            end
+            object Label45: TLabel
+              Left = 150
+              Height = 15
+              Top = 176
+              Width = 40
+              Caption = 'Label45'
+              ParentColor = False
+            end
+            object Label46: TLabel
+              Left = 279
+              Height = 15
+              Top = 176
+              Width = 40
+              Caption = 'Label46'
+              ParentColor = False
+            end
+            object LabeledEdit16: TLabeledEdit
+              Left = 347
+              Height = 23
+              Top = 136
+              Width = 121
+              Color = clCream
+              EditLabel.AnchorSideLeft.Control = LabeledEdit16
+              EditLabel.AnchorSideRight.Control = LabeledEdit16
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit16
+              EditLabel.Left = 347
+              EditLabel.Height = 15
+              EditLabel.Top = 118
+              EditLabel.Width = 121
+              EditLabel.Caption = 'LabeledEdit16'
+              EditLabel.ParentColor = False
+              TabOrder = 5
+              Text = 'LabeledEdit16'
+              OnChange = LabeledEdit16Change
+            end
+            object Label48: TLabel
+              Left = 469
+              Height = 15
+              Top = 140
+              Width = 10
+              Caption = '%'
+              ParentColor = False
+            end
+            object CheckBox13: TCheckBox
+              Left = 534
+              Height = 19
+              Top = 140
+              Width = 84
+              Caption = 'CheckBox13'
+              OnChange = CheckBox13Change
+              TabOrder = 6
+            end
+          end
+          object GroupBox7: TGroupBox
+            Left = 4
+            Height = 168
+            Top = 240
+            Width = 771
+            Anchors = [akTop, akLeft, akRight]
+            ClientHeight = 148
+            ClientWidth = 767
+            TabOrder = 1
+            object BitBtn2: TBitBtn
+              Left = 9
+              Height = 29
+              Hint = 'Backup-Datei im Datawarehouse Verzeichnis anlegen'
+              Top = 8
+              Width = 186
+              Caption = 'Back&up'
+              Glyph.Data = {
+                36030000424D3603000000000000360000002800000010000000100000000100
+                1800000000000003000000000000000000000000000000000000FFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF404040404040
+                4040404040404040404040404040404040404040404040404040404040404040
+                40202020FFFFFFFFFFFFBFBFBFC0C0C0C0C0C0C0C0C0CFCFCFDFDFDFDFDFDFDF
+                DFDFCFCFCFC0C0C0C0C0C0C0C0C0C0C0C0808080202020FFFFFFBFBFBFBFBFBF
+                BFBFBFBFBFBF5F5F5F0000000000000000005F5F5FBFBFBFBFBFBFBFBFBFC0C0
+                C0808080404040FFFFFFBFBFBFC0C0C0C0C0C0C0C0C0B0B0B0A0A0A0A0A0A0A0
+                A0A0B0B0B0C0C0C09090CF9090CFC0C0C0808080404040FFFFFFBFBFBFC0C0C0
+                C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C0C060606060606030306F30306F6060
+                604040402020200000007F7F7FDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDFDF
+                DFDF8080808080808080808080807F7F7F808080808080404040FFFFFF707070
+                A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A0A08080808080808080808080807F7F
+                7F808080808080404040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFF808080808080808080808080BFBFBF808080808080404040FFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF8080808080808080806060609F9F
+                9FBFBFBF808080404040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFF808080808080808080404040606060808080808080404040FFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBFBFBFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFF7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFBFBFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7FFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF4040404040404040404040404040
+                40404040404040202020FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              }
+              OnClick = BitBtn2Click
+              TabOrder = 0
+            end
+            object BitBtn6: TBitBtn
+              Left = 9
+              Height = 29
+              Hint = 'Restoredatei für Datawarehouse anlegen: '#13#10'Gehe zur Tagesauswertung und wähle fehlenden Tag'
+              Top = 104
+              Width = 186
+              Glyph.Data = {
+                36030000424D3603000000000000360000002800000010000000100000000100
+                1800000000000003000000000000000000000000000000000000FFFFFFFFFFFF
+                000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000000000
+                00000000FFFFFFFFFFFF0000000000000000007F7F7F3F3F3F00000000000000
+                00000000000000000000003F3F3F7F7F7F00000000000000000000009F0000BF
+                0000203F3F3F00000000007F0000BF0000BF0000BF0000BF00007F0000003F3F
+                3F0000200000BF00009F003FBF0000FF0000DF00004000007F0000FF0000FF00
+                00FF0000FF0000FF0000FF00007F0000400000DF0000BF0000200000400000FF
+                0000FF0000FF0000FF0000FF0000FF3F3FFF3F3FFF0000FF0000FF0000DF0000
+                BF000040FFFFFFFFFFFFFFFFFF0000400000406F6FAFEFEFEF0000BF0000BFFF
+                FFFFFFFFFFCFCFCF707070202020FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000
+                000000FFFFFF3F3F7F00009F00009F7F7FBF505070202020FFFFFF2020200000
+                00FFFFFFFFFFFFFFFFFF2020205F5F5F0000003F3F3F505050202020FFFFFFFF
+                FFFFFFFFFFFFFFFF2020205F9F9F000000FFFFFFFFFFFFFFFFFFBFBFBF7F7F7F
+                AFAFAF000000303030000000202020FFFFFFFFFFFF2020205F9F9F000000FFFF
+                FFFFFFFFFFFFFFFFFFFFBFBFBF3F3F3FBFBFBF606060EFEFEF3F3F3FFFFFFF7F
+                7F7F2020205F9F9F000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
+                2020203F3F3FAFAFAF3F3F3FFFFFFFDFDFDF5F9F9F000000FFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFF0000009090903F3F3F3F3F3F3F3F3F0000005F5F5F5F
+                9F9F000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF404040DFDFDF
+                7F7F7FFFFFFFFFFFFF5F5F5F5F9F9F000000FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7F0000003F3F3FDFDFDF5F9F9F000000FF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                0000002020205F9F9F000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF407F7F000000FFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              }
+              OnClick = BitBtn6Click
+              TabOrder = 1
+            end
+            object BitBtn7: TBitBtn
+              Left = 606
+              Height = 29
+              Top = 8
+              Width = 142
+              Anchors = [akTop, akRight]
+              Glyph.Data = {
+                36030000424D3603000000000000360000002800000010000000100000000100
+                1800000000000003000000000000000000000000000000000000FFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF606060404040FFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFF3F3F3F404040404040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFF2020203F3F3FFFFFFF404040404040FFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF404040606060404040AF
+                AFAFFFFFFF404040808080808080404040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFF2020206F6F6FAFAFAFFFFFFFFFFFFFFFFFFFAFAFAF6F6F6F4040408080
+                80606060FFFFFFFFFFFFFFFFFFFFFFFF3F3F3FEFEFEFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFEFEFEF5F5F5F808080606060FFFFFFFFFFFF5F5F5F
+                FFFFFFFFFFFFFFFFFFFFFFFFEFAFAFFF0000EFAFAFFFFFFFFFFFFFFFFFFFFFFF
+                FF5F5F5F808080404040404040EFEFEFFFFFFFFFFFFFFFFFFFFFFFFFEFAFAFFF
+                0000EFAFAFFFFFFFFFFFFFFFFFFFFFFFFFEFEFEF404040808080AFAFAFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFF6F6F6F808080BFBFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                0000EFAFAFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7F808080BFBFBFFFFFFF
+                FFFFFFFFFFFFFFFFFFEFAFAFEFAFAFEF6F6FFF0000FFBFBFFFFFFFFFFFFFFFFF
+                FFFFFFFF7F7F7F606060707070FFFFFFFFFFFFFFFFFFFFFFFFFF0000FF0000EF
+                EFEFFF0000FF0000FFFFFFFFFFFFFFFFFFFFFFFF505050202020202020CFCFCF
+                FFFFFFFFFFFFFFFFFFEF3030EFEFEFFFBFBFFF0000EF3030FFFFFFFFFFFFFFFF
+                FFAFAFAF000000FFFFFFFFFFFF202020DFDFDFFFFFFFFFFFFFEFEFEFFF7F7FFF
+                7F7FFF7F7FEFEFEFFFFFFFFFFFFFBFBFBF000000FFFFFFFFFFFFFFFFFFFFFFFF
+                202020AFAFAFEFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFEFEFAFAFAF2020
+                20FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF404040707070BFBFBFBF
+                BFBFBFBFBF707070404040FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              }
+              OnClick = GroupBox1Click
+              TabOrder = 2
+            end
+            object BitBtn8: TBitBtn
+              Left = 220
+              Height = 29
+              Top = 8
+              Width = 186
+              Glyph.Data = {
+                36030000424D3603000000000000360000002800000010000000100000000100
+                18000000000000030000000000000000000000000000000000000000FFFFFFFF
+                0000FFFFFFFF0000FFFFFFFF0000FFFFFFFF0000FFFFFFFF0000FFFFFFFF0000
+                FFFFFFFF0000FF7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000
+                0000000000003F3F3F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F3F3F3F0000000000
+                00000000000000000000FFFFFFBFBFBF7F7F7F7F7FBF7F7FFF7F7FFF7F7FFF7F
+                7FFF7F7FFF7F7FFF7F7FFF7F7FFF7F7F7F7F7F7FBFBFBFFFFFFF7F7F7F7F7F7F
+                00000000000000007F00007F00007F00007F00007F00007F00007F00003F0000
+                000000007F7F7F7F7F7FFFFFFFFFFFFFBFBFBF7F7F7F7F7FBF7F7FFF7F7FFF7F
+                7FFF7F7FFF7F7FFF7F7FFF7F7F7F7F7F7FBFBFBFFFFFFFFFFFFF7F7F7F7F7F7F
+                7F7F7F00000000000000007F00007F00007F00007F00007F00003F0000000000
+                007F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFBFBFFF7F7FFF7F7FFF7F7FFF7F
+                7FFF7F7FFF7F7FFF7F7FFF7F7FFFBFBFFFFFFFFFFFFFFFFFFFFF7F7F7F7F7F7F
+                7F7F7F7F7F7F00000000000000007F00007F00007F00007F0000000000007F7F
+                7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFBFBFBF7F7F7F7F7FBF7F
+                7FFF7F7FFF7F7FBF7F7F7FBFBFBFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7F7F7F7F
+                7F7F7F7F7F7F7F7F7F00000000000000007F00007F0000000000007F7F7F7F7F
+                7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBFBFBF7F7F7F7F
+                7FBF7F7FBF7F7F7FBFBFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7F7F7F7F
+                7F7F7F7F7F7F7F7F7F7F7F7F0000000000000000000000007F7F7F7F7F7F7F7F
+                7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBFBFBF7F
+                7F7F7F7F7FBFBFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7F7F7F7F7F7F
+                7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F0000000000007F7F7F7F7F7F7F7F7F7F7F
+                7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBF
+                BFBFBFBFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              }
+              OnClick = BitBtn8Click
+              TabOrder = 3
+            end
+            object BitBtn10: TBitBtn
+              Left = 220
+              Height = 29
+              Top = 104
+              Width = 186
+              Glyph.Data = {
+                36030000424D3603000000000000360000002800000010000000100000000100
+                18000000000000030000000000000000000000000000000000007F0000200000
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000
+                003F00007F00005F0000FF0000600000000000FFFFFF00000000007F00007F00
+                000000003F00007F00003FFFFFFF3F00007F0000DF0000200000FF00005F0000
+                200000FFFFFF00003F00003F00007F00007F00007F0000000000FF3F3F3FBFBF
+                BFEFEFEF5030300000007F0000FF000040000000000000000000007F0000BF00
+                007F00007F0000000000FF7F7F7FFFFFFFDFDFDF000000FFFFFF3F00003F3F3F
+                BFBFBF20202000007F00007F00007F00007F0000FF00007F30306F9F9F9F6060
+                60DFDFDF000000FFFFFFFFFFFF3F3F3FFFFFFFDFDFDF30306F0000BF0000BF00
+                003F0000FF00007F00007F000000FFFFFF606060000000FFFFFFFFFFFF000000
+                FFFFFFEFEFEFFFFFFF3F3F3F303030000000000000000000000000FFFFFFFFFF
+                FF000000FFFFFFFFFFFFFFFFFF0000009F9F9F0000003F3F3F7F7F7F7F7F7F30
+                3030FFFFFF000000004040002020FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000
+                303030FFFFFFFFFFFF0000003F3F3F3F3F3FFFFFFF007F7F00FFFF009F9F0000
+                00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000000000FFFFFFFF
+                FFFFFFFFFF3F3F3F7FFFFF009F9F000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFF000000009F00009F00002000FFFFFFFFFFFFFFFFFF000000000000FFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0000007FFF7F00FF00004000FF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFF3F3F3F007F00000000FFFFFF000000000000FFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+                00009F009F9F009F200020FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FF3FFFFF00FF400040FFFFFFFFFF
+                FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+                FFFF3F003F7F007F000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              }
+              OnClick = BitBtn10Click
+              TabOrder = 4
+            end
+            object Label51: TLabel
+              Left = 708
+              Height = 15
+              Top = 48
+              Width = 40
+              Anchors = [akTop, akRight]
+              Caption = 'Label51'
+              Font.Color = clNavy
+              Font.Style = [fsUnderline]
+              ParentColor = False
+              ParentFont = False
+              OnClick = Label51Click
+              OnMouseEnter = Label51MouseEnter
+              OnMouseLeave = Label51MouseLeave
+            end
+            object Label52: TLabel
+              Left = 689
+              Height = 15
+              Top = 104
+              Width = 59
+              Anchors = [akTop, akRight]
+              Caption = 'Homepage'
+              Font.Color = clNavy
+              Font.Style = [fsUnderline]
+              ParentColor = False
+              ParentFont = False
+              OnClick = Label52Click
+              OnMouseEnter = Label52MouseEnter
+              OnMouseLeave = Label52MouseLeave
+            end
+            object Label53: TLabel
+              Left = 654
+              Height = 15
+              Top = 77
+              Width = 94
+              Anchors = [akTop, akRight]
+              Caption = 'Download update'
+              Font.Color = clNavy
+              Font.Style = [fsUnderline]
+              ParentColor = False
+              ParentFont = False
+              OnClick = Label53Click
+              OnMouseEnter = Label53MouseEnter
+              OnMouseLeave = Label53MouseLeave
+            end
+            object RadioGroup7: TRadioGroup
+              Left = 220
+              Height = 44
+              Top = 40
+              Width = 282
+              AutoFill = True
+              Caption = 'RadioGroup7'
+              ChildSizing.LeftRightSpacing = 6
+              ChildSizing.TopBottomSpacing = 6
+              ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+              ChildSizing.EnlargeVertical = crsHomogenousChildResize
+              ChildSizing.ShrinkHorizontal = crsScaleChilds
+              ChildSizing.ShrinkVertical = crsScaleChilds
+              ChildSizing.Layout = cclLeftToRightThenTopToBottom
+              ChildSizing.ControlsPerLine = 4
+              ClientHeight = 24
+              ClientWidth = 278
+              Columns = 4
+              Items.Strings = (
+                ' 50%'
+                ' 60%'
+                ' 70%'
+                ' 80%'
+              )
+              TabOrder = 5
+            end
+          end
+        end
+        object TabSheet9: TTabSheet
+          ClientHeight = 452
+          ClientWidth = 782
+          object GroupBox5: TGroupBox
+            Left = 12
+            Height = 176
+            Top = 8
+            Width = 754
+            Anchors = [akTop, akLeft, akRight]
+            Caption = 'WR-Datawarehouse'
+            ClientHeight = 156
+            ClientWidth = 750
+            ParentColor = False
+            TabOrder = 0
+            object LabeledEdit6: TLabeledEdit
+              Left = 8
+              Height = 23
+              Hint = 'Hostname oder IP-Adresse des Datawarehouse, wie beim Wechselrichter eingestellt'
+              Top = 24
+              Width = 512
+              Color = clCream
+              EditLabel.AnchorSideLeft.Control = LabeledEdit6
+              EditLabel.AnchorSideRight.Control = LabeledEdit6
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit6
+              EditLabel.Left = 8
+              EditLabel.Height = 15
+              EditLabel.Top = 6
+              EditLabel.Width = 512
+              EditLabel.Caption = 'LabeledEdit6'
+              EditLabel.ParentColor = False
+              TabOrder = 0
+              OnChange = LabeledEdit6Change
+            end
+            object LabeledEdit7: TLabeledEdit
+              Left = 8
+              Height = 23
+              Hint = 'Benutzername für Datawarehouse'
+              Top = 72
+              Width = 248
+              Color = clMoneyGreen
+              EditLabel.AnchorSideLeft.Control = LabeledEdit7
+              EditLabel.AnchorSideRight.Control = LabeledEdit7
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit7
+              EditLabel.Left = 8
+              EditLabel.Height = 15
+              EditLabel.Top = 54
+              EditLabel.Width = 248
+              EditLabel.Caption = 'LabeledEdit7'
+              EditLabel.ParentColor = False
+              TabOrder = 2
+              OnChange = LabeledEdit7Change
+            end
+            object LabeledEdit8: TLabeledEdit
+              Left = 273
+              Height = 23
+              Hint = 'Passwort für Datawarehouse'
+              Top = 72
+              Width = 246
+              Color = clSkyBlue
+              EchoMode = emPassword
+              EditLabel.AnchorSideLeft.Control = LabeledEdit8
+              EditLabel.AnchorSideRight.Control = LabeledEdit8
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit8
+              EditLabel.Left = 273
+              EditLabel.Height = 15
+              EditLabel.Top = 54
+              EditLabel.Width = 246
+              EditLabel.Caption = 'LabeledEdit8'
+              EditLabel.ParentColor = False
+              PasswordChar = '*'
+              TabOrder = 3
+              OnChange = LabeledEdit8Change
+            end
+            object LabeledEdit9: TLabeledEdit
+              Left = 8
+              Height = 23
+              Hint = 'Eventuell zusätzliches Verzeichnis, kann aber auch leer bleiben'
+              Top = 120
+              Width = 248
+              Color = clCream
+              EditLabel.AnchorSideLeft.Control = LabeledEdit9
+              EditLabel.AnchorSideRight.Control = LabeledEdit9
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit9
+              EditLabel.Left = 8
+              EditLabel.Height = 15
+              EditLabel.Top = 102
+              EditLabel.Width = 248
+              EditLabel.Caption = 'LabeledEdit9'
+              EditLabel.ParentColor = False
+              TabOrder = 4
+              OnChange = LabeledEdit9Change
+            end
+            object CheckBox2: TCheckBox
+              Left = 545
+              Height = 19
+              Top = 28
+              Width = 20
+              OnChange = CheckBox2Change
+              TabOrder = 1
+            end
+            object CheckBox5: TCheckBox
+              Left = 545
+              Height = 19
+              Top = 76
+              Width = 20
+              OnChange = CheckBox5Change
+              TabOrder = 5
+            end
+            object Button1: TButton
+              Left = 546
+              Height = 25
+              Top = 120
+              Width = 99
+              OnClick = Button1Click
+              TabOrder = 6
+            end
+            object CheckBox9: TCheckBox
+              Left = 275
+              Height = 19
+              Top = 121
+              Width = 20
+              OnChange = CheckBox9Change
+              TabOrder = 7
+            end
+            object Label50: TLabel
+              Left = 469
+              Height = 15
+              Top = 100
+              Width = 40
+              Caption = 'Label50'
+              ParentColor = False
+            end
+            object SpinEdit4: TSpinEdit
+              Left = 469
+              Height = 23
+              Top = 122
+              Width = 50
+              OnChange = SpinEdit4Change
+              TabOrder = 8
+            end
+          end
+          object GroupBox6: TGroupBox
+            Left = 8
+            Height = 217
+            Top = 192
+            Width = 754
+            Anchors = [akTop, akLeft, akRight]
+            Caption = 'Webspace/Homepage'
+            ClientHeight = 197
+            ClientWidth = 750
+            TabOrder = 1
+            object LabeledEdit10: TLabeledEdit
+              Left = 8
+              Height = 23
+              Hint = 'Hostname oder IP-Adresse der Homepage'
+              Top = 64
+              Width = 512
+              Color = clCream
+              EditLabel.AnchorSideLeft.Control = LabeledEdit10
+              EditLabel.AnchorSideRight.Control = LabeledEdit10
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit10
+              EditLabel.Left = 8
+              EditLabel.Height = 15
+              EditLabel.Top = 46
+              EditLabel.Width = 512
+              EditLabel.Caption = 'LabeledEdit10'
+              EditLabel.ParentColor = False
+              TabOrder = 1
+              OnChange = LabeledEdit10Change
+            end
+            object CheckBox3: TCheckBox
+              Left = 8
+              Height = 19
+              Top = 16
+              Width = 20
+              OnChange = CheckBox3Change
+              TabOrder = 0
+            end
+            object CheckBox4: TCheckBox
+              Left = 545
+              Height = 19
+              Top = 68
+              Width = 20
+              OnChange = CheckBox4Change
+              TabOrder = 2
+            end
+            object LabeledEdit11: TLabeledEdit
+              Left = 8
+              Height = 23
+              Hint = 'Benutzername für Homepage'
+              Top = 112
+              Width = 248
+              Color = clMoneyGreen
+              EditLabel.AnchorSideLeft.Control = LabeledEdit11
+              EditLabel.AnchorSideRight.Control = LabeledEdit11
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit11
+              EditLabel.Left = 8
+              EditLabel.Height = 15
+              EditLabel.Top = 94
+              EditLabel.Width = 248
+              EditLabel.Caption = 'LabeledEdit11'
+              EditLabel.ParentColor = False
+              TabOrder = 3
+              OnChange = LabeledEdit11Change
+            end
+            object LabeledEdit12: TLabeledEdit
+              Left = 273
+              Height = 23
+              Hint = 'Passwort für Homepage'
+              Top = 112
+              Width = 248
+              Color = clSkyBlue
+              EchoMode = emPassword
+              EditLabel.AnchorSideLeft.Control = LabeledEdit12
+              EditLabel.AnchorSideRight.Control = LabeledEdit12
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit12
+              EditLabel.Left = 273
+              EditLabel.Height = 15
+              EditLabel.Top = 94
+              EditLabel.Width = 248
+              EditLabel.Caption = 'LabeledEdit12'
+              EditLabel.ParentColor = False
+              PasswordChar = '*'
+              TabOrder = 4
+              OnChange = LabeledEdit12Change
+            end
+            object LabeledEdit13: TLabeledEdit
+              Left = 8
+              Height = 23
+              Hint = 'Eventuell anderes Verzeichnis, kann aber auch leer bleiben'
+              Top = 160
+              Width = 248
+              Color = clCream
+              EditLabel.AnchorSideLeft.Control = LabeledEdit13
+              EditLabel.AnchorSideRight.Control = LabeledEdit13
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit13
+              EditLabel.Left = 8
+              EditLabel.Height = 15
+              EditLabel.Top = 142
+              EditLabel.Width = 248
+              EditLabel.Caption = 'LabeledEdit13'
+              EditLabel.ParentColor = False
+              TabOrder = 5
+              OnChange = LabeledEdit13Change
+            end
+            object CheckBox6: TCheckBox
+              Left = 545
+              Height = 19
+              Top = 116
+              Width = 20
+              OnChange = CheckBox6Change
+              TabOrder = 8
+            end
+            object LabeledEdit14: TLabeledEdit
+              Left = 272
+              Height = 23
+              Hint = 'Dateiname der HTML-Protokolldatei, die aktualisiert werden soll. Siehe Basisdaten.'
+              Top = 160
+              Width = 248
+              EditLabel.AnchorSideLeft.Control = LabeledEdit14
+              EditLabel.AnchorSideRight.Control = LabeledEdit14
+              EditLabel.AnchorSideRight.Side = asrBottom
+              EditLabel.AnchorSideBottom.Control = LabeledEdit14
+              EditLabel.Left = 272
+              EditLabel.Height = 15
+              EditLabel.Top = 142
+              EditLabel.Width = 248
+              EditLabel.Caption = 'LabeledEdit14'
+              EditLabel.ParentColor = False
+              ParentColor = True
+              ReadOnly = True
+              TabOrder = 6
+              TabStop = False
+              OnChange = LabeledEdit14Change
+            end
+            object Button2: TButton
+              Left = 545
+              Height = 25
+              Top = 158
+              Width = 99
+              OnClick = Button2Click
+              TabOrder = 7
+            end
+          end
+        end
+        object TabSheet11: TTabSheet
+          Caption = 'TabSheet11'
+          ClientHeight = 469
+          ClientWidth = 788
+          object GroupBox10: TGroupBox
+            Left = 12
+            Height = 160
+            Top = 8
+            Width = 200
+            Caption = 'GroupBox10'
+            ClientHeight = 140
+            ClientWidth = 196
+            TabOrder = 0
+            object ColorButton8: TColorButton
+              Left = 6
+              Height = 25
+              Top = 8
+              Width = 183
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clGreen
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+            object ColorButton9: TColorButton
+              Left = 6
+              Height = 25
+              Top = 40
+              Width = 183
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clBlue
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+            object ColorButton10: TColorButton
+              Left = 6
+              Height = 25
+              Top = 72
+              Width = 183
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clRed
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+            object ColorButton11: TColorButton
+              Left = 6
+              Height = 25
+              Top = 104
+              Width = 183
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clGreen
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+          end
+          object GroupBox11: TGroupBox
+            Left = 12
+            Height = 160
+            Top = 168
+            Width = 200
+            Caption = 'GroupBox11'
+            ClientHeight = 140
+            ClientWidth = 196
+            TabOrder = 3
+            object ColorButton3: TColorButton
+              Left = 6
+              Height = 25
+              Top = 8
+              Width = 183
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clBlue
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+            object ColorButton4: TColorButton
+              Left = 6
+              Height = 25
+              Top = 40
+              Width = 183
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clLime
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+            object ColorButton5: TColorButton
+              Left = 6
+              Height = 25
+              Top = 72
+              Width = 183
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clFuchsia
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+            object ColorButton6: TColorButton
+              Left = 6
+              Height = 25
+              Top = 104
+              Width = 183
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clRed
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+          end
+          object GroupBox12: TGroupBox
+            Left = 228
+            Height = 65
+            Top = 263
+            Width = 200
+            Caption = 'GroupBox12'
+            ClientHeight = 45
+            ClientWidth = 196
+            TabOrder = 4
+            object ColorButton7: TColorButton
+              Left = 6
+              Height = 25
+              Top = 9
+              Width = 182
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clSkyBlue
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+          end
+          object GroupBox13: TGroupBox
+            Left = 444
+            Height = 128
+            Top = 200
+            Width = 200
+            Caption = 'GroupBox13'
+            ClientHeight = 108
+            ClientWidth = 196
+            TabOrder = 5
+            object ColorButton12: TColorButton
+              Left = 6
+              Height = 25
+              Top = 8
+              Width = 182
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clBlue
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+            object ColorButton13: TColorButton
+              Left = 6
+              Height = 25
+              Top = 40
+              Width = 182
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clSkyBlue
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+            object ColorButton14: TColorButton
+              Left = 6
+              Height = 25
+              Top = 72
+              Width = 182
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clMoneyGreen
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+          end
+          object GroupBox14: TGroupBox
+            Left = 228
+            Height = 224
+            Top = 8
+            Width = 200
+            Caption = 'GroupBox14'
+            ClientHeight = 204
+            ClientWidth = 196
+            TabOrder = 1
+            object ColorButton15: TColorButton
+              Left = 6
+              Height = 25
+              Top = 8
+              Width = 183
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clBlue
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+            object ColorButton16: TColorButton
+              Left = 6
+              Height = 25
+              Top = 40
+              Width = 183
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clGreen
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+            object ColorButton17: TColorButton
+              Left = 6
+              Height = 25
+              Top = 72
+              Width = 183
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clMoneyGreen
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+            object ColorButton18: TColorButton
+              Left = 6
+              Height = 25
+              Top = 104
+              Width = 183
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clSkyBlue
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+            object ColorButton19: TColorButton
+              Left = 6
+              Height = 25
+              Top = 136
+              Width = 182
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clGreen
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+            object ColorButton20: TColorButton
+              Left = 6
+              Height = 25
+              Top = 168
+              Width = 182
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clRed
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+          end
+          object GroupBox15: TGroupBox
+            Left = 444
+            Height = 97
+            Top = 8
+            Width = 200
+            Caption = 'GroupBox15'
+            ClientHeight = 77
+            ClientWidth = 196
+            TabOrder = 2
+            object ColorButton1: TColorButton
+              Left = 6
+              Height = 25
+              Top = 8
+              Width = 183
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clRed
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+            object ColorButton2: TColorButton
+              Left = 6
+              Height = 25
+              Top = 40
+              Width = 183
+              Anchors = [akTop, akLeft, akRight]
+              BorderWidth = 2
+              ButtonColorSize = 16
+              ButtonColor = clBlue
+              ColorDialog = ColorDialog1
+              Layout = blGlyphRight
+              OnColorChanged = ColorButton1ColorChanged
+            end
+          end
+          object BitBtn12: TBitBtn
+            Left = 444
+            Height = 40
+            Top = 336
+            Width = 200
+            Caption = 'BitBtn12'
+            Glyph.Data = {
+              F6060000424DF606000000000000360000002800000018000000180000000100
+              180000000000C0060000D30E0000D30E00000000000000000000FF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFEC967FEC967FDD816ABC4F3EBC4F3EBC
+              4F3EBC4F3EBC4F3EBC4F3EBC4F3EDD816ADD816AEC967FEC967FEC967FEC967F
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFEC96
+              7FDD816ABC4F3EE76B29DD816ADD816AFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FFFF00FFEC967FF76363DD816AFF00FFFF00FFFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FFFF00FFEC967FBC4F3EFF00FFFF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FF22679C326EA96594D3FF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFDD816ABC4F3EFF
+              00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF22679C6596D68AB4E7326EA9
+              6594D3FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FFDD816ABC4F3EFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF22679C6596D68A
+              B4E7B6D5FAB6D5FA326EA96594D3FF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FFEC967FBC4F3EBC4F3EFF00FFFF00FFFF00FFFF00FFFF00FF2267
+              9C6596D68AB4E7B6D5FACDE2FED5ECFFB6D5FA326EA96594D3FF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FFDD816ABC4F3EBC4F3EFF00FFFF00FFFF00FF
+              FF00FF22679C6596D68AB4E7B6D5FACDE2FED5ECFFDAEDFFD1E8FFBBD4F4326E
+              A96594D3FF00FFFF00FFFF00FFFF00FFFF00FFEC967FBC4F3EC86B5CBC4F3EFF
+              00FFFF00FFFF00FF22679C6596D68AB4E7B6D5FACDE2FED5ECFFDAEDFFD1E8FF
+              BBD4F4A5BEE38CA7D1326EA96594D3FF00FFFF00FFFF00FFFF00FFEC967FBC4F
+              3EC86B5CBC4F3EFF00FFFF00FF22679C6596D68AB4E7B6D5FACDE2FED5ECFFDA
+              EDFFD1E8FFBBD4F4A5BEE38CA7D1728FBE5B78A8326EA96594D3FF00FFFF00FF
+              FF00FFEC967FBC4F3EC86B5CBC4F3EFF00FF22679C6596D68AB4E7B6D5FAB6D5
+              FAB6D5FADAEDFFD1E8FFBBD4F4A5BEE38CA7D1728FBE5B78A855719F496CA532
+              6EA9FF00FFFF00FFFF00FFEC967FBC4F3EC86B5CBC4F3E22679C6596D68AB4E7
+              B6D5FAB6D5FA44649A44649AB6D5FABBD4F4A5BEE38CA7D1728FBE5B78A85571
+              9F496CA544649A1D4E82FF00FFFF00FFFF00FFFF00FFEC967FBC4F3EC86B5CBC
+              4F3E22679CB6D5FACDE2FE44649A50627823375544649AA5BEE38CA7D1728FBE
+              5B78A855719F496CA544649A1D4E82FF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FFEC967FBC4F3EC86B5CBC4F3E22679CB6D5FAB6D5FA5062782337555B78A88C
+              A7D1728FBE5B78A855719F496CA544649A1D4E82FF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFEC967FBC4F3EBC4F3EC86B5C43789EB6D5FA5B70
+              892D476E5B78A8728FBE5B78A855719F496CA544649A1D4E82FF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FF43789E5B70892D476E5B78A85B78A855719F496CA544649A1D4E82FF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FF5B70892D476E44649A55719F496CA544649A
+              1D4E82FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF5B70892D476E44649A49
+              6CA544649A1D4E82FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF5B70
+              892D476E43789E44649A1D4E82FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FF647A963C5783FF00FF1D4E82FF00FFFF00FFFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FF758AA34C6DA4FF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+            }
+            OnClick = BitBtn12Click
+            TabOrder = 8
+          end
+          object BitBtn13: TBitBtn
+            Left = 12
+            Height = 40
+            Top = 336
+            Width = 200
+            Caption = 'BitBtn13'
+            Glyph.Data = {
+              F6060000424DF606000000000000360000002800000018000000180000000100
+              180000000000C0060000630B0000630B00000000000000000000FF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FF21AD3926983EFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF20769E20769E2076
+              9E20769E20769E20769E20769E20769E21AD394BCD6A2DA04120803920769E20
+              769E20769E20769E20769E20769E20769E20769EFF00FFFF00FFFF00FF2494C2
+              2494C225A0CE25A0CE25A1CE25A1CE25A1CE25A1CF21AD394BCD6A31A6482FA3
+              452DA04120803925A2D025A2D025A3D125A3D125A4D225A4D32494C220769EFF
+              00FFFF00FF26A0CDF5F5F5AADFF1A6DDF0A3DCF09FDBEF9CD9EE21AD394BCD6A
+              36AC4F34A94C31A64830A5462EA2431E783169C5E657BEE346B7E034B0DD23A9
+              DA24A6D720769EFF00FFFF00FF26A0CDF5F5F5ADE0F2AADFF1A6DDF0A3DCF021
+              AD394BCD6A3BB25638AF5337AD5135AA4D33A84A30A5462FA3451E783169C5E6
+              57BEE346B7E034B0DD24A6D620769EFF00FFFF00FF26A0CDF5F5F5B1E2F2ADE0
+              F2AADFF1A6DDF021AD3921AD3921AD393CB35839B05437AD5121AD3921AD3921
+              AD3921AD397ACCE969C5E657BEE346B7E02BACDB20769EFF00FFFF00FF269FCC
+              F5F5F5B4E3F3B1E2F2ADE0F2AADFF1A6DDF0A3DCF09FDBEF21AD394BCD6A39B0
+              54228835BBE9C88AD2EB87D1EA83CFEA7ACCE969C5E657BEE32BACDB20769EFF
+              00FFFF00FF269FCCF5F5F5B8E5F4B4E3F3B1E2F2ADE0F2AADFF1A6DDF0A3DCF0
+              21AD394BCD6A3DB45A26983E91D5EC8ED3EC8AD2EB87D1EA83CFEA7ACCE969C5
+              E62BACDB20769EFF00FFFF00FF269FCCF5F5F5BBE6F4B8E5F4B4E3F3B1E2F2AD
+              E0F2AADFF1BBE9C821AD394BCD6A228835BBE9C895D6ED91D5EC8ED3EC8AD2EB
+              87D1EA83CFEA7ACCE92BACDB20769EFF00FFFF00FF269FCCF5F5F5BFE7F5BBE6
+              F4B8E5F4B4E3F3B1E2F2ADE0F221AD394BCD6A44BD6426983E9CD9EE98D8EE95
+              D6ED91D5EC8ED3EC8AD2EB87D1EA83CFEA2CACDB20769EFF00FFFF00FF269FCB
+              F5F5F5C4EAF6C1E8F5BDE7F5BAE5F4B6E4F3BBE9C821AD3948C36B26983EBBE9
+              C8A1DBEF9EDAEF9AD8EE97D7ED93D6ED90D4EC8CD3EB89D1EB2CACDB20769EFF
+              00FFFF00FF269ECBF5F5F5C8EBF7C4EAF6C1E8F5BDE7F5E8F8ED21AD394BCD6A
+              26983EBBE9C8A8DEF1A5DDF0A1DBEF9EDAEF9AD8EE97D7ED93D6ED90D4EC8CD3
+              EB2CACDB20769EFF00FFFF00FF269ECBF5F5F5CBECF7C8EBF7C4EAF6C1E8F521
+              AD394ECA7426983EBBE9C8AFE1F2ACE0F1A8DEF1A5DDF0A1DBEF9EDAEF9AD8EE
+              97D7ED93D6ED90D4EC2DACDB20769EFF00FFFF00FF269ECBF5F5F5CFEEF8CBEC
+              F7C8EBF7C4EAF64ECA7421AD39E8F8EDB6E4F3B3E2F3AFE1F2ACE0F1A8DEF1A5
+              DDF0A1DBEF9EDAEF9AD8EE97D7ED93D6ED34B0DD20769EFF00FFFF00FF269ECB
+              F5F5F5D2EFF9CFEEF8CBECF7C8EBF7C4EAF6C1E8F5BDE7F5BAE5F4B6E4F3B3E2
+              F3AFE1F2ACE0F1A8DEF1A5DDF0A1DBEF9EDAEF9AD8EE97D7ED46B7E020769EFF
+              00FFFF00FF269ECAF5F5F5D6F1F9D2EFF9CFEEF8CBECF7C8EBF7C4EAF6C1E8F5
+              BDE7F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5
+              F5F5F5F520769EFF00FFFF00FF269ECAF5F5F5D9F2FAD6F1F9D2EFF9CFEEF8CB
+              ECF7C8EBF7C4EAF6F5F5F5269FCC2482AE2482AE2482AE2482AE2482AE2482AE
+              2482AE2482AE2482AE2482AE2482AEFF00FFFF00FF269DCAF5F5F5DEF4FBDBF3
+              FAD7F1FAD4F0F9D0EFF8CDEDF8F5F5F5269FCC20769E20769E20769E20769E20
+              769E20769E20769E20769E20769E20769E20769EFF00FFFF00FFFF00FF269DCA
+              D9F2FAF5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5F5269FCBFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FF269DCA269DCA269ECA269ECA269ECA269ECB269ECBFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+            }
+            OnClick = BitBtn13Click
+            TabOrder = 6
+          end
+          object BitBtn14: TBitBtn
+            Left = 228
+            Height = 40
+            Top = 336
+            Width = 200
+            Caption = 'BitBtn14'
+            Glyph.Data = {
+              F6060000424DF606000000000000360000002800000018000000180000000100
+              180000000000C0060000720B0000720B00000000000000000000FF00FFFF00FF
+              FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FF484848484848B9B9B9B9B9B9B9B9B9B9B9B9
+              B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B9B95959596161616666666666
+              663B3B3BFF00FFFF00FFFF00FFFF00FFFF00FF4D4D4D686868545454BBBBBB60
+              60606C6C6C777777525252C8C8C8CECECED3D3D3D6D6D6DCDCDCDCDCDC505050
+              5959596161616666663E3E3E3B3B3BFF00FFFF00FFFF00FF4C4C4C6D6D6D6A6A
+              6A545454B9B9B95858586060606C6C6C525252C2C2C2C5C5C5CBCBCBD0D0D0D6
+              D6D6DCDCDC4A4A4A5050505959595D5D5D4040403E3E3EFF00FFFF00FFFF00FF
+              4D4D4D7171716E6E6E545454B7B7B7545454585858606060525252C0C0C0C2C2
+              C2C5C5C5CBCBCBD0D0D0D6D6D64747474A4A4A4C4C4C5454544343433D3D3DFF
+              00FFFF00FFFF00FF4E4E4E737373717171545454B4B4B4505050545454565656
+              525252BEBEBEC0C0C0C2C2C2C5C5C5CBCBCBD0D0D04343434747474848484C4C
+              4C4646463E3E3EFF00FFFF00FFFF00FF4F4F4F767676737373545454B2B2B24B
+              4B4B505050525252525252BCBCBCBEBEBEC0C0C0C2C2C2C5C5C5C8C8C8404040
+              4343434545454848484848483F3F3FFF00FFFF00FFFF00FF4F4F4F7979797676
+              76545454B0B0B04747474B4B4B4D4D4D525252BABABABCBCBCBDBDBDBFBFBFC1
+              C1C1C3C3C33D3D3D3F3F3F4242424545454C4C4C3F3F3FFF00FFFF00FFFF00FF
+              5050507B7B7B7A7A7A545454AEAEAEB0B0B0B2B2B2B4B4B4B6B6B6B7B7B7B9B9
+              B9BBBBBBBDBDBDBFBFBFC1C1C13A3A3A3B3B3B3F3F3F4242424F4F4F404040FF
+              00FFFF00FFFF00FF5151517F7F7F7D7D7D545454545454545454545454545454
+              5454545454545454545454545454545454545454545454545454545454545454
+              54515151424242FF00FFFF00FFFF00FF5252528282827F7F7F7D7D7D7A7A7A77
+              77777575757272726F6F6F6E6E6E6C6C6C6969696666666464646161615E5E5E
+              5C5C5C595959575757545454424242FF00FFFF00FFFF00FF535353848484E7E7
+              E5F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7
+              F7F7F7F7F7F7F7F7F7F7F7F7F7F7E7E7E5585858434343FF00FFFF00FFFF00FF
+              555555898989F7F7F7F8F8F8F8F8F8F8F8F8F9F9F9F9F9F9F9F9F9F9F9F9FAFA
+              FAFBFBFBFBFBFBFCFCFCFDFDFDFDFDFDFEFEFEFFFFFFFFFFFF5B5B5B444444FF
+              00FFFF00FFFF00FF575757919191F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7
+              F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FEFEFEFFFF
+              FF5D5D5D454545FF00FFFF00FFFF00FF595959969696F7F7F7F7F7F7D9D9D89A
+              9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A
+              D9D9D8FDFDFDFEFEFE606060464646FF00FFFF00FFFF00FF5B5B5B9B9B9BF7F7
+              F7F7F7F7F7F7F7F7F7F7F8F8F8F8F8F8F8F8F8F8F8F8F9F9F9F9F9F9F9F9F9FA
+              FAFAFAFAFAFBFBFBFCFCFCFDFDFDFDFDFD626262474747FF00FFFF00FFFF00FF
+              5C5C5CA0A0A0F7F7F7F6F6F6F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7
+              F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7F7FBFBFBFCFCFC666666484848FF
+              00FFFF00FFFF00FF5E5E5EA6A6A6F7F7F7F6F6F6D9D9D89A9A9A9A9A9A9A9A9A
+              9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9A9AD9D9D8FBFBFBFBFB
+              FB696969484848FF00FFFF00FFFF00FF616161ADADADF7F7F7F6F6F6F6F6F6F6
+              F6F6F7F7F7F7F7F7F7F7F7F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6
+              F6F6F6F6F6F6FBFBFB6C6C6C4A4A4AFF00FFFF00FFFF00FF626262B3B3B3F7F7
+              F7F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6F6
+              F6F6F6F6F6F6F6F6F6F6F6F6F6F6FAFAFA6E6E6E4B4B4BFF00FFFF00FFFF00FF
+              646464B8B8B8F7F7F7F5F5F5F5F5F5F6F6F6F6F6F6F6F6F6F7F7F7F7F7F7F7F7
+              F7F7F7F7F8F8F8F8F8F8F8F8F8F9F9F9F9F9F9F9F9F9F9F9F97171714B4B4BFF
+              00FFFF00FFFF00FF666666BDBDBDEE9332E98E2EE78C2CE28728DD8224D97E20
+              D77C1ED4791BD27719CF7417CC7115CA6F13C76C11C4690FC2670DBF640BBE63
+              0A7575754C4C4CFF00FFFF00FFFF00FFFF00FF666666F59937F09534EB9030E7
+              8C2CE28728DD8224D97E20D77C1ED4791BD27719CF7417CC7115CA6F13C86D12
+              C66B10C3680EC0650C4E4E4EFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
+              FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
+              00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
+            }
+            OnClick = BitBtn14Click
+            TabOrder = 7
+          end
+        end
+        object TabSheet5: TTabSheet
+          ClientHeight = 469
+          ClientWidth = 788
+          object BitBtn9: TBitBtn
+            Left = 4
+            Height = 33
+            Top = 415
+            Width = 118
+            Anchors = [akLeft, akBottom]
+            Glyph.Data = {
+              36030000424D3603000000000000360000002800000010000000100000000100
+              1800000000000003000000000000000000000000000000000000FFFFFFFFFFFF
+              FFFFFF303030A0A0A0000000000000707070303030FFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF30303090909060606000000000000000
+              0000707070303030FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF303030
+              9090908080808080806060600000000000000000007070703050500040400040
+              4000404000202000000030303090909020202060606080808080808020202000
+              0000303030000000707070505050404040404040004040000000A0A0A0606060
+              202020000000808080202020000000909090C0C0C0303030000000707070AFEF
+              EFBFBFBF004040000000000000000000606060606060202020000000909090C0
+              C0C0CFCFCFFFFFFF3F3F3F3F3F3F5F9F9FBFBFBF004040000000000000000000
+              000000202020000000909090C0C0C0CFCFCFFFFFFFFFFFFFFFFFFF3F3F3F3F7F
+              7FBFBFBF004040000000000000000000000000000000909090C0C0C0CFCFCFFF
+              FFFFFFFFFFFFFFFFEFEFEF8F8F8FBFFFFFBFBFBF004040000000FFFFFF000000
+              000000303030C0C0C0CFCFCFFFFFFFFFFFFFFFFFFFEFEFEF70AFAFBFFFFFBFFF
+              FFBFBFBF004040000000FFFFFFFFFFFF002020000000303030FFFFFFFFFFFFFF
+              FFFFEFEFEFAFAFAFBFFFFFBFFFFFBFBFBF404040404040000000FFFFFFFFFFFF
+              004040306F6F0000003F3F3FFFFFFFEFEFEF70AFAFBFFFFFBFFFFFBFFFFF4040
+              40CFCFCF8F8F8F404040FFFFFFFFFFFF004040306F6F609F9F2020203F3F3F8F
+              8F8FBFFFFFBFBFBF7FBFBFBFFFFF4040407F7F7F6F6F6F404040FFFFFFFFFFFF
+              004040306F6F9FDFDFBFBFBF3F7F7FBFFFFFFFFFFFBFFFFF5F5F5F0000404040
+              407F7F7F7F7F7F404040FFFFFFFFFFFF004040306F6FCFCFCF9FDFDFDFDFDF9F
+              DFDFDFDFDF9FDFDF2020603030AF4040407F7F7FAFAFAF404040FFFFFFFFFFFF
+              00404030AFAF306F6F306F6F306F6F306F6F306F6F306F6F306F6F306F6F4040
+              409F9F9F505050202020FFFFFFFFFFFFFFFFFF00404000404000404000404000
+              4040004040004040004040004040002020505050505050000000
+            }
+            OnClick = BitBtn9Click
+            TabOrder = 0
+          end
+          inline SynMemo1: TSynMemo
+            Cursor = crIBeam
+            Left = 4
+            Height = 401
+            Top = 7
+            Width = 764
+            Anchors = [akTop, akLeft, akRight, akBottom]
+            Color = clCream
+            Font.Height = -13
+            Font.Name = 'Courier New'
+            Font.Pitch = fpFixed
+            Font.Quality = fqNonAntialiased
+            ParentColor = False
+            ParentFont = False
+            TabOrder = 1
+            Gutter.Width = 57
+            Gutter.MouseActions = <            
+              item
+                ClickCount = ccAny
+                ClickDir = cdDown
+                Command = emcOnMainGutterClick
+              end            
+              item
+                Button = mbRight
+                Command = emcContextMenu
+              end>
+            Highlighter = SynAnySyn1
+            Keystrokes = <            
+              item
+                Command = ecUp
+                ShortCut = 38
+              end            
+              item
+                Command = ecSelUp
+                ShortCut = 8230
+              end            
+              item
+                Command = ecScrollUp
+                ShortCut = 16422
+              end            
+              item
+                Command = ecDown
+                ShortCut = 40
+              end            
+              item
+                Command = ecSelDown
+                ShortCut = 8232
+              end            
+              item
+                Command = ecScrollDown
+                ShortCut = 16424
+              end            
+              item
+                Command = ecLeft
+                ShortCut = 37
+              end            
+              item
+                Command = ecSelLeft
+                ShortCut = 8229
+              end            
+              item
+                Command = ecWordLeft
+                ShortCut = 16421
+              end            
+              item
+                Command = ecSelWordLeft
+                ShortCut = 24613
+              end            
+              item
+                Command = ecRight
+                ShortCut = 39
+              end            
+              item
+                Command = ecSelRight
+                ShortCut = 8231
+              end            
+              item
+                Command = ecWordRight
+                ShortCut = 16423
+              end            
+              item
+                Command = ecSelWordRight
+                ShortCut = 24615
+              end            
+              item
+                Command = ecPageDown
+                ShortCut = 34
+              end            
+              item
+                Command = ecSelPageDown
+                ShortCut = 8226
+              end            
+              item
+                Command = ecPageBottom
+                ShortCut = 16418
+              end            
+              item
+                Command = ecSelPageBottom
+                ShortCut = 24610
+              end            
+              item
+                Command = ecPageUp
+                ShortCut = 33
+              end            
+              item
+                Command = ecSelPageUp
+                ShortCut = 8225
+              end            
+              item
+                Command = ecPageTop
+                ShortCut = 16417
+              end            
+              item
+                Command = ecSelPageTop
+                ShortCut = 24609
+              end            
+              item
+                Command = ecLineStart
+                ShortCut = 36
+              end            
+              item
+                Command = ecSelLineStart
+                ShortCut = 8228
+              end            
+              item
+                Command = ecEditorTop
+                ShortCut = 16420
+              end            
+              item
+                Command = ecSelEditorTop
+                ShortCut = 24612
+              end            
+              item
+                Command = ecLineEnd
+                ShortCut = 35
+              end            
+              item
+                Command = ecSelLineEnd
+                ShortCut = 8227
+              end            
+              item
+                Command = ecEditorBottom
+                ShortCut = 16419
+              end            
+              item
+                Command = ecSelEditorBottom
+                ShortCut = 24611
+              end            
+              item
+                Command = ecToggleMode
+                ShortCut = 45
+              end            
+              item
+                Command = ecCopy
+                ShortCut = 16429
+              end            
+              item
+                Command = ecPaste
+                ShortCut = 8237
+              end            
+              item
+                Command = ecDeleteChar
+                ShortCut = 46
+              end            
+              item
+                Command = ecCut
+                ShortCut = 8238
+              end            
+              item
+                Command = ecDeleteLastChar
+                ShortCut = 8
+              end            
+              item
+                Command = ecDeleteLastChar
+                ShortCut = 8200
+              end            
+              item
+                Command = ecDeleteLastWord
+                ShortCut = 16392
+              end            
+              item
+                Command = ecUndo
+                ShortCut = 32776
+              end            
+              item
+                Command = ecRedo
+                ShortCut = 40968
+              end            
+              item
+                Command = ecLineBreak
+                ShortCut = 13
+              end            
+              item
+                Command = ecSelectAll
+                ShortCut = 16449
+              end            
+              item
+                Command = ecCopy
+                ShortCut = 16451
+              end            
+              item
+                Command = ecBlockIndent
+                ShortCut = 24649
+              end            
+              item
+                Command = ecLineBreak
+                ShortCut = 16461
+              end            
+              item
+                Command = ecInsertLine
+                ShortCut = 16462
+              end            
+              item
+                Command = ecDeleteWord
+                ShortCut = 16468
+              end            
+              item
+                Command = ecBlockUnindent
+                ShortCut = 24661
+              end            
+              item
+                Command = ecPaste
+                ShortCut = 16470
+              end            
+              item
+                Command = ecCut
+                ShortCut = 16472
+              end            
+              item
+                Command = ecDeleteLine
+                ShortCut = 16473
+              end            
+              item
+                Command = ecDeleteEOL
+                ShortCut = 24665
+              end            
+              item
+                Command = ecUndo
+                ShortCut = 16474
+              end            
+              item
+                Command = ecRedo
+                ShortCut = 24666
+              end            
+              item
+                Command = ecGotoMarker0
+                ShortCut = 16432
+              end            
+              item
+                Command = ecGotoMarker1
+                ShortCut = 16433
+              end            
+              item
+                Command = ecGotoMarker2
+                ShortCut = 16434
+              end            
+              item
+                Command = ecGotoMarker3
+                ShortCut = 16435
+              end            
+              item
+                Command = ecGotoMarker4
+                ShortCut = 16436
+              end            
+              item
+                Command = ecGotoMarker5
+                ShortCut = 16437
+              end            
+              item
+                Command = ecGotoMarker6
+                ShortCut = 16438
+              end            
+              item
+                Command = ecGotoMarker7
+                ShortCut = 16439
+              end            
+              item
+                Command = ecGotoMarker8
+                ShortCut = 16440
+              end            
+              item
+                Command = ecGotoMarker9
+                ShortCut = 16441
+              end            
+              item
+                Command = ecSetMarker0
+                ShortCut = 24624
+              end            
+              item
+                Command = ecSetMarker1
+                ShortCut = 24625
+              end            
+              item
+                Command = ecSetMarker2
+                ShortCut = 24626
+              end            
+              item
+                Command = ecSetMarker3
+                ShortCut = 24627
+              end            
+              item
+                Command = ecSetMarker4
+                ShortCut = 24628
+              end            
+              item
+                Command = ecSetMarker5
+                ShortCut = 24629
+              end            
+              item
+                Command = ecSetMarker6
+                ShortCut = 24630
+              end            
+              item
+                Command = ecSetMarker7
+                ShortCut = 24631
+              end            
+              item
+                Command = ecSetMarker8
+                ShortCut = 24632
+              end            
+              item
+                Command = ecSetMarker9
+                ShortCut = 24633
+              end            
+              item
+                Command = EcFoldLevel1
+                ShortCut = 41009
+              end            
+              item
+                Command = EcFoldLevel2
+                ShortCut = 41010
+              end            
+              item
+                Command = EcFoldLevel1
+                ShortCut = 41011
+              end            
+              item
+                Command = EcFoldLevel1
+                ShortCut = 41012
+              end            
+              item
+                Command = EcFoldLevel1
+                ShortCut = 41013
+              end            
+              item
+                Command = EcFoldLevel6
+                ShortCut = 41014
+              end            
+              item
+                Command = EcFoldLevel7
+                ShortCut = 41015
+              end            
+              item
+                Command = EcFoldLevel8
+                ShortCut = 41016
+              end            
+              item
+                Command = EcFoldLevel9
+                ShortCut = 41017
+              end            
+              item
+                Command = EcFoldLevel0
+                ShortCut = 41008
+              end            
+              item
+                Command = EcFoldCurrent
+                ShortCut = 41005
+              end            
+              item
+                Command = EcUnFoldCurrent
+                ShortCut = 41003
+              end            
+              item
+                Command = EcToggleMarkupWord
+                ShortCut = 32845
+              end            
+              item
+                Command = ecNormalSelect
+                ShortCut = 24654
+              end            
+              item
+                Command = ecColumnSelect
+                ShortCut = 24643
+              end            
+              item
+                Command = ecLineSelect
+                ShortCut = 24652
+              end            
+              item
+                Command = ecTab
+                ShortCut = 9
+              end            
+              item
+                Command = ecShiftTab
+                ShortCut = 8201
+              end            
+              item
+                Command = ecMatchBracket
+                ShortCut = 24642
+              end            
+              item
+                Command = ecColSelUp
+                ShortCut = 40998
+              end            
+              item
+                Command = ecColSelDown
+                ShortCut = 41000
+              end            
+              item
+                Command = ecColSelLeft
+                ShortCut = 40997
+              end            
+              item
+                Command = ecColSelRight
+                ShortCut = 40999
+              end            
+              item
+                Command = ecColSelPageDown
+                ShortCut = 40994
+              end            
+              item
+                Command = ecColSelPageBottom
+                ShortCut = 57378
+              end            
+              item
+                Command = ecColSelPageUp
+                ShortCut = 40993
+              end            
+              item
+                Command = ecColSelPageTop
+                ShortCut = 57377
+              end            
+              item
+                Command = ecColSelLineStart
+                ShortCut = 40996
+              end            
+              item
+                Command = ecColSelLineEnd
+                ShortCut = 40995
+              end            
+              item
+                Command = ecColSelEditorTop
+                ShortCut = 57380
+              end            
+              item
+                Command = ecColSelEditorBottom
+                ShortCut = 57379
+              end>
+            MouseActions = <            
+              item
+                ShiftMask = [ssShift, ssAlt]
+                ClickDir = cdDown
+                Command = emcStartSelections
+                MoveCaret = True
+              end            
+              item
+                Shift = [ssShift]
+                ShiftMask = [ssShift, ssAlt]
+                ClickDir = cdDown
+                Command = emcStartSelections
+                MoveCaret = True
+                Option = 1
+              end            
+              item
+                Shift = [ssAlt]
+                ShiftMask = [ssShift, ssAlt]
+                ClickDir = cdDown
+                Command = emcStartColumnSelections
+                MoveCaret = True
+              end            
+              item
+                Shift = [ssShift, ssAlt]
+                ShiftMask = [ssShift, ssAlt]
+                ClickDir = cdDown
+                Command = emcStartColumnSelections
+                MoveCaret = True
+                Option = 1
+              end            
+              item
+                Button = mbRight
+                Command = emcContextMenu
+              end            
+              item
+                ClickCount = ccDouble
+                ClickDir = cdDown
+                Command = emcSelectWord
+                MoveCaret = True
+              end            
+              item
+                ClickCount = ccTriple
+                ClickDir = cdDown
+                Command = emcSelectLine
+                MoveCaret = True
+              end            
+              item
+                ClickCount = ccQuad
+                ClickDir = cdDown
+                Command = emcSelectPara
+                MoveCaret = True
+              end            
+              item
+                Button = mbMiddle
+                ClickDir = cdDown
+                Command = emcPasteSelection
+                MoveCaret = True
+              end            
+              item
+                Shift = [ssCtrl]
+                ShiftMask = [ssShift, ssAlt, ssCtrl]
+                Command = emcMouseLink
+              end>
+            MouseTextActions = <>
+            MouseSelActions = <            
+              item
+                ClickDir = cdDown
+                Command = emcStartDragMove
+              end>
+            Lines.Strings = (
+              'SynMemo1'
+            )
+            VisibleSpecialChars = [vscSpace, vscTabAtLast]
+            ReadOnly = True
+            SelectedColor.BackPriority = 50
+            SelectedColor.ForePriority = 50
+            SelectedColor.FramePriority = 50
+            SelectedColor.BoldPriority = 50
+            SelectedColor.ItalicPriority = 50
+            SelectedColor.UnderlinePriority = 50
+            SelectedColor.StrikeOutPriority = 50
+            inline SynLeftGutterPartList1: TSynGutterPartList
+              object SynGutterMarks1: TSynGutterMarks
+                Width = 24
+                MouseActions = <>
+              end
+              object SynGutterLineNumber1: TSynGutterLineNumber
+                Width = 17
+                MouseActions = <>
+                MarkupInfo.Background = clBtnFace
+                MarkupInfo.Foreground = clNone
+                DigitCount = 2
+                ShowOnlyLineNumbersMultiplesOf = 1
+                ZeroStart = False
+                LeadingZeros = False
+              end
+              object SynGutterChanges1: TSynGutterChanges
+                Width = 4
+                MouseActions = <>
+                ModifiedColor = 59900
+                SavedColor = clGreen
+              end
+              object SynGutterSeparator1: TSynGutterSeparator
+                Width = 2
+                MouseActions = <>
+                MarkupInfo.Background = clWhite
+                MarkupInfo.Foreground = clGray
+              end
+              object SynGutterCodeFolding1: TSynGutterCodeFolding
+                MouseActions = <                
+                  item
+                    Button = mbRight
+                    Command = emcCodeFoldContextMenu
+                  end                
+                  item
+                    ShiftMask = [ssShift]
+                    Button = mbMiddle
+                    ClickCount = ccAny
+                    ClickDir = cdDown
+                    Command = emcCodeFoldCollaps
+                  end                
+                  item
+                    Shift = [ssShift]
+                    ShiftMask = [ssShift]
+                    Button = mbMiddle
+                    ClickCount = ccAny
+                    ClickDir = cdDown
+                    Command = emcCodeFoldCollaps
+                    Option = 1
+                  end                
+                  item
+                    ClickCount = ccAny
+                    ClickDir = cdDown
+                    Command = emcNone
+                  end>
+                MarkupInfo.Background = clNone
+                MarkupInfo.Foreground = clGray
+                MouseActionsExpanded = <                
+                  item
+                    ClickCount = ccAny
+                    ClickDir = cdDown
+                    Command = emcCodeFoldCollaps
+                  end>
+                MouseActionsCollapsed = <                
+                  item
+                    Shift = [ssCtrl]
+                    ShiftMask = [ssCtrl]
+                    ClickCount = ccAny
+                    ClickDir = cdDown
+                    Command = emcCodeFoldExpand
+                  end                
+                  item
+                    ShiftMask = [ssCtrl]
+                    ClickCount = ccAny
+                    ClickDir = cdDown
+                    Command = emcCodeFoldExpand
+                    Option = 1
+                  end>
+              end
+            end
+          end
+          object CheckBox12: TCheckBox
+            Left = 140
+            Height = 19
+            Top = 422
+            Width = 84
+            Anchors = [akLeft, akBottom]
+            Caption = 'CheckBox12'
+            OnChange = CheckBox12Change
+            TabOrder = 2
+          end
+        end
+      end
+    end
+  end
+  object XMLPropStorage1: TXMLPropStorage
+    StoredValues = <    
+      item
+        Name = 'DatawarehouseRoot'
+      end    
+      item
+        Name = 'InverterID'
+      end    
+      item
+        Name = 'InverterName'
+      end    
+      item
+        Name = 'FileFilter'
+      end    
+      item
+        Name = 'LastEval'
+        Value = '0'
+      end    
+      item
+        Name = 'LastTabSheet'
+        Value = '2'
+      end    
+      item
+        Name = 'EEG_Verguetung'
+        Value = '0,1836'
+      end    
+      item
+        Name = 'PeakLeistungAnlage'
+        Value = '4231'
+      end    
+      item
+        Name = 'SchwellwertLeistung'
+        Value = '100'
+      end    
+      item
+        Name = 'SpezJErtragSoll'
+        Value = '850,000'
+      end    
+      item
+        Name = 'ProtHTMDat'
+      end    
+      item
+        Name = 'ProtHTMZeiNr'
+        Value = '0'
+      end    
+      item
+        Name = 'Histogrammerzeugung'
+        Value = '2'
+      end    
+      item
+        Name = 'JSDateienAnlegen'
+        Value = '0'
+      end    
+      item
+        Name = 'NumStrings'
+        Value = '0'
+      end    
+      item
+        Name = 'FTP_DWakt'
+        Value = '0'
+      end    
+      item
+        Name = 'FTP_HPakt'
+        Value = '0'
+      end    
+      item
+        Name = 'FTP_DWserver'
+      end    
+      item
+        Name = 'FTP_HPserver'
+      end    
+      item
+        Name = 'FTP_DWaccount'
+        KeyString = 'wrundlBrinft1'
+      end    
+      item
+        Name = 'FTP_HPaccount'
+        KeyString = 'wrundlBrinft1'
+      end    
+      item
+        Name = 'FTP_DWpsw'
+        KeyString = 'wrundlBrinft1'
+      end    
+      item
+        Name = 'FTP_HPpsw'
+        KeyString = 'wrundlBrinft1'
+      end    
+      item
+        Name = 'FTP_DWpath'
+      end    
+      item
+        Name = 'FTP_HPpath'
+      end    
+      item
+        Name = 'FTP_HTMLfile'
+      end    
+      item
+        Name = 'FTP_single'
+        Value = '0'
+      end    
+      item
+        Name = 'JNormiert'
+        Value = '0'
+      end    
+      item
+        Name = 'Tagesanzeige'
+        Value = '1'
+      end    
+      item
+        Name = 'SizeX'
+        Value = '750'
+      end    
+      item
+        Name = 'SizeY'
+        Value = '570'
+      end    
+      item
+        Name = 'Sollertrag'
+        Value = '2;6;9;11;11;13;13;12;10;6;4;3;'
+      end    
+      item
+        Name = 'ShowStrings'
+        Value = '0'
+      end    
+      item
+        Name = 'FTPpasv'
+        Value = '0'
+      end    
+      item
+        Name = 'MNormiert'
+        Value = '0'
+      end    
+      item
+        Name = 'CurrStr'
+        Value = '€'
+      end    
+      item
+        Name = 'ToArchive'
+        Value = '365'
+      end    
+      item
+        Name = 'Smooth'
+        Value = '1'
+      end    
+      item
+        Name = 'PGlY'
+        Value = '0'
+      end    
+      item
+        Name = 'PGrY'
+        Value = '3'
+      end    
+      item
+        Name = 'AutoReload'
+        Value = '0'
+      end    
+      item
+        Name = 'KorrE'
+        Value = '0'
+      end    
+      item
+        Name = 'LastOptSheet'
+        Value = '0'
+      end    
+      item
+        Name = 'PeakString'
+        Value = '0;0;0;'
+      end    
+      item
+        Name = 'InverterType'
+        Value = '0'
+      end    
+      item
+        Name = 'FTPReadTimeout'
+        Value = '3'
+      end    
+      item
+        Name = 'NoFileList'
+        Value = '0'
+      end    
+      item
+        Name = 'NoReduction'
+        Value = '0'
+      end    
+      item
+        Name = 'NoDST'
+        Value = '0'
+      end    
+      item
+        Name = 'clMatrix'
+        Value = 'clBlue;'
+      end>
+    OnRestoreProperties = FormCreate
+    left = 560
+    top = 32
+  end
+  object ListChartSource1: TListChartSource
+    left = 544
+    top = 88
+  end
+  object ListChartSource2: TListChartSource
+    left = 348
+    top = 200
+  end
+  object DateTimeIntervalChartSource1: TDateTimeIntervalChartSource
+    DateTimeFormat = 'hh:mm'
+    Steps = [dtsHour, dtsMinute]
+    left = 416
+    top = 88
+  end
+  object DateTimeIntervalChartSource2: TDateTimeIntervalChartSource
+    DateTimeFormat = 'hh:mm'
+    Steps = [dtsHour, dtsMinute]
+    left = 416
+    top = 136
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 100
+    OnTimer = Timer1Timer
+    left = 480
+    top = 32
+  end
+  object OpenDialog1: TOpenDialog
+    Filter = 'Backup-Dateien|*.csv|ColorMartix|*.clm|alle Dateien|*.*'
+    FilterIndex = 3
+    left = 504
+    top = 32
+  end
+  object IdFTP1: TIdFTP
+    OnStatus = IdFTP1Status
+    IPVersion = Id_IPv4
+    ConnectTimeout = 0
+    ListenTimeout = 5000
+    NATKeepAlive.UseKeepAlive = False
+    NATKeepAlive.IdleTimeMS = 0
+    NATKeepAlive.IntervalMS = 0
+    ProxySettings.ProxyType = fpcmNone
+    ProxySettings.Port = 0
+    ReadTimeout = 3000
+    left = 456
+    top = 32
+  end
+  object PopupMenu1: TPopupMenu
+    left = 584
+    top = 32
+    object MenuItem1: TMenuItem
+      Caption = 'Als Bild speichern...'
+      OnClick = MenuItem1Click
+    end
+    object MenuItem6: TMenuItem
+      Caption = 'In Zwischenablage kopieren'
+      OnClick = MenuItem6Click
+    end
+  end
+  object SaveDialog1: TSaveDialog
+    Filter = 'PNG|*.png|ColorMatrix|*.clm|alle Dateien|*.*'
+    FilterIndex = 3
+    left = 536
+    top = 32
+  end
+  object SynAnySyn1: TSynAnySyn
+    Enabled = False
+    Comments = []
+    DetectPreprocessor = False
+    IdentifierChars = '!"#$%&''()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~'
+    KeyAttri.Foreground = clRed
+    ConstantAttri.Foreground = clBlue
+    KeyWords.Strings = (
+      'FTP'
+    )
+    Constants.Strings = (
+      'KW'
+      'KWH'
+      'KWP'
+    )
+    NumberAttri.Foreground = clBlue
+    NumberAttri.Style = [fsBold]
+    StringAttri.Foreground = clGreen
+    StringAttri.Style = [fsBold]
+    StringDelim = sdDoubleQuote
+    Markup = False
+    Entity = False
+    DollarVariables = False
+    ActiveDot = False
+    left = 728
+    top = 88
+  end
+  object ChartAxisTransformations1: TChartAxisTransformations
+    left = 544
+    top = 136
+    object ChartAxisTransformations1AutoScaleAxisTransform1: TAutoScaleAxisTransform
+    end
+  end
+  object ChartAxisTransformations2: TChartAxisTransformations
+    left = 544
+    top = 208
+    object ChartAxisTransformations2AutoScaleAxisTransform1: TAutoScaleAxisTransform
+    end
+  end
+  object DateTimeIntervalChartSource3: TDateTimeIntervalChartSource
+    left = 416
+    top = 200
+  end
+  object PopupMenu2: TPopupMenu
+    left = 720
+    top = 208
+    object MenuItem2: TMenuItem
+      Caption = 'Als Bild speichern...'
+      OnClick = MenuItem1Click
+    end
+    object MenuItem7: TMenuItem
+      Caption = 'In Zwischenablage kopieren'
+      OnClick = MenuItem6Click
+    end
+    object MenuItem3: TMenuItem
+      Caption = 'CrossHair'
+      ShowAlwaysCheckable = True
+      OnClick = MenuItem3Click
+    end
+  end
+  object PopupMenu3: TPopupMenu
+    left = 632
+    top = 208
+    object MenuItem4: TMenuItem
+      Caption = 'Als Bild speichern...'
+      OnClick = MenuItem1Click
+    end
+    object MenuItem8: TMenuItem
+      Caption = 'In Zwischenablage kopieren'
+      OnClick = MenuItem6Click
+    end
+    object MenuItem5: TMenuItem
+      Caption = 'Crosshair'
+      OnClick = MenuItem5Click
+    end
+  end
+  object ColorDialog1: TColorDialog
+    Color = clBlack
+    CustomColors.Strings = (
+      'ColorA=000000'
+      'ColorB=000080'
+      'ColorC=008000'
+      'ColorD=008080'
+      'ColorE=800000'
+      'ColorF=800080'
+      'ColorG=808000'
+      'ColorH=808080'
+      'ColorI=C0C0C0'
+      'ColorJ=0000FF'
+      'ColorK=00FF00'
+      'ColorL=00FFFF'
+      'ColorM=FF0000'
+      'ColorN=FF00FF'
+      'ColorO=FFFF00'
+      'ColorP=FFFFFF'
+      'ColorQ=C0DCC0'
+      'ColorR=F0CAA6'
+      'ColorS=F0FBFF'
+      'ColorT=A4A0A0'
+    )
+    left = 728
+    top = 144
+  end
+  object ChartToolset1: TChartToolset
+    left = 348
+    top = 88
+    object ChartToolset1ZoomMouseWheelTool1: TZoomMouseWheelTool
+      FixedPoint = False
+      ZoomFactor = 1.1
+      ZoomRatio = 0.90909090909
+    end
+    object ChartToolset1PanDragTool1: TPanDragTool
+      Shift = [ssLeft]
+      LimitToExtent = [pdLeft, pdRight]
+      Directions = [pdLeft, pdRight]
+    end
+  end
+  object ChartToolset2: TChartToolset
+    left = 344
+    top = 136
+    object ChartToolset2DataPointClickTool1: TDataPointClickTool
+      Shift = [ssLeft]
+      OnPointClick = ChartToolset2DataPointClickTool1PointClick
+    end
+  end
+end
