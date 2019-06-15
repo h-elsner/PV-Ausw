@@ -1,5 +1,6 @@
 # PV-Ausw
-Photo voltaic statistics for Danfoss TLX series
+Photo voltaic statistics for Danfoss inverters TLX series
+
 Der TripleLynx Pro Wechselrichter von Danfoss® oder IBC Solar AG® (FLX Pro, TLX Pro oder TLX Pro +) zeichnet die Ertragsdaten der Photovoltaik-Anlage (kurz PV-Anlage) auf und stellt diese über FTP-Push auf einem „Datawarehouse“ bezeichneten Server ab. Der Dateiname besteht aus dem FTP-Benutzernamen, einem Bindestrich und einem Zeitstempel.
 Siehe dazu die Anleitung im Benutzerhandbuch des Webservers vom Danfoss-Wechselrichter. Dokumentationen, Updates und neue Firmware gibt es online im Downloadbereich auf SMA bzw. bei jeweiligen Hersteller des Wechselrichters.
 
