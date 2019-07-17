@@ -143,6 +143,7 @@ unit PV_Ausw1;
   2018-11-25 V4.3 Zoomfunktion und Pan geändert (Mausrad/linke Maustaste),
                   Klick auf Balken verbessert mit Chart-Tools.
   2019-05-10      Update HTML-Ausgabe Ertrag, Bilder besser skalierbar.
+  2019-07-16 V4.4 Korrektur Ertragswerte als Summe der Strings.
 
   This library is free software; you can redistribute it and/or modify it
   under the terms of the GNU Library General Public License as published by
@@ -378,7 +379,6 @@ type
     MenuItem2:    TMenuItem;
     MenuItem3:    TMenuItem;
     MenuItem4:    TMenuItem;
-    MenuItem5:    TMenuItem;
     MenuItem6:    TMenuItem;
     MenuItem7:    TMenuItem;
     MenuItem8:    TMenuItem;
@@ -518,7 +518,6 @@ type
     procedure LabeledEdit9Change(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
-    procedure MenuItem5Click(Sender: TObject);
     procedure MenuItem6Click(Sender: TObject);
     procedure PageControl1Change(Sender: TObject);
     procedure PageControl1MouseUp(Sender: TObject; Button: TMouseButton;
@@ -572,7 +571,7 @@ type
   end;
 
 const
-  Version ='V4.3  05/2019';
+  Version ='V4.4  07/2019';
   homepage='http://h-elsner.mooo.com';       {meine Homepage}
   meinname='Helmut Elsner';
   email   ='helmut.elsner@live.com';         {meine e-mail Adresse}
@@ -806,9 +805,8 @@ begin
   ColorButton20.Caption:=capCB20;
   StringGrid1.Hint:=hntStrg1;
   Chart4.ReticuleMode:=rmNone;
-  MenuItem3.Caption:=capCrossHairOn;
+  MenuItem3.Caption:=capECorr;
   Chart5.ReticuleMode:=rmNone;
-  MenuItem5.Caption:=capCrossHairOn;
   LabeledEdit1.EditLabel.Caption:=capFilter;
   LabeledEdit2.EditLabel.Caption:=rsPeakL+ ' [W]';
   LabeledEdit3.EditLabel.Caption:=rsSpezJE+' [kWh/kWp]';
@@ -1232,25 +1230,61 @@ begin
   end;
 end;
 
-procedure TForm1.MenuItem3Click(Sender: TObject); {Fadenkreuz einschalten Tag}
-begin
-  if Chart4.ReticuleMode=rmNone then begin
-    Chart4.ReticuleMode:=rmCross;
-    MenuItem3.Caption:=capCrossHairOff;
-  end else begin
-    Chart4.ReticuleMode:=rmNone;
-    MenuItem3.Caption:=capCrossHairOn;
-  end;
-end;
+{Manchmal stimmt der Ertrag nicht mit der Summer der Strings überein.
+ Der Gesamtertrag bleibt auf einem Wert einfach hängen und wird nicht weiter
+ aufaddiert. Dies ist zu erkennen, wenn der Monatsertrag hier von der Übersicht
+ im WR abweicht. Dann wird im Tagesertrag irgendwo eine waagerechte Linie
+ erscheinen. Dies wir hiermit korrigiert mit Summe Ertrag der Strings.
+ E_DAY (4) = }
 
-procedure TForm1.MenuItem5Click(Sender: TObject); {Fadenkreuz einschalten Spielwiese}
+procedure TForm1.MenuItem3Click(Sender: TObject); {Ertragskorrektur Tag}
+var i, k, l: integer;
+    inlist, splitlist: TStringList;
+    vstr, s: string;
+    ertrag: double;
+    b: char;
 begin
-  if Chart5.ReticuleMode=rmNone then begin
-    Chart5.ReticuleMode:=rmCross;
-    MenuItem5.Caption:=capCrossHairOff;
-  end else begin
-    Chart5.ReticuleMode:=rmNone;
-    MenuItem5.Caption:=capCrossHairOn;
+  inlist:=TStringList.Create;
+  splitlist:=TStringList.Create;
+  b:=DefaultFormatSettings.DecimalSeparator;       {Dezimalseperator merken}
+  try
+    DefaultFormatSettings.DecimalSeparator:='.';   {Dezimalseperator neu setzen}
+    splitlist.Delimiter:=sep;
+    splitlist.StrictDelimiter:=true;               {Datum/Zeit komplett übernehmen}
+    ertrag:=0;
+    SynMemo1.Lines.Add('');
+    SynMemo1.Lines.Add(rsKorrErtrag+ComboBox1.Text);
+    vstr:=StringReplace(LabeledEdit1.Text, '*', '', [])+
+          copy(StringReplace(ComboBox1.Text, '-', '', [rfReplaceAll]), 3, 6);
+    if PrevFileList.Count>1 then begin             {überhaupt Dateien geladen}
+
+      for i:=0 to PrevFileList.Count-1 do begin    {alle geladenen Dateien}
+        if Pos(vstr, PrevFileList[i])>0 then begin {nur Dateien von dem Tag}
+          inlist.LoadFromFile(PrevFileList[i]);    {Datei laden}
+          for k:=0 to Inlist.Count-1 do begin
+            splitlist.DelimitedText:=inlist[k];
+            if (splitlist.Count>26) and            {nur Datenzeilen}
+               (copy(splitlist[1], 1, 10)=ComboBox1.Text) then begin
+              ertrag:=ertrag+                      {aus Leistung aufintegrieren}
+                      (StrToInt(splitlist[3])*     {Leistung P_AC in Watt}
+                       StrToInt(splitlist[0])/3600000);    {Intervall in sec}
+              splitlist[4]:=FormatFloat('0.000', ertrag);  {Wert eintragen}
+              s:=splitlist[0];
+              for l:=1 to splitlist.Count-1 do     {Zeile wieder zusammenbauen}
+                s:=s+sep+splitlist[l];
+              inlist[k]:=s;                        {Zurückschreiben}
+            end;
+          end;
+          inlist.SaveToFile(PrevFileList[i]);
+          SynMemo1.Lines.Add(PrevFileList[i]+rsKorrDone);
+        end;
+      end;
+
+    end;
+  finally
+    inlist.Free;
+    splitlist.Free;
+    DefaultFormatSettings.DecimalSeparator:=b;
   end;
 end;
 
@@ -2729,6 +2763,7 @@ procedure TForm1.RadioGroup2Click(Sender: TObject);    {Tagesauswertung}
 begin
   XMLPropStorage1.StoredValue['Tagesanzeige']:=IntToStr(RadioGroup2.ItemIndex);
   TagStat;    {Tagesstatistik neu zeichnen}
+  MenuItem3.Enabled:=(RadioGroup2.ItemIndex=0);
 end;
 
 procedure TForm1.RadioGroup3Click(Sender: TObject);    {Zeitachse Skalierung}
@@ -2963,6 +2998,7 @@ begin
       if crf and CheckBox1.Checked and (not(FileExists(ltag)))
              and (FileNameEdit1.FileName<>'') then begin
         ProtHTM.Add('var AnlagenKWP='+LabeledEdit2.Text);
+                                             {Beginn und Endezeiten per Monat}
         ProtHTM.Add('var time_start=new Array(7,7,6,6,5,4,4,5,6,7,7,8)');
         ProtHTM.Add('var time_end=new Array(17,18,20,21,21,22,22,21,20,19,17,16)');
         s:='';                               {String für Monatssoll anlegen}
@@ -4725,7 +4761,7 @@ var SplitList, SweepList: TStringList;
     dpt: TDateTime;
     erl: boolean;
 begin
-  pla:=StrToInt(LabeledEdit2.Text);
+  pla:=StrToInt(LabeledEdit2.Text);             {Peakleistung der Anlage}
   umax:=0;
   umin:=9999;
   er1:=0;                                       {Ertrag pro String}
@@ -4738,7 +4774,7 @@ begin
      Shape2.Brush.Color:=ColorButton4.ButtonColor;        {String 2}
   if Shape3.Brush.Color<>clDefault then
      Shape3.Brush.Color:=ColorButton5.ButtonColor;        {String 3}
-  if ComboBox1.Text[1] in ziff then begin
+  if ComboBox1.Text[1] in ziff then begin                 {Datumsfeld}
     Chart4.AxisList[1].Marks.Source:=DateTimeIntervalChartSource1;
     Chart4.AxisList[1].Marks.Format:='%2:s';
     Chart4.AxisList[1].Title.Caption:='';       {default: nix anzeigen}

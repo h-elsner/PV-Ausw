@@ -141,8 +141,7 @@ resourcestring
   hntLE16    ='Korrekturwert in +/- % Abweichung Wechselrichteraufzeichnung zu Zähler.';
   hntSnddate ='Zweiter Tag zum Vergleich auf der rechten Seite.';
   capLabel49 ='Peakleistung per String [W]';
-  capCrossHairOn ='Fadenkreuz ein';
-  capCrossHairOff='Fadenkreuz aus';
+  capECorr   ='Ertragskorrektur';
   hntMaxLei  ='Maximale Leistungsabgabe';
   hntHochrech='Spezifischer Jahresertrag ggf. Hochrechnung.';
   hntDiredit ='Pfad zum lokalen Datenverzeichnis eingeben (Kopie des Datawarehouse)';
@@ -228,6 +227,8 @@ resourcestring
   rsAlles    ='Alles';
   hntLblEdit5='Ab dieser Leistung wird der Beginn und Ende der Energieerzeugung gemessen (in Watt; Werte von 1 bis 1000; default 100).';
   hntStrg1   ='Aufteilung Sollertrag auf Monate im Verhältnis zueinander.';
+  rsKorrErtrag='Korrektur Ertrag für ';
+  rsKorrDone=' korrigiert';
 
 
 

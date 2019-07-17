@@ -211,11 +211,11 @@ object Form1: TForm1
     Height = 515
     Top = 104
     Width = 810
-    ActivePage = TabSheet1
+    ActivePage = TabSheet6
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentShowHint = False
     ShowHint = True
-    TabIndex = 0
+    TabIndex = 5
     TabOrder = 2
     OnChange = PageControl1Change
     OnMouseUp = PageControl1MouseUp
@@ -1173,7 +1173,7 @@ object Form1: TForm1
           Left = 14
           Height = 19
           Top = 96
-          Width = 84
+          Width = 85
           Caption = 'CheckBox11'
           OnChange = CheckBox11Change
           TabOrder = 4
@@ -1329,22 +1329,22 @@ object Form1: TForm1
         Height = 480
         Top = 8
         Width = 790
-        ActivePage = TabSheet9
+        ActivePage = TabSheet5
         Anchors = [akTop, akLeft, akRight, akBottom]
-        TabIndex = 2
+        TabIndex = 4
         TabOrder = 0
         OnChange = PageControl2Change
         object TabSheet7: TTabSheet
-          ClientHeight = 469
-          ClientWidth = 788
+          ClientHeight = 452
+          ClientWidth = 782
           object GroupBox2: TGroupBox
             Left = 4
             Height = 192
             Top = 8
-            Width = 764
+            Width = 758
             Anchors = [akTop, akLeft, akRight]
             ClientHeight = 172
-            ClientWidth = 760
+            ClientWidth = 754
             ParentColor = False
             ParentFont = False
             TabOrder = 0
@@ -1485,10 +1485,10 @@ object Form1: TForm1
             Left = 4
             Height = 144
             Top = 208
-            Width = 764
+            Width = 758
             Anchors = [akTop, akLeft, akRight]
             ClientHeight = 124
-            ClientWidth = 760
+            ClientWidth = 754
             TabOrder = 1
             object LabeledEdit2: TLabeledEdit
               Left = 9
@@ -1643,16 +1643,16 @@ object Form1: TForm1
           end
         end
         object TabSheet8: TTabSheet
-          ClientHeight = 469
-          ClientWidth = 788
+          ClientHeight = 452
+          ClientWidth = 782
           object GroupBox4: TGroupBox
             Left = 12
             Height = 216
             Top = 16
-            Width = 771
+            Width = 765
             Anchors = [akTop, akLeft, akRight]
             ClientHeight = 196
-            ClientWidth = 767
+            ClientWidth = 761
             TabOrder = 0
             object LabeledEdit5: TLabeledEdit
               Left = 9
@@ -1869,7 +1869,7 @@ object Form1: TForm1
               Left = 534
               Height = 19
               Top = 140
-              Width = 84
+              Width = 85
               Caption = 'CheckBox13'
               OnChange = CheckBox13Change
               TabOrder = 6
@@ -1879,10 +1879,10 @@ object Form1: TForm1
             Left = 4
             Height = 168
             Top = 240
-            Width = 771
+            Width = 765
             Anchors = [akTop, akLeft, akRight]
             ClientHeight = 148
-            ClientWidth = 767
+            ClientWidth = 761
             TabOrder = 1
             object BitBtn2: TBitBtn
               Left = 9
@@ -1960,7 +1960,7 @@ object Form1: TForm1
               TabOrder = 1
             end
             object BitBtn7: TBitBtn
-              Left = 606
+              Left = 600
               Height = 29
               Top = 8
               Width = 142
@@ -2069,7 +2069,7 @@ object Form1: TForm1
               TabOrder = 4
             end
             object Label51: TLabel
-              Left = 708
+              Left = 702
               Height = 15
               Top = 48
               Width = 40
@@ -2084,7 +2084,7 @@ object Form1: TForm1
               OnMouseLeave = Label51MouseLeave
             end
             object Label52: TLabel
-              Left = 689
+              Left = 683
               Height = 15
               Top = 104
               Width = 59
@@ -2099,7 +2099,7 @@ object Form1: TForm1
               OnMouseLeave = Label52MouseLeave
             end
             object Label53: TLabel
-              Left = 654
+              Left = 648
               Height = 15
               Top = 77
               Width = 94
@@ -2961,12 +2961,12 @@ object Form1: TForm1
           end
         end
         object TabSheet5: TTabSheet
-          ClientHeight = 469
-          ClientWidth = 788
+          ClientHeight = 452
+          ClientWidth = 782
           object BitBtn9: TBitBtn
             Left = 4
             Height = 33
-            Top = 415
+            Top = 398
             Width = 118
             Anchors = [akLeft, akBottom]
             Glyph.Data = {
@@ -3003,9 +3003,9 @@ object Form1: TForm1
           inline SynMemo1: TSynMemo
             Cursor = crIBeam
             Left = 4
-            Height = 401
+            Height = 384
             Top = 7
-            Width = 764
+            Width = 758
             Anchors = [akTop, akLeft, akRight, akBottom]
             Color = clCream
             Font.Height = -13
@@ -3612,8 +3612,8 @@ object Form1: TForm1
           object CheckBox12: TCheckBox
             Left = 140
             Height = 19
-            Top = 422
-            Width = 84
+            Top = 405
+            Width = 85
             Anchors = [akLeft, akBottom]
             Caption = 'CheckBox12'
             OnChange = CheckBox12Change
@@ -3954,10 +3954,6 @@ object Form1: TForm1
     object MenuItem8: TMenuItem
       Caption = 'In Zwischenablage kopieren'
       OnClick = MenuItem6Click
-    end
-    object MenuItem5: TMenuItem
-      Caption = 'Crosshair'
-      OnClick = MenuItem5Click
     end
   end
   object ColorDialog1: TColorDialog
