@@ -191,7 +191,7 @@ resourcestring
   hntResetCl ='Stellt alle Farben auf default zurück.';
   capBB13    ='Farbschema laden';
   capBB14    ='Farbschema speichern';
-  infofile=homepage+'/mydat/Info_PV_Ausw.pdf';
+  infofile=homepage+'/pdf/Info_PV_Ausw.pdf';
 {$IFDEF WINDOWS}
   dupdate =homepage+'/downloads/PVausw.zip';     {Windows}
 {$ENDIF}
