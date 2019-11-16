@@ -144,6 +144,7 @@ unit PV_Ausw1;
                   Klick auf Balken verbessert mit Chart-Tools.
   2019-05-10      Update HTML-Ausgabe Ertrag, Bilder besser skalierbar.
   2019-07-16 V4.4 Korrektur Ertragswerte als Summe der Strings.
+  2019-09-03      Balken Klicken reaktiviert
 
   This library is free software; you can redistribute it and/or modify it
   under the terms of the GNU Library General Public License as published by
@@ -239,6 +240,8 @@ type
     ChartToolset1ZoomMouseWheelTool1: TZoomMouseWheelTool;
     ChartToolset2: TChartToolset;
     ChartToolset2DataPointClickTool1: TDataPointClickTool;
+    ChartToolset3: TChartToolset;
+    ChartToolset3DataPointClickTool1: TDataPointClickTool;
     CheckBox1:  TCheckBox;
     CheckBox10: TCheckBox;
     CheckBox11: TCheckBox;
@@ -449,15 +452,13 @@ type
       Shift: TShiftState; X, Y: Integer);
     procedure Chart2DblClick(Sender: TObject);
     procedure Chart3DblClick(Sender: TObject);
-    procedure Chart4DrawReticule(ASender: TChart; ASeriesIndex,
-      AIndex: Integer; const AData: TDoublePoint);
     procedure Chart4MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure Chart5DrawReticule(ASender: TChart; ASeriesIndex,
-      AIndex: Integer; const AData: TDoublePoint);
     procedure Chart5MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure ChartToolset2DataPointClickTool1PointClick(ATool: TChartTool;
+      APoint: TPoint);
+    procedure ChartToolset3DataPointClickTool1PointClick(ATool: TChartTool;
       APoint: TPoint);
     procedure CheckBox10Change(Sender: TObject);
     procedure CheckBox11Change(Sender: TObject);
@@ -565,7 +566,6 @@ type
     function  GetOutListIDX(const s: string): integer; {Zeilennummer ermitteln}
     function  ColorMatrix: string;                 {Farben speichern}
     procedure SetDColor(s: string);
-    procedure JumpDown;                            {Zum Diagramm davor springen}
   public
     {hier public einfügen}
   end;
@@ -581,6 +581,7 @@ const
   infend  ='[wr_def_end]';
   headerID='INTERVAL';
   sep     =';';      {Datenseperator für csv}
+  datsep  ='-';      {Datenseperator Datum}
   dtr     =':  ';    {Datentrenner für die Optik}
   ziff    =['0'..'9'];
   nix     ='0'+sep;
@@ -804,9 +805,7 @@ begin
   ColorButton19.Caption:=capCB19;
   ColorButton20.Caption:=capCB20;
   StringGrid1.Hint:=hntStrg1;
-  Chart4.ReticuleMode:=rmNone;
   MenuItem3.Caption:=capECorr;
-  Chart5.ReticuleMode:=rmNone;
   LabeledEdit1.EditLabel.Caption:=capFilter;
   LabeledEdit2.EditLabel.Caption:=rsPeakL+ ' [W]';
   LabeledEdit3.EditLabel.Caption:=rsSpezJE+' [kWh/kWp]';
@@ -953,7 +952,7 @@ begin
   for x:=1 to 12 do begin                       {Monatsstrings füllen}
     s:=FormatDateTime('mmm', EncodeDate(2012, x, 1));
     StringGrid1.Columns[x-1].Title.Caption:=s;
-    SynAnySyn1.Constants.Add(UpCase(s));     {Datum highlight}
+    SynAnySyn1.Constants.Add(UpCase(s));        {Datum highlight}
   end;
   RadioGroup1.Tag:=0;                           {keine 70%-Analyse}
   SplitList:=TStringList.Create;
@@ -1111,43 +1110,6 @@ begin
   end;
   FTPdownload;
   Auswerten;
-end;
-
-procedure TForm1.JumpDown;                      {Zum Diagramm davor springen}
-var s, jahr: string;
-    p: integer;
-begin
-  case Chart1.Tag of                            {ChartX.Tag: Index des Datenpunkts}
-    1: if Chart2.Tag>=0 then begin              {Tagessäule angeklickt}
-         p:=ComboBox1.Items.IndexOf(ComboBox2.Text+'-'+
-                            NameOfDP(ListChartSource1.DataPoints[Chart2.Tag]));
-         if p>=0 then begin                     {prüfen, ob Tag vorhanden}
-           ComboBox1.Text:=ComboBox1.Items[p];  {Datum yyyy-mm-dd}
-           ComboBox4.Text:=ComboBox1.Text;      {Selektion 1 Spielwiese}
-           ComboBox5.Text:=ComboBox1.Text;      {Selektion 2 Spielwiese}
-           PageControl1.ActivePageIndex:=0;
-           PageControl1.Tag:=0;                 {TabSheet merken}
-           if RadioGroup2.ItemIndex=5 then RadioGroup2.ItemIndex:=1; {nicht Sweep}
-           TagStat;
-         end else StatusBar1.Panels[2].Text:=rsDayArch;
-       end;
-    2: if Chart3.Tag>=0 then begin              {Monatssäule angeklickt}
-         s:=ListChartSource2.DataPoints[Chart3.Tag];  {Datenpunkt als Text}
-         p:=MonToInt(NameOfDP(s));              {Monatsnummer}
-         if  (ComboBox3.Text<>ComboBox3.Items[0]) and
-             (((p=10) and (copy(s, 1, 2)='1|')) or
-              ((p=11) and (copy(s, 1, 2)='2|')) or
-              ((p=12) and (copy(s, 1, 2)='3|')))
-           then jahr:=IntToStr(StrToInt(ComboBox3.Text)-1)  {Jahr - 1}
-           else jahr:=ComboBox3.Text;
-         s:=IntToStr(p);
-         while length(s)<2 do s:='0'+s;
-         ComboBox2.Text:=jahr+'-'+s;            {Jahr-Monat übergeben}
-         PageControl1.ActivePageIndex:=1;
-         PageControl1.Tag:=1;                   {TabSheet merken}
-         MonStat;
-       end;
-  end;
 end;
 
 procedure TForm1.TrackBar1Change(Sender: TObject);   {Histogrammerzeugung tunen}
@@ -2010,6 +1972,7 @@ begin
   Chart3BarSeries1.Marks.Visible:=not Chart3BarSeries1.Marks.Visible;
 end;
 
+(*
 procedure TForm1.Chart4DrawReticule(ASender: TChart; ASeriesIndex,
   AIndex: Integer; const AData: TDoublePoint);     {Fadenkreuz-Anzeige Tag}
 var s: string;
@@ -2036,6 +1999,7 @@ begin
   end;
   StatusBar1.Panels[2].Text:=s;                    {Meßpunkt anzeigen}
 end;
+*)
 
 procedure TForm1.Chart4MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);              {Zoomen rückgängig machen}
@@ -2045,6 +2009,7 @@ begin
     Chart4.ZoomFull;
 end;
 
+(*
 procedure TForm1.Chart5DrawReticule(ASender: TChart; ASeriesIndex,
   AIndex: Integer; const AData: TDoublePoint); {Fadenkreuz-Anzeige Spielwiese}
 var s: string;
@@ -2105,6 +2070,7 @@ begin
   end;
   StatusBar1.Panels[2].Text:=s;                    {Meßpunkt anzeigen}
 end;
+*)
 
 procedure TForm1.Chart5MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);              {Spielwiese}
@@ -2115,24 +2081,38 @@ begin
 end;
 
 procedure TForm1.ChartToolset2DataPointClickTool1PointClick(ATool: TChartTool;
-  APoint: TPoint);                                 {einen Balken anklicken}
-var pos: tdoublepoint;
+  APoint: TPoint);                                 {einen Tages-Balken anklicken}
+var NewDay: string;
+    p: integer;
 begin
-  Chart1.Tag:=PageControl1.ActivePageIndex;        {merken, welches Diagramm}
-
-  pos := Chart1.ImageToGraph(APoint);
-
-  Statusbar1.Panels[2].Text:=Format('%f / %f', [pos.x, pos.y]);
-
+  if (ChartToolset2DataPointClickTool1.Series is TBarSeries) then begin
+    Newday:=ComboBox2.Text+datsep+
+            Format('%.2d', [ChartToolset2DataPointClickTool1.PointIndex+1]);
+    p:=ComboBox1.Items.IndexOf(NewDay);
+    if p>=0 then begin
+      ComboBox1.Text:=ComboBox1.Items[p];          {Datum yyyy-mm-dd}
+      ComboBox4.Text:=ComboBox1.Text;              {Selektion 1 Spielwiese}
+      ComboBox5.Text:=ComboBox1.Text;              {Selektion 2 Spielwiese}
+      PageControl1.ActivePageIndex:=0;
+      PageControl1.Tag:=0;                         {TabSheet merken}
+      if RadioGroup2.ItemIndex=5 then RadioGroup2.ItemIndex:=1; {nicht Sweep}
+      TagStat;
+    end else
+      StatusBar1.Panels[2].Text:=rsDayArch;
+  end;
 end;
 
-(*
-procedure TForm1.Chart4BeforeDrawBackWall(ASender: TChart; ACanvas: TCanvas;
-  const ARect: TRect; var ADoDefaultDrawing: Boolean); {Farbverlauf Hintergrund}
+procedure TForm1.ChartToolset3DataPointClickTool1PointClick(ATool: TChartTool;
+  APoint: TPoint);                                 {einen Monats-Balken anklicken}
 begin
-  ACanvas.GradientFill(ARect, $FFFFFF, $80FF80, gdVertical);
-  ADoDefaultDrawing := false;
-end; *)
+  if (ChartToolset3DataPointClickTool1.Series is TBarSeries) then begin
+    ComboBox2.Text:=ComboBox3.Text+datsep+
+                    Format('%.2d', [ChartToolset3DataPointClickTool1.PointIndex+1]);
+    PageControl1.ActivePageIndex:=1;
+    PageControl1.Tag:=1;                           {TabSheet merken}
+    MonStat;
+  end;
+end;
 
 procedure TForm1.FormDestroy(Sender: TObject);     {Abschluß und aufräumen}
 begin
