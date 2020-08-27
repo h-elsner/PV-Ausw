@@ -2,10 +2,10 @@
           {                                                       }
           {       Danfoss TripleLynx Pro WR Datenauswertung       }
           {                                                       }
-          {       Copyright (c) 2011-2014 Helmut Elsner           }
+          {       Copyright (c) 2011-2020 Helmut Elsner           }
           {                                                       }
           {       Compiler: FPC 2.6.1/2   /    Lazarus 1.1/3      }
-          {                 FPC 3.0.4     /    Lazarus 1.8        }
+          {                 FPC 3.0.4     /    Lazarus 2.0.6      }
           {                                                       }
           {*******************************************************}
 
@@ -145,6 +145,8 @@ unit PV_Ausw1;
   2019-05-10      Update HTML-Ausgabe Ertrag, Bilder besser skalierbar.
   2019-07-16 V4.4 Korrektur Ertragswerte als Summe der Strings.
   2019-09-03      Balken Klicken reaktiviert
+  2020-02-28      Fehler bei Jahresstatistik Balken anklichen, wenn 3 Monate vom
+                  Vorjahr noch angezeigt werden
 
   This library is free software; you can redistribute it and/or modify it
   under the terms of the GNU Library General Public License as published by
@@ -572,17 +574,17 @@ type
 
 const
   Version ='V4.4  07/2019';
-  homepage='http://h-elsner.mooo.com';       {meine Homepage}
+  homepage='http://h-elsner.mooo.com';             {meine Homepage}
   meinname='Helmut Elsner';
-  email   ='helmut.elsner@live.com';         {meine e-mail Adresse}
+  email   ='helmut.elsner@live.com';               {meine e-mail Adresse}
   datbeg  ='[wr]';
   datend  ='[wr_ende]';
   infbeg  ='[wr_def_start]';
   infend  ='[wr_def_end]';
   headerID='INTERVAL';
-  sep     =';';      {Datenseperator für csv}
-  datsep  ='-';      {Datenseperator Datum}
-  dtr     =':  ';    {Datentrenner für die Optik}
+  sep     =';';                                    {Datenseperator für csv}
+  datsep  ='-';                                    {Datenseperator Datum}
+  dtr     =':  ';                                  {Datentrenner für die Optik}
   ziff    =['0'..'9'];
   nix     ='0'+sep;
   rawdat  ='rawdata.csv';
@@ -1073,14 +1075,15 @@ begin
   end;
 end;
 
-function MonToInt(const s: string): integer;    {Monatsnamen wieder in Zahlen}
+function MonToInt(const s: string): integer; inline;   {Monatsnamen wieder in Zahlen}
 var x: integer;
 begin
   result:=0;
-  for x:=1 to 12 do if Form1.StringGrid1.Columns[x-1].Title.Caption=s then begin
-    result:=x;
-    break;
-  end;
+  for x:=1 to 12 do
+    if Form1.StringGrid1.Columns[x-1].Title.Caption=s then begin
+      result:=x;
+      break;
+    end;
 end;
 
 {Format Datenpunkt von ListChartSource1.DataPoints[Index]:
@@ -1274,13 +1277,15 @@ begin
   Application.ProcessMessages;
 end;
 
-function CleanDir(const s: string): string;     {Verzeichnis FTP-gerecht aufarbeiten}
+function CleanDir(const s: string): string; inline;
+                                 {Verzeichnis FTP-gerecht aufarbeiten}
 begin
   result:=TrimFilename(s);                      {putzt die Pfadangabe}
   if s<>'' then begin
     result:=StringReplace(s, '\', '/', [rfReplaceAll]);
     if result[1]='/' then delete(result, 1, 1);
-    if result[length(result)]<>'/' then result:=result+'/';
+    if result[length(result)]<>'/' then
+      result:=result+'/';
   end;
 end;
 
@@ -1385,7 +1390,7 @@ begin
   end else SynMemo1.Lines.Add('FTP not allowed or missing parameter!');
 end;
 
-function TToTT(const s: string): TDateTime;     {Zeitstempel hh:mm in TDateTime}
+function TToTT(const s: string): TDateTime; inline;  {Zeitstempel hh:mm in TDateTime}
 begin
   result:=0;
   try
@@ -1396,7 +1401,7 @@ begin
   end;
 end;
 
-function SDToTime(const s: string): TDateTime;  {Datum YYYY-MM-DD in TDateTime}
+function SDToTime(const s: string): TDateTime; inline; {Datum YYYY-MM-DD in TDateTime}
 begin
   result:=0;
   try
@@ -1432,17 +1437,17 @@ begin
   if (tp>begDST) and (tp<endDST) then result:=tp-(1/24);
 end;
 
-function MonToTxt(const s: string): string; {Monat aus YYYY-MM in Namenskürzel umwandeln}
+function MonToTxt(const s: string): string; inline; {Monat aus YYYY-MM in Namenskürzel umwandeln}
 begin
+  result:='';
   try
-    if length(s)>6 then result:=FormatDateTime('mmm', SDToTime(s))
-	           else result:='';
+    if length(s)>6 then
+      result:=FormatDateTime('mmm', SDToTime(s));
   except
-    result:='';
   end;
 end;
 
-function GetKErt(const er: integer): integer;   {Korrekturwert für Ertrag in W}
+function GetKErt(const er: integer): integer; inline;  {Korrekturwert für Ertrag in W}
 begin
   try
     result:=er+round(er*StrToFloat(Form1.LabeledEdit16.Text)/100);
@@ -1451,7 +1456,7 @@ begin
   end;
 end;
 
-function GetEEVG: double;                       {Vergütung}
+function GetEEVG: double; inline;                  {Vergütung}
 begin
   try
     result:=StrToFloat(Form1.LabeledEdit4.Text);
@@ -1460,7 +1465,7 @@ begin
   end;
 end;
 
-function GetSJE: double;                        {spezifischer Jahresertrag}
+function GetSJE: double; inline;                   {spezifischer Jahresertrag}
 begin
   try
     result:=StrToFloat(Form1.LabeledEdit3.Text);
@@ -1972,35 +1977,6 @@ begin
   Chart3BarSeries1.Marks.Visible:=not Chart3BarSeries1.Marks.Visible;
 end;
 
-(*
-procedure TForm1.Chart4DrawReticule(ASender: TChart; ASeriesIndex,
-  AIndex: Integer; const AData: TDoublePoint);     {Fadenkreuz-Anzeige Tag}
-var s: string;
-begin
-  case ASeriesIndex of
-    0:   s:=rsString+'1: ';
-    1:   s:=rsString+'2: ';
-    2:   s:=rsString+'3: ';
-    else s:=rsGesamt+': ';
-  end;
-  case RadioGroup2.ItemIndex of
-    0: s:=s+FloatToStrF(AData.Y, ffFixed, 12, 3)+
-          ' kWh'+rsUm+FormatDateTime('hh:nn', AData.X)+rsUhr;     {Ertrag}
-    1: s:=s+FloatToStrF(AData.Y, ffFixed, 12, 3)+
-          ' kW'+rsUm+FormatDateTime('hh:nn', AData.X)+rsUhr;      {Leistung}
-    2: s:=s+FloatToStrF(AData.Y, ffFixed, 6, 2)+                  {Strings}
-          ' % '+rsFrom+rsSoll+rsUm+FormatDateTime('hh:nn', AData.X)+rsUhr;
-    3: s:=s+FloatToStrF(AData.Y, ffFixed, 12, 1)+
-          ' V'+rsUm+FormatDateTime('hh:nn', AData.X)+rsUhr;       {Spannung}
-    4: s:=s+FloatToStrF(AData.Y, ffFixed, 12, 3)+
-          ' A'+rsUm+FormatDateTime('hh:nn', AData.X)+rsUhr;       {Strom}
-    5: s:=s+FloatToStrF(AData.Y, ffFixed, 12, 0)+
-          ' W '+rsAt+FloatToStrF(AData.X, ffFixed, 12, 1)+' V';   {Sweep}
-  end;
-  StatusBar1.Panels[2].Text:=s;                    {Meßpunkt anzeigen}
-end;
-*)
-
 procedure TForm1.Chart4MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);              {Zoomen rückgängig machen}
 begin
@@ -2008,69 +1984,6 @@ begin
      (ssMiddle in Shift) then                      {Klicken mit mittlerer Taste}
     Chart4.ZoomFull;
 end;
-
-(*
-procedure TForm1.Chart5DrawReticule(ASender: TChart; ASeriesIndex,
-  AIndex: Integer; const AData: TDoublePoint); {Fadenkreuz-Anzeige Spielwiese}
-var s: string;
-begin
-  case ASeriesIndex of
-    0: begin                                       {links}
-         s:=rsLinks;
-         case RadioGroup4.ItemIndex of  {Beschriftung festlegen links}
-            0: s:=s+'AC '+rsLei+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' kW';
-            1: s:=s+'DC '+rsLei+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' kW';
-            2: s:=s+'Delta DC-AC='+FloatToStrF(AData.Y, ffFixed, 12, 0)+' W';
-            3: s:=s+rsErtrag+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' kWh';
-            4: s:=s+rsUAC+'='+FloatToStrF(AData.Y, ffFixed, 12, 1)+' V';
-            5: s:=s+rsFrequ+'='+FloatToStrF(AData.Y, ffFixed, 12, 2)+' Hz';
-            6: s:=s+rsWRTemp+'='+FloatToStrF(AData.Y, ffFixed, 12, 0)+' °C';
-            7: s:=s+'DC '+rsSpg+rsString+'1'+'='+FloatToStrF(AData.Y, ffFixed, 12, 1)+' V';
-            8: s:=s+'DC '+rsStrom+rsString+'1'+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' A';
-            9: s:=s+'DC '+rsSpg+rsString+'2'+'='+FloatToStrF(AData.Y, ffFixed, 12, 1)+' V';
-           10: s:=s+'DC '+rsStrom+rsString+'2'+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' A';
-           11: s:=s+'DC '+rsSpg+rsString+'3'+'='+FloatToStrF(AData.Y, ffFixed, 12, 1)+' V';
-           12: s:=s+'DC '+rsStrom+rsString+'3'+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' A';
-           13: s:=s+'DC '+rsLei+rsString+'1'+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' kW';
-           14: s:=s+'DC '+rsLei+rsString+'2'+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' kW';
-           15: s:=s+'DC '+rsLei+rsString+'3'+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' kW';
-           16: s:=s+rsIsoWd+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' kOhm';
-         end;
-         s:=s+rsUm+FormatDateTime('hh:nn', AData.X)+rsUhr;
-         if RadioGroup3.ItemIndex=0 then begin     {Zeitachse Tag}
-           if ComboBox4.Text<>ComboBox5.Text then s:=s+rsAm+ComboBox4.Text;
-         end else s:=s+rsAm+FormatDateTime(isoday, AData.X);
-       end;
-    1: begin                                       {rechts}
-         s:=rsRechts;
-         case RadioGroup5.ItemIndex of  {Beschriftung festlegen links}
-            0: s:=s+'AC '+rsLei+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' kW';
-            1: s:=s+'DC '+rsLei+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' kW';
-            2: s:=s+'Delta DC-AC'+'='+FloatToStrF(AData.Y, ffFixed, 12, 0)+' W';
-            3: s:=s+rsErtrag+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' kWh';
-            4: s:=s+rsUAC+'='+FloatToStrF(AData.Y, ffFixed, 12, 1)+' V';
-            5: s:=s+rsFrequ+'='+FloatToStrF(AData.Y, ffFixed, 12, 2)+' Hz';
-            6: s:=s+rsWRTemp+'='+FloatToStrF(AData.Y, ffFixed, 12, 0)+' °C';
-            7: s:=s+'DC '+rsSpg+rsString+'1'+'='+FloatToStrF(AData.Y, ffFixed, 12, 1)+' V';
-            8: s:=s+'DC '+rsStrom+rsString+'1'+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' A';
-            9: s:=s+'DC '+rsSpg+rsString+'2'+'='+FloatToStrF(AData.Y, ffFixed, 12, 1)+' V';
-           10: s:=s+'DC '+rsStrom+rsString+'2'+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' A';
-           11: s:=s+'DC '+rsSpg+rsString+'3'+'='+FloatToStrF(AData.Y, ffFixed, 12, 1)+' V';
-           12: s:=s+'DC '+rsStrom+rsString+'3'+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' A';
-           13: s:=s+'DC '+rsLei+rsString+'1'+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' kW';
-           14: s:=s+'DC '+rsLei+rsString+'2'+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' kW';
-           15: s:=s+'DC '+rsLei+rsString+'3'+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' kW';
-           16: s:=s+rsIsoWd+'='+FloatToStrF(AData.Y, ffFixed, 12, 3)+' kOhm';
-         end;
-         s:=s+rsUm+FormatDateTime('hh:nn', AData.X)+rsUhr;
-         if RadioGroup3.ItemIndex=0 then begin     {Zeitachse Tag}
-           if ComboBox4.Text<>ComboBox5.Text then s:=s+rsAm+ComboBox5.Text;
-         end else s:=s+rsAm+FormatDateTime(isoday, AData.X);
-       end;
-  end;
-  StatusBar1.Panels[2].Text:=s;                    {Meßpunkt anzeigen}
-end;
-*)
 
 procedure TForm1.Chart5MouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);              {Spielwiese}
@@ -2104,10 +2017,19 @@ end;
 
 procedure TForm1.ChartToolset3DataPointClickTool1PointClick(ATool: TChartTool;
   APoint: TPoint);                                 {einen Monats-Balken anklicken}
+var idx, year: integer;
 begin
   if (ChartToolset3DataPointClickTool1.Series is TBarSeries) then begin
-    ComboBox2.Text:=ComboBox3.Text+datsep+
-                    Format('%.2d', [ChartToolset3DataPointClickTool1.PointIndex+1]);
+    idx:=ChartToolset3DataPointClickTool1.PointIndex+1;
+    year:=StrToInt(ComboBox3.Text);
+    if (YearOf(now)=year) and (MonthOf(now)<4) then begin
+      idx:=idx-3;
+      if idx<1 then begin                          {Subtract 3 month}
+        year:=year-1;
+        idx:=idx+12;
+      end;
+    end;
+    ComboBox2.Text:=IntToStr(year)+datsep+Format('%.2d', [idx]);
     PageControl1.ActivePageIndex:=1;
     PageControl1.Tag:=1;                           {TabSheet merken}
     MonStat;
@@ -4104,7 +4026,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       beg, fa, fbeg, fend, zt: TDateTime;
       lesw, zhl: Integer;     {minimale Leistung für Anfang / Ende in W}
 
-    function CorrSTime(const s: string): TDateTime;
+    function CorrSTime(const s: string): TDateTime; inline;
     begin
       result:=TToTT(s);
       if CheckBox11.Checked then    {Sommerzeit eliminieren}
