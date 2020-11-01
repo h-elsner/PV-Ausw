@@ -13,4 +13,4 @@ Die CSV-Dateien vom Wechselrichter Powador TL3-Serie mit neuer Firmware ab V1.16
 - Wiederherstellung einer Tagesdatei aus Backupdaten ist nicht möglich.
 
 Das Programm „PV_Ausw“ dient nun dazu, diese Dateien auszuwerten und grafisch darzustellen, ähnlich wie es die Oberfläche des Webservers bei Danfoss/IBC bietet und etwas mehr. Die Auswertung ist nur für einen Wechselrichter (=Master) gemacht. Dies sollte ja auch der häufigste Fall für kleine Anlagen sein.
-![Screenshot Gesamtertrag](chart_20190717_4.png)
+![Screenshot Gesamtertrag](chart_20200924_4.png)
