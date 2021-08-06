@@ -1,5 +1,5 @@
 object Form1: TForm1
-  Left = 1077
+  Left = 1055
   Height = 645
   Top = 121
   Width = 827
@@ -11,9 +11,9 @@ object Form1: TForm1
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   OnDropFiles = FormDropFiles
-  OnResize = FormResize
   Position = poDefaultPosOnly
-  LCLVersion = '2.0.6.0'
+  SessionProperties = 'WindowState;Height;Width'
+  LCLVersion = '2.0.12.0'
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
@@ -211,11 +211,11 @@ object Form1: TForm1
     Height = 515
     Top = 104
     Width = 816
-    ActivePage = TabSheet3
+    ActivePage = TabSheet6
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentShowHint = False
     ShowHint = True
-    TabIndex = 2
+    TabIndex = 5
     TabOrder = 2
     OnChange = PageControl1Change
     OnMouseUp = PageControl1MouseUp
@@ -531,12 +531,10 @@ object Form1: TForm1
         object Chart2ConstantLine1: TConstantLine
           Active = False
           Pen.Color = clRed
-          Position = 0
         end
         object Chart2ConstantLine2: TConstantLine
           Active = False
           Pen.Color = clGreen
-          Position = 0
         end
       end
       object SpeedButton3: TSpeedButton
@@ -740,12 +738,10 @@ object Form1: TForm1
         object Chart3ConstantLine1: TConstantLine
           Active = False
           Pen.Color = clRed
-          Position = 0
         end
         object Chart3ConstantLine2: TConstantLine
           Active = False
           Pen.Color = clGreen
-          Position = 0
         end
       end
       object SpeedButton5: TSpeedButton
@@ -976,12 +972,10 @@ object Form1: TForm1
         object Chart1ConstantLine1: TConstantLine
           Active = False
           Pen.Color = clRed
-          Position = 0
         end
         object Chart1ConstantLine2: TConstantLine
           Active = False
           Pen.Color = clGreen
-          Position = 0
         end
       end
       object Label30: TLabel
@@ -1327,9 +1321,9 @@ object Form1: TForm1
         Height = 480
         Top = 8
         Width = 796
-        ActivePage = TabSheet8
+        ActivePage = TabSheet7
         Anchors = [akTop, akLeft, akRight, akBottom]
-        TabIndex = 1
+        TabIndex = 0
         TabOrder = 0
         OnChange = PageControl2Change
         object TabSheet7: TTabSheet
@@ -3696,41 +3690,41 @@ object Form1: TForm1
         Value = 'clBlue;'
       end>
     OnRestoreProperties = FormCreate
-    left = 560
-    top = 32
+    Left = 560
+    Top = 32
   end
   object ListChartSource1: TListChartSource
-    left = 544
-    top = 88
+    Left = 544
+    Top = 88
   end
   object ListChartSource2: TListChartSource
-    left = 348
-    top = 200
+    Left = 348
+    Top = 200
   end
   object DateTimeIntervalChartSource1: TDateTimeIntervalChartSource
     DateTimeFormat = 'hh:mm'
     Steps = [dtsHour, dtsMinute]
-    left = 416
-    top = 88
+    Left = 416
+    Top = 88
   end
   object DateTimeIntervalChartSource2: TDateTimeIntervalChartSource
     DateTimeFormat = 'hh:mm'
     Steps = [dtsHour, dtsMinute]
-    left = 416
-    top = 136
+    Left = 416
+    Top = 136
   end
   object Timer1: TTimer
     Enabled = False
     Interval = 100
     OnTimer = Timer1Timer
-    left = 480
-    top = 32
+    Left = 480
+    Top = 32
   end
   object OpenDialog1: TOpenDialog
     Filter = 'Backup-Dateien|*.csv|ColorMartix|*.clm|alle Dateien|*.*'
     FilterIndex = 3
-    left = 504
-    top = 32
+    Left = 504
+    Top = 32
   end
   object IdFTP1: TIdFTP
     OnStatus = IdFTP1Status
@@ -3742,12 +3736,12 @@ object Form1: TForm1
     ProxySettings.ProxyType = fpcmNone
     ProxySettings.Port = 0
     ReadTimeout = 3000
-    left = 456
-    top = 32
+    Left = 456
+    Top = 32
   end
   object PopupMenu1: TPopupMenu
-    left = 584
-    top = 32
+    Left = 584
+    Top = 32
     object MenuItem1: TMenuItem
       Caption = 'Als Bild speichern...'
       OnClick = MenuItem1Click
@@ -3760,8 +3754,8 @@ object Form1: TForm1
   object SaveDialog1: TSaveDialog
     Filter = 'PNG|*.png|ColorMatrix|*.clm|alle Dateien|*.*'
     FilterIndex = 3
-    left = 536
-    top = 32
+    Left = 536
+    Top = 32
   end
   object SynAnySyn1: TSynAnySyn
     Enabled = False
@@ -3787,28 +3781,28 @@ object Form1: TForm1
     Entity = False
     DollarVariables = False
     ActiveDot = False
-    left = 728
-    top = 88
+    Left = 728
+    Top = 88
   end
   object ChartAxisTransformations1: TChartAxisTransformations
-    left = 544
-    top = 136
+    Left = 544
+    Top = 136
     object ChartAxisTransformations1AutoScaleAxisTransform1: TAutoScaleAxisTransform
     end
   end
   object ChartAxisTransformations2: TChartAxisTransformations
-    left = 544
-    top = 208
+    Left = 544
+    Top = 208
     object ChartAxisTransformations2AutoScaleAxisTransform1: TAutoScaleAxisTransform
     end
   end
   object DateTimeIntervalChartSource3: TDateTimeIntervalChartSource
-    left = 416
-    top = 200
+    Left = 416
+    Top = 200
   end
   object PopupMenu2: TPopupMenu
-    left = 720
-    top = 208
+    Left = 720
+    Top = 208
     object MenuItem2: TMenuItem
       Caption = 'Als Bild speichern...'
       OnClick = MenuItem1Click
@@ -3824,8 +3818,8 @@ object Form1: TForm1
     end
   end
   object PopupMenu3: TPopupMenu
-    left = 632
-    top = 208
+    Left = 632
+    Top = 208
     object MenuItem4: TMenuItem
       Caption = 'Als Bild speichern...'
       OnClick = MenuItem1Click
@@ -3859,12 +3853,12 @@ object Form1: TForm1
       'ColorS=F0FBFF'
       'ColorT=A4A0A0'
     )
-    left = 728
-    top = 144
+    Left = 728
+    Top = 144
   end
   object ChartToolset1: TChartToolset
-    left = 348
-    top = 88
+    Left = 348
+    Top = 88
     object ChartToolset1ZoomMouseWheelTool1: TZoomMouseWheelTool
       FixedPoint = False
       ZoomFactor = 1.1
@@ -3877,16 +3871,16 @@ object Form1: TForm1
     end
   end
   object ChartToolset2: TChartToolset
-    left = 344
-    top = 136
+    Left = 344
+    Top = 136
     object ChartToolset2DataPointClickTool1: TDataPointClickTool
       Shift = [ssLeft]
       OnPointClick = ChartToolset2DataPointClickTool1PointClick
     end
   end
   object ChartToolset3: TChartToolset
-    left = 280
-    top = 136
+    Left = 280
+    Top = 136
     object ChartToolset3DataPointClickTool1: TDataPointClickTool
       Shift = [ssLeft]
       OnPointClick = ChartToolset3DataPointClickTool1PointClick

@@ -489,7 +489,6 @@ type
                                                Standardwerte einlesen}
     procedure FormDestroy(Sender: TObject);
     procedure FormDropFiles(Sender: TObject; const FileNames: array of String);
-    procedure FormResize(Sender: TObject);
     procedure GroupBox1Click(Sender: TObject);
     procedure IdFTP1Status(ASender: TObject; const AStatus: TIdStatus;
       const AStatusText: string);
@@ -555,7 +554,7 @@ type
     procedure JahrStat;
     procedure Statistik;
     procedure ChangeTab;       {Anzeige aktualisieren, wenn TabSheet geändert}
-    procedure FTPAnzeige(const farbe: TColor);
+    procedure FTPAnzeige(farbe: TColor);
     procedure FTPloginHP;
     procedure FTPloginDW;
     procedure FTPlogout;
@@ -565,7 +564,7 @@ type
     procedure StandSpeichern;
     procedure BackupSpeichern;
     procedure SpezAnalyse;
-    function  GetOutListIDX(const s: string): integer; {Zeilennummer ermitteln}
+    function  GetOutListIDX(s: string): integer; {Zeilennummer ermitteln}
     function  ColorMatrix: string;                 {Farben speichern}
     procedure SetDColor(s: string);
   public
@@ -901,9 +900,6 @@ begin
   ComboBox5.Hint:=hntSnddate;
   TabSheet5.Caption:=capFTPProt;
 {Einstellungsdaten aus gespeicherten Basiswerten holen}
-  Form1.SetBounds(Form1.Left, Form1.Top,  {see http://wiki.freepascal.org/LCL_Tips}
-                  StrToInt(XMLPropStorage1.StoredValue['SizeX']),
-                  StrToInt(XMLPropStorage1.StoredValue['SizeY']));
   DirectoryEdit1.Directory:=XMLPropStorage1.StoredValue['DatawarehouseRoot'];
   FileNameEdit1.FileName:=XMLPropStorage1.StoredValue['ProtHTMDat'];
   SpinEdit1.Value:=StrToInt(XMLPropStorage1.StoredValue['ProtHTMZeiNr']);
@@ -1075,7 +1071,7 @@ begin
   end;
 end;
 
-function MonToInt(const s: string): integer; inline;   {Monatsnamen wieder in Zahlen}
+function MonToInt(s: string): integer; inline;   {Monatsnamen wieder in Zahlen}
 var x: integer;
 begin
   result:=0;
@@ -1090,7 +1086,7 @@ end;
 1|38.470374999999997|$FF0000|Jan
 2|23.077000000000002|$F0CAA6|02   }
 
-function NameOfDP(const s: string): string;     {Label des Datenpunktes}
+function NameOfDP(s: string): string;     {Label des Datenpunktes}
 var SplitList: TStringList;
 begin
   SplitList:=TStringList.Create;
@@ -1264,20 +1260,14 @@ begin
   end;
 end;
 
-procedure TForm1.FormResize(Sender: TObject);     {Größe merken}
-begin
-  XMLPropStorage1.StoredValue['SizeY']:=IntToStr(Form1.Height);
-  XMLPropStorage1.StoredValue['SizeX']:=IntToStr(Form1.Width);
-end;
-
-procedure TForm1.FTPAnzeige(const farbe: TColor); {FTP Statusanzeige}
+procedure TForm1.FTPAnzeige(farbe: TColor); {FTP Statusanzeige}
 begin
   Shape4.Brush.Color:=farbe;
   Shape4.Refresh;
   Application.ProcessMessages;
 end;
 
-function CleanDir(const s: string): string; inline;
+function CleanDir(s: string): string; inline;
                                  {Verzeichnis FTP-gerecht aufarbeiten}
 begin
   result:=TrimFilename(s);                      {putzt die Pfadangabe}
@@ -1311,9 +1301,11 @@ begin
 end;
 
 procedure TForm1.FTPdownload;   {fehlende Dateien vom Datawarehouse downloaden}
-var x: integer;
-    FileList, TempList: TStringList;
-    s: string;
+var
+  x: integer;
+  FileList, TempList: TStringList;
+  s: string;
+
 begin
   if (CheckBox2.Checked)    and    {FTP download aktiviert}
      (LabeledEdit6.Text>'') and    {Host}
@@ -1387,10 +1379,11 @@ begin
       TempList.Free;
       Screen.Cursor:=crDefault;
     end;
-  end else SynMemo1.Lines.Add('FTP not allowed or missing parameter!');
+  end else
+    SynMemo1.Lines.Add('FTP not allowed or missing parameter!');
 end;
 
-function TToTT(const s: string): TDateTime; inline;  {Zeitstempel hh:mm in TDateTime}
+function TToTT(s: string): TDateTime; inline;  {Zeitstempel hh:mm in TDateTime}
 begin
   result:=0;
   try
@@ -1401,7 +1394,7 @@ begin
   end;
 end;
 
-function SDToTime(const s: string): TDateTime; inline; {Datum YYYY-MM-DD in TDateTime}
+function SDToTime(s: string): TDateTime;     {Datum YYYY-MM-DD in TDateTime}
 begin
   result:=0;
   try
@@ -1424,20 +1417,20 @@ end;
  DST begins on the last Sunday in March (Day of month = 31 - (4 + 5*Y/4) mod 7)
  and ends on the last Sunday in October (Day of month = 31 - (1 + 5*Y/4) mod 7)}
 
-function NixDST(const tp: TDateTime): TDateTime;  {Sommerzeit entfernen}
+function NixDST(tp: TDateTime): TDateTime;   {Sommerzeit entfernen}
 var begDST, endDST: TDateTime;
     yy, dd: word;
 begin
   result:=tp;
-  DecodeDate(tp, yy, dd, dd);                     {Jahr ermitteln}
+  DecodeDate(tp, yy, dd, dd);                      {Jahr ermitteln}
   dd:=31-(4+5*yy div 4) mod 7;
-  begDST:=EncodeDateTime(yy, 03, dd, 2, 0, 0, 0); {letzter Sonntag im März}
+  begDST:=EncodeDateTime(yy, 03, dd, 2, 0, 0, 0);  {letzter Sonntag im März}
   dd:=31-(1+5*yy div 4) mod 7;
-  endDST:=EncodeDateTime(yy, 10, dd, 3, 0, 0, 0); {letzter Sonntag im Oktober}
+  endDST:=EncodeDateTime(yy, 10, dd, 3, 0, 0, 0);  {letzter Sonntag im Oktober}
   if (tp>begDST) and (tp<endDST) then result:=tp-(1/24);
 end;
 
-function MonToTxt(const s: string): string; inline; {Monat aus YYYY-MM in Namenskürzel umwandeln}
+function MonToTxt(s: string): string; inline; {Monat aus YYYY-MM in Namenskürzel umwandeln}
 begin
   result:='';
   try
@@ -1447,7 +1440,7 @@ begin
   end;
 end;
 
-function GetKErt(const er: integer): integer; inline;  {Korrekturwert für Ertrag in W}
+function GetKErt(er: integer): integer; inline;  {Korrekturwert für Ertrag in W}
 begin
   try
     result:=er+round(er*StrToFloat(Form1.LabeledEdit16.Text)/100);
@@ -1608,7 +1601,8 @@ begin
         end;
       end;
     finally
-      if isftp then FTPlogout;
+      if isftp then
+        FTPlogout;
       FileList.Free;
       TempList.Free;
       InList.Free;
@@ -1703,7 +1697,8 @@ var x: integer;
 begin
   result:=0;                       {Teiler für 12 Monate aufsumnmieren}
   try
-    for x:=0 to 11 do result:=result+StrToIntDef(StringGrid1.Cells[x,1], 0);
+    for x:=0 to 11 do
+      result:=result+StrToIntDef(StringGrid1.Cells[x,1], 0);
   except
     result:=0;
   end;
@@ -1714,7 +1709,8 @@ var x: integer;
     s: string;
 begin
   s:='';
-  for x:=0 to 11 do s:=s+StringGrid1.Cells[x,1]+sep;
+  for x:=0 to 11 do
+    s:=s+StringGrid1.Cells[x,1]+sep;
   XMLPropStorage1.StoredValue['Sollertrag']:=s;      {Solldaten speichern}
 end;
 
@@ -1759,15 +1755,19 @@ end;
 
 procedure TForm1.CheckBox5Change(Sender: TObject);  {Zeige Warehouse Passwort}
 begin
-  if CheckBox5.Checked then LabeledEdit8.PasswordChar:=#0
-                       else LabeledEdit8.PasswordChar:='*';
+  if CheckBox5.Checked then
+    LabeledEdit8.PasswordChar:=#0
+  else
+    LabeledEdit8.PasswordChar:='*';
   LabeledEdit8.Refresh;
 end;
 
 procedure TForm1.CheckBox6Change(Sender: TObject);  {Zeige Homepage Passwort}
 begin
-  if CheckBox6.Checked then LabeledEdit12.PasswordChar:=#0
-                       else LabeledEdit12.PasswordChar:='*';
+  if CheckBox6.Checked then
+    LabeledEdit12.PasswordChar:=#0
+  else
+    LabeledEdit12.PasswordChar:='*';
   LabeledEdit12.Refresh;
 end;
 
@@ -1810,7 +1810,8 @@ begin
   if CheckBox9.Checked then begin
     IdFTP1.Passive:=true;
     SynMemo1.Lines.Add(capFTPpasv);                {im Log protokollieren}
-  end else IdFTP1.Passive:=false;
+  end else
+    IdFTP1.Passive:=false;
 end;
 
 procedure TForm1.ColorButton1ColorChanged(Sender: TObject);   {Farben speichern}
@@ -1829,7 +1830,8 @@ begin
   dr:=ExtractFilePath(Application.ExeName);
   try
     OutList.SaveToFile(dr+rawdat);
-    if DayList.Count>0 then DayList.SaveToFile(dr+archID+archfn);
+    if DayList.Count>0 then
+      DayList.SaveToFile(dr+archID+archfn);
     StatusBar1.Panels[2].Text:=Format(rsSaveRaw,[dr+rawdat]);
   except
     StatusBar1.Panels[2].Text:=msgNoSave;
@@ -1841,8 +1843,10 @@ procedure TForm1.BitBtn4Click(Sender: TObject);     {Button Stand Speichern}
 begin
   BitBtn6.Tag:=0;
   ComboBox1.Color:=clDefault;
-  if OutList.Count>100 then StandSpeichern
-                       else StatusBar1.Panels[2].Text:=msgDatSp;
+  if OutList.Count>100 then
+    StandSpeichern
+  else
+    StatusBar1.Panels[2].Text:=msgDatSp;
 end;
 
 procedure TForm1.BitBtn5Click(Sender: TObject);      {Stand laden}
@@ -1858,9 +1862,11 @@ begin
     try
       OutList.LoadFromFile(dr+rawdat);
       DayList.Clear;
-      if FileExists(dr+archID+archfn) then DayList.LoadFromFile(dr+archID+archfn);
+      if FileExists(dr+archID+archfn) then
+        DayList.LoadFromFile(dr+archID+archfn);
       OutListLesen(false);                           {ausführen ohne HTML prot}
-      if PageControl1.ActivePageIndex=epg then PageControl1.ActivePageIndex:=2;
+      if PageControl1.ActivePageIndex=epg then
+        PageControl1.ActivePageIndex:=2;
       BitBtn2.Enabled:=true;
       BitBtn8.Enabled:=true;
       BitBtn11.Enabled:=true;                        {Spez. Analyse entsperren}
@@ -1890,8 +1896,10 @@ begin
       ChangeTab;
     end;
   end else BitBtn6.Tag:=0;
-  if BitBtn6.Tag=1 then ComboBox1.Color:=$000080FF
-                   else ComboBox1.Color:=clDefault;
+  if BitBtn6.Tag=1 then
+    ComboBox1.Color:=$000080FF
+  else
+    ComboBox1.Color:=clDefault;
 end;
 
 { Shape4: Statusanzeige für FTP
@@ -1925,9 +1933,12 @@ begin
             FTPAnzeige(clRed);
           end;
         end;
-      end else StatusBar1.Panels[2].Text:=msgAccountMissing;
-    end else StatusBar1.Panels[2].Text:=msgHostMissing;
-  end else StatusBar1.Panels[2].Text:=msgPswMissing;
+      end else
+        StatusBar1.Panels[2].Text:=msgAccountMissing;
+    end else
+      StatusBar1.Panels[2].Text:=msgHostMissing;
+  end else
+    StatusBar1.Panels[2].Text:=msgPswMissing;
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);    {Test HP-FTP}
@@ -1954,9 +1965,12 @@ begin
             FTPAnzeige(clRed);
           end;
         end;
-      end else StatusBar1.Panels[2].Text:=msgAccountMissing;
-    end else StatusBar1.Panels[2].Text:=msgHostMissing;
-  end else StatusBar1.Panels[2].Text:=msgPswMissing;
+      end else
+        StatusBar1.Panels[2].Text:=msgAccountMissing;
+    end else
+      StatusBar1.Panels[2].Text:=msgHostMissing;
+  end else
+    StatusBar1.Panels[2].Text:=msgPswMissing;
 end;
 
 procedure TForm1.Chart1MouseUp(Sender: TObject; Button: TMouseButton;
@@ -2008,7 +2022,8 @@ begin
       ComboBox5.Text:=ComboBox1.Text;              {Selektion 2 Spielwiese}
       PageControl1.ActivePageIndex:=0;
       PageControl1.Tag:=0;                         {TabSheet merken}
-      if RadioGroup2.ItemIndex=5 then RadioGroup2.ItemIndex:=1; {nicht Sweep}
+      if RadioGroup2.ItemIndex=5 then
+        RadioGroup2.ItemIndex:=1; {nicht Sweep}
       TagStat;
     end else
       StatusBar1.Panels[2].Text:=rsDayArch;
@@ -2039,7 +2054,8 @@ end;
 procedure TForm1.FormDestroy(Sender: TObject);     {Abschluß und aufräumen}
 begin
   try
-    if IdFTP1.Connected then IdFTP1.Disconnect;    {FTP auslösen}
+    if IdFTP1.Connected then
+      IdFTP1.Disconnect;                           {FTP auslösen}
   finally
     FreeAndNil(OutList);                           {Listen vom Speicher nehmen}
     FreeAndNil(DayList);
@@ -2049,7 +2065,7 @@ begin
   end;
 end;
 
-function GetFTPAccount(const s: string): string;   {get FTP account from File name}
+function GetFTPAccount(s: string): string;   {get FTP account from File name}
 var x: integer;
     s1: string;
 begin
@@ -2068,7 +2084,7 @@ begin
   if (fld='GroupBox2') or (fld='DirectoryEdit1') then begin
     if DirectoryExists(FileNames[0]) then
       DirectoryEdit1.Directory:=FileNames[0]
-                                     else
+    else
       DirectoryEdit1.Directory:=ExtractFilePath(FileNames[0]);
   end;
   if (fld='FileNameEdit1') and FileExists(FileNames[0]) then
@@ -2085,13 +2101,15 @@ procedure TForm1.GroupBox1Click(Sender: TObject);  {Infobox}
 begin
   BitBtn1.Enabled:=DirectoryExists(DirectoryEdit1.Directory); {Gültigkeit Buttons prüfen}
   BitBtn5.Enabled:=FileExists((ExtractFilePath(Application.ExeName)+rawdat));
-  if MessageDlg(ExtractFileName(paramstr(0))+'  '+version+sLineBreak+sLineBreak+
-     meinname+sLineBreak+homepage+sLineBreak+email+sLineBreak+sLineBreak+rsWR+
-     ' ID: '+XMLPropStorage1.StoredValue['InverterID']+sLineBreak+
-     rsWR+' '+rsName+': '+XMLPropStorage1.StoredValue['InverterName']+sLineBreak+
-     rsPeakL+': '+LabeledEdit2.Text+'W'+sLineBreak+
-     rsEEGV+'/kWh: '+LabeledEdit4.Text+LabeledEdit15.Text,
-     mtInformation,[mbHelp, mbOK],0)=0 then OpenUrl(Infofile); {0: mrHelp nicht def}
+  if MessageDlg(ExtractFileName(paramstr(0))+'  '+
+                version+sLineBreak+sLineBreak+
+                meinname+sLineBreak+homepage+sLineBreak+email+sLineBreak+sLineBreak+
+                rsWR+' ID: '+XMLPropStorage1.StoredValue['InverterID']+sLineBreak+
+                rsWR+' '+rsName+': '+XMLPropStorage1.StoredValue['InverterName']+sLineBreak+
+                rsPeakL+': '+LabeledEdit2.Text+'W'+sLineBreak+
+                rsEEGV+'/kWh: '+LabeledEdit4.Text+LabeledEdit15.Text,
+                mtInformation,[mbHelp, mbOK],0)=0 then
+    OpenUrl(Infofile);                            {0: mrHelp nicht def}
 end;
 
 procedure TForm1.IdFTP1Status(ASender: TObject; const AStatus: TIdStatus;
@@ -2117,25 +2135,24 @@ end;
 
 procedure TForm1.Label51MouseLeave(Sender: TObject);   {Link animieren}
 begin
-  with Label51 do Font.Style:=Font.Style-[fsBold];
+  Label51.Font.Style:=Font.Style-[fsBold];
 end;
 
 procedure TForm1.Label52Click(Sender: TObject);        {Homepage}
 begin
-  if OpenUrl(Homepage) then Label52.Font.Color:=clPurple;
+  if OpenUrl(Homepage) then
+    Label52.Font.Color:=clPurple;
 end;
 
 procedure TForm1.Label52MouseEnter(Sender: TObject);
 begin
-  with Label52 do begin
-    Cursor:=crHandPoint;
-    Font.Style:=Font.Style+[fsBold];
-  end;
+  Label52.Cursor:=crHandPoint;
+  Label52.Font.Style:=Font.Style+[fsBold];
 end;
 
 procedure TForm1.Label52MouseLeave(Sender: TObject);
 begin
-  with Label52 do Font.Style:=Font.Style-[fsBold];
+  Label52.Font.Style:=Font.Style-[fsBold];
 end;
 
 procedure TForm1.Label53Click(Sender: TObject);        {Download Update}
@@ -2145,15 +2162,13 @@ end;
 
 procedure TForm1.Label53MouseEnter(Sender: TObject);
 begin
-  with Label53 do begin
-    Cursor:=crHandPoint;
-    Font.Style:=Font.Style+[fsBold];
-  end;
+  Label53.Cursor:=crHandPoint;
+  Label53.Font.Style:=Font.Style+[fsBold];
 end;
 
 procedure TForm1.Label53MouseLeave(Sender: TObject);
 begin
-  with Label53 do Font.Style:=Font.Style-[fsBold];
+  Label53.Font.Style:=Font.Style-[fsBold];
 end;
 
 procedure TForm1.LabeledEdit10Change(Sender: TObject); {Basisdaten speichern}
@@ -2774,7 +2789,7 @@ end;
 {Zum Umwandeln der eingelesenen Daten in ein Ausgabeformat (auch String):
  Aus einem Integer String eine Kommazahl machen, auch als string:
  s: Inputstring, p: Anzahl Stellen nach dem Komma, k: Kommazeichen}
-function MakeFloatStr(const s: string; const p: integer; const k: char): string;
+function MakeFloatStr(s: string; const p: integer; const k: char): string;
 begin
   result:=s;
   while length(result)<(p+1) do result:='0'+result;  {führende Nullen einfügen}
@@ -2790,7 +2805,7 @@ YYYY-MM-DDzzzzzz
 ...
 2012-05-2311632
 ...}
-function TForm1.GetOutListIDX(const s: string): integer; {Zeilennummer ermitteln}
+function TForm1.GetOutListIDX(s: string): integer; {Zeilennummer ermitteln}
 var x: integer;
 begin
   result:=0;                                         {default}
@@ -3389,9 +3404,10 @@ Muss ggf. mit geändert werden!
 end;
 
 procedure TForm1.Auswerten;   {Auswertung der Dateien vom WR -> in Rohdaten schreiben}
-var FileList, InList, SplitList: TStringList;
-    x, y: integer;
-    dr: string;
+var
+  FileList, InList, SplitList: TStringList;
+  x, y: integer;
+  dr: string;
 
   procedure AuswertenDanfoss; {Danfoss/IBC TLX Pro Daten in Rohdaten umwandlen}
   var x, y, korre, ertr: integer;
@@ -3467,8 +3483,10 @@ var FileList, InList, SplitList: TStringList;
             end;
           end;  {ende if (SplitList.Count>30)}
         end;
-        if InList[y]=datbeg then dataon:=true;
-        if InList[y]=infbeg then infoon:=true;
+        if InList[y]=datbeg then
+          dataon:=true;
+        if InList[y]=infbeg then
+          infoon:=true;
       end;    {Ende eine Datei auswerten}
       ProgressBar1.Position:=x;
       Application.ProcessMessages;
@@ -3479,7 +3497,7 @@ var FileList, InList, SplitList: TStringList;
   var x, y, korre, ertr: integer;
       rs, ldat, tdat: string;
 	
-    function ClMig(const s: string): string;  {Clean String from Migration}
+    function ClMig(s: string): string;  {Clean String from Migration}
     begin
       result:=trim(StringReplace(s, '"', ' ', [rfReplaceAll]));
     end;	
@@ -3566,7 +3584,7 @@ var FileList, InList, SplitList: TStringList;
       StatusBar1.Panels[1].Text:=SplitList[1];     {WR Nummer}
     end;
 
-    function GetErtrag(const p: integer): string;  {Monatsdatei mit Tagesertrag}
+    function GetErtrag(p: integer): string;  {Monatsdatei mit Tagesertrag}
     var x, d: integer;
         s: string;
     begin
@@ -3795,7 +3813,8 @@ begin
   try
     FileList:=FindAllFiles(DirectoryEdit1.Directory, LabeledEdit1.Text, false);
     if FileList.Count>0 then begin
-      for x:=0 to FileList.Count-1 do FileList[x]:=FileList[x];
+      for x:=0 to FileList.Count-1 do
+        FileList[x]:=FileList[x];
       FileList.Sort;      {schon heruntergeladene Dateien aufsteigend sortieren}
       if PrevFileList.Count>0 then           {erstmal Konsistenz prüfen}
         for x:=0 to PrevFileList.Count-1 do
@@ -3803,6 +3822,7 @@ begin
             PrevFileList.Clear;              {alles neu laden erzwingen}
             break;
           end;
+
       if PrevFileList.Count>0 then begin     {es sind schon Dateien geladen}
         if FileList.Count>PrevFileList.Count then begin
           SplitList.Assign(FileList); {schon geladene Dateien zwischenspeichern}
@@ -3821,6 +3841,7 @@ begin
         if FileExists(dr+archID+archfn) then DayList.LoadFromFile(dr+archID+archfn);
         PrevFileList.Assign(FileList);       {schon geladene Dateien merken}
       end;
+
       SplitList.Delimiter:=sep;          {default Delimiter}
       if FileList.Count>0 then begin     {nichts tun, wenn keine neuen Dateien}
         ProgressBar1.Min:=0;
@@ -4026,7 +4047,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       beg, fa, fbeg, fend, zt: TDateTime;
       lesw, zhl: Integer;     {minimale Leistung für Anfang / Ende in W}
 
-    function CorrSTime(const s: string): TDateTime; inline;
+    function CorrSTime(s: string): TDateTime; inline;
     begin
       result:=TToTT(s);
       if CheckBox11.Checked then    {Sommerzeit eliminieren}
