@@ -13,7 +13,7 @@ object Form1: TForm1
   OnDropFiles = FormDropFiles
   Position = poDefaultPosOnly
   SessionProperties = 'WindowState;Height;Width'
-  LCLVersion = '2.0.12.0'
+  LCLVersion = '2.2.0.2'
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
@@ -37,13 +37,13 @@ object Form1: TForm1
     Top = 8
     Width = 809
     Anchors = [akTop, akLeft, akRight]
-    ClientHeight = 68
-    ClientWidth = 805
+    ClientHeight = 86
+    ClientWidth = 807
     ParentShowHint = False
     ShowHint = True
     TabOrder = 1
     OnClick = GroupBox1Click
-    object BitBtn1: TBitBtn
+    object btnEinlesen: TBitBtn
       Left = 6
       Height = 30
       Top = 8
@@ -76,19 +76,19 @@ object Form1: TForm1
         1CFF00FFFF00FFFF00FFFF00FFFF00FFB89F8EB89F8EB89F8EB89F8EB89F8EB8
         9F8EB89F8EB89F8EB89F8EB89F8EFF00FFFF00FFFF00FFFF00FF
       }
-      OnClick = BitBtn1Click
+      OnClick = btnEinlesenClick
       TabOrder = 0
     end
     object ProgressBar1: TProgressBar
       Left = 6
       Height = 10
       Top = 48
-      Width = 754
+      Width = 756
       Anchors = [akTop, akLeft, akRight]
       TabOrder = 4
     end
-    object BitBtn3: TBitBtn
-      Left = 659
+    object btnClose: TBitBtn
+      Left = 661
       Height = 30
       Top = 8
       Width = 136
@@ -121,10 +121,10 @@ object Form1: TForm1
         FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
       }
-      OnClick = BitBtn3Click
+      OnClick = btnCloseClick
       TabOrder = 3
     end
-    object BitBtn4: TBitBtn
+    object btnSave: TBitBtn
       Left = 149
       Height = 30
       Top = 8
@@ -157,10 +157,10 @@ object Form1: TForm1
         25801C00FF00FF801C00FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
         00FFFF00FFFF00FF801C00801C00801C00FF00FFFF00FFFF00FF
       }
-      OnClick = BitBtn4Click
+      OnClick = btnSaveClick
       TabOrder = 1
     end
-    object BitBtn5: TBitBtn
+    object btnLoad: TBitBtn
       Left = 293
       Height = 30
       Top = 8
@@ -193,11 +193,11 @@ object Form1: TForm1
         DEB84841B8706C522A1BFF00FFC05754C05754C05754C05754C05754C05754C0
         5754C05754C05754C05754C05754C05754C05754C05754C05754
       }
-      OnClick = BitBtn5Click
+      OnClick = btnLoadClick
       TabOrder = 2
     end
     object Shape4: TShape
-      Left = 767
+      Left = 769
       Height = 10
       Top = 48
       Width = 28
@@ -206,38 +206,38 @@ object Form1: TForm1
       Shape = stRoundRect
     end
   end
-  object PageControl1: TPageControl
+  object pcMain: TPageControl
     Left = 8
     Height = 515
     Top = 104
     Width = 816
-    ActivePage = TabSheet6
+    ActivePage = tsSetOpt
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentShowHint = False
     ShowHint = True
     TabIndex = 5
     TabOrder = 2
-    OnChange = PageControl1Change
-    OnMouseUp = PageControl1MouseUp
-    object TabSheet1: TTabSheet
-      ClientHeight = 487
-      ClientWidth = 808
+    OnChange = pcMainChange
+    OnMouseUp = pcMainMouseUp
+    object tsTag: TTabSheet
+      ClientHeight = 482
+      ClientWidth = 810
       object ComboBox1: TComboBox
         Left = 10
-        Height = 23
+        Height = 27
         Hint = 'Tag auswählen'
         Top = 174
         Width = 118
-        ItemHeight = 15
+        ItemHeight = 0
         OnChange = ComboBox1Change
         OnDblClick = ComboBox1Change
         TabOrder = 1
       end
       object Chart4: TChart
         Left = 136
-        Height = 487
+        Height = 482
         Top = 0
-        Width = 672
+        Width = 674
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -272,8 +272,8 @@ object Form1: TForm1
         PopupMenu = PopupMenu2
         OnMouseUp = Chart4MouseUp
         object Chart4LineSeries1: TLineSeries
-          Marks.LabelBrush.Color = clMoneyGreen
           LinePen.Color = clBlue
+          Marks.LabelBrush.Color = clMoneyGreen
         end
         object Chart4LineSeries2: TLineSeries
           LinePen.Color = clLime
@@ -331,65 +331,58 @@ object Form1: TForm1
       end
       object Label2: TLabel
         Left = 11
-        Height = 15
+        Height = 16
         Top = 248
         Width = 3
         Caption = ':'
-        ParentColor = False
       end
       object Label3: TLabel
         Left = 11
-        Height = 15
+        Height = 16
         Top = 264
-        Width = 17
+        Width = 19
         Caption = 'kW'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label4: TLabel
         Left = 10
-        Height = 15
+        Height = 16
         Top = 296
         Width = 3
         Caption = ':'
-        ParentColor = False
       end
       object Label5: TLabel
         Left = 10
-        Height = 15
+        Height = 16
         Top = 312
-        Width = 24
+        Width = 27
         Caption = 'kWh'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label6: TLabel
         Left = 10
-        Height = 15
+        Height = 16
         Top = 352
         Width = 3
         Caption = ':'
-        ParentColor = False
       end
       object Label7: TLabel
         Left = 10
-        Height = 15
+        Height = 16
         Top = 368
-        Width = 6
+        Width = 8
         Caption = '€'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label20: TLabel
         Left = 10
-        Height = 15
+        Height = 16
         Top = 328
-        Width = 53
+        Width = 59
         Caption = 'kWh/kWp'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
@@ -437,17 +430,16 @@ object Form1: TForm1
       end
       object Label39: TLabel
         Left = 11
-        Height = 15
+        Height = 16
         Top = 393
-        Width = 42
+        Width = 48
         Caption = 'Strings: '
-        ParentColor = False
       end
       object CheckBox8: TCheckBox
         Left = 10
-        Height = 19
+        Height = 22
         Top = 152
-        Width = 20
+        Width = 22
         OnChange = CheckBox8Change
         TabOrder = 3
       end
@@ -468,25 +460,25 @@ object Form1: TForm1
         TabOrder = 4
       end
     end
-    object TabSheet2: TTabSheet
-      ClientHeight = 487
-      ClientWidth = 808
+    object tsMonat: TTabSheet
+      ClientHeight = 482
+      ClientWidth = 810
       object ComboBox2: TComboBox
         Left = 12
-        Height = 23
+        Height = 27
         Hint = 'Monat auswählen'
         Top = 15
         Width = 105
-        ItemHeight = 15
+        ItemHeight = 0
         OnChange = ComboBox2Change
         OnDblClick = ComboBox2Change
         TabOrder = 0
       end
       object Chart2: TChart
         Left = 128
-        Height = 487
+        Height = 482
         Top = 0
-        Width = 678
+        Width = 680
         AxisList = <        
           item
             Marks.Format = '%0:.4g'
@@ -520,12 +512,12 @@ object Form1: TForm1
         PopupMenu = PopupMenu1
         OnDblClick = Chart2DblClick
         object Chart2BarSeries1: TBarSeries
+          BarBrush.Color = clSkyBlue
           Marks.Distance = 1
           Marks.Visible = False
           Marks.Format = '%0:.9g'
           Marks.LabelBrush.Color = clSkyBlue
           Marks.Style = smsValue
-          BarBrush.Color = clSkyBlue
           Source = ListChartSource1
         end
         object Chart2ConstantLine1: TConstantLine
@@ -583,113 +575,104 @@ object Form1: TForm1
       end
       object Label8: TLabel
         Left = 12
-        Height = 15
+        Height = 16
         Top = 128
         Width = 3
         Caption = ':'
-        ParentColor = False
         ParentFont = False
       end
       object Label9: TLabel
         Left = 12
-        Height = 15
+        Height = 16
         Top = 144
-        Width = 17
+        Width = 19
         Caption = 'kW'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label10: TLabel
         Left = 12
-        Height = 15
+        Height = 16
         Top = 208
         Width = 3
         Caption = ':'
-        ParentColor = False
       end
       object Label11: TLabel
         Left = 12
-        Height = 15
+        Height = 16
         Top = 224
-        Width = 24
+        Width = 27
         Caption = 'kWh'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label12: TLabel
         Left = 12
-        Height = 15
+        Height = 16
         Top = 272
         Width = 3
         Caption = ':'
-        ParentColor = False
       end
       object Label13: TLabel
         Left = 12
-        Height = 15
+        Height = 16
         Top = 288
-        Width = 6
+        Width = 8
         Caption = '€'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label21: TLabel
         Left = 12
-        Height = 15
+        Height = 16
         Top = 240
-        Width = 53
+        Width = 59
         Caption = 'kWh/kWp'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label41: TLabel
         Left = 12
-        Height = 15
+        Height = 16
         Top = 168
-        Width = 22
+        Width = 26
         Caption = 'Soll:'
-        ParentColor = False
       end
       object Label42: TLabel
         Left = 13
-        Height = 15
+        Height = 16
         Top = 184
-        Width = 24
+        Width = 27
         Caption = 'kWh'
-        ParentColor = False
       end
       object CheckBox10: TCheckBox
         Left = 13
-        Height = 19
+        Height = 22
         Top = 94
-        Width = 20
+        Width = 22
         OnChange = CheckBox10Change
         TabOrder = 2
       end
     end
-    object TabSheet3: TTabSheet
-      ClientHeight = 487
-      ClientWidth = 808
+    object tsJahr: TTabSheet
+      ClientHeight = 482
+      ClientWidth = 810
       object ComboBox3: TComboBox
         Left = 12
-        Height = 23
+        Height = 27
         Hint = 'Jahr auswählen'
         Top = 15
         Width = 105
-        ItemHeight = 15
+        ItemHeight = 0
         OnChange = ComboBox3Change
         OnDblClick = ComboBox3Change
         TabOrder = 0
       end
       object Chart3: TChart
         Left = 128
-        Height = 487
+        Height = 482
         Top = 0
-        Width = 686
+        Width = 688
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -726,13 +709,13 @@ object Form1: TForm1
         end
         object Chart3BarSeries1: TBarSeries
           Legend.Multiplicity = lmPoint
+          BarBrush.Color = clSkyBlue
+          BarOffsetPercent = 20
+          BarWidthPercent = 60
           Marks.Distance = 0
           Marks.Format = '%0:.9g'
           Marks.LabelBrush.Color = clSkyBlue
           Marks.Style = smsValue
-          BarBrush.Color = clSkyBlue
-          BarOffsetPercent = 20
-          BarWidthPercent = 60
           Source = ListChartSource2
         end
         object Chart3ConstantLine1: TConstantLine
@@ -790,98 +773,89 @@ object Form1: TForm1
       end
       object Label14: TLabel
         Left = 13
-        Height = 15
+        Height = 16
         Top = 128
         Width = 3
         Caption = ':'
-        ParentColor = False
       end
       object Label15: TLabel
         Left = 13
-        Height = 15
+        Height = 16
         Top = 144
-        Width = 17
+        Width = 19
         Caption = 'kW'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label16: TLabel
         Left = 12
-        Height = 15
+        Height = 16
         Top = 176
         Width = 3
         Caption = ':'
-        ParentColor = False
       end
       object Label17: TLabel
         Left = 12
-        Height = 15
+        Height = 16
         Top = 192
-        Width = 24
+        Width = 27
         Caption = 'kWh'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label18: TLabel
         Left = 13
-        Height = 15
+        Height = 16
         Top = 240
         Width = 3
         Caption = ':'
-        ParentColor = False
       end
       object Label19: TLabel
         Left = 13
-        Height = 15
+        Height = 16
         Top = 256
-        Width = 6
+        Width = 8
         Caption = '€'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label22: TLabel
         Left = 13
-        Height = 15
+        Height = 16
         Top = 208
-        Width = 53
+        Width = 59
         Caption = 'kWh/kWp'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label23: TLabel
         Left = 13
-        Height = 15
+        Height = 16
         Top = 288
         Width = 3
         Caption = ':'
-        ParentColor = False
       end
       object Label24: TLabel
         Left = 13
-        Height = 15
+        Height = 16
         Top = 304
-        Width = 53
+        Width = 59
         Caption = 'kWh/kWp'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object CheckBox7: TCheckBox
         Left = 12
-        Height = 19
+        Height = 22
         Top = 93
-        Width = 20
+        Width = 22
         OnChange = CheckBox7Change
         TabOrder = 1
       end
     end
-    object TabSheet4: TTabSheet
-      ClientHeight = 487
-      ClientWidth = 808
+    object tsStatistik: TTabSheet
+      ClientHeight = 482
+      ClientWidth = 810
       object RadioGroup1: TRadioGroup
         Left = 5
         Height = 217
@@ -897,8 +871,8 @@ object Form1: TForm1
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 197
-        ClientWidth = 115
+        ClientHeight = 200
+        ClientWidth = 117
         Items.Strings = (
           'Peakleistung'
           'Start/Ende'
@@ -915,9 +889,9 @@ object Form1: TForm1
       end
       object Chart1: TChart
         Left = 130
-        Height = 487
+        Height = 482
         Top = 0
-        Width = 672
+        Width = 674
         AxisList = <        
           item
             Marks.Format = '%2:s'
@@ -952,11 +926,11 @@ object Form1: TForm1
         PopupMenu = PopupMenu1
         OnMouseUp = Chart1MouseUp
         object Chart1BarSeries1: TBarSeries
+          BarBrush.Color = clSkyBlue
+          BarWidthPercent = 100
           Marks.Format = '%2:s:  %0:.6g'
           Marks.LabelBrush.Color = clCream
           Marks.Style = smsCustom
-          BarBrush.Color = clSkyBlue
-          BarWidthPercent = 100
         end
         object Chart1BarSeries2: TBarSeries
           BarBrush.Color = clSkyBlue
@@ -980,97 +954,88 @@ object Form1: TForm1
       end
       object Label30: TLabel
         Left = 5
-        Height = 15
+        Height = 16
         Top = 408
-        Width = 53
+        Width = 59
         Caption = 'kWh/kWp'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label31: TLabel
         Left = 5
-        Height = 15
+        Height = 16
         Top = 392
         Width = 3
         Caption = ':'
-        ParentColor = False
       end
       object Label32: TLabel
         Left = 5
-        Height = 15
+        Height = 16
         Top = 360
-        Width = 6
+        Width = 8
         Caption = '€'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label33: TLabel
         Left = 5
-        Height = 15
+        Height = 16
         Top = 344
         Width = 3
         Caption = ':'
-        ParentColor = False
       end
       object Label34: TLabel
         Left = 5
-        Height = 15
+        Height = 16
         Top = 312
-        Width = 53
+        Width = 59
         Caption = 'kWh/kWp'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label35: TLabel
         Left = 4
-        Height = 15
+        Height = 16
         Top = 296
-        Width = 24
+        Width = 27
         Caption = 'kWh'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label36: TLabel
         Left = 5
-        Height = 15
+        Height = 16
         Top = 280
         Width = 3
         Caption = ':'
-        ParentColor = False
       end
       object Label37: TLabel
         Left = 6
-        Height = 15
+        Height = 16
         Top = 248
-        Width = 17
+        Width = 19
         Caption = 'kW'
-        ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label38: TLabel
         Left = 6
-        Height = 15
+        Height = 16
         Top = 232
         Width = 3
         Caption = ':'
-        ParentColor = False
       end
     end
-    object TabSheet10: TTabSheet
-      ClientHeight = 487
-      ClientWidth = 808
+    object tsSpiel: TTabSheet
+      ClientHeight = 482
+      ClientWidth = 810
       object GroupBox8: TGroupBox
         Left = 4
         Height = 138
         Top = 336
         Width = 232
-        ClientHeight = 118
-        ClientWidth = 228
+        ClientHeight = 136
+        ClientWidth = 230
         TabOrder = 1
         object RadioGroup3: TRadioGroup
           Left = 8
@@ -1086,8 +1051,8 @@ object Form1: TForm1
           ChildSizing.ShrinkVertical = crsScaleChilds
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 76
-          ClientWidth = 101
+          ClientHeight = 79
+          ClientWidth = 103
           Items.Strings = (
             'Tag'
             'Monat'
@@ -1100,21 +1065,20 @@ object Form1: TForm1
         end
         object ComboBox4: TComboBox
           Left = 126
-          Height = 23
+          Height = 27
           Top = 16
           Width = 96
-          ItemHeight = 15
+          ItemHeight = 0
           OnChange = ComboBox4Change
           TabOrder = 1
           Text = 'Day'
         end
         object Label47: TLabel
           Left = 126
-          Height = 15
+          Height = 16
           Top = 0
-          Width = 15
+          Width = 18
           Caption = 'Sel'
-          ParentColor = False
         end
         object BitBtn11: TBitBtn
           Left = 126
@@ -1154,19 +1118,19 @@ object Form1: TForm1
         end
         object ComboBox5: TComboBox
           Left = 126
-          Height = 23
+          Height = 27
           Top = 40
           Width = 96
-          ItemHeight = 15
+          ItemHeight = 0
           OnChange = ComboBox5Change
           TabOrder = 2
           Text = 'Day'
         end
         object CheckBox11: TCheckBox
           Left = 14
-          Height = 19
+          Height = 22
           Top = 96
-          Width = 85
+          Width = 100
           Caption = 'CheckBox11'
           OnChange = CheckBox11Change
           TabOrder = 4
@@ -1178,8 +1142,8 @@ object Form1: TForm1
         Top = 8
         Width = 232
         Caption = 'Y-Achsen'
-        ClientHeight = 308
-        ClientWidth = 228
+        ClientHeight = 311
+        ClientWidth = 230
         TabOrder = 0
         object RadioGroup4: TRadioGroup
           Left = 7
@@ -1195,8 +1159,8 @@ object Form1: TForm1
           ChildSizing.ShrinkVertical = crsScaleChilds
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 284
-          ClientWidth = 97
+          ClientHeight = 287
+          ClientWidth = 99
           Items.Strings = (
             'P_AC'
             'P_DC*'
@@ -1233,8 +1197,8 @@ object Form1: TForm1
           ChildSizing.ShrinkVertical = crsScaleChilds
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 284
-          ClientWidth = 100
+          ClientHeight = 287
+          ClientWidth = 102
           Items.Strings = (
             'P_AC'
             'P_DC*'
@@ -1259,9 +1223,9 @@ object Form1: TForm1
       end
       object Chart5: TChart
         Left = 243
-        Height = 487
+        Height = 482
         Top = 0
-        Width = 558
+        Width = 560
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -1313,44 +1277,43 @@ object Form1: TForm1
         end
       end
     end
-    object TabSheet6: TTabSheet
-      ClientHeight = 487
-      ClientWidth = 808
-      object PageControl2: TPageControl
+    object tsSetOpt: TTabSheet
+      ClientHeight = 482
+      ClientWidth = 810
+      object pcSettings: TPageControl
         Left = 4
-        Height = 480
+        Height = 475
         Top = 8
-        Width = 796
-        ActivePage = TabSheet7
+        Width = 798
+        ActivePage = tsBasics
         Anchors = [akTop, akLeft, akRight, akBottom]
         TabIndex = 0
         TabOrder = 0
-        OnChange = PageControl2Change
-        object TabSheet7: TTabSheet
-          ClientHeight = 452
-          ClientWidth = 788
+        OnChange = pcSettingsChange
+        object tsBasics: TTabSheet
+          ClientHeight = 441
+          ClientWidth = 792
           object GroupBox2: TGroupBox
             Left = 4
             Height = 192
             Top = 8
-            Width = 764
+            Width = 768
             Anchors = [akTop, akLeft, akRight]
-            ClientHeight = 172
-            ClientWidth = 760
+            ClientHeight = 190
+            ClientWidth = 766
             ParentColor = False
             ParentFont = False
             TabOrder = 0
             object Label1: TLabel
               Left = 9
-              Height = 15
+              Height = 16
               Top = 10
-              Width = 7
+              Width = 9
               Caption = 'V'
-              ParentColor = False
             end
-            object DirectoryEdit1: TDirectoryEdit
+            object deLocal: TDirectoryEdit
               Left = 9
-              Height = 23
+              Height = 25
               Top = 30
               Width = 277
               ShowHidden = False
@@ -1359,50 +1322,47 @@ object Form1: TForm1
               Color = clCream
               MaxLength = 0
               TabOrder = 0
-              OnChange = DirectoryEdit1Change
+              OnChange = deLocalChange
             end
-            object SpinEdit1: TSpinEdit
+            object edHTMLzeile: TSpinEdit
               Left = 487
-              Height = 23
+              Height = 25
               Top = 80
               Width = 200
               Color = clCream
-              OnChange = SpinEdit1Change
+              OnChange = edHTMLzeileChange
               TabOrder = 3
             end
-            object LabeledEdit1: TLabeledEdit
+            object edFilter: TLabeledEdit
               Left = 487
-              Height = 23
+              Height = 25
               Top = 30
               Width = 200
               Color = clCream
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 200
-              EditLabel.Caption = 'LabeledEdit1'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edFilter'
               TabOrder = 1
               Text = '*'
-              OnChange = LabeledEdit1Change
+              OnChange = edFilterChange
             end
             object Label25: TLabel
               Left = 9
-              Height = 15
+              Height = 16
               Top = 62
               Width = 9
               Caption = 'H'
-              ParentColor = False
             end
             object Label26: TLabel
               Left = 487
-              Height = 15
+              Height = 16
               Top = 62
-              Width = 7
+              Width = 8
               Caption = 'Z'
-              ParentColor = False
             end
-            object FileNameEdit1: TFileNameEdit
+            object deServer: TFileNameEdit
               Left = 9
-              Height = 23
+              Height = 25
               Top = 80
               Width = 277
               DialogOptions = []
@@ -1413,13 +1373,13 @@ object Form1: TForm1
               Color = clCream
               MaxLength = 0
               TabOrder = 2
-              OnChange = FileNameEdit1Change
+              OnChange = deServerChange
             end
             object CheckBox1: TCheckBox
               Left = 9
-              Height = 19
+              Height = 22
               Top = 112
-              Width = 20
+              Width = 22
               OnChange = CheckBox1Change
               TabOrder = 4
             end
@@ -1438,8 +1398,8 @@ object Form1: TForm1
               ChildSizing.ShrinkVertical = crsScaleChilds
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 1
-              ClientHeight = 132
-              ClientWidth = 154
+              ClientHeight = 135
+              ClientWidth = 156
               Items.Strings = (
                 'Danfoss TLX Pro'
                 'Kaco Powador'
@@ -1452,18 +1412,17 @@ object Form1: TForm1
             end
             object Label54: TLabel
               Left = 487
-              Height = 15
+              Height = 16
               Top = 112
-              Width = 40
+              Width = 49
               Caption = 'Label54'
-              ParentColor = False
             end
-            object SpinEdit3: TSpinEdit
+            object spePeriod: TSpinEdit
               Left = 487
-              Height = 23
+              Height = 25
               Top = 136
               Width = 71
-              OnChange = SpinEdit3Change
+              OnChange = spePeriodChange
               TabOrder = 6
             end
           end
@@ -1471,141 +1430,132 @@ object Form1: TForm1
             Left = 4
             Height = 144
             Top = 208
-            Width = 764
+            Width = 768
             Anchors = [akTop, akLeft, akRight]
-            ClientHeight = 124
-            ClientWidth = 760
+            ClientHeight = 142
+            ClientWidth = 766
             TabOrder = 1
-            object LabeledEdit2: TLabeledEdit
+            object edPeak: TLabeledEdit
               Left = 9
-              Height = 23
+              Height = 25
               Top = 32
               Width = 200
               Color = clMoneyGreen
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 200
-              EditLabel.Caption = 'LabeledEdit2'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edPeak'
               TabOrder = 0
-              OnChange = LabeledEdit2Change
+              OnChange = edPeakChange
             end
-            object LabeledEdit3: TLabeledEdit
+            object edSpezJE: TLabeledEdit
               Left = 9
-              Height = 23
+              Height = 25
               Top = 80
               Width = 200
               Color = clMoneyGreen
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 200
-              EditLabel.Caption = 'LabeledEdit3'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edSpezJE'
               TabOrder = 1
-              OnChange = LabeledEdit3Change
+              OnChange = edSpezJEChange
             end
-            object LabeledEdit4: TLabeledEdit
+            object edVerg: TLabeledEdit
               Left = 487
-              Height = 23
+              Height = 25
               Top = 32
               Width = 200
               Color = clMoneyGreen
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 200
-              EditLabel.Caption = 'LabeledEdit4'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edVerg'
               TabOrder = 2
-              OnChange = LabeledEdit4Change
+              OnChange = edVergChange
             end
-            object LabeledEdit15: TLabeledEdit
+            object edEuro: TLabeledEdit
               Left = 487
-              Height = 23
+              Height = 25
               Top = 80
               Width = 200
               Color = clMoneyGreen
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 200
-              EditLabel.Caption = 'LabeledEdit15'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edEuro'
               TabOrder = 3
-              OnChange = LabeledEdit15Change
+              OnChange = edEuroChange
             end
             object Label49: TLabel
               Left = 238
-              Height = 15
+              Height = 16
               Top = 9
-              Width = 40
+              Width = 49
               Caption = 'Label49'
               Color = clDefault
-              ParentColor = False
               Transparent = False
             end
             object LabeledEdit17: TLabeledEdit
               Left = 286
-              Height = 23
+              Height = 25
               Top = 32
               Width = 112
               Color = clMoneyGreen
-              EditLabel.Height = 15
-              EditLabel.Width = 40
+              EditLabel.Height = 16
+              EditLabel.Width = 47
               EditLabel.Caption = 'String 1'
-              EditLabel.ParentColor = False
               LabelPosition = lpLeft
               TabOrder = 4
               OnChange = LabeledEdit17Change
             end
             object LabeledEdit18: TLabeledEdit
               Left = 286
-              Height = 23
+              Height = 25
               Top = 56
               Width = 112
               Color = clMoneyGreen
-              EditLabel.Height = 15
-              EditLabel.Width = 40
+              EditLabel.Height = 16
+              EditLabel.Width = 47
               EditLabel.Caption = 'String 2'
-              EditLabel.ParentColor = False
               LabelPosition = lpLeft
               TabOrder = 5
               OnChange = LabeledEdit17Change
             end
             object LabeledEdit19: TLabeledEdit
               Left = 286
-              Height = 23
+              Height = 25
               Top = 80
               Width = 112
               Color = clMoneyGreen
-              EditLabel.Height = 15
-              EditLabel.Width = 40
+              EditLabel.Height = 16
+              EditLabel.Width = 47
               EditLabel.Caption = 'String 3'
-              EditLabel.ParentColor = False
               LabelPosition = lpLeft
               TabOrder = 6
               OnChange = LabeledEdit17Change
             end
           end
         end
-        object TabSheet8: TTabSheet
-          ClientHeight = 452
-          ClientWidth = 788
+        object tsOptions: TTabSheet
+          ClientHeight = 441
+          ClientWidth = 792
           object GroupBox4: TGroupBox
             Left = 12
             Height = 216
             Top = 16
-            Width = 771
+            Width = 775
             Anchors = [akTop, akLeft, akRight]
-            ClientHeight = 196
-            ClientWidth = 767
+            ClientHeight = 214
+            ClientWidth = 773
             TabOrder = 0
-            object LabeledEdit5: TLabeledEdit
+            object edMinPower: TLabeledEdit
               Left = 9
-              Height = 23
+              Height = 25
               Top = 24
               Width = 118
               Color = clCream
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 118
-              EditLabel.Caption = 'LabeledEdit5'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edMinPower'
               TabOrder = 0
-              OnChange = LabeledEdit5Change
+              OnChange = edMinPowerChange
             end
             object TrackBar1: TTrackBar
               Left = 150
@@ -1619,27 +1569,24 @@ object Form1: TForm1
             end
             object Label27: TLabel
               Left = 150
-              Height = 15
+              Height = 16
               Top = 64
-              Width = 7
+              Width = 8
               Caption = 'g'
-              ParentColor = False
             end
             object Label28: TLabel
               Left = 279
-              Height = 15
+              Height = 16
               Top = 64
-              Width = 5
+              Width = 6
               Caption = 's'
-              ParentColor = False
             end
             object Label29: TLabel
               Left = 165
-              Height = 15
+              Height = 16
               Top = 8
-              Width = 40
+              Width = 49
               Caption = 'Label29'
-              ParentColor = False
             end
             object StringGrid1: TStringGrid
               Left = 347
@@ -1710,39 +1657,36 @@ object Form1: TForm1
             end
             object Label40: TLabel
               Left = 347
-              Height = 15
+              Height = 16
               Top = 8
-              Width = 40
+              Width = 49
               Caption = 'Label40'
-              ParentColor = False
             end
             object Label43: TLabel
               Left = 9
-              Height = 15
+              Height = 16
               Top = 112
-              Width = 40
+              Width = 49
               Caption = 'Label43'
-              ParentColor = False
             end
-            object SpinEdit2: TSpinEdit
+            object speArchPeriod: TSpinEdit
               Left = 9
-              Height = 23
+              Height = 25
               Top = 136
               Width = 120
               Color = clCream
               MaxValue = 6000
               MinValue = 10
-              OnChange = SpinEdit2Change
+              OnChange = speArchPeriodChange
               TabOrder = 3
               Value = 10
             end
             object Label44: TLabel
               Left = 166
-              Height = 15
+              Height = 16
               Top = 112
-              Width = 40
+              Width = 49
               Caption = 'Label44'
-              ParentColor = False
             end
             object TrackBar2: TTrackBar
               Left = 150
@@ -1757,47 +1701,43 @@ object Form1: TForm1
             end
             object Label45: TLabel
               Left = 150
-              Height = 15
+              Height = 16
               Top = 176
-              Width = 40
+              Width = 49
               Caption = 'Label45'
-              ParentColor = False
             end
             object Label46: TLabel
               Left = 279
-              Height = 15
+              Height = 16
               Top = 176
-              Width = 40
+              Width = 49
               Caption = 'Label46'
-              ParentColor = False
             end
-            object LabeledEdit16: TLabeledEdit
+            object edKorrFak: TLabeledEdit
               Left = 347
-              Height = 23
+              Height = 25
               Top = 136
               Width = 121
               Color = clCream
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 121
-              EditLabel.Caption = 'LabeledEdit16'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edKorrFak'
               TabOrder = 5
-              Text = 'LabeledEdit16'
-              OnChange = LabeledEdit16Change
+              Text = 'edKorrFak'
+              OnChange = edKorrFakChange
             end
             object Label48: TLabel
               Left = 469
-              Height = 15
+              Height = 16
               Top = 140
-              Width = 10
+              Width = 11
               Caption = '%'
-              ParentColor = False
             end
             object CheckBox13: TCheckBox
               Left = 534
-              Height = 19
+              Height = 22
               Top = 140
-              Width = 85
+              Width = 100
               Caption = 'CheckBox13'
               OnChange = CheckBox13Change
               TabOrder = 6
@@ -1807,12 +1747,12 @@ object Form1: TForm1
             Left = 4
             Height = 168
             Top = 240
-            Width = 771
+            Width = 775
             Anchors = [akTop, akLeft, akRight]
-            ClientHeight = 148
-            ClientWidth = 767
+            ClientHeight = 166
+            ClientWidth = 773
             TabOrder = 1
-            object BitBtn2: TBitBtn
+            object btnBackup: TBitBtn
               Left = 9
               Height = 29
               Hint = 'Backup-Datei im Datawarehouse Verzeichnis anlegen'
@@ -1847,10 +1787,10 @@ object Form1: TForm1
                 40404040404040202020FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
                 FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               }
-              OnClick = BitBtn2Click
+              OnClick = btnBackupClick
               TabOrder = 0
             end
-            object BitBtn6: TBitBtn
+            object btnTag: TBitBtn
               Left = 9
               Height = 29
               Hint = 'Restoredatei für Datawarehouse anlegen: '#13#10'Gehe zur Tagesauswertung und wähle fehlenden Tag'
@@ -1884,11 +1824,11 @@ object Form1: TForm1
                 FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF407F7F000000FFFFFFFFFFFFFF
                 FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               }
-              OnClick = BitBtn6Click
+              OnClick = btnTagClick
               TabOrder = 1
             end
-            object BitBtn7: TBitBtn
-              Left = 606
+            object btnAbout: TBitBtn
+              Left = 612
               Height = 29
               Top = 8
               Width = 142
@@ -1924,7 +1864,7 @@ object Form1: TForm1
               OnClick = GroupBox1Click
               TabOrder = 2
             end
-            object BitBtn8: TBitBtn
+            object btnSimu: TBitBtn
               Left = 220
               Height = 29
               Top = 8
@@ -1957,10 +1897,10 @@ object Form1: TForm1
                 7F7F7F7F7F7F7F7F7F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBF
                 BFBFBFBFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               }
-              OnClick = BitBtn8Click
+              OnClick = btnSimuClick
               TabOrder = 3
             end
-            object BitBtn10: TBitBtn
+            object btnArch: TBitBtn
               Left = 220
               Height = 29
               Top = 104
@@ -1993,19 +1933,18 @@ object Form1: TForm1
                 FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
                 FFFF3F003F7F007F000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
               }
-              OnClick = BitBtn10Click
+              OnClick = btnArchClick
               TabOrder = 4
             end
             object Label51: TLabel
-              Left = 708
-              Height = 15
+              Left = 705
+              Height = 16
               Top = 48
-              Width = 40
+              Width = 49
               Anchors = [akTop, akRight]
               Caption = 'Label51'
               Font.Color = clNavy
               Font.Style = [fsUnderline]
-              ParentColor = False
               ParentFont = False
               OnClick = Label51Click
               OnMouseEnter = Label51MouseEnter
@@ -2013,29 +1952,27 @@ object Form1: TForm1
             end
             object Label52: TLabel
               Left = 689
-              Height = 15
+              Height = 16
               Top = 104
-              Width = 59
+              Width = 65
               Anchors = [akTop, akRight]
               Caption = 'Homepage'
               Font.Color = clNavy
               Font.Style = [fsUnderline]
-              ParentColor = False
               ParentFont = False
               OnClick = Label52Click
               OnMouseEnter = Label52MouseEnter
               OnMouseLeave = Label52MouseLeave
             end
             object Label53: TLabel
-              Left = 654
-              Height = 15
+              Left = 645
+              Height = 16
               Top = 77
-              Width = 94
+              Width = 109
               Anchors = [akTop, akRight]
               Caption = 'Download update'
               Font.Color = clNavy
               Font.Style = [fsUnderline]
-              ParentColor = False
               ParentFont = False
               OnClick = Label53Click
               OnMouseEnter = Label53MouseEnter
@@ -2056,8 +1993,8 @@ object Form1: TForm1
               ChildSizing.ShrinkVertical = crsScaleChilds
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 4
-              ClientHeight = 24
-              ClientWidth = 278
+              ClientHeight = 27
+              ClientWidth = 280
               Columns = 4
               Items.Strings = (
                 ' 50%'
@@ -2069,121 +2006,116 @@ object Form1: TForm1
             end
           end
         end
-        object TabSheet9: TTabSheet
-          ClientHeight = 452
-          ClientWidth = 788
+        object tsFTP: TTabSheet
+          ClientHeight = 441
+          ClientWidth = 792
           object GroupBox5: TGroupBox
             Left = 12
             Height = 176
             Top = 8
-            Width = 760
+            Width = 764
             Anchors = [akTop, akLeft, akRight]
             Caption = 'WR-Datawarehouse'
-            ClientHeight = 156
-            ClientWidth = 756
+            ClientHeight = 174
+            ClientWidth = 762
             ParentColor = False
             TabOrder = 0
-            object LabeledEdit6: TLabeledEdit
+            object edServerName: TLabeledEdit
               Left = 8
-              Height = 23
+              Height = 25
               Hint = 'Hostname oder IP-Adresse des Datawarehouse, wie beim Wechselrichter eingestellt'
               Top = 24
               Width = 512
               Color = clCream
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 512
-              EditLabel.Caption = 'LabeledEdit6'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edServerName'
               TabOrder = 0
-              OnChange = LabeledEdit6Change
+              OnChange = edServerNameChange
             end
-            object LabeledEdit7: TLabeledEdit
+            object edUser: TLabeledEdit
               Left = 8
-              Height = 23
+              Height = 25
               Hint = 'Benutzername für Datawarehouse'
               Top = 72
               Width = 248
               Color = clMoneyGreen
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 248
-              EditLabel.Caption = 'LabeledEdit7'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edUser'
               TabOrder = 2
-              OnChange = LabeledEdit7Change
+              OnChange = edUserChange
             end
-            object LabeledEdit8: TLabeledEdit
+            object edPasw: TLabeledEdit
               Left = 273
-              Height = 23
+              Height = 25
               Hint = 'Passwort für Datawarehouse'
               Top = 72
               Width = 246
               Color = clSkyBlue
               EchoMode = emPassword
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 246
-              EditLabel.Caption = 'LabeledEdit8'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edPasw'
               PasswordChar = '*'
               TabOrder = 3
-              OnChange = LabeledEdit8Change
+              OnChange = edPaswChange
             end
-            object LabeledEdit9: TLabeledEdit
+            object edFolder: TLabeledEdit
               Left = 8
-              Height = 23
+              Height = 25
               Hint = 'Eventuell zusätzliches Verzeichnis, kann aber auch leer bleiben'
               Top = 120
               Width = 248
               Color = clCream
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 248
-              EditLabel.Caption = 'LabeledEdit9'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edFolder'
               TabOrder = 4
-              OnChange = LabeledEdit9Change
+              OnChange = edFolderChange
             end
             object CheckBox2: TCheckBox
               Left = 545
-              Height = 19
+              Height = 22
               Top = 28
-              Width = 20
+              Width = 22
               OnChange = CheckBox2Change
               TabOrder = 1
             end
             object CheckBox5: TCheckBox
               Left = 545
-              Height = 19
+              Height = 22
               Top = 76
-              Width = 20
+              Width = 22
               OnChange = CheckBox5Change
               TabOrder = 5
             end
-            object Button1: TButton
+            object btnTestFTP: TButton
               Left = 546
               Height = 25
               Top = 120
               Width = 99
-              OnClick = Button1Click
+              OnClick = btnTestFTPClick
               TabOrder = 6
             end
             object CheckBox9: TCheckBox
               Left = 275
-              Height = 19
+              Height = 22
               Top = 121
-              Width = 20
+              Width = 22
               OnChange = CheckBox9Change
               TabOrder = 7
             end
             object Label50: TLabel
               Left = 469
-              Height = 15
+              Height = 16
               Top = 100
-              Width = 40
+              Width = 49
               Caption = 'Label50'
-              ParentColor = False
             end
             object SpinEdit4: TSpinEdit
               Left = 469
-              Height = 23
+              Height = 25
               Top = 122
               Width = 50
               OnChange = SpinEdit4Change
@@ -2194,138 +2126,133 @@ object Form1: TForm1
             Left = 8
             Height = 217
             Top = 192
-            Width = 760
+            Width = 764
             Anchors = [akTop, akLeft, akRight]
             Caption = 'Webspace/Homepage'
-            ClientHeight = 197
-            ClientWidth = 756
+            ClientHeight = 215
+            ClientWidth = 762
             TabOrder = 1
-            object LabeledEdit10: TLabeledEdit
+            object edHTMLserver: TLabeledEdit
               Left = 8
-              Height = 23
+              Height = 25
               Hint = 'Hostname oder IP-Adresse der Homepage'
               Top = 64
               Width = 512
               Color = clCream
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 512
-              EditLabel.Caption = 'LabeledEdit10'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edHTMLserver'
               TabOrder = 1
-              OnChange = LabeledEdit10Change
+              OnChange = edHTMLserverChange
             end
             object CheckBox3: TCheckBox
               Left = 8
-              Height = 19
+              Height = 22
               Top = 16
-              Width = 20
+              Width = 22
               OnChange = CheckBox3Change
               TabOrder = 0
             end
             object CheckBox4: TCheckBox
               Left = 545
-              Height = 19
+              Height = 22
               Top = 68
-              Width = 20
+              Width = 22
               OnChange = CheckBox4Change
               TabOrder = 2
             end
-            object LabeledEdit11: TLabeledEdit
+            object edHTMLuser: TLabeledEdit
               Left = 8
-              Height = 23
+              Height = 25
               Hint = 'Benutzername für Homepage'
               Top = 112
               Width = 248
               Color = clMoneyGreen
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 248
-              EditLabel.Caption = 'LabeledEdit11'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edHTMLuser'
               TabOrder = 3
-              OnChange = LabeledEdit11Change
+              OnChange = edHTMLuserChange
             end
-            object LabeledEdit12: TLabeledEdit
+            object edHTMLpasw: TLabeledEdit
               Left = 273
-              Height = 23
+              Height = 25
               Hint = 'Passwort für Homepage'
               Top = 112
               Width = 248
               Color = clSkyBlue
               EchoMode = emPassword
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 248
-              EditLabel.Caption = 'LabeledEdit12'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edHTMLpasw'
               PasswordChar = '*'
               TabOrder = 4
-              OnChange = LabeledEdit12Change
+              OnChange = edHTMLpaswChange
             end
-            object LabeledEdit13: TLabeledEdit
+            object edHTMLfolder: TLabeledEdit
               Left = 8
-              Height = 23
+              Height = 25
               Hint = 'Eventuell anderes Verzeichnis, kann aber auch leer bleiben'
               Top = 160
               Width = 248
               Color = clCream
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 248
-              EditLabel.Caption = 'LabeledEdit13'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edHTMLfolder'
               TabOrder = 5
-              OnChange = LabeledEdit13Change
+              OnChange = edHTMLfolderChange
             end
             object CheckBox6: TCheckBox
               Left = 545
-              Height = 19
+              Height = 22
               Top = 116
-              Width = 20
+              Width = 22
               OnChange = CheckBox6Change
               TabOrder = 8
             end
-            object LabeledEdit14: TLabeledEdit
+            object edHTMLfile: TLabeledEdit
               Left = 272
-              Height = 23
+              Height = 25
               Hint = 'Dateiname der HTML-Protokolldatei, die aktualisiert werden soll. Siehe Basisdaten.'
               Top = 160
               Width = 248
-              EditLabel.Height = 15
+              EditLabel.Height = 16
               EditLabel.Width = 248
-              EditLabel.Caption = 'LabeledEdit14'
-              EditLabel.ParentColor = False
+              EditLabel.Caption = 'edHTMLfile'
               ParentColor = True
               ReadOnly = True
               TabOrder = 6
               TabStop = False
-              OnChange = LabeledEdit14Change
+              OnChange = edHTMLfileChange
             end
-            object Button2: TButton
+            object btnTestHTML: TButton
               Left = 545
               Height = 25
               Top = 158
               Width = 99
-              OnClick = Button2Click
+              OnClick = btnTestHTMLClick
               TabOrder = 7
             end
           end
         end
-        object TabSheet11: TTabSheet
-          Caption = 'TabSheet11'
-          ClientHeight = 452
-          ClientWidth = 788
+        object tsColors: TTabSheet
+          Caption = 'tsColors'
+          ClientHeight = 441
+          ClientWidth = 792
           object GroupBox10: TGroupBox
             Left = 12
             Height = 160
             Top = 8
             Width = 200
             Caption = 'GroupBox10'
-            ClientHeight = 140
-            ClientWidth = 196
+            ClientHeight = 143
+            ClientWidth = 198
             TabOrder = 0
             object ColorButton8: TColorButton
               Left = 6
               Height = 25
               Top = 8
-              Width = 183
+              Width = 185
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2338,7 +2265,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 40
-              Width = 183
+              Width = 185
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2351,7 +2278,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 72
-              Width = 183
+              Width = 185
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2364,7 +2291,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 104
-              Width = 183
+              Width = 185
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2380,14 +2307,14 @@ object Form1: TForm1
             Top = 168
             Width = 200
             Caption = 'GroupBox11'
-            ClientHeight = 140
-            ClientWidth = 196
+            ClientHeight = 143
+            ClientWidth = 198
             TabOrder = 3
             object ColorButton3: TColorButton
               Left = 6
               Height = 25
               Top = 8
-              Width = 183
+              Width = 185
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2400,7 +2327,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 40
-              Width = 183
+              Width = 185
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2413,7 +2340,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 72
-              Width = 183
+              Width = 185
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2426,7 +2353,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 104
-              Width = 183
+              Width = 185
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2442,14 +2369,14 @@ object Form1: TForm1
             Top = 263
             Width = 200
             Caption = 'GroupBox12'
-            ClientHeight = 45
-            ClientWidth = 196
+            ClientHeight = 48
+            ClientWidth = 198
             TabOrder = 4
             object ColorButton7: TColorButton
               Left = 6
               Height = 25
               Top = 9
-              Width = 182
+              Width = 184
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2465,14 +2392,14 @@ object Form1: TForm1
             Top = 200
             Width = 200
             Caption = 'GroupBox13'
-            ClientHeight = 108
-            ClientWidth = 196
+            ClientHeight = 111
+            ClientWidth = 198
             TabOrder = 5
             object ColorButton12: TColorButton
               Left = 6
               Height = 25
               Top = 8
-              Width = 182
+              Width = 184
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2485,7 +2412,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 40
-              Width = 182
+              Width = 184
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2498,7 +2425,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 72
-              Width = 182
+              Width = 184
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2514,14 +2441,14 @@ object Form1: TForm1
             Top = 8
             Width = 200
             Caption = 'GroupBox14'
-            ClientHeight = 204
-            ClientWidth = 196
+            ClientHeight = 207
+            ClientWidth = 198
             TabOrder = 1
             object ColorButton15: TColorButton
               Left = 6
               Height = 25
               Top = 8
-              Width = 183
+              Width = 185
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2534,7 +2461,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 40
-              Width = 183
+              Width = 185
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2547,7 +2474,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 72
-              Width = 183
+              Width = 185
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2560,7 +2487,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 104
-              Width = 183
+              Width = 185
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2573,7 +2500,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 136
-              Width = 182
+              Width = 184
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2586,7 +2513,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 168
-              Width = 182
+              Width = 184
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2602,14 +2529,14 @@ object Form1: TForm1
             Top = 8
             Width = 200
             Caption = 'GroupBox15'
-            ClientHeight = 77
-            ClientWidth = 196
+            ClientHeight = 80
+            ClientWidth = 198
             TabOrder = 2
             object ColorButton1: TColorButton
               Left = 6
               Height = 25
               Top = 8
-              Width = 183
+              Width = 185
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2622,7 +2549,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 40
-              Width = 183
+              Width = 185
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2632,12 +2559,12 @@ object Form1: TForm1
               OnColorChanged = ColorButton1ColorChanged
             end
           end
-          object BitBtn12: TBitBtn
+          object btnColorsReset: TBitBtn
             Left = 444
             Height = 40
             Top = 336
             Width = 200
-            Caption = 'BitBtn12'
+            Caption = 'btnColorsReset'
             Glyph.Data = {
               F6060000424DF606000000000000360000002800000018000000180000000100
               180000000000C0060000D30E0000D30E00000000000000000000FF00FFFF00FF
@@ -2696,15 +2623,15 @@ object Form1: TForm1
               FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
               00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
             }
-            OnClick = BitBtn12Click
+            OnClick = btnColorsResetClick
             TabOrder = 8
           end
-          object BitBtn13: TBitBtn
+          object btnColorsLoad: TBitBtn
             Left = 12
             Height = 40
             Top = 336
             Width = 200
-            Caption = 'BitBtn13'
+            Caption = 'btnColorsLoad'
             Glyph.Data = {
               F6060000424DF606000000000000360000002800000018000000180000000100
               180000000000C0060000630B0000630B00000000000000000000FF00FFFF00FF
@@ -2763,15 +2690,15 @@ object Form1: TForm1
               FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
               00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
             }
-            OnClick = BitBtn13Click
+            OnClick = btnColorsLoadClick
             TabOrder = 6
           end
-          object BitBtn14: TBitBtn
+          object btnColorsSave: TBitBtn
             Left = 228
             Height = 40
             Top = 336
             Width = 200
-            Caption = 'BitBtn14'
+            Caption = 'btnColorsSave'
             Glyph.Data = {
               F6060000424DF606000000000000360000002800000018000000180000000100
               180000000000C0060000720B0000720B00000000000000000000FF00FFFF00FF
@@ -2830,17 +2757,17 @@ object Form1: TForm1
               FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
               00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF
             }
-            OnClick = BitBtn14Click
+            OnClick = btnColorsSaveClick
             TabOrder = 7
           end
         end
-        object TabSheet5: TTabSheet
-          ClientHeight = 452
-          ClientWidth = 788
-          object BitBtn9: TBitBtn
+        object tsProt: TTabSheet
+          ClientHeight = 441
+          ClientWidth = 792
+          object btnSaveProt: TBitBtn
             Left = 4
             Height = 33
-            Top = 398
+            Top = 387
             Width = 118
             Anchors = [akLeft, akBottom]
             Glyph.Data = {
@@ -2871,15 +2798,15 @@ object Form1: TForm1
               409F9F9F505050202020FFFFFFFFFFFFFFFFFF00404000404000404000404000
               4040004040004040004040004040002020505050505050000000
             }
-            OnClick = BitBtn9Click
+            OnClick = btnSaveProtClick
             TabOrder = 0
           end
           inline SynMemo1: TSynMemo
             Cursor = crIBeam
             Left = 4
-            Height = 384
+            Height = 373
             Top = 7
-            Width = 764
+            Width = 768
             Anchors = [akTop, akLeft, akRight, akBottom]
             Color = clCream
             Font.Height = -13
@@ -3485,9 +3412,9 @@ object Form1: TForm1
           end
           object CheckBox12: TCheckBox
             Left = 140
-            Height = 19
-            Top = 405
-            Width = 85
+            Height = 22
+            Top = 391
+            Width = 100
             Anchors = [akLeft, akBottom]
             Caption = 'CheckBox12'
             OnChange = CheckBox12Change

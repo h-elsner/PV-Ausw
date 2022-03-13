@@ -193,22 +193,22 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
-    BitBtn1: TBitBtn;    {Daten einlesen}
-    BitBtn10: TBitBtn;
+    btnEinlesen: TBitBtn;    {Daten einlesen}
+    btnArch: TBitBtn;
     BitBtn11: TBitBtn;
-    BitBtn12: TBitBtn;
-    BitBtn13: TBitBtn;
-    BitBtn14: TBitBtn;
-    BitBtn2: TBitBtn;
-    BitBtn3: TBitBtn;    {Beenden}
-    BitBtn4: TBitBtn;    {Stand speichern}
-    BitBtn5: TBitBtn;    {Stand laden}
-    BitBtn6: TBitBtn;
-    BitBtn7: TBitBtn;
-    BitBtn8: TBitBtn;
-    BitBtn9: TBitBtn;
-    Button1: TButton;
-    Button2: TButton;
+    btnColorsReset: TBitBtn;
+    btnColorsLoad: TBitBtn;
+    btnColorsSave: TBitBtn;
+    btnBackup: TBitBtn;
+    btnClose: TBitBtn;    {Beenden}
+    btnSave: TBitBtn;    {Stand speichern}
+    btnLoad: TBitBtn;    {Stand laden}
+    btnTag: TBitBtn;
+    btnAbout: TBitBtn;
+    btnSimu: TBitBtn;
+    btnSaveProt: TBitBtn;
+    btnTestFTP: TButton;
+    btnTestHTML: TButton;
     Chart1:  TChart;
     Chart1BarSeries1:    TBarSeries;
     Chart1BarSeries2:    TBarSeries;
@@ -287,8 +287,8 @@ type
     DateTimeIntervalChartSource1: TDateTimeIntervalChartSource;
     DateTimeIntervalChartSource2: TDateTimeIntervalChartSource;
     DateTimeIntervalChartSource3: TDateTimeIntervalChartSource;
-    DirectoryEdit1: TDirectoryEdit;
-    FileNameEdit1: TFileNameEdit;
+    deLocal: TDirectoryEdit;
+    deServer: TFileNameEdit;
     GroupBox1: TGroupBox;
     GroupBox10: TGroupBox;
     GroupBox11: TGroupBox;
@@ -359,25 +359,25 @@ type
     Label7:  TLabel;
     Label8:  TLabel;
     Label9:  TLabel;
-    LabeledEdit1: TLabeledEdit;
-    LabeledEdit10: TLabeledEdit;
-    LabeledEdit11: TLabeledEdit;
-    LabeledEdit12: TLabeledEdit;
-    LabeledEdit13: TLabeledEdit;
-    LabeledEdit14: TLabeledEdit;
-    LabeledEdit15: TLabeledEdit;
-    LabeledEdit16: TLabeledEdit;
+    edFilter: TLabeledEdit;
+    edHTMLserver: TLabeledEdit;
+    edHTMLuser: TLabeledEdit;
+    edHTMLpasw: TLabeledEdit;
+    edHTMLfolder: TLabeledEdit;
+    edHTMLfile: TLabeledEdit;
+    edEuro: TLabeledEdit;
+    edKorrFak: TLabeledEdit;
     LabeledEdit17: TLabeledEdit;
     LabeledEdit18: TLabeledEdit;
     LabeledEdit19: TLabeledEdit;
-    LabeledEdit2:  TLabeledEdit;
-    LabeledEdit3:  TLabeledEdit;
-    LabeledEdit4:  TLabeledEdit;
-    LabeledEdit5:  TLabeledEdit;
-    LabeledEdit6:  TLabeledEdit;
-    LabeledEdit7:  TLabeledEdit;
-    LabeledEdit8:  TLabeledEdit;
-    LabeledEdit9:  TLabeledEdit;
+    edPeak:  TLabeledEdit;
+    edSpezJE:  TLabeledEdit;
+    edVerg:  TLabeledEdit;
+    edMinPower:  TLabeledEdit;
+    edServerName:  TLabeledEdit;
+    edUser:  TLabeledEdit;
+    edPasw:  TLabeledEdit;
+    edFolder:  TLabeledEdit;
     ListChartSource1: TListChartSource;
     ListChartSource2: TListChartSource;
     MenuItem1:    TMenuItem;
@@ -388,8 +388,8 @@ type
     MenuItem7:    TMenuItem;
     MenuItem8:    TMenuItem;
     OpenDialog1:  TOpenDialog;
-    PageControl1: TPageControl;
-    PageControl2: TPageControl;
+    pcMain: TPageControl;
+    pcSettings: TPageControl;
     PopupMenu1:   TPopupMenu;
     PopupMenu2:   TPopupMenu;
     PopupMenu3:   TPopupMenu;
@@ -412,44 +412,44 @@ type
     SpeedButton4: TSpeedButton;
     SpeedButton5: TSpeedButton;
     SpeedButton6: TSpeedButton;
-    SpinEdit1:    TSpinEdit;
-    SpinEdit2:    TSpinEdit;
-    SpinEdit3:    TSpinEdit;
+    edHTMLzeile:    TSpinEdit;
+    speArchPeriod:    TSpinEdit;
+    spePeriod:    TSpinEdit;
     SpinEdit4:    TSpinEdit;
     StatusBar1:   TStatusBar;
     StringGrid1:  TStringGrid;
     SynAnySyn1: TSynAnySyn;
     SynMemo1:   TSynMemo;
-    TabSheet1:  TTabSheet;
-    TabSheet10: TTabSheet;
-    TabSheet11: TTabSheet;
-    TabSheet2:  TTabSheet;
-    TabSheet3:  TTabSheet;
-    TabSheet4:  TTabSheet;
-    TabSheet5:  TTabSheet;
-    TabSheet6:  TTabSheet;
-    TabSheet7:  TTabSheet;
-    TabSheet8:  TTabSheet;
-    TabSheet9:  TTabSheet;
+    tsTag:  TTabSheet;
+    tsSpiel: TTabSheet;
+    tsColors: TTabSheet;
+    tsMonat:  TTabSheet;
+    tsJahr:  TTabSheet;
+    tsStatistik:  TTabSheet;
+    tsProt:  TTabSheet;
+    tsSetOpt:  TTabSheet;
+    tsBasics:  TTabSheet;
+    tsOptions:  TTabSheet;
+    tsFTP:  TTabSheet;
     Timer1:     TTimer;
     TrackBar1:  TTrackBar;
     TrackBar2:  TTrackBar;
     XMLPropStorage1: TXMLPropStorage;
-    procedure BitBtn10Click(Sender: TObject);
+    procedure btnArchClick(Sender: TObject);
     procedure BitBtn11Click(Sender: TObject);
-    procedure BitBtn12Click(Sender: TObject);
-    procedure BitBtn13Click(Sender: TObject);
-    procedure BitBtn14Click(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);  {Daten neu einlesen}
-    procedure BitBtn2Click(Sender: TObject);
-    procedure BitBtn3Click(Sender: TObject);
-    procedure BitBtn4Click(Sender: TObject);
-    procedure BitBtn5Click(Sender: TObject);
-    procedure BitBtn6Click(Sender: TObject);
-    procedure BitBtn8Click(Sender: TObject);
-    procedure BitBtn9Click(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure btnColorsResetClick(Sender: TObject);
+    procedure btnColorsLoadClick(Sender: TObject);
+    procedure btnColorsSaveClick(Sender: TObject);
+    procedure btnEinlesenClick(Sender: TObject);  {Daten neu einlesen}
+    procedure btnBackupClick(Sender: TObject);
+    procedure btnCloseClick(Sender: TObject);
+    procedure btnSaveClick(Sender: TObject);
+    procedure btnLoadClick(Sender: TObject);
+    procedure btnTagClick(Sender: TObject);
+    procedure btnSimuClick(Sender: TObject);
+    procedure btnSaveProtClick(Sender: TObject);
+    procedure btnTestFTPClick(Sender: TObject);
+    procedure btnTestHTMLClick(Sender: TObject);
     procedure Chart1MouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure Chart2DblClick(Sender: TObject);
@@ -483,8 +483,8 @@ type
     procedure ComboBox5Change(Sender: TObject);
     procedure DateEdit1AcceptDate(Sender: TObject; var ADate: TDateTime;
       var AcceptDate: Boolean);
-    procedure DirectoryEdit1Change(Sender: TObject);   {Pfad zum Datawarehouse}
-    procedure FileNameEdit1Change(Sender: TObject);
+    procedure deLocalChange(Sender: TObject);   {Pfad zum Datawarehouse}
+    procedure deServerChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);    {Anwendung initialisieren und
                                                Standardwerte einlesen}
     procedure FormDestroy(Sender: TObject);
@@ -501,30 +501,30 @@ type
     procedure Label53Click(Sender: TObject);
     procedure Label53MouseEnter(Sender: TObject);
     procedure Label53MouseLeave(Sender: TObject);
-    procedure LabeledEdit10Change(Sender: TObject);
-    procedure LabeledEdit11Change(Sender: TObject);
-    procedure LabeledEdit12Change(Sender: TObject);
-    procedure LabeledEdit13Change(Sender: TObject);
-    procedure LabeledEdit14Change(Sender: TObject);
-    procedure LabeledEdit15Change(Sender: TObject);
-    procedure LabeledEdit16Change(Sender: TObject);
+    procedure edHTMLserverChange(Sender: TObject);
+    procedure edHTMLuserChange(Sender: TObject);
+    procedure edHTMLpaswChange(Sender: TObject);
+    procedure edHTMLfolderChange(Sender: TObject);
+    procedure edHTMLfileChange(Sender: TObject);
+    procedure edEuroChange(Sender: TObject);
+    procedure edKorrFakChange(Sender: TObject);
     procedure LabeledEdit17Change(Sender: TObject);
-    procedure LabeledEdit1Change(Sender: TObject);
-    procedure LabeledEdit2Change(Sender: TObject);
-    procedure LabeledEdit3Change(Sender: TObject);
-    procedure LabeledEdit4Change(Sender: TObject);
-    procedure LabeledEdit5Change(Sender: TObject);
-    procedure LabeledEdit6Change(Sender: TObject);
-    procedure LabeledEdit7Change(Sender: TObject);
-    procedure LabeledEdit8Change(Sender: TObject);
-    procedure LabeledEdit9Change(Sender: TObject);
+    procedure edFilterChange(Sender: TObject);
+    procedure edPeakChange(Sender: TObject);
+    procedure edSpezJEChange(Sender: TObject);
+    procedure edVergChange(Sender: TObject);
+    procedure edMinPowerChange(Sender: TObject);
+    procedure edServerNameChange(Sender: TObject);
+    procedure edUserChange(Sender: TObject);
+    procedure edPaswChange(Sender: TObject);
+    procedure edFolderChange(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem3Click(Sender: TObject);
     procedure MenuItem6Click(Sender: TObject);
-    procedure PageControl1Change(Sender: TObject);
-    procedure PageControl1MouseUp(Sender: TObject; Button: TMouseButton;
+    procedure pcMainChange(Sender: TObject);
+    procedure pcMainMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure PageControl2Change(Sender: TObject);
+    procedure pcSettingsChange(Sender: TObject);
     procedure RadioGroup1Click(Sender: TObject);
     procedure RadioGroup2Click(Sender: TObject);
     procedure RadioGroup3Click(Sender: TObject);
@@ -535,9 +535,9 @@ type
     procedure SpeedButton4Click(Sender: TObject);
     procedure SpeedButton5Click(Sender: TObject);
     procedure SpeedButton6Click(Sender: TObject);
-    procedure SpinEdit1Change(Sender: TObject);
-    procedure SpinEdit2Change(Sender: TObject);
-    procedure SpinEdit3Change(Sender: TObject);
+    procedure edHTMLzeileChange(Sender: TObject);
+    procedure speArchPeriodChange(Sender: TObject);
+    procedure spePeriodChange(Sender: TObject);
     procedure SpinEdit4Change(Sender: TObject);
     procedure StringGrid1Click(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
@@ -656,33 +656,33 @@ begin
   DateEdit1.Enabled:=false;
   RadioGroup2.Tag:=0;               {zählt die FTP Downloads}
 {Ressourcen zuweisen}
-  BitBtn1.Caption:=capDatLes;
-  BitBtn1.Hint   :=hntDatLes;
-  BitBtn3.Caption:=capBeenden;
-  BitBtn3.Hint   :=hntBeenden;
-  BitBtn4.Caption:=capStandSp;
-  BitBtn4.Hint   :=hntStandSp;
-  BitBtn5.Caption:=capStandLd;
-  BitBtn5.Hint   :=hntStandLd;
-  BitBtn6.Caption:=capTagRest;
-  BitBtn7.Caption:=capInfo;
-  BitBtn7.Hint   :=hntInfo;
-  BitBtn8.Caption:=cap70Proz;
-  BitBtn8.Hint   :=hnt70Proz;
-  BitBtn9.Caption:=capFTPsv;
-  BitBtn9.Hint   :=capFTPprot+' '+capFTPsv;
-  BitBtn10.Caption:=capArchiv;
-  BitBtn10.Hint  :=hntArchiv;
+  btnEinlesen.Caption:=capDatLes;
+  btnEinlesen.Hint   :=hntDatLes;
+  btnClose.Caption:=capBeenden;
+  btnClose.Hint   :=hntBeenden;
+  btnSave.Caption:=capStandSp;
+  btnSave.Hint   :=hntStandSp;
+  btnLoad.Caption:=capStandLd;
+  btnLoad.Hint   :=hntStandLd;
+  btnTag.Caption:=capTagRest;
+  btnAbout.Caption:=capInfo;
+  btnAbout.Hint   :=hntInfo;
+  btnSimu.Caption:=cap70Proz;
+  btnSimu.Hint   :=hnt70Proz;
+  btnSaveProt.Caption:=capFTPsv;
+  btnSaveProt.Hint   :=capFTPprot+' '+capFTPsv;
+  btnArch.Caption:=capArchiv;
+  btnArch.Hint  :=hntArchiv;
   BitBtn11.Caption:=capSpAna;
   BitBtn11.Hint  :=hntSpAna;
-  BitBtn12.Caption:=capResetCl;
-  BitBtn12.Hint  :=hntResetCl;
-  BitBtn13.Caption:=capBB13;
-  BitBtn14.Caption:=capBB14;
-  Button1.Caption:=capTestDW;
-  Button1.Hint   :=hntTestDW;
-  Button2.Caption:=capTestHP;
-  Button2.Hint   :=hntTestHP;
+  btnColorsReset.Caption:=capResetCl;
+  btnColorsReset.Hint  :=hntResetCl;
+  btnColorsLoad.Caption:=capBB13;
+  btnColorsSave.Caption:=capBB14;
+  btnTestFTP.Caption:=capTestDW;
+  btnTestFTP.Hint   :=hntTestDW;
+  btnTestHTML.Caption:=capTestHP;
+  btnTestHTML.Hint   :=hntTestHP;
   SpeedButton1.Hint:=hntDBack;
   SpeedButton2.Hint:=hntDForw;
   SpeedButton3.Hint:=hntMForw;
@@ -690,32 +690,32 @@ begin
   SpeedButton5.Hint:=hntJForw;
   SpeedButton6.Hint:=hntJBack;
   Shape4.Hint    :=hntFTPStat;
-  LabeledEdit1.Hint:=hntFilter;
-  LabeledEdit2.Hint:=hntPeakLei;
-  LabeledEdit3.Hint:=hntSJEPlan;
-  LabeledEdit5.EditLabel.Caption:=capPwrThrs;
-  LabeledEdit6.EditLabel.Caption:=capFTPHost;
-  LabeledEdit7.EditLabel.Caption:=capAccount;
-  LabeledEdit8.EditLabel.Caption:=capPasswd;
-  LabeledEdit9.EditLabel.Caption:=capFTPVerz;
-  LabeledEdit10.EditLabel.Caption:=capFTPHost;
-  LabeledEdit11.EditLabel.Caption:=capAccount;
-  LabeledEdit12.EditLabel.Caption:=capPasswd;
-  LabeledEdit13.EditLabel.Caption:=capFTPVerz;
-  LabeledEdit14.EditLabel.Caption:=capHTMLdat;
-  LabeledEdit15.EditLabel.Caption:=capCurrency;
-  LabeledEdit16.EditLabel.Caption:=capLE16;
-  LabeledEdit16.EditLabel.Hint:=hntLE16;
-  TabSheet1.Caption:=rsTagesaw;
-  TabSheet2.Caption:=rsMonatsaw;
-  TabSheet3.Caption:=rsJahresaw;
-  TabSheet4.Caption:=rsStat;
-  TabSheet6.Caption:=rsEinst;
-  TabSheet8.Caption:=rsOptionen;
-  TabSheet7.Caption:=rsBasisdat;
-  TabSheet9.Caption:=rsFTPac;
-  TabSheet10.Caption:=capSheet10;
-  TabSheet11.Caption:=capColor;
+  edFilter.Hint:=hntFilter;
+  edPeak.Hint:=hntPeakLei;
+  edSpezJE.Hint:=hntSJEPlan;
+  edMinPower.EditLabel.Caption:=capPwrThrs;
+  edServerName.EditLabel.Caption:=capFTPHost;
+  edUser.EditLabel.Caption:=capAccount;
+  edPasw.EditLabel.Caption:=capPasswd;
+  edFolder.EditLabel.Caption:=capFTPVerz;
+  edHTMLserver.EditLabel.Caption:=capFTPHost;
+  edHTMLuser.EditLabel.Caption:=capAccount;
+  edHTMLpasw.EditLabel.Caption:=capPasswd;
+  edHTMLfolder.EditLabel.Caption:=capFTPVerz;
+  edHTMLfile.EditLabel.Caption:=capHTMLdat;
+  edEuro.EditLabel.Caption:=capCurrency;
+  edKorrFak.EditLabel.Caption:=capLE16;
+  edKorrFak.EditLabel.Hint:=hntLE16;
+  tsTag.Caption:=rsTagesaw;
+  tsMonat.Caption:=rsMonatsaw;
+  tsJahr.Caption:=rsJahresaw;
+  tsStatistik.Caption:=rsStat;
+  tsSetOpt.Caption:=rsEinst;
+  tsOptions.Caption:=rsOptionen;
+  tsBasics.Caption:=rsBasisdat;
+  tsFTP.Caption:=rsFTPac;
+  tsSpiel.Caption:=capSheet10;
+  tsColors.Caption:=capColor;
   Label1.Caption:=capLocDir;
   Label3.Hint :=hntMaxLei;
   Label9.Hint :=hntMaxLei;
@@ -769,9 +769,9 @@ begin
   Label50.Caption:=capFTPrto;            {FTP Read Timeout}
   Label50.Hint   :=hntFTPrto;
   Label51.Caption:=capManual;
-  SpinEdit1.Hint :=hntZeiNr;
-  SpinEdit2.Hint :=hntDayArch;
-  SpinEdit3.Hint :=hntUpdInt;
+  edHTMLzeile.Hint :=hntZeiNr;
+  speArchPeriod.Hint :=hntDayArch;
+  spePeriod.Hint :=hntUpdInt;
   SpinEdit4.Hint :=hntFTPrto;
   GroupBox1.Caption:=capHead;
   GroupBox2.Caption:=capData;
@@ -807,10 +807,10 @@ begin
   ColorButton20.Caption:=capCB20;
   StringGrid1.Hint:=hntStrg1;
   MenuItem3.Caption:=capECorr;
-  LabeledEdit1.EditLabel.Caption:=capFilter;
-  LabeledEdit2.EditLabel.Caption:=rsPeakL+ ' [W]';
-  LabeledEdit3.EditLabel.Caption:=rsSpezJE+' [kWh/kWp]';
-  LabeledEdit5.Hint:=hntLblEdit5;
+  edFilter.EditLabel.Caption:=capFilter;
+  edPeak.EditLabel.Caption:=rsPeakL+ ' [W]';
+  edSpezJE.EditLabel.Caption:=rsSpezJE+' [kWh/kWp]';
+  edMinPower.Hint:=hntLblEdit5;
   Label2.Caption:=rsPeakL+':';
   Label8.Caption:=rsPeakL+':';
   Label14.Caption:=rsPeakL+':';
@@ -845,8 +845,8 @@ begin
   CheckBox8.Hint:=hntShowStr;
   CheckBox9.Caption:=capFTPpasv;
   CheckBox9.Hint:=hntFTPpasv;
-  DirectoryEdit1.Hint:=hntDiredit;
-  FileNameEdit1.Hint:=hntHTMLfile;
+  deLocal.Hint:=hntDiredit;
+  deServer.Hint:=hntHTMLfile;
   Label51.Hint:=hntManual;
   Label52.Hint:=Homepage;
   Label53.Hint:=dupdate;
@@ -894,31 +894,31 @@ begin
   DayList:=TStringList.Create;
   PrevFileList:=TStringList.Create;
   IDXList:=TStringList.Create;         {Position 1. Datenzeile in OutList}
-  BitBtn6.Tag:=0;                      {Default: keine Wiederherstellung}
+  btnTag.Tag:=0;                      {Default: keine Wiederherstellung}
   ComboBox1.Color:=clDefault;
   ComboBox5.Visible:=false;
   ComboBox5.Hint:=hntSnddate;
-  TabSheet5.Caption:=capFTPProt;
+  tsProt.Caption:=capFTPProt;
 {Einstellungsdaten aus gespeicherten Basiswerten holen}
-  DirectoryEdit1.Directory:=XMLPropStorage1.StoredValue['DatawarehouseRoot'];
-  FileNameEdit1.FileName:=XMLPropStorage1.StoredValue['ProtHTMDat'];
-  SpinEdit1.Value:=StrToInt(XMLPropStorage1.StoredValue['ProtHTMZeiNr']);
-  LabeledEdit1.Text:=XMLPropStorage1.StoredValue['FileFilter'];
-  LabeledEdit2.Text:=XMLPropStorage1.StoredValue['PeakLeistungAnlage'];
-  LabeledEdit3.Text:=XMLPropStorage1.StoredValue['SpezJErtragSoll'];
-  LabeledEdit4.Text:=XMLPropStorage1.StoredValue['EEG_Verguetung'];
-  LabeledEdit5.Text:=XMLPropStorage1.StoredValue['SchwellwertLeistung'];
-  LabeledEdit6.Text:=XMLPropStorage1.StoredValue['FTP_DWserver'];
-  LabeledEdit7.Text:=XMLPropStorage1.StoredValue['FTP_DWaccount'];
-  LabeledEdit8.Text:=XMLPropStorage1.StoredValue['FTP_DWpsw'];
-  LabeledEdit9.Text:=XMLPropStorage1.StoredValue['FTP_DWpath'];
-  LabeledEdit10.Text:=XMLPropStorage1.StoredValue['FTP_HPserver'];
-  LabeledEdit11.Text:=XMLPropStorage1.StoredValue['FTP_HPaccount'];
-  LabeledEdit12.Text:=XMLPropStorage1.StoredValue['FTP_HPpsw'];
-  LabeledEdit13.Text:=XMLPropStorage1.StoredValue['FTP_HPpath'];
-  LabeledEdit14.Text:=XMLPropStorage1.StoredValue['FTP_HTMLfile'];
-  LabeledEdit15.Text:=XMLPropStorage1.StoredValue['CurrStr'];
-  LabeledEdit16.Text:=XMLPropStorage1.StoredValue['KorrE'];
+  deLocal.Directory:=XMLPropStorage1.StoredValue['DatawarehouseRoot'];
+  deServer.FileName:=XMLPropStorage1.StoredValue['ProtHTMDat'];
+  edHTMLzeile.Value:=StrToInt(XMLPropStorage1.StoredValue['ProtHTMZeiNr']);
+  edFilter.Text:=XMLPropStorage1.StoredValue['FileFilter'];
+  edPeak.Text:=XMLPropStorage1.StoredValue['PeakLeistungAnlage'];
+  edSpezJE.Text:=XMLPropStorage1.StoredValue['SpezJErtragSoll'];
+  edVerg.Text:=XMLPropStorage1.StoredValue['EEG_Verguetung'];
+  edMinPower.Text:=XMLPropStorage1.StoredValue['SchwellwertLeistung'];
+  edServerName.Text:=XMLPropStorage1.StoredValue['FTP_DWserver'];
+  edUser.Text:=XMLPropStorage1.StoredValue['FTP_DWaccount'];
+  edPasw.Text:=XMLPropStorage1.StoredValue['FTP_DWpsw'];
+  edFolder.Text:=XMLPropStorage1.StoredValue['FTP_DWpath'];
+  edHTMLserver.Text:=XMLPropStorage1.StoredValue['FTP_HPserver'];
+  edHTMLuser.Text:=XMLPropStorage1.StoredValue['FTP_HPaccount'];
+  edHTMLpasw.Text:=XMLPropStorage1.StoredValue['FTP_HPpsw'];
+  edHTMLfolder.Text:=XMLPropStorage1.StoredValue['FTP_HPpath'];
+  edHTMLfile.Text:=XMLPropStorage1.StoredValue['FTP_HTMLfile'];
+  edEuro.Text:=XMLPropStorage1.StoredValue['CurrStr'];
+  edKorrFak.Text:=XMLPropStorage1.StoredValue['KorrE'];
   CheckBox1.Checked:=StrToBool(XMLPropStorage1.StoredValue['JSDateienAnlegen']);
   CheckBox2.Checked:=StrToBool(XMLPropStorage1.StoredValue['FTP_DWakt']);
   CheckBox4.Checked:=StrToBool(XMLPropStorage1.StoredValue['FTP_HPakt']);
@@ -930,22 +930,22 @@ begin
   CheckBox11.Checked:=StrToBool(XMLPropStorage1.StoredValue['NoDST']);
   CheckBox8.Checked:=StrToBool(XMLPropStorage1.StoredValue['ShowStrings']);
   CheckBox9.Checked:=StrToBool(XMLPropStorage1.StoredValue['FTPpasv']);
-  SpinEdit2.Value:=StrToInt(XMLPropStorage1.StoredValue['ToArchive']);
-  SpinEdit3.Value:=StrToInt(XMLPropStorage1.StoredValue['AutoReload']);
+  speArchPeriod.Value:=StrToInt(XMLPropStorage1.StoredValue['ToArchive']);
+  spePeriod.Value:=StrToInt(XMLPropStorage1.StoredValue['AutoReload']);
   RadioGroup4.ItemIndex:=StrToInt(XMLPropStorage1.StoredValue['PGlY']);
   RadioGroup5.ItemIndex:=StrToInt(XMLPropStorage1.StoredValue['PGrY']);
   RadioGroup6.ItemIndex:=StrToInt(XMLPropStorage1.StoredValue['InverterType']);
   SpinEdit4.Value:=StrToInt(XMLPropStorage1.StoredValue['FTPReadTimeout']);
-  BitBtn6.Visible:=(RadioGroup6.ItemIndex=0); {Tag wiederherstellen - nur Danfoss}
+  btnTag.Visible:=(RadioGroup6.ItemIndex=0); {Tag wiederherstellen - nur Danfoss}
   IdFTP1.Passive:=CheckBox9.Checked;
   IdFTP1.ReadTimeout:=SpinEdit4.Value*1000;
   IdFTP1.ListenTimeout:=IdFTP1.ReadTimeout;
-  LabeledEdit4.EditLabel.Caption:=rsEEGV+  ' ['+LabeledEdit15.Text+'/kWh]';
-  LabeledEdit4.Hint:=hntEEGV;
-  Label6.Caption :=Format(capEuro, [LabeledEdit15.Text]);
-  Label12.Caption:=Format(capEuro, [LabeledEdit15.Text]);
-  Label18.Caption:=Format(capEuro, [LabeledEdit15.Text]);
-  Label33.Caption:=Format(capEuro, [LabeledEdit15.Text]);
+  edVerg.EditLabel.Caption:=rsEEGV+  ' ['+edEuro.Text+'/kWh]';
+  edVerg.Hint:=hntEEGV;
+  Label6.Caption :=Format(capEuro, [edEuro.Text]);
+  Label12.Caption:=Format(capEuro, [edEuro.Text]);
+  Label18.Caption:=Format(capEuro, [edEuro.Text]);
+  Label33.Caption:=Format(capEuro, [edEuro.Text]);
   RadioGroup2.ItemIndex:=StrToInt(XMLPropStorage1.StoredValue['Tagesanzeige']);
   for x:=1 to 12 do begin                       {Monatsstrings füllen}
     s:=FormatDateTime('mmm', EncodeDate(2012, x, 1));
@@ -974,37 +974,37 @@ begin
                                      else RadioGroup1.ItemIndex:=3; {Ertrag=default};
   StatusBar1.Panels[0].Text:=XMLPropStorage1.StoredValue['InverterName'];
   StatusBar1.Panels[1].Text:=XMLPropStorage1.StoredValue['InverterID'];
-  StatusBar1.Panels[2].Text:=DirectoryEdit1.Directory;
+  StatusBar1.Panels[2].Text:=deLocal.Directory;
   Form1.Caption:=capForm+StatusBar1.Panels[1].Text;
   if CheckBox3.Checked then begin
     CheckBox6.Enabled:=false;
-    LabeledEdit10.Enabled:=false;
-    LabeledEdit11.Enabled:=false;
-    LabeledEdit12.Enabled:=false;
+    edHTMLserver.Enabled:=false;
+    edHTMLuser.Enabled:=false;
+    edHTMLpasw.Enabled:=false;
   end else begin
     CheckBox6.Enabled:=true;
-    LabeledEdit10.Enabled:=true;
-    LabeledEdit11.Enabled:=true;
-    LabeledEdit12.Enabled:=true;
+    edHTMLserver.Enabled:=true;
+    edHTMLuser.Enabled:=true;
+    edHTMLpasw.Enabled:=true;
   end;
-  BitBtn1.Enabled:=DirectoryExists(DirectoryEdit1.Directory);
-  BitBtn4.Enabled:=false;                       {Stand Speichern}
-  BitBtn2.Enabled:=false;                       {Backup}
-  BitBtn8.Enabled:=false;                       {70% Regel sperren}
-  BitBtn10.Enabled:=false;                      {Archivieren sperren}
+  btnEinlesen.Enabled:=DirectoryExists(deLocal.Directory);
+  btnSave.Enabled:=false;                       {Stand Speichern}
+  btnBackup.Enabled:=false;                       {Backup}
+  btnSimu.Enabled:=false;                       {70% Regel sperren}
+  btnArch.Enabled:=false;                      {Archivieren sperren}
   BitBtn11.Enabled:=false;                      {Spez. Analyse sperren}
   RadioGroup3.Enabled:=false;
-  BitBtn5.Enabled:=FileExists((ExtractFilePath(Application.ExeName)+rawdat));
-  PageControl2.ActivePageIndex:=StrToInt(XMLPropStorage1.StoredValue['LastOptSheet']);
+  btnLoad.Enabled:=FileExists((ExtractFilePath(Application.ExeName)+rawdat));
+  pcSettings.ActivePageIndex:=StrToInt(XMLPropStorage1.StoredValue['LastOptSheet']);
   p:=StrToInt(XMLPropStorage1.StoredValue['LastTabSheet']);
   if Application.HasOption('o', 'options') then p:=epg;
   if Application.HasOption('m', 'month') then p:=1;
-  PageControl1.Tag:=p;                          {TabSheet merken}
-  if DirectoryEdit1.Directory='' then begin     {erst Einstellungen ausfüllen!}
+  pcMain.Tag:=p;                          {TabSheet merken}
+  if deLocal.Directory='' then begin     {erst Einstellungen ausfüllen!}
     p:=epg;
-    PageControl2.ActivePageIndex:=0;
-  end else SaveDialog1.InitialDir:=DirectoryEdit1.Directory;
-  PageControl1.ActivePageIndex:=p;
+    pcSettings.ActivePageIndex:=0;
+  end else SaveDialog1.InitialDir:=deLocal.Directory;
+  pcMain.ActivePageIndex:=p;
   ChangeTab;
   if p<>epg then begin                          {Auswertung automatisch starten}
     Timer1.Interval:=50;                        {relativ schnell starten, 50ms}
@@ -1102,9 +1102,9 @@ end;
 procedure TForm1.Timer1Timer(Sender: TObject);  {Timerevent starten Auswertung}
 begin
   Timer1.Enabled:=false;
-  if SpinEdit3.Value>0 then begin               {startet automatischen Download}
+  if spePeriod.Value>0 then begin               {startet automatischen Download}
     SynMemo1.Clear;                             {verhindert Zumüllen}
-    Timer1.Interval:=SpinEdit3.Value*60000;     {SpinEdit in Minuten}
+    Timer1.Interval:=spePeriod.Value*60000;     {SpinEdit in Minuten}
     Timer1.Enabled:=true;
   end;
   FTPdownload;
@@ -1121,49 +1121,49 @@ begin
   XMLPropStorage1.StoredValue['Smooth']:=IntToStr(TrackBar2.Position);
 end;
 
-procedure TForm1.LabeledEdit1Change(Sender: TObject); {Dateifilter}
+procedure TForm1.edFilterChange(Sender: TObject); {Dateifilter}
 begin
-  XMLPropStorage1.StoredValue['FileFilter']:=LabeledEdit1.Text;
+  XMLPropStorage1.StoredValue['FileFilter']:=edFilter.Text;
 end;
 
-procedure TForm1.LabeledEdit2Change(Sender: TObject); {Peakleistung}
+procedure TForm1.edPeakChange(Sender: TObject); {Peakleistung}
 begin
-  XMLPropStorage1.StoredValue['PeakLeistungAnlage']:=LabeledEdit2.Text;
+  XMLPropStorage1.StoredValue['PeakLeistungAnlage']:=edPeak.Text;
 end;
 
-procedure TForm1.LabeledEdit3Change(Sender: TObject); {spezifischer Jahresertrag}
+procedure TForm1.edSpezJEChange(Sender: TObject); {spezifischer Jahresertrag}
 begin
-  XMLPropStorage1.StoredValue['SpezJErtragSoll']:=LabeledEdit3.Text;
+  XMLPropStorage1.StoredValue['SpezJErtragSoll']:=edSpezJE.Text;
 end;
 
-procedure TForm1.LabeledEdit4Change(Sender: TObject); {Einspeisevergütung}
+procedure TForm1.edVergChange(Sender: TObject); {Einspeisevergütung}
 begin
-  XMLPropStorage1.StoredValue['EEG_Verguetung']:=LabeledEdit4.Text;
+  XMLPropStorage1.StoredValue['EEG_Verguetung']:=edVerg.Text;
 end;
 
-procedure TForm1.LabeledEdit5Change(Sender: TObject); {Leistungsschwelle merken}
+procedure TForm1.edMinPowerChange(Sender: TObject); {Leistungsschwelle merken}
 begin
-  XMLPropStorage1.StoredValue['SchwellwertLeistung']:=LabeledEdit5.Text;
+  XMLPropStorage1.StoredValue['SchwellwertLeistung']:=edMinPower.Text;
 end;
 
-procedure TForm1.LabeledEdit6Change(Sender: TObject);
+procedure TForm1.edServerNameChange(Sender: TObject);
 begin
-  XMLPropStorage1.StoredValue['FTP_DWserver']:=LabeledEdit6.Text;
+  XMLPropStorage1.StoredValue['FTP_DWserver']:=edServerName.Text;
 end;
 
-procedure TForm1.LabeledEdit7Change(Sender: TObject);
+procedure TForm1.edUserChange(Sender: TObject);
 begin
-  XMLPropStorage1.StoredValue['FTP_DWaccount']:=LabeledEdit7.Text;
+  XMLPropStorage1.StoredValue['FTP_DWaccount']:=edUser.Text;
 end;
 
-procedure TForm1.LabeledEdit8Change(Sender: TObject);
+procedure TForm1.edPaswChange(Sender: TObject);
 begin
-  XMLPropStorage1.StoredValue['FTP_DWpsw']:=LabeledEdit8.Text;
+  XMLPropStorage1.StoredValue['FTP_DWpsw']:=edPasw.Text;
 end;
 
-procedure TForm1.LabeledEdit9Change(Sender: TObject);
+procedure TForm1.edFolderChange(Sender: TObject);
 begin
-  XMLPropStorage1.StoredValue['FTP_DWpath']:=LabeledEdit9.Text;
+  XMLPropStorage1.StoredValue['FTP_DWpath']:=edFolder.Text;
 end;
 
 {also   Chart1.SaveToBitmapFile(fn); aber dann wirklich Bitmap}
@@ -1177,10 +1177,10 @@ begin
       then SaveDialog1.FileName:=rsAnalyse+
                copy(RadioGroup7.Items[RadioGroup7.ItemIndex], 2, 2)+'_1.png'
       else SaveDialog1.FileName:='chart_'+FormatDateTime(isodate, now)+'_'+
-                             IntToStr(PageControl1.ActivePageIndex+1)+'.png';
+                             IntToStr(pcMain.ActivePageIndex+1)+'.png';
     if SaveDialog1.Execute then begin
       Application.ProcessMessages;
-      case PageControl1.ActivePageIndex of
+      case pcMain.ActivePageIndex of
         0: Chart4.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);
         1: Chart2.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);
         2: Chart3.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);
@@ -1215,7 +1215,7 @@ begin
     ertrag:=0;
     SynMemo1.Lines.Add('');
     SynMemo1.Lines.Add(rsKorrErtrag+ComboBox1.Text);
-    vstr:=StringReplace(LabeledEdit1.Text, '*', '', [])+
+    vstr:=StringReplace(edFilter.Text, '*', '', [])+
           copy(StringReplace(ComboBox1.Text, '-', '', [rfReplaceAll]), 3, 6);
     if PrevFileList.Count>1 then begin             {überhaupt Dateien geladen}
 
@@ -1251,7 +1251,7 @@ end;
 
 procedure TForm1.MenuItem6Click(Sender: TObject);  {Copy chart to clipboard}
 begin
-  case PageControl1.ActivePageIndex of
+  case pcMain.ActivePageIndex of
     0: Chart4.CopyToClipboardBitmap;
     1: Chart2.CopyToClipboardBitmap;
     2: Chart3.CopyToClipboardBitmap;
@@ -1283,21 +1283,21 @@ end;
 
 procedure TForm1.FTPloginHP;                    {Homepage login}
 begin
-  IdFTP1.Host:=LabeledEdit10.Text;
-  IdFTP1.UserName:=LabeledEdit11.Text;
-  IdFTP1.Password:=LabeledEdit12.Text;
+  IdFTP1.Host:=edHTMLserver.Text;
+  IdFTP1.UserName:=edHTMLuser.Text;
+  IdFTP1.Password:=edHTMLpasw.Text;
   IdFTP1.TransferType:=ftBinary;
   IdFTP1.Connect;
-  if LabeledEdit13.Text<>'' then IdFTP1.ChangeDir(CleanDir(LabeledEdit13.Text));
+  if edHTMLfolder.Text<>'' then IdFTP1.ChangeDir(CleanDir(edHTMLfolder.Text));
 end;
 
 procedure TForm1.FTPloginDW;             {Datawarehouse login}
 begin
-  IdFTP1.Host:=LabeledEdit6.Text;
-  IdFTP1.UserName:=LabeledEdit7.Text;
-  IdFTP1.Password:=LabeledEdit8.Text;
+  IdFTP1.Host:=edServerName.Text;
+  IdFTP1.UserName:=edUser.Text;
+  IdFTP1.Password:=edPasw.Text;
   IdFTP1.Connect;
-  if LabeledEdit9.Text<>'' then IdFTP1.ChangeDir(CleanDir(LabeledEdit9.Text));
+  if edFolder.Text<>'' then IdFTP1.ChangeDir(CleanDir(edFolder.Text));
 end;
 
 procedure TForm1.FTPdownload;   {fehlende Dateien vom Datawarehouse downloaden}
@@ -1308,16 +1308,16 @@ var
 
 begin
   if (CheckBox2.Checked)    and    {FTP download aktiviert}
-     (LabeledEdit6.Text>'') and    {Host}
-     (LabeledEdit7.Text>'') and    {Account}
-     (LabeledEdit8.Text>'') and    {Password}
-     (DirectoryEdit1.Directory>'') and
+     (edServerName.Text>'') and    {Host}
+     (edUser.Text>'') and    {Account}
+     (edPasw.Text>'') and    {Password}
+     (deLocal.Directory>'') and
      (not Application.HasOption('n', 'noftp')) then begin
-    SynMemo1.Lines.Add(LabeledEdit1.Text);     {FTP-Protokoll}
-    SynMemo1.Lines.Add(DirectoryEdit1.Directory);
-    SynMemo1.Lines.Add(LabeledEdit6.Text);
-    SynMemo1.Lines.Add(LabeledEdit7.Text);
-    SynMemo1.Lines.Add(LabeledEdit9.Text);
+    SynMemo1.Lines.Add(edFilter.Text);     {FTP-Protokoll}
+    SynMemo1.Lines.Add(deLocal.Directory);
+    SynMemo1.Lines.Add(edServerName.Text);
+    SynMemo1.Lines.Add(edUser.Text);
+    SynMemo1.Lines.Add(edFolder.Text);
     SynMemo1.Lines.Add('');
     SynMemo1.Lines.Add('FTP download started at: '+FormatDateTime('hh:nn:ss', now));
     FTPAnzeige(clGreen);
@@ -1327,7 +1327,7 @@ begin
     try
       try
         FTPloginDW;
-        IdFTP1.List(FileList, LabeledEdit1.Text, false); {false=ohne Details}
+        IdFTP1.List(FileList, edFilter.Text, false); {false=ohne Details}
         SynMemo1.Lines.Add(IntToStr(FileList.Count)+' files on FTP server:');
         if (not CheckBox12.Checked) and
            (RadioGroup2.Tag=0) then begin  {verhindert, dass immer wieder
@@ -1344,7 +1344,7 @@ begin
       end;
       try
         if FileList.Count>0 then begin   {nur, wenn überhaupt was gelistet wurde}
-          TempList:=FindAllFiles(DirectoryEdit1.Directory, LabeledEdit1.Text, false);
+          TempList:=FindAllFiles(deLocal.Directory, edFilter.Text, false);
           TempList.Sort; {sortierte Liste der lokal vorhandenen Dateien für IndexOf}
           if (RadioGroup6.ItemIndex=3) and                        {nur für SMA-spot}
              (TempList.Count>0) then TempList.Delete(TempList.Count-1);
@@ -1354,7 +1354,7 @@ begin
             SynMemo1.Lines.Add('');
           end;
           for x:=0 to FileList.Count-1 do begin
-            s:=IncludeTrailingPathDelimiter(DirectoryEdit1.Directory)+FileList[x];
+            s:=IncludeTrailingPathDelimiter(deLocal.Directory)+FileList[x];
             Application.ProcessMessages;
             if TempList.IndexOf(s)<0 then begin  {fehlende Datei downloaden}
               IdFTP1.Get(FileList[x], s, false, IdFTP1.ResumeSupported);
@@ -1417,7 +1417,7 @@ end;
  DST begins on the last Sunday in March (Day of month = 31 - (4 + 5*Y/4) mod 7)
  and ends on the last Sunday in October (Day of month = 31 - (1 + 5*Y/4) mod 7)}
 
-function NixDST(tp: TDateTime): TDateTime;   {Sommerzeit entfernen}
+function NixDST(tp: TDateTime): TDateTime;         {Sommerzeit entfernen}
 var begDST, endDST: TDateTime;
     yy, dd: word;
 begin
@@ -1430,7 +1430,7 @@ begin
   if (tp>begDST) and (tp<endDST) then result:=tp-(1/24);
 end;
 
-function MonToTxt(s: string): string; inline; {Monat aus YYYY-MM in Namenskürzel umwandeln}
+function MonToTxt(s: string): string; inline;      {Monat aus YYYY-MM in Namenskürzel umwandeln}
 begin
   result:='';
   try
@@ -1440,10 +1440,16 @@ begin
   end;
 end;
 
-function GetKErt(er: integer): integer; inline;  {Korrekturwert für Ertrag in W}
+function KorrFloatStr(s: string): string;          {No matter if you use . or ,}
+begin
+  result:=StringReplace(s, '.', DefaultFormatSettings.DecimalSeparator, []);
+  result:=StringReplace(result, ',', DefaultFormatSettings.DecimalSeparator, []);
+end;
+
+function GetKErt(er: integer): integer; inline;    {Korrekturwert für Ertrag in W}
 begin
   try
-    result:=er+round(er*StrToFloat(Form1.LabeledEdit16.Text)/100);
+    result:=er+round(er*StrToFloat(KorrFloatStr(Form1.edKorrFak.Text))/100);
   except
     result:=er;
   end;
@@ -1452,7 +1458,7 @@ end;
 function GetEEVG: double; inline;                  {Vergütung}
 begin
   try
-    result:=StrToFloat(Form1.LabeledEdit4.Text);
+    result:=StrToFloat(KorrFloatStr(Form1.edVerg.Text));
   except
     result:=0;
   end;
@@ -1461,7 +1467,7 @@ end;
 function GetSJE: double; inline;                   {spezifischer Jahresertrag}
 begin
   try
-    result:=StrToFloat(Form1.LabeledEdit3.Text);
+    result:=StrToFloat(KorrFloatStr(Form1.edSpezJE.Text));
   except
     result:=0;
   end;
@@ -1474,24 +1480,24 @@ var x, y, ter, maxld, ertr, korre, ld: integer;
     dr, fn, lfn, ldat: string;
     beg, fbeg, fend: TDateTime;
 begin
-  if DirectoryEdit1.Directory>'' then begin  {nur, wenn ein Verzeichnis angegeben}
-    dr:=IncludeTrailingPathDelimiter(DirectoryEdit1.Directory);
-    isftp:=(CheckBox2.Checked)    and    {FTP download aktiviert}
-           (LabeledEdit6.Text>'') and    {Host}
-           (LabeledEdit7.Text>'') and    {Account}
-           (LabeledEdit8.Text>'') and    {Password}
+  if deLocal.Directory>'' then begin               {nur, wenn ein Verzeichnis angegeben}
+    dr:=IncludeTrailingPathDelimiter(deLocal.Directory);
+    isftp:=(CheckBox2.Checked)    and              {FTP download aktiviert}
+           (edServerName.Text>'') and              {Host}
+           (edUser.Text>'') and                    {Account}
+           (edPasw.Text>'') and                    {Password}
            (not Application.HasOption('n', 'noftp'));   {FTP status ermitteln}
-    fbeg:=1;                             {Beginnzeit Produktion}
-    fend:=0;                             {Endezeit Produktion}
-    ter:=0;                              {Tagesertrag}
-    maxld:=0;                            {Peakleistung am Tag}
-    korre:=0;                            {Korrekturwert}
-    ldat:='';                            {letzter ausgewerteter Tag}
-    lfn:='';                             {letzter Dateiname}
+    fbeg:=1;                                       {Beginnzeit Produktion}
+    fend:=0;                                       {Endezeit Produktion}
+    ter:=0;                                        {Tagesertrag}
+    maxld:=0;                                      {Peakleistung am Tag}
+    korre:=0;                                      {Korrekturwert}
+    ldat:='';                                      {letzter ausgewerteter Tag}
+    lfn:='';                                       {letzter Dateiname}
     SynMemo1.Lines.Add('Archive up to '+
-                       FormatDateTime(isoday, now-SpinEdit2.Value-1));
+                       FormatDateTime(isoday, now-speArchPeriod.Value-1));
     if isftp then FTPAnzeige(clGreen);
-    FileList :=TStringList.Create;       {Dateilisten anlegen}
+    FileList :=TStringList.Create;                 {Dateilisten anlegen}
     TempList :=TStringList.Create;
     InList   :=TStringList.Create;
     SplitList:=TStringList.Create;
@@ -1501,32 +1507,32 @@ begin
       try
         if isftp then begin     {einloggen und Dateiliste herunterladen}
           FTPloginDW;
-          IdFTP1.List(FileList, LabeledEdit1.Text, false);
+          IdFTP1.List(FileList, edFilter.Text, false);
         end;
         FileList.Sort;
-        TempList:=FindAllFiles(DirectoryEdit1.Directory, LabeledEdit1.Text, false);
+        TempList:=FindAllFiles(deLocal.Directory, edFilter.Text, false);
         TempList.Sort;          {sortierte Liste der lokal vorhandenen Dateien}
         DayList.Clear;          {archivierte Tagesdaten neu laden}
         PrevFileList.Clear;     {Merker rücksetzen}
         if FileExists(dr+archID+archfn) then
           DayList.LoadFromFile(dr+archID+archfn);
-        for x:=0 to TempList.Count-1 do begin          {alle Dateien}
+        for x:=0 to TempList.Count-1 do begin      {alle Dateien}
           Application.ProcessMessages;
           InList.LoadFromFile(TempList[x]);
           fn:=ExtractFileName(TempList[x]);
-          newf:=true;                                  {neue Datei geladen}
-          abbr:=false;                                 {(noch) nicht abbrechen}
-          for y:=0 to InList.Count-1 do begin          {Datei auslesen}
+          newf:=true;                              {neue Datei geladen}
+          abbr:=false;                             {(noch) nicht abbrechen}
+          for y:=0 to InList.Count-1 do begin      {Datei auslesen}
             SplitList.DelimitedText:=InList[y];
             if (SplitList.Count>30) and (SplitList[0]<>headerID) then begin
               try
                 ertr:=StrToInt(StringReplace(SplitList[5],'.','',[rfReplaceAll]));
-                if ldat<>SplitList[1] then begin         {neuer Tag}
-                  korre:=0;                              {Korrekturwert}
+                if ldat<>SplitList[1] then begin   {neuer Tag}
+                  korre:=0;                        {Korrekturwert}
                   if ldat>'' then begin
                     if (ertr>0) and (InList.Count>10) then korre:=ertr;
-                                                         {Korrekturwert erstellen}
-                    if fend=0 then fend:=0.5;            {Zeitstempel schöner}
+                                                   {Korrekturwert erstellen}
+                    if fend=0 then fend:=0.5;      {Zeitstempel schöner}
                     if fbeg=0 then fbeg:=0.5;
                     if fbeg=1 then fbeg:=fend;
                     DayList.Add(ldat+sep+IntToStr(maxld)+sep+IntToStr(ter)+sep+
@@ -1534,10 +1540,10 @@ begin
                                 FormatdateTime('hh:nn', fend));
                   end;
                   {Datum prüfen}
-                  if (SDToTime(SplitList[1])>(now-SpinEdit2.Value-1)) and
+                  if (SDToTime(SplitList[1])>(now-speArchPeriod.Value-1)) and
                       newf then begin
                     abbr:=true;
-                    break;                               {Schleife hier verlassen}
+                    break;                         {Schleife hier verlassen}
                   end;
                   ldat:=SplitList[1];
                   fbeg:=1;                               {Beginnzeit Produktion}
@@ -1551,7 +1557,7 @@ begin
                 if ertr>ter then ter:=ertr;              {höchster Tagesertrag}
                 ld:=StrToInt(SplitList[4]);              {Leistung}
                 if ld>maxld then maxld:=ld;              {Peakleistung}
-                if ld>StrToInt(LabeledEdit5.Text) then begin
+                if ld>StrToInt(edMinPower.Text) then begin
                   beg:=TToTT(copy(SplitList[2], 1, 5));  {Zeit}
                   if beg>fend then fend:=beg;
                   if beg<fbeg then fbeg:=beg;
@@ -1618,31 +1624,31 @@ begin
   FTPAnzeige(clDefault);
 end;
 
-procedure TForm1.PageControl1Change(Sender: TObject);   {TabSheet wechseln}
+procedure TForm1.pcMainChange(Sender: TObject);   {TabSheet wechseln}
 begin
   ChangeTab;
 end;
 
-procedure TForm1.PageControl1MouseUp(Sender: TObject; Button: TMouseButton;
+procedure TForm1.pcMainMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);                   {TabSheet merken}
 begin
-  XMLPropStorage1.StoredValue['LastTabSheet']:=IntToStr(PageControl1.ActivePage.PageIndex);
-  PageControl1.Tag:=PageControl1.ActivePage.PageIndex;  {TabSheet merken}
+  XMLPropStorage1.StoredValue['LastTabSheet']:=IntToStr(pcMain.ActivePage.PageIndex);
+  pcMain.Tag:=pcMain.ActivePage.PageIndex;  {TabSheet merken}
 end;
 
-procedure TForm1.PageControl2Change(Sender: TObject);   {Einstellungen merken}
+procedure TForm1.pcSettingsChange(Sender: TObject);   {Einstellungen merken}
 begin
-  XMLPropStorage1.StoredValue['LastOptSheet']:=IntToStr(PageControl2.ActivePage.PageIndex);
+  XMLPropStorage1.StoredValue['LastOptSheet']:=IntToStr(pcSettings.ActivePage.PageIndex);
 end;
 
 procedure TForm1.ChangeTab;                             {Hinweis anzeigen}
 begin
-  case PageControl1.ActivePageIndex of
+  case pcMain.ActivePageIndex of
     0: StatusBar1.Panels[2].Text:=rsTagesaw;
     1: StatusBar1.Panels[2].Text:=rsMonatsaw;
     2: StatusBar1.Panels[2].Text:=rsJahresaw;
     3: StatusBar1.Panels[2].Text:=rsStatistikerz+'..';
-    4: case PageControl2.ActivePageIndex of
+    4: case pcSettings.ActivePageIndex of
          0: StatusBar1.Panels[2].Text:=rsUmgvar;
          1: StatusBar1.Panels[2].Text:=rsEinst+' / '+rsTools;
          2: StatusBar1.Panels[2].Text:=rsFTPZugein;
@@ -1652,35 +1658,35 @@ begin
   StatusBar1.Panels[1].Text:=XMLPropStorage1.StoredValue['InverterID'];
 end;
 
-procedure TForm1.DirectoryEdit1Change(Sender: TObject); {Verzeichnis merken}
+procedure TForm1.deLocalChange(Sender: TObject); {Verzeichnis merken}
 begin
-  XMLPropStorage1.StoredValue['DatawarehouseRoot']:=DirectoryEdit1.Directory;
-  BitBtn1.Enabled:=DirectoryExists(DirectoryEdit1.Directory);
+  XMLPropStorage1.StoredValue['DatawarehouseRoot']:=deLocal.Directory;
+  btnEinlesen.Enabled:=DirectoryExists(deLocal.Directory);
 end;
 
-procedure TForm1.FileNameEdit1Change(Sender: TObject);  {Dateiname HTML Datei}
+procedure TForm1.deServerChange(Sender: TObject);  {Dateiname HTML Datei}
 begin
-  FileNameEdit1.InitialDir:=DirectoryEdit1.Directory;
-  XMLPropStorage1.StoredValue['ProtHTMDat']:=FileNameEdit1.FileName;
-  LabeledEdit14.Text:=ExtractFileName(FileNameEdit1.FileName); {für FTP übernehmen}
-  XMLPropStorage1.StoredValue['FTP_HTMLfile']:=LabeledEdit14.Text;
+  deServer.InitialDir:=deLocal.Directory;
+  XMLPropStorage1.StoredValue['ProtHTMDat']:=deServer.FileName;
+  edHTMLfile.Text:=ExtractFileName(deServer.FileName); {für FTP übernehmen}
+  XMLPropStorage1.StoredValue['FTP_HTMLfile']:=edHTMLfile.Text;
 end;
 
-procedure TForm1.SpinEdit1Change(Sender: TObject); {Zeilennummer merken}
+procedure TForm1.edHTMLzeileChange(Sender: TObject); {Zeilennummer merken}
 begin
-  XMLPropStorage1.StoredValue['ProtHTMZeiNr']:=IntToStr(SpinEdit1.Value);
+  XMLPropStorage1.StoredValue['ProtHTMZeiNr']:=IntToStr(edHTMLzeile.Value);
 end;
 
-procedure TForm1.SpinEdit2Change(Sender: TObject); {Tage bis zum Archivieren}
+procedure TForm1.speArchPeriodChange(Sender: TObject); {Tage bis zum Archivieren}
 begin
-  XMLPropStorage1.StoredValue['ToArchive']:=IntToStr(SpinEdit2.Value);
+  XMLPropStorage1.StoredValue['ToArchive']:=IntToStr(speArchPeriod.Value);
 end;
 
-procedure TForm1.SpinEdit3Change(Sender: TObject); {Timerintervall merken}
+procedure TForm1.spePeriodChange(Sender: TObject); {Timerintervall merken}
 begin
-  XMLPropStorage1.StoredValue['AutoReload']:=IntToStr(SpinEdit3.Value);
-  if (SpinEdit3.Value>0) and (OutList.Count>0) then begin
-    Timer1.Interval:=SpinEdit3.Value*60000;
+  XMLPropStorage1.StoredValue['AutoReload']:=IntToStr(spePeriod.Value);
+  if (spePeriod.Value>0) and (OutList.Count>0) then begin
+    Timer1.Interval:=spePeriod.Value*60000;
     Timer1.Enabled:=true;
   end;
 end;
@@ -1717,9 +1723,9 @@ end;
 procedure TForm1.CheckBox1Change(Sender: TObject);  {JS-Dateien anlegen merken}
 begin
   XMLPropStorage1.StoredValue['JSDateienAnlegen']:=BoolToStr(Checkbox1.Checked);
-  if Checkbox1.Checked and (FileNameEdit1.FileName='') then begin  {Arbeitsverzeichnis benutzen}
-    FileNameEdit1.InitialDir:=DirectoryEdit1.Directory;
-    FileNameEdit1.FileName:=DirectoryEdit1.Directory;
+  if Checkbox1.Checked and (deServer.FileName='') then begin  {Arbeitsverzeichnis benutzen}
+    deServer.InitialDir:=deLocal.Directory;
+    deServer.FileName:=deLocal.Directory;
   end;
 end;
 
@@ -1729,17 +1735,17 @@ begin
   if CheckBox3.Checked then begin
     CheckBox6.Checked:=false;
     CheckBox6.Enabled:=false;
-    LabeledEdit10.Text:=LabeledEdit6.Text;
-    LabeledEdit10.Enabled:=false;
-    LabeledEdit11.Text:=LabeledEdit7.Text;
-    LabeledEdit11.Enabled:=false;
-    LabeledEdit12.Text:=LabeledEdit8.Text;
-    LabeledEdit12.Enabled:=false;
+    edHTMLserver.Text:=edServerName.Text;
+    edHTMLserver.Enabled:=false;
+    edHTMLuser.Text:=edUser.Text;
+    edHTMLuser.Enabled:=false;
+    edHTMLpasw.Text:=edPasw.Text;
+    edHTMLpasw.Enabled:=false;
   end else begin
     CheckBox6.Enabled:=true;
-    LabeledEdit10.Enabled:=true;
-    LabeledEdit11.Enabled:=true;
-    LabeledEdit12.Enabled:=true;
+    edHTMLserver.Enabled:=true;
+    edHTMLuser.Enabled:=true;
+    edHTMLpasw.Enabled:=true;
   end;
 end;
 
@@ -1756,19 +1762,19 @@ end;
 procedure TForm1.CheckBox5Change(Sender: TObject);  {Zeige Warehouse Passwort}
 begin
   if CheckBox5.Checked then
-    LabeledEdit8.PasswordChar:=#0
+    edPasw.PasswordChar:=#0
   else
-    LabeledEdit8.PasswordChar:='*';
-  LabeledEdit8.Refresh;
+    edPasw.PasswordChar:='*';
+  edPasw.Refresh;
 end;
 
 procedure TForm1.CheckBox6Change(Sender: TObject);  {Zeige Homepage Passwort}
 begin
   if CheckBox6.Checked then
-    LabeledEdit12.PasswordChar:=#0
+    edHTMLpasw.PasswordChar:=#0
   else
-    LabeledEdit12.PasswordChar:='*';
-  LabeledEdit12.Refresh;
+    edHTMLpasw.PasswordChar:='*';
+  edHTMLpasw.Refresh;
 end;
 
 procedure TForm1.CheckBox7Change(Sender: TObject);  {Jahresertrag normiert darstellen}
@@ -1819,7 +1825,7 @@ begin
   XMLPropStorage1.StoredValue['clMatrix']:=ColorMatrix;
 end;
 
-procedure TForm1.BitBtn3Click(Sender: TObject);     {Beenden}
+procedure TForm1.btnCloseClick(Sender: TObject);     {Beenden}
 begin
   Form1.Close;
 end;
@@ -1839,9 +1845,9 @@ begin
   end;
 end;
 
-procedure TForm1.BitBtn4Click(Sender: TObject);     {Button Stand Speichern}
+procedure TForm1.btnSaveClick(Sender: TObject);     {Button Stand Speichern}
 begin
-  BitBtn6.Tag:=0;
+  btnTag.Tag:=0;
   ComboBox1.Color:=clDefault;
   if OutList.Count>100 then
     StandSpeichern
@@ -1849,15 +1855,15 @@ begin
     StatusBar1.Panels[2].Text:=msgDatSp;
 end;
 
-procedure TForm1.BitBtn5Click(Sender: TObject);      {Stand laden}
+procedure TForm1.btnLoadClick(Sender: TObject);      {Stand laden}
 var dr: string;
 begin
   Screen.Cursor:=crHourGlass;
   try
     PrevFileList.Clear;                              {Dateiliste zurücksetzen}
     dr:=ExtractFilePath(Application.ExeName);
-    BitBtn6.Tag:=0;
-    BitBtn10.Enabled:=false;                         {Archivieren sperren}
+    btnTag.Tag:=0;
+    btnArch.Enabled:=false;                         {Archivieren sperren}
     ComboBox1.Color:=clDefault;
     try
       OutList.LoadFromFile(dr+rawdat);
@@ -1865,10 +1871,10 @@ begin
       if FileExists(dr+archID+archfn) then
         DayList.LoadFromFile(dr+archID+archfn);
       OutListLesen(false);                           {ausführen ohne HTML prot}
-      if PageControl1.ActivePageIndex=epg then
-        PageControl1.ActivePageIndex:=2;
-      BitBtn2.Enabled:=true;
-      BitBtn8.Enabled:=true;
+      if pcMain.ActivePageIndex=epg then
+        pcMain.ActivePageIndex:=2;
+      btnBackup.Enabled:=true;
+      btnSimu.Enabled:=true;
       BitBtn11.Enabled:=true;                        {Spez. Analyse entsperren}
       RadioGroup3.Enabled:=true;;
       ChangeTab;
@@ -1881,22 +1887,22 @@ begin
   end;
 end;
 
-procedure TForm1.BitBtn6Click(Sender: TObject);     {Restore verlorenen Tag}
+procedure TForm1.btnTagClick(Sender: TObject);     {Restore verlorenen Tag}
 begin
-  if BitBtn6.Tag=0 then begin
-    OpenDialog1.InitialDir:=DirectoryEdit1.Directory;
+  if btnTag.Tag=0 then begin
+    OpenDialog1.InitialDir:=deLocal.Directory;
     OpenDialog1.FilterIndex:=1;
     OpenDialog1.Title:=titLdBackup;
     OpenDialog1.Filename:=rawdat;
     if OpenDialog1.Execute then begin
       OutList.LoadFromFile(OpenDialog1.FileName);
       OutListLesen(false);                          {ausführen ohne HTML prot}
-      BitBtn6.Tag:=1;
-      PageControl1.ActivePageIndex:=0;
+      btnTag.Tag:=1;
+      pcMain.ActivePageIndex:=0;
       ChangeTab;
     end;
-  end else BitBtn6.Tag:=0;
-  if BitBtn6.Tag=1 then
+  end else btnTag.Tag:=0;
+  if btnTag.Tag=1 then
     ComboBox1.Color:=$000080FF
   else
     ComboBox1.Color:=clDefault;
@@ -1909,16 +1915,16 @@ end;
           clBlack  : Test
           clRed    : Error }
 
-procedure TForm1.Button1Click(Sender: TObject);    {Test DW-FPT}
+procedure TForm1.btnTestFTPClick(Sender: TObject);    {Test DW-FPT}
 begin
   SynMemo1.Lines.Add('');
   SynMemo1.Lines.Add('Test FTP datawarehouse');
   StatusBar1.Panels[2].Text:=msgNetzwerk;
-  if LabeledEdit8.Text <> '' then begin            {Pflichtfelder prüfen}
-    if LabeledEdit6.Text <> '' then begin
-      SynMemo1.Lines.Add(LabeledEdit6.Text);
-      if LabeledEdit7.Text <> '' then begin
-        SynMemo1.Lines.Add(LabeledEdit7.Text);
+  if edPasw.Text <> '' then begin            {Pflichtfelder prüfen}
+    if edServerName.Text <> '' then begin
+      SynMemo1.Lines.Add(edServerName.Text);
+      if edUser.Text <> '' then begin
+        SynMemo1.Lines.Add(edUser.Text);
         FTPAnzeige(clBlack);
         try
           FTPloginDW;
@@ -1941,16 +1947,16 @@ begin
     StatusBar1.Panels[2].Text:=msgPswMissing;
 end;
 
-procedure TForm1.Button2Click(Sender: TObject);    {Test HP-FTP}
+procedure TForm1.btnTestHTMLClick(Sender: TObject);    {Test HP-FTP}
 begin
   SynMemo1.Lines.Add('');
   SynMemo1.Lines.Add('Test FTP homepage');
   StatusBar1.Panels[2].Text:=msgNetzwerk;
-  if LabeledEdit12.Text <> '' then begin
-    if LabeledEdit10.Text <> '' then begin
-      SynMemo1.Lines.Add(LabeledEdit10.Text);
-      if LabeledEdit11.Text <> '' then begin
-        SynMemo1.Lines.Add(LabeledEdit11.Text);
+  if edHTMLpasw.Text <> '' then begin
+    if edHTMLserver.Text <> '' then begin
+      SynMemo1.Lines.Add(edHTMLserver.Text);
+      if edHTMLuser.Text <> '' then begin
+        SynMemo1.Lines.Add(edHTMLuser.Text);
         FTPAnzeige(clBlack);
         try
           FTPloginHP;
@@ -2020,8 +2026,8 @@ begin
       ComboBox1.Text:=ComboBox1.Items[p];          {Datum yyyy-mm-dd}
       ComboBox4.Text:=ComboBox1.Text;              {Selektion 1 Spielwiese}
       ComboBox5.Text:=ComboBox1.Text;              {Selektion 2 Spielwiese}
-      PageControl1.ActivePageIndex:=0;
-      PageControl1.Tag:=0;                         {TabSheet merken}
+      pcMain.ActivePageIndex:=0;
+      pcMain.Tag:=0;                         {TabSheet merken}
       if RadioGroup2.ItemIndex=5 then
         RadioGroup2.ItemIndex:=1; {nicht Sweep}
       TagStat;
@@ -2045,8 +2051,8 @@ begin
       end;
     end;
     ComboBox2.Text:=IntToStr(year)+datsep+Format('%.2d', [idx]);
-    PageControl1.ActivePageIndex:=1;
-    PageControl1.Tag:=1;                           {TabSheet merken}
+    pcMain.ActivePageIndex:=1;
+    pcMain.Tag:=1;                           {TabSheet merken}
     MonStat;
   end;
 end;
@@ -2083,31 +2089,31 @@ begin
   fld:=FindControlAtPosition(Mouse.CursorPos,true).Name;
   if (fld='GroupBox2') or (fld='DirectoryEdit1') then begin
     if DirectoryExists(FileNames[0]) then
-      DirectoryEdit1.Directory:=FileNames[0]
+      deLocal.Directory:=FileNames[0]
     else
-      DirectoryEdit1.Directory:=ExtractFilePath(FileNames[0]);
+      deLocal.Directory:=ExtractFilePath(FileNames[0]);
   end;
   if (fld='FileNameEdit1') and FileExists(FileNames[0]) then
-      FileNameEdit1.FileName:=FileNames[0];        {HTML file eintragen}
+      deServer.FileName:=FileNames[0];        {HTML file eintragen}
   if (fld='LabeledEdit1') and FileExists(FileNames[0]) then begin
     fld:=GetFTPAccount(FileNames[0]);   {FTP account und Filter eintragen}
-    LabeledEdit1.Text:=fld+'-*';
-    LabeledEdit7.Text:=fld;
+    edFilter.Text:=fld+'-*';
+    edUser.Text:=fld;
   end;
   Application.BringToFront;
 end;
 
 procedure TForm1.GroupBox1Click(Sender: TObject);  {Infobox}
 begin
-  BitBtn1.Enabled:=DirectoryExists(DirectoryEdit1.Directory); {Gültigkeit Buttons prüfen}
-  BitBtn5.Enabled:=FileExists((ExtractFilePath(Application.ExeName)+rawdat));
+  btnEinlesen.Enabled:=DirectoryExists(deLocal.Directory); {Gültigkeit Buttons prüfen}
+  btnLoad.Enabled:=FileExists((ExtractFilePath(Application.ExeName)+rawdat));
   if MessageDlg(ExtractFileName(paramstr(0))+'  '+
                 version+sLineBreak+sLineBreak+
                 meinname+sLineBreak+homepage+sLineBreak+email+sLineBreak+sLineBreak+
                 rsWR+' ID: '+XMLPropStorage1.StoredValue['InverterID']+sLineBreak+
                 rsWR+' '+rsName+': '+XMLPropStorage1.StoredValue['InverterName']+sLineBreak+
-                rsPeakL+': '+LabeledEdit2.Text+'W'+sLineBreak+
-                rsEEGV+'/kWh: '+LabeledEdit4.Text+LabeledEdit15.Text,
+                rsPeakL+': '+edPeak.Text+'W'+sLineBreak+
+                rsEEGV+'/kWh: '+edVerg.Text+edEuro.Text,
                 mtInformation,[mbHelp, mbOK],0)=0 then
     OpenUrl(Infofile);                            {0: mrHelp nicht def}
 end;
@@ -2171,40 +2177,40 @@ begin
   Label53.Font.Style:=Font.Style-[fsBold];
 end;
 
-procedure TForm1.LabeledEdit10Change(Sender: TObject); {Basisdaten speichern}
+procedure TForm1.edHTMLserverChange(Sender: TObject); {Basisdaten speichern}
 begin
-  XMLPropStorage1.StoredValue['FTP_HPserver']:=LabeledEdit10.Text;
+  XMLPropStorage1.StoredValue['FTP_HPserver']:=edHTMLserver.Text;
 end;
 
-procedure TForm1.LabeledEdit11Change(Sender: TObject);
+procedure TForm1.edHTMLuserChange(Sender: TObject);
 begin
-  XMLPropStorage1.StoredValue['FTP_HPaccount']:=LabeledEdit11.Text;
+  XMLPropStorage1.StoredValue['FTP_HPaccount']:=edHTMLuser.Text;
 end;
 
-procedure TForm1.LabeledEdit12Change(Sender: TObject);
+procedure TForm1.edHTMLpaswChange(Sender: TObject);
 begin
-  XMLPropStorage1.StoredValue['FTP_HPpsw']:=LabeledEdit12.Text;
+  XMLPropStorage1.StoredValue['FTP_HPpsw']:=edHTMLpasw.Text;
 end;
 
-procedure TForm1.LabeledEdit13Change(Sender: TObject);
+procedure TForm1.edHTMLfolderChange(Sender: TObject);
 begin
-  XMLPropStorage1.StoredValue['FTP_HPpath']:=LabeledEdit13.Text;
+  XMLPropStorage1.StoredValue['FTP_HPpath']:=edHTMLfolder.Text;
 end;
 
-procedure TForm1.LabeledEdit14Change(Sender: TObject);
+procedure TForm1.edHTMLfileChange(Sender: TObject);
 begin
-  XMLPropStorage1.StoredValue['FTP_HTMLfile']:=LabeledEdit14.Text;
+  XMLPropStorage1.StoredValue['FTP_HTMLfile']:=edHTMLfile.Text;
 end;
 
-procedure TForm1.LabeledEdit15Change(Sender: TObject);
+procedure TForm1.edEuroChange(Sender: TObject);
 begin
-  XMLPropStorage1.StoredValue['CurrStr']:=LabeledEdit15.Text;
-  LabeledEdit4.EditLabel.Caption:=rsEEGV+  ' ['+LabeledEdit15.Text+'/kWh]';
+  XMLPropStorage1.StoredValue['CurrStr']:=edEuro.Text;
+  edVerg.EditLabel.Caption:=rsEEGV+  ' ['+edEuro.Text+'/kWh]';
 end;
 
-procedure TForm1.LabeledEdit16Change(Sender: TObject);
+procedure TForm1.edKorrFakChange(Sender: TObject);
 begin
-  XMLPropStorage1.StoredValue['KorrE']:=LabeledEdit16.Text;
+  XMLPropStorage1.StoredValue['KorrE']:=edKorrFak.Text;
 end;
 
 procedure TForm1.LabeledEdit17Change(Sender: TObject); {Stringpower merken}
@@ -2284,24 +2290,24 @@ begin
   SpeedButton5.Enabled:=not (ComboBox3.ItemIndex=ComboBox3.Items.Count-1);
 end;
 
-procedure TForm1.BitBtn1Click(Sender: TObject);        {Auswertung starten}
+procedure TForm1.btnEinlesenClick(Sender: TObject);        {Auswertung starten}
 begin
-  BitBtn6.Tag:=0;                                      {Restore rücksetzen}
+  btnTag.Tag:=0;                                      {Restore rücksetzen}
   Timer1.Enabled:=false;
   ComboBox1.Color:=clDefault;
   FTPDownload;
   Auswerten;                                           {lokale Daten einlesen}
-  if (SpinEdit3.Value>0) and (OutList.Count>0) then begin
-    Timer1.Interval:=SpinEdit3.Value*60000;
+  if (spePeriod.Value>0) and (OutList.Count>0) then begin
+    Timer1.Interval:=spePeriod.Value*60000;
     Timer1.Enabled:=true;                              {Timer neu starten}
   end;
 end;
 
-procedure TForm1.BitBtn10Click(Sender: TObject);       {Archivieren}
+procedure TForm1.btnArchClick(Sender: TObject);       {Archivieren}
 begin
   SynMemo1.Lines.Add('');
   SynMemo1.Lines.Add('Archive started at: '+FormatDateTime('hh:nn:ss', now));
-  BitBtn6.Tag:=0;                                      {Restore rücksetzen}
+  btnTag.Tag:=0;                                      {Restore rücksetzen}
   FTPDownload;                                         {Dateien sychronisieren}
   BackupSpeichern;                                     {erstmal speichern}
   ArchRename;                                          {alte Daten archivieren}
@@ -2314,7 +2320,7 @@ begin
   SpezAnalyse;
 end;
 
-procedure TForm1.BitBtn12Click(Sender: TObject);       {Reset Colors to default}
+procedure TForm1.btnColorsResetClick(Sender: TObject);       {Reset Colors to default}
 begin
   ColorButton1.ButtonColor:=clRed;                     {Spielwiese}
   ColorButton2.ButtonColor:=clBlue;
@@ -2339,7 +2345,7 @@ begin
   XMLPropStorage1.StoredValue['clMatrix']:=ColorMatrix;                                         {speichern}
 end;
 
-procedure TForm1.BitBtn13Click(Sender: TObject);       {Farbschema laden}
+procedure TForm1.btnColorsLoadClick(Sender: TObject);       {Farbschema laden}
 var slist: TStringList;
     x: integer;
     s: string;
@@ -2362,7 +2368,7 @@ begin
   end;
 end;
 
-procedure TForm1.BitBtn14Click(Sender: TObject);       {Farbschema speichern}
+procedure TForm1.btnColorsSaveClick(Sender: TObject);       {Farbschema speichern}
 var slist: TStringList;
 begin
   slist:=TStringList.Create;
@@ -2409,11 +2415,11 @@ begin
   end;
   case RadioGroup4.ItemIndex of  {Beschriftung und Schwellwert festlegen links}
       0: begin
-           swt1:=StrToInt(LabeledEdit5.Text)/1000; {AC Leistung}
+           swt1:=StrToInt(edMinPower.Text)/1000; {AC Leistung}
            Chart5.AxisList[0].Title.Caption:='AC '+rsLei+' [kW]';
          end;
       1: begin
-           swt1:=StrToInt(LabeledEdit5.Text)/1000; {DC Leistung}
+           swt1:=StrToInt(edMinPower.Text)/1000; {DC Leistung}
            Chart5.AxisList[0].Title.Caption:='DC '+rsLei+' [kW]';
          end;
       2: begin
@@ -2461,15 +2467,15 @@ begin
            Chart5.AxisList[0].Title.Caption:='DC '+rsStrom+rsString+'3 [A]';
          end;
      13: begin
-           swt1:=StrToInt(LabeledEdit5.Text)/1000; {DC Leistung String 1}
+           swt1:=StrToInt(edMinPower.Text)/1000; {DC Leistung String 1}
            Chart5.AxisList[0].Title.Caption:='DC '+rsLei+rsString+'1 [kW]';
          end;
      14: begin
-           swt1:=StrToInt(LabeledEdit5.Text)/1000; {DC Leistung String 2}
+           swt1:=StrToInt(edMinPower.Text)/1000; {DC Leistung String 2}
            Chart5.AxisList[0].Title.Caption:='DC '+rsLei+rsString+'2 [kW]';
          end;
      15: begin
-           swt1:=StrToInt(LabeledEdit5.Text)/1000; {DC Leistung String 3}
+           swt1:=StrToInt(edMinPower.Text)/1000; {DC Leistung String 3}
            Chart5.AxisList[0].Title.Caption:='DC '+rsLei+rsString+'3 [kW]';
          end;
      16: begin
@@ -2479,11 +2485,11 @@ begin
   end;
   case RadioGroup5.ItemIndex of  {Beschriftung und Schwellwert festlegen rechts}
       0: begin
-           swt2:=StrToInt(LabeledEdit5.Text)/1000; {AC Leistung}
+           swt2:=StrToInt(edMinPower.Text)/1000; {AC Leistung}
            Chart5.AxisList[2].Title.Caption:='AC '+rsLei+' [kW]';
          end;
       1: begin
-           swt2:=StrToInt(LabeledEdit5.Text)/1000; {DC Leistung}
+           swt2:=StrToInt(edMinPower.Text)/1000; {DC Leistung}
            Chart5.AxisList[2].Title.Caption:='DC '+rsLei+' [kW]';
          end;
       2: begin
@@ -2531,15 +2537,15 @@ begin
            Chart5.AxisList[2].Title.Caption:='DC '+rsStrom+rsString+'3 [A]';
          end;
      13: begin
-           swt2:=StrToInt(LabeledEdit5.Text)/1000; {DC Leistung String 1}
+           swt2:=StrToInt(edMinPower.Text)/1000; {DC Leistung String 1}
            Chart5.AxisList[2].Title.Caption:='DC '+rsLei+rsString+'1 [kW]';
          end;
      14: begin
-           swt2:=StrToInt(LabeledEdit5.Text)/1000; {DC Leistung String 2}
+           swt2:=StrToInt(edMinPower.Text)/1000; {DC Leistung String 2}
            Chart5.AxisList[2].Title.Caption:='DC '+rsLei+rsString+'2 [kW]';
          end;
      15: begin
-           swt2:=StrToInt(LabeledEdit5.Text)/1000; {DC Leistung String 3}
+           swt2:=StrToInt(edMinPower.Text)/1000; {DC Leistung String 3}
            Chart5.AxisList[2].Title.Caption:='DC '+rsLei+rsString+'3 [kW]';
          end;
      16: begin
@@ -2646,11 +2652,11 @@ procedure TForm1.BackupSpeichern;                      {Backup in Datei}
 var s: string;
 begin
   if OutList.Count>100 then begin
-    s:=IncludeTrailingPathDelimiter(DirectoryEdit1.Directory)+
+    s:=IncludeTrailingPathDelimiter(deLocal.Directory)+
        FormatDateTime(isodate, now-1)+'_'+rawdat;   {Datumsstempel}
     try
       if DayList.Count>0 then        {Archivierte Tage auch speichern}
-        DayList.SaveToFile(IncludeTrailingPathDelimiter(DirectoryEdit1.Directory)+
+        DayList.SaveToFile(IncludeTrailingPathDelimiter(deLocal.Directory)+
                            archID+FormatDateTime(isodate, now-1)+'_'+archfn);
       OutList.SaveToFile(s);
       StatusBar1.Panels[2].Text:=Format(msgBackupSp, [s]);
@@ -2661,9 +2667,9 @@ begin
   end else StatusBar1.Panels[2].Text:=msgDatSp;
 end;
 
-procedure TForm1.BitBtn2Click(Sender: TObject);        {Backup anlegen}
+procedure TForm1.btnBackupClick(Sender: TObject);        {Backup anlegen}
 begin
-  BitBtn6.Tag:=0;
+  btnTag.Tag:=0;
   ComboBox1.Color:=clDefault;
   BackupSpeichern;
 end;
@@ -2725,8 +2731,8 @@ end;
 
 procedure TForm1.RadioGroup6Click(Sender: TObject);    {Wechselrichter Type}
 begin
-  BitBtn6.Tag:=0;                                      {Restore rücksetzen}
-  BitBtn6.Visible:=(RadioGroup6.ItemIndex=0);
+  btnTag.Tag:=0;                                      {Restore rücksetzen}
+  btnTag.Visible:=(RadioGroup6.ItemIndex=0);
   Timer1.Enabled:=false;
   ComboBox1.Color:=clDefault;
   XMLPropStorage1.StoredValue['InverterType']:=IntToStr(RadioGroup6.ItemIndex);
@@ -2879,9 +2885,9 @@ begin
     MonList:=TStringList.Create;
     FileList:=TStringList.Create;
     try
-      pla:=StrToInt(LabeledEdit2.Text);
+      pla:=StrToInt(edPeak.Text);
 {Daten für Sonnenertrag.eu bereitstellen}
-      LabeledEdit2.Tag:=0;                     {0 Strings (PV-Arrays) annehmen}
+      edPeak.Tag:=0;                     {0 Strings (PV-Arrays) annehmen}
       Shape1.Brush.Color:=clDefault;
       Shape2.Brush.Color:=clDefault;
       Shape3.Brush.Color:=clDefault;
@@ -2890,15 +2896,15 @@ begin
           SplitList.DelimitedText:=OutList[x];
           if StrToInt(SplitList[2])>100 then begin     {> 100W zur Sicherheit}
             if SplitList[5]>'0' then begin
-              LabeledEdit2.Tag:=LabeledEdit2.Tag+1;
+              edPeak.Tag:=edPeak.Tag+1;
               Shape1.Brush.Color:=ColorButton3.ButtonColor;        {String 1}
             end else LabeledEdit17.Text:='0';
             if SplitList[7]>'0' then begin
-              LabeledEdit2.Tag:=LabeledEdit2.Tag+1;
+              edPeak.Tag:=edPeak.Tag+1;
               Shape2.Brush.Color:=ColorButton4.ButtonColor;        {String 2}
             end else LabeledEdit18.Text:='0';
             if SplitList[9]>'0' then begin
-              LabeledEdit2.Tag:=LabeledEdit2.Tag+1;
+              edPeak.Tag:=edPeak.Tag+1;
               Shape3.Brush.Color:=ColorButton5.ButtonColor;        {String 3}
             end else LabeledEdit19.Text:='0';
             break;   {Abbruch, wenn Zeile mit gewisser Leistung gefunden}
@@ -2908,13 +2914,13 @@ begin
           SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
         end;
       end;
-      Label39.Caption:=rsStrings+': '+IntToStr(LabeledEdit2.Tag);
-      XMLPropStorage1.StoredValue['NumStrings']:=IntToStr(LabeledEdit2.Tag);
+      Label39.Caption:=rsStrings+': '+IntToStr(edPeak.Tag);
+      XMLPropStorage1.StoredValue['NumStrings']:=IntToStr(edPeak.Tag);
 {base_vars anlegen, wenn noch nicht vorhanden}
-      ltag:=ExtractFilePath(FileNameEdit1.FileName)+basejs; {Dateinamen festlegen}
+      ltag:=ExtractFilePath(deServer.FileName)+basejs; {Dateinamen festlegen}
       if crf and CheckBox1.Checked and (not(FileExists(ltag)))
-             and (FileNameEdit1.FileName<>'') then begin
-        ProtHTM.Add('var AnlagenKWP='+LabeledEdit2.Text);
+             and (deServer.FileName<>'') then begin
+        ProtHTM.Add('var AnlagenKWP='+edPeak.Text);
                                              {Beginn und Endezeiten per Monat}
         ProtHTM.Add('var time_start=new Array(7,7,6,6,5,4,4,5,6,7,7,8)');
         ProtHTM.Add('var time_end=new Array(17,18,20,21,21,22,22,21,20,19,17,16)');
@@ -2940,17 +2946,17 @@ begin
         hstr:='WRInfo[0]=new Array("'+hstr+'","'+
         StatusBar1.Panels[1].Text+'",'+IntToStr(pla)+',0,"'+
         StatusBar1.Panels[0].Text+'",'+
-        IntToStr(LabeledEdit2.Tag)+',null,null,0,null,1,0,1,1000,null)';
+        IntToStr(edPeak.Tag)+',null,null,0,null,1,0,1,1000,null)';
         ProtHTM.Add(hstr);
         hstr:='WRInfo[0][6]=new Array(';
-        case LabeledEdit2.Tag of             {new array}
+        case edPeak.Tag of             {new array}
           1: hstr:=hstr+'"String 1")';
           2: hstr:=hstr+'"String 1","String 2")';
           3: hstr:=hstr+'"String 1","String 2","String 3")';
         end;
         ProtHTM.Add(hstr);
         hstr:='WRInfo[0][7]=new Array(';
-        case LabeledEdit2.Tag of             {new array}
+        case edPeak.Tag of             {new array}
           1: hstr:=hstr+'1)';
           2: hstr:=hstr+'1,1)';
           3: hstr:=hstr+'1,1,1)';
@@ -3077,8 +3083,8 @@ begin
       MonList.Insert(0, 'mo[mx++]="'+FormatDateTime('dd.mm.yy',SDToTime(ltag))+
                         '|'+IntToStr(mer)+'"');
       if crf and CheckBox1.Checked and
-         (FileNameEdit1.FileName<>'') then begin  {sonnenertrag.eu}
-        hstr:=ExtractFilePath(FileNameEdit1.FileName)+monsjs;
+         (deServer.FileName<>'') then begin  {sonnenertrag.eu}
+        hstr:=ExtractFilePath(deServer.FileName)+monsjs;
         try
           MonList.SaveToFile(hstr);
           if CheckBox4.Checked then FileList.Add(hstr);
@@ -3090,7 +3096,7 @@ begin
         if (not Application.HasOption('a', 'sendall')) and {nur letzte 31 Tage}
            (ProtHTM.Count>31) then for x:=0 to 30 do MonList.Add(ProtHTM[x])
                               else MonList.Assign(ProtHTM);     {alles}
-        hstr:=ExtractFilePath(FileNameEdit1.FileName)+daysjs;
+        hstr:=ExtractFilePath(deServer.FileName)+daysjs;
         try
           MonList.SaveToFile(hstr);
           if CheckBox4.Checked then FileList.Add(hstr);
@@ -3121,7 +3127,7 @@ DC Spannung String 1;DC Spannung String 2;DC Spannung String 3;WR Temperatur"
                     FormatDateTime('dd.mm.yy', SDToTime(SplitList[0]))+' '+
                     FormatDateTime('hh:nn:ss', TToTT(ltag))+'|'+
                     SplitList[2]+';';              {AC Leistung}
-              case LabeledEdit2.Tag of             {DC Leistungen Strings}
+              case edPeak.Tag of             {DC Leistungen Strings}
                 1: hstr:=hstr+IntToStr(Round(StrToInt(SplitList[5])*StrToInt(SplitList[6])/10000))+';';
                 2: hstr:=hstr+IntToStr(Round(StrToInt(SplitList[5])*StrToInt(SplitList[6])/10000))+';'+
                               IntToStr(Round(StrToInt(SplitList[7])*StrToInt(SplitList[8])/10000))+';';
@@ -3130,7 +3136,7 @@ DC Spannung String 1;DC Spannung String 2;DC Spannung String 3;WR Temperatur"
                               IntToStr(Round(StrToInt(SplitList[9])*StrToInt(SplitList[10])/10000))+';';
               end;
               hstr:=hstr+SplitList[3]+';';         {AC Ertrag}
-              case LabeledEdit2.Tag of             {DC Spannungen Strings}
+              case edPeak.Tag of             {DC Spannungen Strings}
                 1: hstr:=hstr+IntToStr(Round(StrToInt(SplitList[5])/10))+';';
                 2: hstr:=hstr+IntToStr(Round(StrToInt(SplitList[5])/10))+';'+
                               IntToStr(Round(StrToInt(SplitList[7])/10))+';';
@@ -3146,7 +3152,7 @@ DC Spannung String 1;DC Spannung String 2;DC Spannung String 3;WR Temperatur"
           end;
         end;
         if ProtHTM.Count>0 then begin            {min_day.js speichern}
-          hstr:=ExtractFilePath(FileNameEdit1.FileName)+histjs;
+          hstr:=ExtractFilePath(deServer.FileName)+histjs;
           try
             ProtHTM.SaveToFile(hstr);
             if CheckBox4.Checked then FileList.Add(hstr);
@@ -3190,16 +3196,16 @@ DC Spannung String 1;DC Spannung String 2;DC Spannung String 3;WR Temperatur"
       Label35.Caption:=FloatToStr(ger/1000)+'kWh';
       Label37.Caption:=FloatToStr(maxlei/1000)+' kWp'; {Peakleistung über alles}
       Label34.Caption:=FloatToStrF(ger/pla, ffFixed, 12, 3)+'kWh/kWp';
-      Label32.Caption:=FloatToStrF(ger/1000*Geteevg, ffFixed, 12, 2)+LabeledEdit15.Text;
+      Label32.Caption:=FloatToStrF(ger/1000*Geteevg, ffFixed, 12, 2)+edEuro.Text;
       Label30.Caption:=FloatToStrF(ger/pla/anzt*anzts, ffFixed, 12, 3)+'kWh/kWp';
       SynMemo1.Lines.Add(IntToStr(anzt)+' Tage aufgezeichnet durch '+
                          StatusBar1.Panels[0].Text);
       SynMemo1.Lines.Add('');
 {HTML Protokoll schreiben: 31 Zeilen in die vorhandene Datei ab Zeile xx (einstellbar)}
-      if crf and (SpinEdit1.Value>0) then begin      {eingestellte Zeile=0 --> nix tun}
-        if FileExists(FileNameEdit1.FileName) then begin
+      if crf and (edHTMLzeile.Value>0) then begin      {eingestellte Zeile=0 --> nix tun}
+        if FileExists(deServer.FileName) then begin
           try
-            ProtHTM.LoadFromFile(FileNameEdit1.FileName);
+            ProtHTM.LoadFromFile(deServer.FileName);
           except
             ProtHTM.Clear;   {nichts zum Laden gefunden}
           end;
@@ -3265,30 +3271,30 @@ DC Spannung String 1;DC Spannung String 2;DC Spannung String 3;WR Temperatur"
 Muss ggf. mit geändert werden!
 *)
 
-          if ProtHTM.Count>(SpinEdit1.Value+33) then begin  {Tabelle mit Defaultwerten schreiben}
+          if ProtHTM.Count>(edHTMLzeile.Value+33) then begin  {Tabelle mit Defaultwerten schreiben}
             s:=' <table style="border-width:0;width:90%;margin-left:auto;margin-right:auto;">';
-            ProtHTM[SpinEdit1.Value+ 0]:=s+'  <!-- '+ExtractFileName(paramstr(0))+
+            ProtHTM[edHTMLzeile.Value+ 0]:=s+'  <!-- '+ExtractFileName(paramstr(0))+
                                          '  '+version+' -->';
-            ProtHTM[SpinEdit1.Value+ 1]:=' <colgroup><col style="width:45%;"><col style="width:10%;"><col style="width:45%;"></colgroup>';
-            ProtHTM[SpinEdit1.Value+ 2]:='   <tr><td style="font-size:1.5em;">'+rsWR+'</td><td></td>';
-            ProtHTM[SpinEdit1.Value+ 3]:='       <td style="font-size:1.5em;">'+
+            ProtHTM[edHTMLzeile.Value+ 1]:=' <colgroup><col style="width:45%;"><col style="width:10%;"><col style="width:45%;"></colgroup>';
+            ProtHTM[edHTMLzeile.Value+ 2]:='   <tr><td style="font-size:1.5em;">'+rsWR+'</td><td></td>';
+            ProtHTM[edHTMLzeile.Value+ 3]:='       <td style="font-size:1.5em;">'+
                               StatusBar1.Panels[1].Text+'</td></tr>';
-            ProtHTM[SpinEdit1.Value+ 4]:='   <tr><td style="height:15px;"><hr></td><td></td>';
-            ProtHTM[SpinEdit1.Value+ 5]:='       <td style="height:15px;"><hr></td></tr>';
-            ProtHTM[SpinEdit1.Value+ 6]:='   <tr><td>'+rsProjekt1+rsPeakL+':</td><td></td>';
-            ProtHTM[SpinEdit1.Value+ 7]:='       <td>'+
+            ProtHTM[edHTMLzeile.Value+ 4]:='   <tr><td style="height:15px;"><hr></td><td></td>';
+            ProtHTM[edHTMLzeile.Value+ 5]:='       <td style="height:15px;"><hr></td></tr>';
+            ProtHTM[edHTMLzeile.Value+ 6]:='   <tr><td>'+rsProjekt1+rsPeakL+':</td><td></td>';
+            ProtHTM[edHTMLzeile.Value+ 7]:='       <td>'+
                               FloatToStrF(pla/1000, ffFixed, 12, 3)+
                               ' kW<sub>p</sub></td></tr>';
             if maxlei<pla then hstr:=outgt else hstr:=intgt; {Farben einstellen}
-            ProtHTM[SpinEdit1.Value+ 8]:='   <tr><td>'+rsErreich1+rsPeakL+':</td><td></td>';
-            ProtHTM[SpinEdit1.Value+ 9]:='       '+hstr+FloatToStr(maxlei/1000)+
+            ProtHTM[edHTMLzeile.Value+ 8]:='   <tr><td>'+rsErreich1+rsPeakL+':</td><td></td>';
+            ProtHTM[edHTMLzeile.Value+ 9]:='       '+hstr+FloatToStr(maxlei/1000)+
                               ' kW<sub>p</sub></td></tr>';
-            ProtHTM[SpinEdit1.Value+10]:='   <tr><td>'+rsProjekt2+rsSpezJE+':</td><td></td>';
-            ProtHTM[SpinEdit1.Value+11]:='       <td>'+LabeledEdit3.Text+
+            ProtHTM[edHTMLzeile.Value+10]:='   <tr><td>'+rsProjekt2+rsSpezJE+':</td><td></td>';
+            ProtHTM[edHTMLzeile.Value+11]:='       <td>'+edSpezJE.Text+
                                          ' kWh/kW<sub>p</sub></td></tr>';
             if (ger/pla/anzt*anzts)<GetSJE then hstr:=outgt else hstr:=intgt;
-            ProtHTM[SpinEdit1.Value+12]:='   <tr><td>'+rsErreich2+rsSpezJE+':</td><td></td>';
-            ProtHTM[SpinEdit1.Value+13]:='       '+hstr+
+            ProtHTM[edHTMLzeile.Value+12]:='   <tr><td>'+rsErreich2+rsSpezJE+':</td><td></td>';
+            ProtHTM[edHTMLzeile.Value+13]:='       '+hstr+
                               FloatToStrF(ger/pla/anzt*anzts, ffFixed, 12, 3)+
                               ' kWh/kW<sub>p</sub></td></tr>';
             if ger>mwswt then begin   {Gesamtertrag in kWh oder MWh}
@@ -3298,64 +3304,64 @@ Muss ggf. mit geändert werden!
               hstr:=' kWh';
               w:=1000;
             end;
-            ProtHTM[SpinEdit1.Value+14]:='   <tr><td>Gesamtertrag bisher:</td><td></td>';
-            ProtHTM[SpinEdit1.Value+15]:='       <td><b>'+
+            ProtHTM[edHTMLzeile.Value+14]:='   <tr><td>Gesamtertrag bisher:</td><td></td>';
+            ProtHTM[edHTMLzeile.Value+15]:='       <td><b>'+
                                FloatToStrF(ger/w, ffFixed, 12, 3)+
                                hstr+'</b></td></tr>';
-            ProtHTM[SpinEdit1.Value+16]:='   <tr><td>'+rsErtrag+' im letzten Monat:</td><td></td>';
-            ProtHTM[SpinEdit1.Value+17]:='       <td>'+FloatToStr(lastmer/1000)+
+            ProtHTM[edHTMLzeile.Value+16]:='   <tr><td>'+rsErtrag+' im letzten Monat:</td><td></td>';
+            ProtHTM[edHTMLzeile.Value+17]:='       <td>'+FloatToStr(lastmer/1000)+
                               ' kWh ('+FloatToStrF(lastmer/pla, ffFixed, 12, 3)+
                               ' kWh/kW<sub>p</sub>)</td></tr>';
             if (mer/1000)<soll then hstr:=outgt else hstr:=intgt;
-            ProtHTM[SpinEdit1.Value+18]:='   <tr><td>'+rsErtrag+' im aktuellen Monat:</td><td></td>';
-            ProtHTM[SpinEdit1.Value+19]:='       '+hstr+'<b>'+
+            ProtHTM[edHTMLzeile.Value+18]:='   <tr><td>'+rsErtrag+' im aktuellen Monat:</td><td></td>';
+            ProtHTM[edHTMLzeile.Value+19]:='       '+hstr+'<b>'+
                               FloatToStr(mer/1000)+' kWh</b> ('+rsSoll+
                               ': '+FloatToStrF(soll, ffFixed, 12, 3)+
                               ' kWh)</td></tr>';
-            ProtHTM[SpinEdit1.Value+20]:='   <tr><td>Bisher h&ouml;chster '+rsTagErtr+':</td><td></td>';
-            ProtHTM[SpinEdit1.Value+21]:='       <td>'+FloatToStr(maxert/1000)+
+            ProtHTM[edHTMLzeile.Value+20]:='   <tr><td>Bisher h&ouml;chster '+rsTagErtr+':</td><td></td>';
+            ProtHTM[edHTMLzeile.Value+21]:='       <td>'+FloatToStr(maxert/1000)+
                               ' kWh ('+FloatToStrF(maxert/pla, ffFixed, 12, 3)+
                               ' kWh/kW<sub>p</sub>)</td></tr>';
-            ProtHTM[SpinEdit1.Value+22]:='   <tr><td>Durchschnittlicher '+rsTagErtr+':</td><td></td>';
-            ProtHTM[SpinEdit1.Value+23]:='       <td>'+
+            ProtHTM[edHTMLzeile.Value+22]:='   <tr><td>Durchschnittlicher '+rsTagErtr+':</td><td></td>';
+            ProtHTM[edHTMLzeile.Value+23]:='       <td>'+
                               FloatToStrF(ger/anzt/1000, ffFixed, 12, 3)+
                               ' kWh ('+FloatToStrF(ger/anzt/pla, ffFixed, 12, 3)+
                               ' kWh/kW<sub>p</sub>)</td></tr>';
             soll:=soll/DaysInAMonth(StrToInt(copy(OutList[OutList.Count-1],1,4)),
                                     StrToInt(copy(OutList[OutList.Count-1],6,2)));
             if (ter/1000)<soll then hstr:=outgt else hstr:=intgt;
-            ProtHTM[SpinEdit1.Value+24]:='   <tr><td>'+rsTagErtr+' '+
+            ProtHTM[edHTMLzeile.Value+24]:='   <tr><td>'+rsTagErtr+' '+
                               FormatDateTime('dddd, dd. mmm. yyyy (hh:nn',
                               SDToTime(copy(OutList[OutList.Count-1],1,10))+
                               TToTT(copy(OutList[OutList.Count-1],12,5)))+
                               'h):</td><td></td>';
-            ProtHTM[SpinEdit1.Value+25]:='       '+hstr+'<b>'+
+            ProtHTM[edHTMLzeile.Value+25]:='       '+hstr+'<b>'+
                               FloatToStr(ter/1000)+' kWh</b> ('+rsSoll+
                               ': '+FloatToStrF(soll, ffFixed, 12, 3)+
                               ' kWh)</td></tr>';
-            hstr:=ExtractFileName(ChangeFileExt(FileNameEdit1.FileName, ''));
-            ProtHTM[SpinEdit1.Value+26]:=' </table>';
-            ProtHTM[SpinEdit1.Value+27]:=s;        {Table 90% in HTML}
-            ProtHTM[SpinEdit1.Value+28]:='   <tr><td><p><img src="'+hstr+
+            hstr:=ExtractFileName(ChangeFileExt(deServer.FileName, ''));
+            ProtHTM[edHTMLzeile.Value+26]:=' </table>';
+            ProtHTM[edHTMLzeile.Value+27]:=s;        {Table 90% in HTML}
+            ProtHTM[edHTMLzeile.Value+28]:='   <tr><td><p><img src="'+hstr+
               '1.png" style="width:45%;float:left;" alt="'+rsTagErtr+'">';
-            ProtHTM[SpinEdit1.Value+29]:='   <img src="'+hstr+
+            ProtHTM[edHTMLzeile.Value+29]:='   <img src="'+hstr+
               '2.png" style="width:45%;float:right;" alt="'+rsMonErtr+'"></p></td></tr>';
-            ProtHTM[SpinEdit1.Value+30]:=' </table>';
+            ProtHTM[edHTMLzeile.Value+30]:=' </table>';
             try
-              ProtHTM.SaveToFile(FileNameEdit1.FileName);
-              if CheckBox4.Checked then FileList.Add(FileNameEdit1.FileName);
+              ProtHTM.SaveToFile(deServer.FileName);
+              if CheckBox4.Checked then FileList.Add(deServer.FileName);
             except
-              SynMemo1.Lines.Add('Could not save '+FileNameEdit1.FileName);
+              SynMemo1.Lines.Add('Could not save '+deServer.FileName);
             end;
-            PageControl1.ActivePageIndex:=0;
-            hstr:=ChangeFileExt(FileNameEdit1.FileName, '')+'1.png'; {Bilddateiname}
+            pcMain.ActivePageIndex:=0;
+            hstr:=ChangeFileExt(deServer.FileName, '')+'1.png'; {Bilddateiname}
             Chart4.SaveToFile(TPortableNetworkGraphic, hstr);
             if CheckBox4.Checked then FileList.Add(hstr);
-            PageControl1.ActivePageIndex:=1;
-            hstr:=ChangeFileExt(FileNameEdit1.FileName, '')+'2.png'; {Bilddateiname}
+            pcMain.ActivePageIndex:=1;
+            hstr:=ChangeFileExt(deServer.FileName, '')+'2.png'; {Bilddateiname}
             Chart2.SaveToFile(TPortableNetworkGraphic, hstr);
             if CheckBox4.Checked then FileList.Add(hstr);
-            PageControl1.ActivePageIndex:=PageControl1.Tag;
+            pcMain.ActivePageIndex:=pcMain.Tag;
           end;                                     {Ende HTML-Generierung}
 
         end else if CheckBox4.Checked and          {Datei lokal nicht vorhanden}
@@ -3363,10 +3369,10 @@ Muss ggf. mit geändert werden!
           FTPAnzeige(clGreen);                     {FTP Download anstoßen}
           try
             FTPloginHP;
-            IdFTP1.Get(LabeledEdit14.Text,FileNameEdit1.FileName,
+            IdFTP1.Get(edHTMLfile.Text,deServer.FileName,
                        false, IdFTP1.ResumeSupported);
             FTPlogout;
-            StatusBar1.Panels[2].Text:=LabeledEdit14.Text+' downloaded';
+            StatusBar1.Panels[2].Text:=edHTMLfile.Text+' downloaded';
             SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
           except
             StatusBar1.Panels[2].Text:=msgHTMLdl;
@@ -3811,7 +3817,7 @@ begin
   InList:=TStringList.Create;    {speichert den Inhalt einer Datei}
   SplitList:=TStringList.Create; {Hilfsliste zum Aufsplitten separierter Daten}
   try
-    FileList:=FindAllFiles(DirectoryEdit1.Directory, LabeledEdit1.Text, false);
+    FileList:=FindAllFiles(deLocal.Directory, edFilter.Text, false);
     if FileList.Count>0 then begin
       for x:=0 to FileList.Count-1 do
         FileList[x]:=FileList[x];
@@ -3836,7 +3842,7 @@ begin
       end else begin                         {alles neu laden}
         OutList.Clear;
         DayList.Clear;
-        dr:=IncludeTrailingPathDelimiter(DirectoryEdit1.Directory);
+        dr:=IncludeTrailingPathDelimiter(deLocal.Directory);
   {hier wird Archive in Speicher (DayList) geladen}
         if FileExists(dr+archID+archfn) then DayList.LoadFromFile(dr+archID+archfn);
         PrevFileList.Assign(FileList);       {schon geladene Dateien merken}
@@ -3860,10 +3866,10 @@ begin
         OutListLesen(true);
         if OutList.Count>0 then StatusBar1.Panels[2].Text:=
           'Stand: '+copy(OutList[OutList.Count-1],12,5)+rsUhr;
-        BitBtn4.Enabled:=true;
-        BitBtn2.Enabled:=true;
-        BitBtn8.Enabled:=true;
-        BitBtn10.Enabled:=true;
+        btnSave.Enabled:=true;
+        btnBackup.Enabled:=true;
+        btnSimu.Enabled:=true;
+        btnArch.Enabled:=true;
         BitBtn11.Enabled:=true;             {Spez. Analyse entsperren}
         RadioGroup3.Enabled:=true;
       end;
@@ -3880,13 +3886,13 @@ begin
   end;
 end;
 
-procedure TForm1.BitBtn8Click(Sender: TObject);  {Analyse 70% Regelung}
+procedure TForm1.btnSimuClick(Sender: TObject);  {Analyse 70% Regelung}
 var SplitList, ResList: TStringList;
     x, p: integer;
     red70, ee, eeges, jges, ee70, eeges70, jges70, dlta, maxdlta: double;
     t, m: string;
 begin
-  BitBtn6.Tag:=0;
+  btnTag.Tag:=0;
   if OutList.Count>10 then begin
     Screen.Cursor:=crHourGlass;
     ResList:=TStringList.Create;
@@ -3894,12 +3900,12 @@ begin
     SplitList.Delimiter:=sep;
     try
       case RadioGroup7.ItemIndex of       {Leistungsgrenze einstellen}
-        0: red70:=StrToInt(LabeledEdit2.Text)*0.5;   {50%}
-        1: red70:=StrToInt(LabeledEdit2.Text)*0.6;   {60%}
-        2: red70:=StrToInt(LabeledEdit2.Text)*0.7;   {70%}
-        3: red70:=StrToInt(LabeledEdit2.Text)*0.8;   {80%}
+        0: red70:=StrToInt(edPeak.Text)*0.5;   {50%}
+        1: red70:=StrToInt(edPeak.Text)*0.6;   {60%}
+        2: red70:=StrToInt(edPeak.Text)*0.7;   {70%}
+        3: red70:=StrToInt(edPeak.Text)*0.8;   {80%}
       end;
-      PageControl1.ActivePageIndex:=3;    {zur Anzeige auf Statistik umschalten}
+      pcMain.ActivePageIndex:=3;    {zur Anzeige auf Statistik umschalten}
       RadioGroup1.ItemIndex:=-1;          {nichts auswählen}
       RadioGroup1.Tag:=1;                 {Indikator für diese Funktion}
       t:=RadioGroup7.Items[RadioGroup7.ItemIndex];
@@ -4005,7 +4011,7 @@ begin
       ResList.Add('');
       ResList.Add(rsMaxDelta+FloatToStrF(maxdlta/1000,ffFixed, 12, 3)+'kWh');
       SynMemo1.Lines.Add(rsMaxDelta+FloatToStrF(maxdlta/1000,ffFixed, 12, 3)+'kWh');
-      t:=IncludeTrailingPathDelimiter(DirectoryEdit1.Directory)+
+      t:=IncludeTrailingPathDelimiter(deLocal.Directory)+
          FormatDateTime(isodate, now)+'_'+rsAnalyse+
          copy(RadioGroup7.Items[RadioGroup7.ItemIndex], 2, 2)+'.csv';
       try
@@ -4023,12 +4029,12 @@ begin
   end;
 end;
 
-procedure TForm1.BitBtn9Click(Sender: TObject);  {FTP Verbindungsprotokoll speichern}
+procedure TForm1.btnSaveProtClick(Sender: TObject);  {FTP Verbindungsprotokoll speichern}
 begin
   if SynMemo1.Lines.Count>0 then begin
     SaveDialog1.Title:=capFTPProt+' '+capFTPsv+'...';
     SaveDialog1.FilterIndex:=3;
-    SaveDialog1.Filename:=IncludeTrailingPathDelimiter(DirectoryEdit1.Directory)+
+    SaveDialog1.Filename:=IncludeTrailingPathDelimiter(deLocal.Directory)+
                           FormatdateTime(isodate, now)+'_'+capFTPProt+'.txt';
     if SaveDialog1.Execute then begin
       SynMemo1.Lines.SaveToFile(SaveDialog1.FileName);
@@ -4065,7 +4071,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
     Chart1LineSeries2.SeriesColor:=ColorButton20.ButtonColor;
     SplitList:=TStringList.Create;
     SplitList.Delimiter:=sep;
-    lesw:=StrToInt(LabeledEdit5.Text);             {Schwellwert Leistung}
+    lesw:=StrToInt(edMinPower.Text);             {Schwellwert Leistung}
     beg:=0;
     fbeg:=1;
     fend:=0;
@@ -4133,7 +4139,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
     Chart1BarSeries1.BarPen.Color:=Chart1BarSeries1.SeriesColor;
     SplitList:=TStringList.Create;
     SplitList.Delimiter:=sep;
-    lesw:=StrToInt(LabeledEdit5.Text);
+    lesw:=StrToInt(edMinPower.Text);
     beg:=0;
     ld:=0;
     fa:=0;
@@ -4239,7 +4245,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
       Chart1ConstantLine1.Position:=sumpeak/zhl/1000;         {Durchschnitt}
       Chart1ConstantLine1.Active:=true;
-      Chart1ConstantLine2.Position:=StrToInt(LabeledEdit2.Text)/1000; {Soll}
+      Chart1ConstantLine2.Position:=StrToInt(edPeak.Text)/1000; {Soll}
       Chart1ConstantLine2.Active:=true;    {projektierte Peakleistung}
     finally
       SplitList.Free;
@@ -4317,7 +4323,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       t, maxt: string;
       sj, maxsj: double;
   begin
-    pla:=StrToInt(LabeledEdit2.Text);              {Peakleistung der Anlage}
+    pla:=StrToInt(edPeak.Text);              {Peakleistung der Anlage}
     Chart1.Title.Text[0]:=rsSpezJE;
     Chart1.AxisList[0].Title.Caption:=rsSpezJE+' [kWh/kWp]';
     Chart1.AxisList[1].Title.Caption:=rsJahresaw;
@@ -4416,7 +4422,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
     Chart1.AxisList[1].Grid.Visible:=false;
     SplitList:=TStringList.Create;
     SplitList.Delimiter:=sep;
-    pla:=StrToInt(LabeledEdit2.Text);
+    pla:=StrToInt(edPeak.Text);
     soll:=pla*GetSJE/365;
     ee:=0;
     y:=0;
@@ -4684,7 +4690,7 @@ var SplitList, SweepList: TStringList;
     dpt: TDateTime;
     erl: boolean;
 begin
-  pla:=StrToInt(LabeledEdit2.Text);             {Peakleistung der Anlage}
+  pla:=StrToInt(edPeak.Text);             {Peakleistung der Anlage}
   umax:=0;
   umin:=9999;
   er1:=0;                                       {Ertrag pro String}
@@ -4851,7 +4857,7 @@ begin
                    Chart4LineSeries3.AddXY(dpt, w/1000);
                end;
             5: begin    {Sweep: erstmal Werte einsammeln und dann darstellen}
-                 if StrToInt(SplitList[2])>StrToInt(LabeledEdit5.Text) then begin
+                 if StrToInt(SplitList[2])>StrToInt(edMinPower.Text) then begin
                    SweepList.Add(OutList[x]);      {Werte übernehmen}
                    w:=StrToInt(SplitList[5]);      {Spannung DC 1}
                    if w>umax then umax:=w;
@@ -4880,7 +4886,7 @@ begin
       Label3.Caption:=FloatToStr(peak/1000)+'kW';
       Label5.Caption:=s;
       Label20.Caption:=FloatToStrF(ee/pla, ffFixed, 12, 3)+'kWh/kWp';
-      Label7.Caption:=FloatToStrF(ee/1000*Geteevg, ffFixed, 12, 2)+LabeledEdit15.Text;
+      Label7.Caption:=FloatToStrF(ee/1000*Geteevg, ffFixed, 12, 2)+edEuro.Text;
       SpeedButton1.Enabled:=not (ComboBox1.ItemIndex=0);
       SpeedButton2.Enabled:=not (ComboBox1.ItemIndex=ComboBox1.Items.Count-1);
       if RadioGroup2.ItemIndex=5 then begin  {Sweep Diagramm zeichnen}
@@ -4899,10 +4905,10 @@ begin
         end;
         ProgressBar1.Position:=ProgressBar1.Max;
       end;
-      if BitBtn6.Tag=1 then begin            {Diesen Tag wieder herstellen}
+      if btnTag.Tag=1 then begin            {Diesen Tag wieder herstellen}
         SweepList.Clear;
         SweepList.Add(FormatDateTime(isodate, SDToTime(ComboBox1.Text))+sep+
-                      '000000'+sep+LabeledEdit7.Text+sep+
+                      '000000'+sep+edUser.Text+sep+
                       StatusBar1.Panels[0].Text+sep+'+0100');
         SweepList.Add(infbeg);
         SweepList.Add(StatusBar1.Panels[1].Text+sep+'Inverter Type'+sep+
@@ -4935,8 +4941,8 @@ begin
           end;
         end;
         SweepList.Add(datend);
-        s:=IncludeTrailingPathDelimiter(DirectoryEdit1.Directory)+
-           copy(LabeledEdit1.Text,1,length(LabeledEdit1.Text)-1)+
+        s:=IncludeTrailingPathDelimiter(deLocal.Directory)+
+           copy(edFilter.Text,1,length(edFilter.Text)-1)+
            FormatDateTime('YYMMDD', SDToTime(ComboBox1.Text))+'000000';
         SweepList.SaveToFile(s);
         StatusBar1.Panels[2].Text:=ExtractFileName(s)+' wiederhergestellt';
@@ -4960,7 +4966,7 @@ begin
   Chart2ConstantLine1.SeriesColor:=ColorButton10.ButtonColor; {default: nicht erreicht}
   Chart2ConstantLine2.Active:=false;      {Soll}
   Chart2ConstantLine2.SeriesColor:=ColorButton8.ButtonColor;
-  pla:=StrToInt(LabeledEdit2.Text);
+  pla:=StrToInt(edPeak.Text);
   if CheckBox10.Checked then Chart2.AxisList[0].Title.Caption:=rsErtrag+' '+
                                                          rsNormiert+' [kWh/kWp]'
                         else Chart2.AxisList[0].Title.Caption:=rsErtrag+' [kWh]';
@@ -5040,7 +5046,7 @@ begin
                                    SumGrid/1000, ffFixed, 12, 3)+'kWh';
       Label11.Caption:=t;
       Label21.Caption:=FloatToStrF(eeges/pla, ffFixed, 12, 3)+'kWh/kWp';
-      Label13.Caption:=FloatToStrF(eeges/1000*Geteevg, ffFixed, 12, 2)+LabeledEdit15.Text;
+      Label13.Caption:=FloatToStrF(eeges/1000*Geteevg, ffFixed, 12, 2)+edEuro.Text;
       if (eeges/dz)>(GetSJE*pla*
           StrToIntDef(StringGrid1.Cells[StrToInt(copy(ComboBox2.Text, 6, 2))-1, 1], 0)/SumGrid/
           DaysInAMonth(StrToInt(copy(ComboBox2.Text,1,4)), StrToInt(copy(ComboBox2.Text,6,2))))
@@ -5077,7 +5083,7 @@ var SplitList: TStringList;
     displ, sollw: double;
     erl, gef: boolean;
 begin
-  pla:=StrToInt(LabeledEdit2.Text);
+  pla:=StrToInt(edPeak.Text);
   gsum:=SumGrid;
   if CheckBox7.Checked then Chart3.AxisList[0].Title.Caption:=rsErtrag+' '+
                                                         rsNormiert+' [kWh/kWp]'
@@ -5225,7 +5231,7 @@ begin
       Label15.Caption:=FloatToStr(peak/1000)+'kW';
       Label17.Caption:=FloatToStr(jges/1000)+'kWh';
       Label22.Caption:=FloatToStrF(jges/pla, ffFixed, 12, 3)+'kWh/kWp';
-      Label19.Caption:=FloatToStrF(jges/1000*Geteevg, ffFixed, 12, 2)+LabeledEdit15.Text;
+      Label19.Caption:=FloatToStrF(jges/1000*Geteevg, ffFixed, 12, 2)+edEuro.Text;
 {spezifischer Jahresertrag, hochgerechnet, wenn Jahr noch nicht voll}
       Label24.Caption:=FloatToStrF(jges/pla/zhl*DaysInAYear(StrToInt(ComboBox3.Text)),
                                    ffFixed, 12, 3)+'kWh/kWp';
