@@ -1,13 +1,18 @@
-          {*******************************************************}
-          {                                                       }
-          {       Danfoss TripleLynx Pro WR Datenauswertung       }
-          {                                                       }
-          {       Copyright (c) 2011-2020 Helmut Elsner           }
-          {                                                       }
-          {       Compiler: FPC 2.6.1/2   /    Lazarus 1.1/3      }
-          {                 FPC 3.0.4     /    Lazarus 2.0.6      }
-          {                                                       }
-          {*******************************************************}
+          {********************************************************}
+          {                                                        }
+          {       Danfoss TripleLynx Pro WR Datenauswertung        }
+          {                                                        }
+          {       Copyright (c) 2011-2022 Helmut Elsner            }
+          {                                                        }
+          {       Compiler: FPC 3.2.2   /    Lazarus 2.2.0         }
+          {                                                        }
+          { Pascal programmers tend to plan ahead, they think      }
+          { before they type. We type a lot because of Pascal      }
+          { verboseness, but usually our code is right from the    }
+          { start. We end up typing less because we fix less bugs. }
+          {           [Jorge Aldo G. de F. Junior]                 }
+          {********************************************************}
+
 
 unit PV_Ausw1;
 
@@ -2676,10 +2681,12 @@ end;
 
 procedure TForm1.RadioGroup1Click(Sender: TObject);    {Statistiken}
 begin
+  Chart1.ZoomFull;
   if RadioGroup1.Tag=0 then begin
     XMLPropStorage1.StoredValue['LastEval']:=IntToStr(RadioGroup1.ItemIndex);
     Statistik;
-  end else RadioGroup1.Tag:=0;                         {keine 70%-Analyse}
+  end else
+    RadioGroup1.Tag:=0;                                {keine 70%-Analyse}
 end;
 
 procedure TForm1.RadioGroup2Click(Sender: TObject);    {Tagesauswertung}

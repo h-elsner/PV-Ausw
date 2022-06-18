@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 1055
+  Left = 1082
   Height = 645
-  Top = 121
+  Top = 146
   Width = 827
   AllowDropFiles = True
   ClientHeight = 645
@@ -13,11 +13,11 @@ object Form1: TForm1
   OnDropFiles = FormDropFiles
   Position = poDefaultPosOnly
   SessionProperties = 'WindowState;Height;Width'
-  LCLVersion = '2.2.0.2'
+  LCLVersion = '2.2.0.4'
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 23
-    Top = 622
+    Height = 17
+    Top = 628
     Width = 827
     Panels = <    
       item
@@ -211,17 +211,17 @@ object Form1: TForm1
     Height = 515
     Top = 104
     Width = 816
-    ActivePage = tsSetOpt
+    ActivePage = tsStatistik
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentShowHint = False
     ShowHint = True
-    TabIndex = 5
+    TabIndex = 3
     TabOrder = 2
     OnChange = pcMainChange
     OnMouseUp = pcMainMouseUp
     object tsTag: TTabSheet
-      ClientHeight = 482
-      ClientWidth = 810
+      ClientHeight = 486
+      ClientWidth = 806
       object ComboBox1: TComboBox
         Left = 10
         Height = 27
@@ -235,9 +235,9 @@ object Form1: TForm1
       end
       object Chart4: TChart
         Left = 136
-        Height = 482
+        Height = 486
         Top = 0
-        Width = 674
+        Width = 670
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -437,9 +437,9 @@ object Form1: TForm1
       end
       object CheckBox8: TCheckBox
         Left = 10
-        Height = 22
+        Height = 23
         Top = 152
-        Width = 22
+        Width = 23
         OnChange = CheckBox8Change
         TabOrder = 3
       end
@@ -461,8 +461,8 @@ object Form1: TForm1
       end
     end
     object tsMonat: TTabSheet
-      ClientHeight = 482
-      ClientWidth = 810
+      ClientHeight = 486
+      ClientWidth = 806
       object ComboBox2: TComboBox
         Left = 12
         Height = 27
@@ -476,9 +476,9 @@ object Form1: TForm1
       end
       object Chart2: TChart
         Left = 128
-        Height = 482
+        Height = 486
         Top = 0
-        Width = 680
+        Width = 676
         AxisList = <        
           item
             Marks.Format = '%0:.4g'
@@ -647,16 +647,16 @@ object Form1: TForm1
       end
       object CheckBox10: TCheckBox
         Left = 13
-        Height = 22
+        Height = 23
         Top = 94
-        Width = 22
+        Width = 23
         OnChange = CheckBox10Change
         TabOrder = 2
       end
     end
     object tsJahr: TTabSheet
-      ClientHeight = 482
-      ClientWidth = 810
+      ClientHeight = 486
+      ClientWidth = 806
       object ComboBox3: TComboBox
         Left = 12
         Height = 27
@@ -670,9 +670,9 @@ object Form1: TForm1
       end
       object Chart3: TChart
         Left = 128
-        Height = 482
+        Height = 486
         Top = 0
-        Width = 688
+        Width = 684
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -846,16 +846,16 @@ object Form1: TForm1
       end
       object CheckBox7: TCheckBox
         Left = 12
-        Height = 22
+        Height = 23
         Top = 93
-        Width = 22
+        Width = 23
         OnChange = CheckBox7Change
         TabOrder = 1
       end
     end
     object tsStatistik: TTabSheet
-      ClientHeight = 482
-      ClientWidth = 810
+      ClientHeight = 486
+      ClientWidth = 806
       object RadioGroup1: TRadioGroup
         Left = 5
         Height = 217
@@ -889,9 +889,9 @@ object Form1: TForm1
       end
       object Chart1: TChart
         Left = 130
-        Height = 482
+        Height = 486
         Top = 0
-        Width = 674
+        Width = 670
         AxisList = <        
           item
             Marks.Format = '%2:s'
@@ -1027,8 +1027,8 @@ object Form1: TForm1
       end
     end
     object tsSpiel: TTabSheet
-      ClientHeight = 482
-      ClientWidth = 810
+      ClientHeight = 486
+      ClientWidth = 806
       object GroupBox8: TGroupBox
         Left = 4
         Height = 138
@@ -1051,7 +1051,7 @@ object Form1: TForm1
           ChildSizing.ShrinkVertical = crsScaleChilds
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 79
+          ClientHeight = 94
           ClientWidth = 103
           Items.Strings = (
             'Tag'
@@ -1128,9 +1128,9 @@ object Form1: TForm1
         end
         object CheckBox11: TCheckBox
           Left = 14
-          Height = 22
+          Height = 23
           Top = 96
-          Width = 100
+          Width = 102
           Caption = 'CheckBox11'
           OnChange = CheckBox11Change
           TabOrder = 4
@@ -1159,7 +1159,7 @@ object Form1: TForm1
           ChildSizing.ShrinkVertical = crsScaleChilds
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 287
+          ClientHeight = 302
           ClientWidth = 99
           Items.Strings = (
             'P_AC'
@@ -1197,7 +1197,7 @@ object Form1: TForm1
           ChildSizing.ShrinkVertical = crsScaleChilds
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 287
+          ClientHeight = 302
           ClientWidth = 102
           Items.Strings = (
             'P_AC'
@@ -1223,9 +1223,9 @@ object Form1: TForm1
       end
       object Chart5: TChart
         Left = 243
-        Height = 482
+        Height = 486
         Top = 0
-        Width = 560
+        Width = 556
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -1278,29 +1278,29 @@ object Form1: TForm1
       end
     end
     object tsSetOpt: TTabSheet
-      ClientHeight = 482
-      ClientWidth = 810
+      ClientHeight = 486
+      ClientWidth = 806
       object pcSettings: TPageControl
         Left = 4
-        Height = 475
+        Height = 479
         Top = 8
-        Width = 798
+        Width = 794
         ActivePage = tsBasics
         Anchors = [akTop, akLeft, akRight, akBottom]
         TabIndex = 0
         TabOrder = 0
         OnChange = pcSettingsChange
         object tsBasics: TTabSheet
-          ClientHeight = 441
-          ClientWidth = 792
+          ClientHeight = 449
+          ClientWidth = 784
           object GroupBox2: TGroupBox
             Left = 4
             Height = 192
             Top = 8
-            Width = 768
+            Width = 760
             Anchors = [akTop, akLeft, akRight]
             ClientHeight = 190
-            ClientWidth = 766
+            ClientWidth = 758
             ParentColor = False
             ParentFont = False
             TabOrder = 0
@@ -1313,7 +1313,7 @@ object Form1: TForm1
             end
             object deLocal: TDirectoryEdit
               Left = 9
-              Height = 25
+              Height = 27
               Top = 30
               Width = 277
               ShowHidden = False
@@ -1326,7 +1326,7 @@ object Form1: TForm1
             end
             object edHTMLzeile: TSpinEdit
               Left = 487
-              Height = 25
+              Height = 27
               Top = 80
               Width = 200
               Color = clCream
@@ -1335,7 +1335,7 @@ object Form1: TForm1
             end
             object edFilter: TLabeledEdit
               Left = 487
-              Height = 25
+              Height = 27
               Top = 30
               Width = 200
               Color = clCream
@@ -1362,7 +1362,7 @@ object Form1: TForm1
             end
             object deServer: TFileNameEdit
               Left = 9
-              Height = 25
+              Height = 27
               Top = 80
               Width = 277
               DialogOptions = []
@@ -1377,9 +1377,9 @@ object Form1: TForm1
             end
             object CheckBox1: TCheckBox
               Left = 9
-              Height = 22
+              Height = 23
               Top = 112
-              Width = 22
+              Width = 23
               OnChange = CheckBox1Change
               TabOrder = 4
             end
@@ -1419,7 +1419,7 @@ object Form1: TForm1
             end
             object spePeriod: TSpinEdit
               Left = 487
-              Height = 25
+              Height = 27
               Top = 136
               Width = 71
               OnChange = spePeriodChange
@@ -1430,14 +1430,14 @@ object Form1: TForm1
             Left = 4
             Height = 144
             Top = 208
-            Width = 768
+            Width = 760
             Anchors = [akTop, akLeft, akRight]
             ClientHeight = 142
-            ClientWidth = 766
+            ClientWidth = 758
             TabOrder = 1
             object edPeak: TLabeledEdit
               Left = 9
-              Height = 25
+              Height = 27
               Top = 32
               Width = 200
               Color = clMoneyGreen
@@ -1449,7 +1449,7 @@ object Form1: TForm1
             end
             object edSpezJE: TLabeledEdit
               Left = 9
-              Height = 25
+              Height = 27
               Top = 80
               Width = 200
               Color = clMoneyGreen
@@ -1461,7 +1461,7 @@ object Form1: TForm1
             end
             object edVerg: TLabeledEdit
               Left = 487
-              Height = 25
+              Height = 27
               Top = 32
               Width = 200
               Color = clMoneyGreen
@@ -1473,7 +1473,7 @@ object Form1: TForm1
             end
             object edEuro: TLabeledEdit
               Left = 487
-              Height = 25
+              Height = 27
               Top = 80
               Width = 200
               Color = clMoneyGreen
@@ -1494,7 +1494,7 @@ object Form1: TForm1
             end
             object LabeledEdit17: TLabeledEdit
               Left = 286
-              Height = 25
+              Height = 27
               Top = 32
               Width = 112
               Color = clMoneyGreen
@@ -1507,7 +1507,7 @@ object Form1: TForm1
             end
             object LabeledEdit18: TLabeledEdit
               Left = 286
-              Height = 25
+              Height = 27
               Top = 56
               Width = 112
               Color = clMoneyGreen
@@ -1520,7 +1520,7 @@ object Form1: TForm1
             end
             object LabeledEdit19: TLabeledEdit
               Left = 286
-              Height = 25
+              Height = 27
               Top = 80
               Width = 112
               Color = clMoneyGreen
@@ -1534,20 +1534,20 @@ object Form1: TForm1
           end
         end
         object tsOptions: TTabSheet
-          ClientHeight = 441
-          ClientWidth = 792
+          ClientHeight = 449
+          ClientWidth = 784
           object GroupBox4: TGroupBox
             Left = 12
             Height = 216
             Top = 16
-            Width = 775
+            Width = 767
             Anchors = [akTop, akLeft, akRight]
             ClientHeight = 214
-            ClientWidth = 773
+            ClientWidth = 765
             TabOrder = 0
             object edMinPower: TLabeledEdit
               Left = 9
-              Height = 25
+              Height = 27
               Top = 24
               Width = 118
               Color = clCream
@@ -1671,7 +1671,7 @@ object Form1: TForm1
             end
             object speArchPeriod: TSpinEdit
               Left = 9
-              Height = 25
+              Height = 27
               Top = 136
               Width = 120
               Color = clCream
@@ -1715,7 +1715,7 @@ object Form1: TForm1
             end
             object edKorrFak: TLabeledEdit
               Left = 347
-              Height = 25
+              Height = 27
               Top = 136
               Width = 121
               Color = clCream
@@ -1735,9 +1735,9 @@ object Form1: TForm1
             end
             object CheckBox13: TCheckBox
               Left = 534
-              Height = 22
+              Height = 23
               Top = 140
-              Width = 100
+              Width = 102
               Caption = 'CheckBox13'
               OnChange = CheckBox13Change
               TabOrder = 6
@@ -1747,10 +1747,10 @@ object Form1: TForm1
             Left = 4
             Height = 168
             Top = 240
-            Width = 775
+            Width = 767
             Anchors = [akTop, akLeft, akRight]
             ClientHeight = 166
-            ClientWidth = 773
+            ClientWidth = 765
             TabOrder = 1
             object btnBackup: TBitBtn
               Left = 9
@@ -1828,7 +1828,7 @@ object Form1: TForm1
               TabOrder = 1
             end
             object btnAbout: TBitBtn
-              Left = 612
+              Left = 604
               Height = 29
               Top = 8
               Width = 142
@@ -1937,7 +1937,7 @@ object Form1: TForm1
               TabOrder = 4
             end
             object Label51: TLabel
-              Left = 705
+              Left = 697
               Height = 16
               Top = 48
               Width = 49
@@ -1951,7 +1951,7 @@ object Form1: TForm1
               OnMouseLeave = Label51MouseLeave
             end
             object Label52: TLabel
-              Left = 689
+              Left = 681
               Height = 16
               Top = 104
               Width = 65
@@ -1965,7 +1965,7 @@ object Form1: TForm1
               OnMouseLeave = Label52MouseLeave
             end
             object Label53: TLabel
-              Left = 645
+              Left = 637
               Height = 16
               Top = 77
               Width = 109
@@ -2007,22 +2007,22 @@ object Form1: TForm1
           end
         end
         object tsFTP: TTabSheet
-          ClientHeight = 441
-          ClientWidth = 792
+          ClientHeight = 449
+          ClientWidth = 784
           object GroupBox5: TGroupBox
             Left = 12
             Height = 176
             Top = 8
-            Width = 764
+            Width = 756
             Anchors = [akTop, akLeft, akRight]
             Caption = 'WR-Datawarehouse'
             ClientHeight = 174
-            ClientWidth = 762
+            ClientWidth = 754
             ParentColor = False
             TabOrder = 0
             object edServerName: TLabeledEdit
               Left = 8
-              Height = 25
+              Height = 27
               Hint = 'Hostname oder IP-Adresse des Datawarehouse, wie beim Wechselrichter eingestellt'
               Top = 24
               Width = 512
@@ -2035,7 +2035,7 @@ object Form1: TForm1
             end
             object edUser: TLabeledEdit
               Left = 8
-              Height = 25
+              Height = 27
               Hint = 'Benutzername für Datawarehouse'
               Top = 72
               Width = 248
@@ -2048,7 +2048,7 @@ object Form1: TForm1
             end
             object edPasw: TLabeledEdit
               Left = 273
-              Height = 25
+              Height = 27
               Hint = 'Passwort für Datawarehouse'
               Top = 72
               Width = 246
@@ -2063,7 +2063,7 @@ object Form1: TForm1
             end
             object edFolder: TLabeledEdit
               Left = 8
-              Height = 25
+              Height = 27
               Hint = 'Eventuell zusätzliches Verzeichnis, kann aber auch leer bleiben'
               Top = 120
               Width = 248
@@ -2076,17 +2076,17 @@ object Form1: TForm1
             end
             object CheckBox2: TCheckBox
               Left = 545
-              Height = 22
+              Height = 23
               Top = 28
-              Width = 22
+              Width = 23
               OnChange = CheckBox2Change
               TabOrder = 1
             end
             object CheckBox5: TCheckBox
               Left = 545
-              Height = 22
+              Height = 23
               Top = 76
-              Width = 22
+              Width = 23
               OnChange = CheckBox5Change
               TabOrder = 5
             end
@@ -2100,9 +2100,9 @@ object Form1: TForm1
             end
             object CheckBox9: TCheckBox
               Left = 275
-              Height = 22
+              Height = 23
               Top = 121
-              Width = 22
+              Width = 23
               OnChange = CheckBox9Change
               TabOrder = 7
             end
@@ -2115,7 +2115,7 @@ object Form1: TForm1
             end
             object SpinEdit4: TSpinEdit
               Left = 469
-              Height = 25
+              Height = 27
               Top = 122
               Width = 50
               OnChange = SpinEdit4Change
@@ -2126,15 +2126,15 @@ object Form1: TForm1
             Left = 8
             Height = 217
             Top = 192
-            Width = 764
+            Width = 756
             Anchors = [akTop, akLeft, akRight]
             Caption = 'Webspace/Homepage'
             ClientHeight = 215
-            ClientWidth = 762
+            ClientWidth = 754
             TabOrder = 1
             object edHTMLserver: TLabeledEdit
               Left = 8
-              Height = 25
+              Height = 27
               Hint = 'Hostname oder IP-Adresse der Homepage'
               Top = 64
               Width = 512
@@ -2147,23 +2147,23 @@ object Form1: TForm1
             end
             object CheckBox3: TCheckBox
               Left = 8
-              Height = 22
+              Height = 23
               Top = 16
-              Width = 22
+              Width = 23
               OnChange = CheckBox3Change
               TabOrder = 0
             end
             object CheckBox4: TCheckBox
               Left = 545
-              Height = 22
+              Height = 23
               Top = 68
-              Width = 22
+              Width = 23
               OnChange = CheckBox4Change
               TabOrder = 2
             end
             object edHTMLuser: TLabeledEdit
               Left = 8
-              Height = 25
+              Height = 27
               Hint = 'Benutzername für Homepage'
               Top = 112
               Width = 248
@@ -2176,7 +2176,7 @@ object Form1: TForm1
             end
             object edHTMLpasw: TLabeledEdit
               Left = 273
-              Height = 25
+              Height = 27
               Hint = 'Passwort für Homepage'
               Top = 112
               Width = 248
@@ -2191,7 +2191,7 @@ object Form1: TForm1
             end
             object edHTMLfolder: TLabeledEdit
               Left = 8
-              Height = 25
+              Height = 27
               Hint = 'Eventuell anderes Verzeichnis, kann aber auch leer bleiben'
               Top = 160
               Width = 248
@@ -2204,15 +2204,15 @@ object Form1: TForm1
             end
             object CheckBox6: TCheckBox
               Left = 545
-              Height = 22
+              Height = 23
               Top = 116
-              Width = 22
+              Width = 23
               OnChange = CheckBox6Change
               TabOrder = 8
             end
             object edHTMLfile: TLabeledEdit
               Left = 272
-              Height = 25
+              Height = 27
               Hint = 'Dateiname der HTML-Protokolldatei, die aktualisiert werden soll. Siehe Basisdaten.'
               Top = 160
               Width = 248
@@ -2237,8 +2237,8 @@ object Form1: TForm1
         end
         object tsColors: TTabSheet
           Caption = 'tsColors'
-          ClientHeight = 441
-          ClientWidth = 792
+          ClientHeight = 449
+          ClientWidth = 784
           object GroupBox10: TGroupBox
             Left = 12
             Height = 160
@@ -2762,12 +2762,12 @@ object Form1: TForm1
           end
         end
         object tsProt: TTabSheet
-          ClientHeight = 441
-          ClientWidth = 792
+          ClientHeight = 449
+          ClientWidth = 784
           object btnSaveProt: TBitBtn
             Left = 4
             Height = 33
-            Top = 387
+            Top = 395
             Width = 118
             Anchors = [akLeft, akBottom]
             Glyph.Data = {
@@ -2804,9 +2804,9 @@ object Form1: TForm1
           inline SynMemo1: TSynMemo
             Cursor = crIBeam
             Left = 4
-            Height = 373
+            Height = 381
             Top = 7
-            Width = 768
+            Width = 760
             Anchors = [akTop, akLeft, akRight, akBottom]
             Color = clCream
             Font.Height = -13
@@ -3412,9 +3412,9 @@ object Form1: TForm1
           end
           object CheckBox12: TCheckBox
             Left = 140
-            Height = 22
-            Top = 391
-            Width = 100
+            Height = 23
+            Top = 398
+            Width = 102
             Anchors = [akLeft, akBottom]
             Caption = 'CheckBox12'
             OnChange = CheckBox12Change
