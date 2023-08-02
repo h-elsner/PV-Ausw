@@ -184,7 +184,8 @@ begin
   ErrorMsg:='No proper integer value in XML file';
   try
     FileList.LoadFromFile(ExtractFilePath(paramstr(0))+inidat);
-    for x:=0 to FileList.Count-1 do if FileList[x][1]<>'#' then begin
+    for x:=0 to FileList.Count-1 do
+    if FileList[x][1]<>'#' then begin
       rs:=getval('DatawarehouseRoot', FileList[x]);
       if rs>'' then suchpfad:=rs;
       rs:=getval('FileFilter', FileList[x]);
