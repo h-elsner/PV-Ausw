@@ -12,6 +12,7 @@ uses
 {$R *.res}
 
 begin
+  Application.Title:='Danfoss Inverter';
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);

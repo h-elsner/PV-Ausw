@@ -57,6 +57,7 @@ unit PV_Ausw1;
   12    Netzfrequenz  [/100 --> Hz]
   13    Meßintervall  [sec]
   14    Isolationswiderstand [kOhm]
+  15    Fehler Nummer (115 - PV-Isolationswiderstand)
   ------------------------------------------------------------------------------
 
   Archiveausgabeformat (arch_days_hist.csv):
@@ -68,6 +69,7 @@ unit PV_Ausw1;
    2	Ertrag/Tag    [Wh]
    3    Beginn        [hh:mm]
    4    Ende          [hh:mm]
+   5    Fehler Nummer
   ------------------------------------------------------------------------------
 
   Historie:
@@ -152,6 +154,7 @@ unit PV_Ausw1;
   2019-09-03      Balken Klicken reaktiviert
   2020-02-28      Fehler bei Jahresstatistik Balken anklichen, wenn 3 Monate vom
                   Vorjahr noch angezeigt werden
+  2023-02-27 V4.5 Fehler 115 (PV-Isolation) visualisieren
 
   This library is free software; you can redistribute it and/or modify it
   under the terms of the GNU Library General Public License as published by
@@ -200,7 +203,7 @@ type
   TForm1 = class(TForm)
     btnEinlesen: TBitBtn;    {Daten einlesen}
     btnArch: TBitBtn;
-    BitBtn11: TBitBtn;
+    btnStarten: TBitBtn;
     btnColorsReset: TBitBtn;
     btnColorsLoad: TBitBtn;
     btnColorsSave: TBitBtn;
@@ -214,30 +217,32 @@ type
     btnSaveProt: TBitBtn;
     btnTestFTP: TButton;
     btnTestHTML: TButton;
-    Chart1:  TChart;
-    Chart1BarSeries1:    TBarSeries;
-    Chart1BarSeries2:    TBarSeries;
-    Chart1ConstantLine1: TConstantLine;
-    Chart1ConstantLine2: TConstantLine;
-    Chart1LineSeries1:   TLineSeries;
-    Chart1LineSeries2:   TLineSeries;
-    Chart2: TChart;
-    Chart2BarSeries1:    TBarSeries;
-    Chart2ConstantLine1: TConstantLine;
-    Chart2ConstantLine2: TConstantLine;
-    Chart3: TChart;
-    Chart3BarSeries1:    TBarSeries;
-    Chart3BarSeries2:    TBarSeries;
-    Chart3ConstantLine1: TConstantLine;
-    Chart3ConstantLine2: TConstantLine;
-    Chart4: TChart;
-    Chart4LineSeries1:   TLineSeries;
-    Chart4LineSeries2:   TLineSeries;
-    Chart4LineSeries3:   TLineSeries;
-    Chart4LineSeries4:   TLineSeries;
-    Chart5: TChart;
-    Chart5LineSeries1:   TLineSeries;
-    Chart5LineSeries2:   TLineSeries;
+    bsM115: TBarSeries;
+    chStat:  TChart;
+    chStatBarSeries1:    TBarSeries;
+    chStatBarSeries2:    TBarSeries;
+    chStatConstantLine1: TConstantLine;
+    chStatConstantLine2: TConstantLine;
+    chStatLineSeries1:   TLineSeries;
+    chStatLineSeries2:   TLineSeries;
+    chMonat: TChart;
+    bsMonat:    TBarSeries;
+    chMonatConstantLine1: TConstantLine;
+    chMonatConstantLine2: TConstantLine;
+    chJahr: TChart;
+    chJahrBarSeries1:    TBarSeries;
+    chJahrBarSeries2:    TBarSeries;
+    chJahrConstantLine1: TConstantLine;
+    chJahrConstantLine2: TConstantLine;
+    chTag: TChart;
+    bsT115: TBarSeries;
+    chTagLineSeries1:   TLineSeries;
+    chTagLineSeries2:   TLineSeries;
+    chTagLineSeries3:   TLineSeries;
+    chTagLineSeries4:   TLineSeries;
+    chSplw: TChart;
+    chSplwLineSeries1:   TLineSeries;
+    chSplwLineSeries2:   TLineSeries;
     ChartAxisTransformations1: TChartAxisTransformations;
     ChartAxisTransformations1AutoScaleAxisTransform1: TAutoScaleAxisTransform;
     ChartAxisTransformations2: TChartAxisTransformations;
@@ -251,7 +256,7 @@ type
     ChartToolset3DataPointClickTool1: TDataPointClickTool;
     CheckBox1:  TCheckBox;
     CheckBox10: TCheckBox;
-    CheckBox11: TCheckBox;
+    cbxSommerzeit: TCheckBox;
     CheckBox12: TCheckBox;
     CheckBox13: TCheckBox;
     CheckBox2:  TCheckBox;
@@ -283,11 +288,11 @@ type
     ColorButton8: TColorButton;
     ColorButton9: TColorButton;
     ColorDialog1: TColorDialog;
-    ComboBox1:  TComboBox;
+    cbAuswerteTag:  TComboBox;
     ComboBox2:  TComboBox;
     ComboBox3:  TComboBox;
-    ComboBox4:  TComboBox;
-    ComboBox5:  TComboBox;
+    cbxTagrot:  TComboBox;
+    cbxTagblau:  TComboBox;
     DateEdit1:  TDateEdit;
     DateTimeIntervalChartSource1: TDateTimeIntervalChartSource;
     DateTimeIntervalChartSource2: TDateTimeIntervalChartSource;
@@ -399,7 +404,7 @@ type
     PopupMenu2:   TPopupMenu;
     PopupMenu3:   TPopupMenu;
     ProgressBar1: TProgressBar;
-    RadioGroup1:  TRadioGroup;
+    rgAuswertung:  TRadioGroup;
     RadioGroup2:  TRadioGroup;
     RadioGroup3:  TRadioGroup;
     RadioGroup4:  TRadioGroup;
@@ -436,12 +441,12 @@ type
     tsBasics:  TTabSheet;
     tsOptions:  TTabSheet;
     tsFTP:  TTabSheet;
-    Timer1:     TTimer;
+    tmrStart:     TTimer;
     TrackBar1:  TTrackBar;
     TrackBar2:  TTrackBar;
     XMLPropStorage1: TXMLPropStorage;
     procedure btnArchClick(Sender: TObject);
-    procedure BitBtn11Click(Sender: TObject);
+    procedure btnStartenClick(Sender: TObject);
     procedure btnColorsResetClick(Sender: TObject);
     procedure btnColorsLoadClick(Sender: TObject);
     procedure btnColorsSaveClick(Sender: TObject);
@@ -455,20 +460,20 @@ type
     procedure btnSaveProtClick(Sender: TObject);
     procedure btnTestFTPClick(Sender: TObject);
     procedure btnTestHTMLClick(Sender: TObject);
-    procedure Chart1MouseUp(Sender: TObject; Button: TMouseButton;
+    procedure chStatMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure Chart2DblClick(Sender: TObject);
-    procedure Chart3DblClick(Sender: TObject);
-    procedure Chart4MouseUp(Sender: TObject; Button: TMouseButton;
+    procedure chMonatDblClick(Sender: TObject);
+    procedure chJahrDblClick(Sender: TObject);
+    procedure chTagMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
-    procedure Chart5MouseUp(Sender: TObject; Button: TMouseButton;
+    procedure chSplwMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure ChartToolset2DataPointClickTool1PointClick(ATool: TChartTool;
       APoint: TPoint);
     procedure ChartToolset3DataPointClickTool1PointClick(ATool: TChartTool;
       APoint: TPoint);
     procedure CheckBox10Change(Sender: TObject);
-    procedure CheckBox11Change(Sender: TObject);
+    procedure cbxSommerzeitChange(Sender: TObject);
     procedure CheckBox12Change(Sender: TObject);
     procedure CheckBox13Change(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
@@ -481,11 +486,11 @@ type
     procedure CheckBox8Change(Sender: TObject);
     procedure CheckBox9Change(Sender: TObject);
     procedure ColorButton1ColorChanged(Sender: TObject);
-    procedure ComboBox1Change(Sender: TObject);
+    procedure cbAuswerteTagChange(Sender: TObject);
     procedure ComboBox2Change(Sender: TObject);
     procedure ComboBox3Change(Sender: TObject);
-    procedure ComboBox4Change(Sender: TObject);
-    procedure ComboBox5Change(Sender: TObject);
+    procedure cbxTagrotChange(Sender: TObject);
+    procedure cbxTagblauChange(Sender: TObject);
     procedure DateEdit1AcceptDate(Sender: TObject; var ADate: TDateTime;
       var AcceptDate: Boolean);
     procedure deLocalChange(Sender: TObject);   {Pfad zum Datawarehouse}
@@ -530,7 +535,7 @@ type
     procedure pcMainMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
     procedure pcSettingsChange(Sender: TObject);
-    procedure RadioGroup1Click(Sender: TObject);
+    procedure rgAuswertungClick(Sender: TObject);
     procedure RadioGroup2Click(Sender: TObject);
     procedure RadioGroup3Click(Sender: TObject);
     procedure RadioGroup6Click(Sender: TObject);
@@ -545,7 +550,7 @@ type
     procedure spePeriodChange(Sender: TObject);
     procedure SpinEdit4Change(Sender: TObject);
     procedure StringGrid1Click(Sender: TObject);
-    procedure Timer1Timer(Sender: TObject);
+    procedure tmrStartTimer(Sender: TObject);
     procedure TrackBar1Change(Sender: TObject);
     procedure TrackBar2Change(Sender: TObject);
 
@@ -572,12 +577,13 @@ type
     function  GetOutListIDX(s: string): integer; {Zeilennummer ermitteln}
     function  ColorMatrix: string;                 {Farben speichern}
     procedure SetDColor(s: string);
-  public
+//    function  CompareTxt(list: TStringList; Idx1, Idx2: integer): integer;
+public
     {hier public einfügen}
   end;
 
 const
-  Version ='V4.4  07/2019';
+  Version ='V4.5  02/2023';
   homepage='http://h-elsner.mooo.com';             {meine Homepage}
   meinname='Helmut Elsner';
   email   ='helmut.elsner@live.com';               {meine e-mail Adresse}
@@ -652,10 +658,11 @@ begin
   Self.DoubleBuffered:=True;
   SynMemo1.Lines.Clear;
   SynMemo1.Lines.Add(paramstr(0)+'  '+version);
-  for x:=1 to ParamCount do SynMemo1.Lines.Add(paramstr(x));
+  for x:=1 to ParamCount do
+    SynMemo1.Lines.Add(paramstr(x));
   SynMemo1.Lines.Add('Start  : '+FormatDateTime(isoday+' hh:nn:ss', now));
   SynMemo1.Lines.Add('');
-  ComboBox1.Text:='Day';
+  cbAuswerteTag.Text:='Day';
   ComboBox2.Text:='Month';
   ComboBox3.Text:='Year';
   DateEdit1.Enabled:=false;
@@ -678,8 +685,8 @@ begin
   btnSaveProt.Hint   :=capFTPprot+' '+capFTPsv;
   btnArch.Caption:=capArchiv;
   btnArch.Hint  :=hntArchiv;
-  BitBtn11.Caption:=capSpAna;
-  BitBtn11.Hint  :=hntSpAna;
+  btnStarten.Caption:=capSpAna;
+  btnStarten.Hint  :=hntSpAna;
   btnColorsReset.Caption:=capResetCl;
   btnColorsReset.Hint  :=hntResetCl;
   btnColorsLoad.Caption:=capBB13;
@@ -844,8 +851,8 @@ begin
   CheckBox12.Hint:=hntFList;
   CheckBox13.Caption:=capNoReduc;
   CheckBox13.Hint:=hntNoReduc;
-  CheckBox11.Caption:=capNoDST;
-  CheckBox11.Hint:=hntNoDST;
+  cbxSommerzeit.Caption:=capNoDST;
+  cbxSommerzeit.Hint:=hntNoDST;
   CheckBox8.Caption:=capShowStr;
   CheckBox8.Hint:=hntShowStr;
   CheckBox9.Caption:=capFTPpasv;
@@ -856,18 +863,18 @@ begin
   Label52.Hint:=Homepage;
   Label53.Hint:=dupdate;
 
-  RadioGroup1.Caption:=capAuswtg;
-  RadioGroup1.Hint:=rsStatistikerz;
-  RadioGroup1.Items.Clear;
-  RadioGroup1.Items.Add(rsPeakL);
-  RadioGroup1.Items.Add(rsStartE);
-  RadioGroup1.Items.Add(rsEdauer);
-  RadioGroup1.Items.Add(rsErtrag);
-  RadioGroup1.Items.Add(rsSpYP);
-  RadioGroup1.Items.Add(rsRelErtr);
-  RadioGroup1.Items.Add(rsUAC);
-  RadioGroup1.Items.Add(rsFrequ);
-  RadioGroup1.Items.Add(rsWRTemp1);
+  rgAuswertung.Caption:=capAuswtg;
+  rgAuswertung.Hint:=rsStatistikerz;
+  rgAuswertung.Items.Clear;
+  rgAuswertung.Items.Add(rsPeakL);
+  rgAuswertung.Items.Add(rsStartE);
+  rgAuswertung.Items.Add(rsEdauer);
+  rgAuswertung.Items.Add(rsErtrag);
+  rgAuswertung.Items.Add(rsSpYP);
+  rgAuswertung.Items.Add(rsRelErtr);
+  rgAuswertung.Items.Add(rsUAC);
+  rgAuswertung.Items.Add(rsFrequ);
+  rgAuswertung.Items.Add(rsWRTemp1);
 
   RadioGroup2.Caption:=capAnzeige;
   RadioGroup2.Hint:=hntAnzeige;
@@ -899,10 +906,10 @@ begin
   DayList:=TStringList.Create;
   PrevFileList:=TStringList.Create;
   IDXList:=TStringList.Create;         {Position 1. Datenzeile in OutList}
-  btnTag.Tag:=0;                      {Default: keine Wiederherstellung}
-  ComboBox1.Color:=clDefault;
-  ComboBox5.Visible:=false;
-  ComboBox5.Hint:=hntSnddate;
+  btnTag.Tag:=0;                       {Default: keine Wiederherstellung}
+  cbAuswerteTag.Color:=clDefault;
+  cbxTagblau.Visible:=false;
+  cbxTagblau.Hint:=hntSnddate;
   tsProt.Caption:=capFTPProt;
 {Einstellungsdaten aus gespeicherten Basiswerten holen}
   deLocal.Directory:=XMLPropStorage1.StoredValue['DatawarehouseRoot'];
@@ -932,7 +939,7 @@ begin
   CheckBox10.Checked:=StrToBool(XMLPropStorage1.StoredValue['MNormiert']);
   CheckBox12.Checked:=StrToBool(XMLPropStorage1.StoredValue['NoFileList']);
   CheckBox13.Checked:=StrToBool(XMLPropStorage1.StoredValue['NoReduction']);
-  CheckBox11.Checked:=StrToBool(XMLPropStorage1.StoredValue['NoDST']);
+  cbxSommerzeit.Checked:=StrToBool(XMLPropStorage1.StoredValue['NoDST']);
   CheckBox8.Checked:=StrToBool(XMLPropStorage1.StoredValue['ShowStrings']);
   CheckBox9.Checked:=StrToBool(XMLPropStorage1.StoredValue['FTPpasv']);
   speArchPeriod.Value:=StrToInt(XMLPropStorage1.StoredValue['ToArchive']);
@@ -957,7 +964,7 @@ begin
     StringGrid1.Columns[x-1].Title.Caption:=s;
     SynAnySyn1.Constants.Add(UpCase(s));        {Datum highlight}
   end;
-  RadioGroup1.Tag:=0;                           {keine 70%-Analyse}
+  rgAuswertung.Tag:=0;                           {keine 70%-Analyse}
   SplitList:=TStringList.Create;
   SplitList.Delimiter:=sep;
   p:=0;
@@ -975,8 +982,8 @@ begin
   TrackBar1.Position:=StrToInt(XMLPropStorage1.StoredValue['Histogrammerzeugung']);
   TrackBar2.Position:=StrToInt(XMLPropStorage1.StoredValue['Smooth']);
   p:=StrToInt(XMLPropStorage1.StoredValue['LastEval']);
-  if (Trackbar1.Position>3) or (p<5) then RadioGroup1.ItemIndex:=p
-                                     else RadioGroup1.ItemIndex:=3; {Ertrag=default};
+  if (Trackbar1.Position>3) or (p<5) then rgAuswertung.ItemIndex:=p
+                                     else rgAuswertung.ItemIndex:=3; {Ertrag=default};
   StatusBar1.Panels[0].Text:=XMLPropStorage1.StoredValue['InverterName'];
   StatusBar1.Panels[1].Text:=XMLPropStorage1.StoredValue['InverterID'];
   StatusBar1.Panels[2].Text:=deLocal.Directory;
@@ -997,7 +1004,7 @@ begin
   btnBackup.Enabled:=false;                       {Backup}
   btnSimu.Enabled:=false;                       {70% Regel sperren}
   btnArch.Enabled:=false;                      {Archivieren sperren}
-  BitBtn11.Enabled:=false;                      {Spez. Analyse sperren}
+  btnStarten.Enabled:=false;                      {Spez. Analyse sperren}
   RadioGroup3.Enabled:=false;
   btnLoad.Enabled:=FileExists((ExtractFilePath(Application.ExeName)+rawdat));
   pcSettings.ActivePageIndex:=StrToInt(XMLPropStorage1.StoredValue['LastOptSheet']);
@@ -1012,8 +1019,8 @@ begin
   pcMain.ActivePageIndex:=p;
   ChangeTab;
   if p<>epg then begin                          {Auswertung automatisch starten}
-    Timer1.Interval:=50;                        {relativ schnell starten, 50ms}
-    Timer1.Enabled:=true;
+    tmrStart.Interval:=50;                        {relativ schnell starten, 50ms}
+    tmrStart.Enabled:=true;
   end;
 end;
 
@@ -1104,13 +1111,13 @@ begin
   end;
 end;
 
-procedure TForm1.Timer1Timer(Sender: TObject);  {Timerevent starten Auswertung}
+procedure TForm1.tmrStartTimer(Sender: TObject);  {Timerevent starten Auswertung}
 begin
-  Timer1.Enabled:=false;
+  tmrStart.Enabled:=false;
   if spePeriod.Value>0 then begin               {startet automatischen Download}
     SynMemo1.Clear;                             {verhindert Zumüllen}
-    Timer1.Interval:=spePeriod.Value*60000;     {SpinEdit in Minuten}
-    Timer1.Enabled:=true;
+    tmrStart.Interval:=spePeriod.Value*60000;     {SpinEdit in Minuten}
+    tmrStart.Enabled:=true;
   end;
   FTPdownload;
   Auswerten;
@@ -1171,14 +1178,14 @@ begin
   XMLPropStorage1.StoredValue['FTP_DWpath']:=edFolder.Text;
 end;
 
-{also   Chart1.SaveToBitmapFile(fn); aber dann wirklich Bitmap}
+{also   chStat.SaveToBitmapFile(fn); aber dann wirklich Bitmap}
 
 procedure TForm1.MenuItem1Click(Sender: TObject); {Als Bild speichern}
 begin
   if OutList.Count>0 then begin               {nur wenn was angezeigt wird}
     SaveDialog1.Title:=titSave1;
     SaveDialog1.FilterIndex:=1;
-    if RadioGroup1.Tag=1
+    if rgAuswertung.Tag=1
       then SaveDialog1.FileName:=rsAnalyse+
                copy(RadioGroup7.Items[RadioGroup7.ItemIndex], 2, 2)+'_1.png'
       else SaveDialog1.FileName:='chart_'+FormatDateTime(isodate, now)+'_'+
@@ -1186,11 +1193,11 @@ begin
     if SaveDialog1.Execute then begin
       Application.ProcessMessages;
       case pcMain.ActivePageIndex of
-        0: Chart4.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);
-        1: Chart2.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);
-        2: Chart3.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);
-        3: Chart1.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);  {Statistik}
-        4: Chart5.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);  {Spielwiese}
+        0: chTag.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);
+        1: chMonat.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);
+        2: chJahr.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);
+        3: chStat.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);  {Statistik}
+        4: chSplw.SaveToFile(TPortableNetworkGraphic, SaveDialog1.FileName);  {Spielwiese}
       end;
     end;
   end;
@@ -1219,9 +1226,9 @@ begin
     splitlist.StrictDelimiter:=true;               {Datum/Zeit komplett übernehmen}
     ertrag:=0;
     SynMemo1.Lines.Add('');
-    SynMemo1.Lines.Add(rsKorrErtrag+ComboBox1.Text);
+    SynMemo1.Lines.Add(rsKorrErtrag+cbAuswerteTag.Text);
     vstr:=StringReplace(edFilter.Text, '*', '', [])+
-          copy(StringReplace(ComboBox1.Text, '-', '', [rfReplaceAll]), 3, 6);
+          copy(StringReplace(cbAuswerteTag.Text, '-', '', [rfReplaceAll]), 3, 6);
     if PrevFileList.Count>1 then begin             {überhaupt Dateien geladen}
 
       for i:=0 to PrevFileList.Count-1 do begin    {alle geladenen Dateien}
@@ -1230,7 +1237,7 @@ begin
           for k:=0 to Inlist.Count-1 do begin
             splitlist.DelimitedText:=inlist[k];
             if (splitlist.Count>26) and            {nur Datenzeilen}
-               (copy(splitlist[1], 1, 10)=ComboBox1.Text) then begin
+               (copy(splitlist[1], 1, 10)=cbAuswerteTag.Text) then begin
               ertrag:=ertrag+                      {aus Leistung aufintegrieren}
                       (StrToInt(splitlist[3])*     {Leistung P_AC in Watt}
                        StrToInt(splitlist[0])/3600000);    {Intervall in sec}
@@ -1257,11 +1264,11 @@ end;
 procedure TForm1.MenuItem6Click(Sender: TObject);  {Copy chart to clipboard}
 begin
   case pcMain.ActivePageIndex of
-    0: Chart4.CopyToClipboardBitmap;
-    1: Chart2.CopyToClipboardBitmap;
-    2: Chart3.CopyToClipboardBitmap;
-    3: Chart1.CopyToClipboardBitmap;               {Statistik}
-    4: Chart5.CopyToClipboardBitmap;
+    0: chTag.CopyToClipboardBitmap;
+    1: chMonat.CopyToClipboardBitmap;
+    2: chJahr.CopyToClipboardBitmap;
+    3: chStat.CopyToClipboardBitmap;               {Statistik}
+    4: chSplw.CopyToClipboardBitmap;
   end;
 end;
 
@@ -1691,8 +1698,8 @@ procedure TForm1.spePeriodChange(Sender: TObject); {Timerintervall merken}
 begin
   XMLPropStorage1.StoredValue['AutoReload']:=IntToStr(spePeriod.Value);
   if (spePeriod.Value>0) and (OutList.Count>0) then begin
-    Timer1.Interval:=spePeriod.Value*60000;
-    Timer1.Enabled:=true;
+    tmrStart.Interval:=spePeriod.Value*60000;
+    tmrStart.Enabled:=true;
   end;
 end;
 
@@ -1794,9 +1801,9 @@ begin
   MonStat;     {neu zeichnen}
 end;
 
-procedure TForm1.CheckBox11Change(Sender: TObject); {keine Sommerzeit}
+procedure TForm1.cbxSommerzeitChange(Sender: TObject); {keine Sommerzeit}
 begin
-  XMLPropStorage1.StoredValue['NoDST']:=BoolToStr(CheckBox11.Checked);
+  XMLPropStorage1.StoredValue['NoDST']:=BoolToStr(cbxSommerzeit.Checked);
 end;
 
 procedure TForm1.CheckBox12Change(Sender: TObject); {Supress file listing}
@@ -1853,7 +1860,7 @@ end;
 procedure TForm1.btnSaveClick(Sender: TObject);     {Button Stand Speichern}
 begin
   btnTag.Tag:=0;
-  ComboBox1.Color:=clDefault;
+  cbAuswerteTag.Color:=clDefault;
   if OutList.Count>100 then
     StandSpeichern
   else
@@ -1869,7 +1876,7 @@ begin
     dr:=ExtractFilePath(Application.ExeName);
     btnTag.Tag:=0;
     btnArch.Enabled:=false;                         {Archivieren sperren}
-    ComboBox1.Color:=clDefault;
+    cbAuswerteTag.Color:=clDefault;
     try
       OutList.LoadFromFile(dr+rawdat);
       DayList.Clear;
@@ -1880,7 +1887,7 @@ begin
         pcMain.ActivePageIndex:=2;
       btnBackup.Enabled:=true;
       btnSimu.Enabled:=true;
-      BitBtn11.Enabled:=true;                        {Spez. Analyse entsperren}
+      btnStarten.Enabled:=true;                        {Spez. Analyse entsperren}
       RadioGroup3.Enabled:=true;;
       ChangeTab;
     except
@@ -1908,9 +1915,9 @@ begin
     end;
   end else btnTag.Tag:=0;
   if btnTag.Tag=1 then
-    ComboBox1.Color:=$000080FF
+    cbAuswerteTag.Color:=$000080FF
   else
-    ComboBox1.Color:=clDefault;
+    cbAuswerteTag.Color:=clDefault;
 end;
 
 { Shape4: Statusanzeige für FTP
@@ -1984,38 +1991,38 @@ begin
     StatusBar1.Panels[2].Text:=msgPswMissing;
 end;
 
-procedure TForm1.Chart1MouseUp(Sender: TObject; Button: TMouseButton;
+procedure TForm1.chStatMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);
 begin
   if (ssCtrl in Shift) or                          {Klicken mit gedrückter Ctrl}
      (ssMiddle in Shift) then                      {Klicken mit mittlerer Taste}
-    Chart1.ZoomFull;
+    chStat.ZoomFull;
 end;
 
-procedure TForm1.Chart2DblClick(Sender: TObject);  {Monat label ein-/ausblenden}
+procedure TForm1.chMonatDblClick(Sender: TObject);  {Monat label ein-/ausblenden}
 begin
-  Chart2BarSeries1.Marks.Visible:=not Chart2BarSeries1.Marks.Visible;
+  bsMonat.Marks.Visible:=not bsMonat.Marks.Visible;
 end;
 
-procedure TForm1.Chart3DblClick(Sender: TObject);  {Jahr label ein-/ausblenden}
+procedure TForm1.chJahrDblClick(Sender: TObject);  {Jahr label ein-/ausblenden}
 begin
-  Chart3BarSeries1.Marks.Visible:=not Chart3BarSeries1.Marks.Visible;
+  chJahrBarSeries1.Marks.Visible:=not chJahrBarSeries1.Marks.Visible;
 end;
 
-procedure TForm1.Chart4MouseUp(Sender: TObject; Button: TMouseButton;
+procedure TForm1.chTagMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);              {Zoomen rückgängig machen}
 begin
   if (ssCtrl in Shift) or                          {Klicken mit gedrückter Ctrl}
      (ssMiddle in Shift) then                      {Klicken mit mittlerer Taste}
-    Chart4.ZoomFull;
+    chTag.ZoomFull;
 end;
 
-procedure TForm1.Chart5MouseUp(Sender: TObject; Button: TMouseButton;
+procedure TForm1.chSplwMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Integer);              {Spielwiese}
 begin
   if (ssCtrl in Shift) or                          {Klicken mit gedrückter Ctrl}
      (ssMiddle in Shift) then                      {Klicken mit mittlerer Taste}
-    Chart5.ZoomFull;                               {Zoomen beenden}
+    chSplw.ZoomFull;                               {Zoomen beenden}
 end;
 
 procedure TForm1.ChartToolset2DataPointClickTool1PointClick(ATool: TChartTool;
@@ -2026,11 +2033,11 @@ begin
   if (ChartToolset2DataPointClickTool1.Series is TBarSeries) then begin
     Newday:=ComboBox2.Text+datsep+
             Format('%.2d', [ChartToolset2DataPointClickTool1.PointIndex+1]);
-    p:=ComboBox1.Items.IndexOf(NewDay);
+    p:=cbAuswerteTag.Items.IndexOf(NewDay);
     if p>=0 then begin
-      ComboBox1.Text:=ComboBox1.Items[p];          {Datum yyyy-mm-dd}
-      ComboBox4.Text:=ComboBox1.Text;              {Selektion 1 Spielwiese}
-      ComboBox5.Text:=ComboBox1.Text;              {Selektion 2 Spielwiese}
+      cbAuswerteTag.Text:=cbAuswerteTag.Items[p];          {Datum yyyy-mm-dd}
+      cbxTagrot.Text:=cbAuswerteTag.Text;              {Selektion 1 Spielwiese}
+      cbxTagblau.Text:=cbAuswerteTag.Text;              {Selektion 2 Spielwiese}
       pcMain.ActivePageIndex:=0;
       pcMain.Tag:=0;                         {TabSheet merken}
       if RadioGroup2.ItemIndex=5 then
@@ -2227,32 +2234,32 @@ end;
 
 procedure TForm1.SpeedButton1Click(Sender: TObject);   {Ein Tag rückwärts}
 begin
-  If ComboBox1.ItemIndex>0 then begin
-    ComboBox1.ItemIndex:=ComboBox1.ItemIndex-1;
+  If cbAuswerteTag.ItemIndex>0 then begin
+    cbAuswerteTag.ItemIndex:=cbAuswerteTag.ItemIndex-1;
     if RadioGroup3.ItemIndex=0 then begin
-      ComboBox4.Text:=ComboBox1.Text;
-      ComboBox5.Text:=ComboBox1.Text;
+      cbxTagrot.Text:=cbAuswerteTag.Text;
+      cbxTagblau.Text:=cbAuswerteTag.Text;
     end;
     TagStat;
   end;
-  SpeedButton1.Enabled:=not (ComboBox1.ItemIndex=0);
-  SpeedButton2.Enabled:=not (ComboBox1.ItemIndex=ComboBox1.Items.Count-1);
-  DateEdit1.Date:=SDToTime(ComboBox1.Text);
+  SpeedButton1.Enabled:=not (cbAuswerteTag.ItemIndex=0);
+  SpeedButton2.Enabled:=not (cbAuswerteTag.ItemIndex=cbAuswerteTag.Items.Count-1);
+  DateEdit1.Date:=SDToTime(cbAuswerteTag.Text);
 end;
 
 procedure TForm1.SpeedButton2Click(Sender: TObject);   {Ein Tag vorwärts}
 begin
-  if ComboBox1.ItemIndex<(ComboBox1.Items.Count-1) then begin
-    ComboBox1.ItemIndex:=ComboBox1.ItemIndex+1;
+  if cbAuswerteTag.ItemIndex<(cbAuswerteTag.Items.Count-1) then begin
+    cbAuswerteTag.ItemIndex:=cbAuswerteTag.ItemIndex+1;
     if RadioGroup3.ItemIndex=0 then begin
-      ComboBox4.Text:=ComboBox1.Text;
-      ComboBox5.Text:=ComboBox1.Text;
+      cbxTagrot.Text:=cbAuswerteTag.Text;
+      cbxTagblau.Text:=cbAuswerteTag.Text;
     end;
     TagStat;
   end;
-  SpeedButton1.Enabled:=not (ComboBox1.ItemIndex=0);
-  SpeedButton2.Enabled:=not (ComboBox1.ItemIndex=ComboBox1.Items.Count-1);
-  DateEdit1.Date:=SDToTime(ComboBox1.Text);
+  SpeedButton1.Enabled:=not (cbAuswerteTag.ItemIndex=0);
+  SpeedButton2.Enabled:=not (cbAuswerteTag.ItemIndex=cbAuswerteTag.Items.Count-1);
+  DateEdit1.Date:=SDToTime(cbAuswerteTag.Text);
 end;
 
 procedure TForm1.SpeedButton3Click(Sender: TObject);   {Monat vor}
@@ -2298,13 +2305,13 @@ end;
 procedure TForm1.btnEinlesenClick(Sender: TObject);        {Auswertung starten}
 begin
   btnTag.Tag:=0;                                      {Restore rücksetzen}
-  Timer1.Enabled:=false;
-  ComboBox1.Color:=clDefault;
+  tmrStart.Enabled:=false;
+  cbAuswerteTag.Color:=clDefault;
   FTPDownload;
   Auswerten;                                           {lokale Daten einlesen}
   if (spePeriod.Value>0) and (OutList.Count>0) then begin
-    Timer1.Interval:=spePeriod.Value*60000;
-    Timer1.Enabled:=true;                              {Timer neu starten}
+    tmrStart.Interval:=spePeriod.Value*60000;
+    tmrStart.Enabled:=true;                              {Timer neu starten}
   end;
 end;
 
@@ -2320,7 +2327,7 @@ begin
   SynMemo1.Lines.Add('Archive done at   : '+FormatDateTime('hh:nn:ss', now));
 end;
 
-procedure TForm1.BitBtn11Click(Sender: TObject);       {spez. Analyse ausführen}
+procedure TForm1.btnStartenClick(Sender: TObject);       {spez. Analyse ausführen}
 begin
   SpezAnalyse;
 end;
@@ -2403,17 +2410,17 @@ begin
   SplitList:=TStringList.Create;
   SplitList.Delimiter:=sep;
   Screen.Cursor:=crHourGlass;
-  Chart5LineSeries1.Clear;
-  Chart5LineSeries2.Clear;
-  Chart5.ZoomFull;                                 {Zoomen beenden}
+  chSplwLineSeries1.Clear;
+  chSplwLineSeries2.Clear;
+  chSplw.ZoomFull;                                 {Zoomen beenden}
   ChartAxisTransformations1AutoScaleAxisTransform1.MaxValue:=1;
   ChartAxisTransformations2AutoScaleAxisTransform1.MaxValue:=1;
   ChartAxisTransformations1AutoScaleAxisTransform1.Enabled:=true;
   ChartAxisTransformations2AutoScaleAxisTransform1.Enabled:=true;
-  Chart5LineSeries1.SeriesColor:=ColorButton1.ButtonColor;
-  Chart5.AxisList[0].Title.LabelFont.Color:=ColorButton1.ButtonColor;
-  Chart5LineSeries2.SeriesColor:=ColorButton2.ButtonColor;
-  Chart5.AxisList[2].Title.LabelFont.Color:=ColorButton2.ButtonColor;
+  chSplwLineSeries1.SeriesColor:=ColorButton1.ButtonColor;
+  chSplw.AxisList[0].Title.LabelFont.Color:=ColorButton1.ButtonColor;
+  chSplwLineSeries2.SeriesColor:=ColorButton2.ButtonColor;
+  chSplw.AxisList[2].Title.LabelFont.Color:=ColorButton2.ButtonColor;
   if RadioGroup4.ItemIndex=RadioGroup5.ItemIndex then begin  {Skalierung fix}
     ChartAxisTransformations1AutoScaleAxisTransform1.Enabled:=false;
     ChartAxisTransformations2AutoScaleAxisTransform1.Enabled:=false;
@@ -2421,153 +2428,153 @@ begin
   case RadioGroup4.ItemIndex of  {Beschriftung und Schwellwert festlegen links}
       0: begin
            swt1:=StrToInt(edMinPower.Text)/1000; {AC Leistung}
-           Chart5.AxisList[0].Title.Caption:='AC '+rsLei+' [kW]';
+           chSplw.AxisList[0].Title.Caption:='AC '+rsLei+' [kW]';
          end;
       1: begin
            swt1:=StrToInt(edMinPower.Text)/1000; {DC Leistung}
-           Chart5.AxisList[0].Title.Caption:='DC '+rsLei+' [kW]';
+           chSplw.AxisList[0].Title.Caption:='DC '+rsLei+' [kW]';
          end;
       2: begin
            swt1:=0;                                {Delta}
-           Chart5.AxisList[0].Title.Caption:='Delta DC-AC [W]';
+           chSplw.AxisList[0].Title.Caption:='Delta DC-AC [W]';
          end;
       3: begin
            swt1:=-1;                               {Energie Ertrag}
-           Chart5.AxisList[0].Title.Caption:=rsErtrag+' [kWh]';
+           chSplw.AxisList[0].Title.Caption:=rsErtrag+' [kWh]';
          end;
       4: begin
            swt1:=10;                               {Netzspannung}
-           Chart5.AxisList[0].Title.Caption:=rsUAC+' [V]';
+           chSplw.AxisList[0].Title.Caption:=rsUAC+' [V]';
          end;
       5: begin
            swt1:=40;                               {Netzfrequenz}
-           Chart5.AxisList[0].Title.Caption:=rsFrequ+' [Hz]';
+           chSplw.AxisList[0].Title.Caption:=rsFrequ+' [Hz]';
          end;
       6: begin
            swt1:=-10;                              {Temperatur}
-           Chart5.AxisList[0].Title.Caption:=rsWRTemp+' [°C]';
+           chSplw.AxisList[0].Title.Caption:=rsWRTemp+' [°C]';
          end;
       7: begin
            swt1:=10;                               {Spannung 1}
-           Chart5.AxisList[0].Title.Caption:='DC '+rsSpg+rsString+'1 [V]';
+           chSplw.AxisList[0].Title.Caption:='DC '+rsSpg+rsString+'1 [V]';
          end;
       8: begin
            swt1:=0;                                {Strom 1}
-           Chart5.AxisList[0].Title.Caption:='DC '+rsStrom+rsString+'1 [A]';
+           chSplw.AxisList[0].Title.Caption:='DC '+rsStrom+rsString+'1 [A]';
          end;
       9: begin
            swt1:=10;                               {Spannung 2}
-           Chart5.AxisList[0].Title.Caption:='DC '+rsSpg+rsString+'2 [V]';
+           chSplw.AxisList[0].Title.Caption:='DC '+rsSpg+rsString+'2 [V]';
          end;
      10: begin
            swt1:=0;                                {Strom 2}
-           Chart5.AxisList[0].Title.Caption:='DC '+rsStrom+rsString+'2 [A]';
+           chSplw.AxisList[0].Title.Caption:='DC '+rsStrom+rsString+'2 [A]';
          end;
      11: begin
            swt1:=10;                               {Spannung 3}
-           Chart5.AxisList[0].Title.Caption:='DC '+rsSpg+rsString+'3 [V]';
+           chSplw.AxisList[0].Title.Caption:='DC '+rsSpg+rsString+'3 [V]';
          end;
      12: begin
            swt1:=0;                                {Strom 3}
-           Chart5.AxisList[0].Title.Caption:='DC '+rsStrom+rsString+'3 [A]';
+           chSplw.AxisList[0].Title.Caption:='DC '+rsStrom+rsString+'3 [A]';
          end;
      13: begin
            swt1:=StrToInt(edMinPower.Text)/1000; {DC Leistung String 1}
-           Chart5.AxisList[0].Title.Caption:='DC '+rsLei+rsString+'1 [kW]';
+           chSplw.AxisList[0].Title.Caption:='DC '+rsLei+rsString+'1 [kW]';
          end;
      14: begin
            swt1:=StrToInt(edMinPower.Text)/1000; {DC Leistung String 2}
-           Chart5.AxisList[0].Title.Caption:='DC '+rsLei+rsString+'2 [kW]';
+           chSplw.AxisList[0].Title.Caption:='DC '+rsLei+rsString+'2 [kW]';
          end;
      15: begin
            swt1:=StrToInt(edMinPower.Text)/1000; {DC Leistung String 3}
-           Chart5.AxisList[0].Title.Caption:='DC '+rsLei+rsString+'3 [kW]';
+           chSplw.AxisList[0].Title.Caption:='DC '+rsLei+rsString+'3 [kW]';
          end;
      16: begin
            swt1:=0;                                {Isolationswiderstand}
-           Chart5.AxisList[0].Title.Caption:=rsIsoWd+' [kOhm]';
+           chSplw.AxisList[0].Title.Caption:=rsIsoWd+' [kOhm]';
          end;
   end;
   case RadioGroup5.ItemIndex of  {Beschriftung und Schwellwert festlegen rechts}
       0: begin
            swt2:=StrToInt(edMinPower.Text)/1000; {AC Leistung}
-           Chart5.AxisList[2].Title.Caption:='AC '+rsLei+' [kW]';
+           chSplw.AxisList[2].Title.Caption:='AC '+rsLei+' [kW]';
          end;
       1: begin
            swt2:=StrToInt(edMinPower.Text)/1000; {DC Leistung}
-           Chart5.AxisList[2].Title.Caption:='DC '+rsLei+' [kW]';
+           chSplw.AxisList[2].Title.Caption:='DC '+rsLei+' [kW]';
          end;
       2: begin
            swt2:=0;                                {Delta}
-           Chart5.AxisList[2].Title.Caption:='Delta DC-AC [W]';
+           chSplw.AxisList[2].Title.Caption:='Delta DC-AC [W]';
          end;
       3: begin
            swt2:=-1;                               {Energie Ertrag}
-           Chart5.AxisList[2].Title.Caption:=rsErtrag+' [kWh]';
+           chSplw.AxisList[2].Title.Caption:=rsErtrag+' [kWh]';
          end;
       4: begin
            swt2:=10;                               {Netzspannung}
-           Chart5.AxisList[2].Title.Caption:=rsUAC+' [V]';
+           chSplw.AxisList[2].Title.Caption:=rsUAC+' [V]';
          end;
       5: begin
            swt2:=40;                               {Netzfrequenz}
-           Chart5.AxisList[2].Title.Caption:=rsFrequ+' [Hz]';
+           chSplw.AxisList[2].Title.Caption:=rsFrequ+' [Hz]';
          end;
       6: begin
            swt2:=-10;                              {Temperatur}
-           Chart5.AxisList[2].Title.Caption:=rsWRTemp+' [°C]';
+           chSplw.AxisList[2].Title.Caption:=rsWRTemp+' [°C]';
          end;
       7: begin
            swt2:=10;                               {Spannung 1}
-           Chart5.AxisList[2].Title.Caption:='DC '+rsSpg+rsString+'1 [V]';
+           chSplw.AxisList[2].Title.Caption:='DC '+rsSpg+rsString+'1 [V]';
          end;
       8: begin
            swt2:=0;                                {Strom 1}
-           Chart5.AxisList[2].Title.Caption:='DC '+rsStrom+rsString+'1 [A]';
+           chSplw.AxisList[2].Title.Caption:='DC '+rsStrom+rsString+'1 [A]';
          end;
       9: begin
            swt2:=10;                               {Spannung 2}
-           Chart5.AxisList[2].Title.Caption:='DC '+rsSpg+rsString+'2 [V]';
+           chSplw.AxisList[2].Title.Caption:='DC '+rsSpg+rsString+'2 [V]';
          end;
      10: begin
            swt2:=0;                                {Strom 2}
-           Chart5.AxisList[2].Title.Caption:='DC '+rsStrom+rsString+'2 [A]';
+           chSplw.AxisList[2].Title.Caption:='DC '+rsStrom+rsString+'2 [A]';
          end;
      11: begin
            swt2:=10;                               {Spannung 3}
-           Chart5.AxisList[2].Title.Caption:='DC '+rsSpg+rsString+'3 [V]';
+           chSplw.AxisList[2].Title.Caption:='DC '+rsSpg+rsString+'3 [V]';
          end;
      12: begin
            swt2:=0;                                {Strom 3}
-           Chart5.AxisList[2].Title.Caption:='DC '+rsStrom+rsString+'3 [A]';
+           chSplw.AxisList[2].Title.Caption:='DC '+rsStrom+rsString+'3 [A]';
          end;
      13: begin
            swt2:=StrToInt(edMinPower.Text)/1000; {DC Leistung String 1}
-           Chart5.AxisList[2].Title.Caption:='DC '+rsLei+rsString+'1 [kW]';
+           chSplw.AxisList[2].Title.Caption:='DC '+rsLei+rsString+'1 [kW]';
          end;
      14: begin
            swt2:=StrToInt(edMinPower.Text)/1000; {DC Leistung String 2}
-           Chart5.AxisList[2].Title.Caption:='DC '+rsLei+rsString+'2 [kW]';
+           chSplw.AxisList[2].Title.Caption:='DC '+rsLei+rsString+'2 [kW]';
          end;
      15: begin
            swt2:=StrToInt(edMinPower.Text)/1000; {DC Leistung String 3}
-           Chart5.AxisList[2].Title.Caption:='DC '+rsLei+rsString+'3 [kW]';
+           chSplw.AxisList[2].Title.Caption:='DC '+rsLei+rsString+'3 [kW]';
          end;
      16: begin
            swt2:=0;                                {Isolationswiderstand}
-           Chart5.AxisList[2].Title.Caption:=rsIsoWd+' [kOhm]';
+           chSplw.AxisList[2].Title.Caption:=rsIsoWd+' [kOhm]';
          end;
   end;
   case RadioGroup3.ItemIndex of
-    0: StatusBar1.Panels[2].Text:=Chart5.AxisList[0].Title.Caption+rsFor+
-                                  ComboBox4.Text+' / '+
-                                  Chart5.AxisList[2].Title.Caption+rsFor+
-                                  ComboBox5.Text;
-    3: StatusBar1.Panels[2].Text:=Chart5.AxisList[0].Title.Caption+' / '+
-                                  Chart5.AxisList[2].Title.Caption;
-    else StatusBar1.Panels[2].Text:=Chart5.AxisList[0].Title.Caption+' / '+
-                                  Chart5.AxisList[2].Title.Caption+rsFor+
-                                  ComboBox4.Text;
+    0: StatusBar1.Panels[2].Text:=chSplw.AxisList[0].Title.Caption+rsFor+
+                                  cbxTagrot.Text+' / '+
+                                  chSplw.AxisList[2].Title.Caption+rsFor+
+                                  cbxTagblau.Text;
+    3: StatusBar1.Panels[2].Text:=chSplw.AxisList[0].Title.Caption+' / '+
+                                  chSplw.AxisList[2].Title.Caption;
+    else StatusBar1.Panels[2].Text:=chSplw.AxisList[0].Title.Caption+' / '+
+                                  chSplw.AxisList[2].Title.Caption+rsFor+
+                                  cbxTagrot.Text;
   end;
   try
     case RadioGroup3.ItemIndex of               {Länge Vergleichsstring}
@@ -2575,17 +2582,17 @@ begin
       2: p:=4;
       else p:=10;
     end;                                        {OutList auslesen}
-    if ComboBox4.Text>ComboBox5.Text then z:=GetOutListIDX(ComboBox5.Text)
-                                     else z:=GetOutListIDX(ComboBox4.Text);
+    if cbxTagrot.Text>cbxTagblau.Text then z:=GetOutListIDX(cbxTagblau.Text)
+                                     else z:=GetOutListIDX(cbxTagrot.Text);
     if RadioGroup3.ItemIndex=3 then z:=0;
     for x:=z to OutList.Count-1 do begin
       try
         SplitList.DelimitedText:=OutList[x];
         dpt:=SDToTime(SplitList[0])+TToTT(SplitList[1]);
-        if CheckBox11.Checked then dpt:=NixDST(dpt);
+        if cbxSommerzeit.Checked then dpt:=NixDST(dpt);
         if RadioGroup3.ItemIndex=0 then dpt:=frac(dpt);
         if (RadioGroup3.ItemIndex=3) or
-           (copy(OutList[x], 1, p)=ComboBox4.Text) then begin
+           (copy(OutList[x], 1, p)=cbxTagrot.Text) then begin
           case RadioGroup4.ItemIndex of
              0: w1:=StrToInt(SplitList[2])/1000;    {Leistung}
              1: w1:=StrToInt(SplitList[5])*StrToInt(SplitList[6])/10000000+
@@ -2610,10 +2617,10 @@ begin
             15: w1:=StrToInt(SplitList[9])*StrToInt(SplitList[10])/10000000; {P_DC3}
             16: w1:=StrToInt(SplitList[14]);        {R_DC}
           end;
-          if w1>swt1 then Chart5LineSeries1.AddXY(dpt, w1);
+          if w1>swt1 then chSplwLineSeries1.AddXY(dpt, w1);
         end;
         if (RadioGroup3.ItemIndex=3) or
-           (copy(OutList[x], 1, p)=ComboBox5.Text) then begin
+           (copy(OutList[x], 1, p)=cbxTagblau.Text) then begin
           case RadioGroup5.ItemIndex of
              0: w2:=StrToInt(SplitList[2])/1000;    {Leistung}
              1: w2:=StrToInt(SplitList[5])*StrToInt(SplitList[6])/10000000+
@@ -2638,7 +2645,7 @@ begin
             15: w2:=StrToInt(SplitList[9])*StrToInt(SplitList[10])/10000000; {P_DC3}
             16: w2:=StrToInt(SplitList[14]);        {R_DC}
           end;
-          if w2>swt2 then Chart5LineSeries2.AddXY(dpt, w2);
+          if w2>swt2 then chSplwLineSeries2.AddXY(dpt, w2);
         end;
       except
         on e: exception do begin
@@ -2675,18 +2682,18 @@ end;
 procedure TForm1.btnBackupClick(Sender: TObject);        {Backup anlegen}
 begin
   btnTag.Tag:=0;
-  ComboBox1.Color:=clDefault;
+  cbAuswerteTag.Color:=clDefault;
   BackupSpeichern;
 end;
 
-procedure TForm1.RadioGroup1Click(Sender: TObject);    {Statistiken}
+procedure TForm1.rgAuswertungClick(Sender: TObject);    {Statistiken}
 begin
-  Chart1.ZoomFull;
-  if RadioGroup1.Tag=0 then begin
-    XMLPropStorage1.StoredValue['LastEval']:=IntToStr(RadioGroup1.ItemIndex);
+  chStat.ZoomFull;
+  if rgAuswertung.Tag=0 then begin
+    XMLPropStorage1.StoredValue['LastEval']:=IntToStr(rgAuswertung.ItemIndex);
     Statistik;
   end else
-    RadioGroup1.Tag:=0;                                {keine 70%-Analyse}
+    rgAuswertung.Tag:=0;                                {keine 70%-Analyse}
 end;
 
 procedure TForm1.RadioGroup2Click(Sender: TObject);    {Tagesauswertung}
@@ -2697,17 +2704,21 @@ begin
 end;
 
 procedure TForm1.RadioGroup3Click(Sender: TObject);    {Zeitachse Skalierung}
-var SortList: TStringList;
+var
+  SortList: TStringList;
 
   procedure FillCB(b: integer);                        {Selektionsliste füllen}
-  var x: integer;
+  var
+    x: integer;
+
   begin
     SortList.Clear;
-    for x:=0 to OutList.Count-1 do Sortlist.Add(copy(OutList[x], 1, b));
-    ComboBox4.Items.Assign(SortList);
-    ComboBox5.Items.Assign(SortList);
-    ComboBox4.Text:=ComboBox4.Items[ComboBox4.Items.Count-1]; {letzten Wert anzeigen}
-    ComboBox5.text:=ComboBox4.Text;
+    for x:=0 to OutList.Count-1 do
+      Sortlist.Add(copy(OutList[x], 1, b));
+    cbxTagrot.Items.Assign(SortList);
+    cbxTagblau.Items.Assign(SortList);
+    cbxTagrot.Text:=cbxTagrot.Items[cbxTagrot.Items.Count-1]; {letzten Wert anzeigen}
+    cbxTagblau.text:=cbxTagrot.Text;
   end;
 
 begin
@@ -2716,19 +2727,19 @@ begin
     SortList.Sorted:=true;
     SortList.Duplicates:=dupIgnore;                    {Entfernen der Duplikate}
     try
-      ComboBox4.Enabled:=true;
-      ComboBox4.Font.Color:=clDefault;
-      ComboBox5.Visible:=false;
+      cbxTagrot.Enabled:=true;
+      cbxTagrot.Font.Color:=clDefault;
+      cbxTagblau.Visible:=false;
       case RadioGroup3.ItemIndex of
         0: begin
              FillCB(10);                               {Tag}
-             ComboBox5.Visible:=true;
-             ComboBox4.Font.Color:=ColorButton1.ButtonColor;
-             ComboBox5.Font.Color:=ColorButton2.ButtonColor;
+             cbxTagblau.Visible:=true;
+             cbxTagrot.Font.Color:=ColorButton1.ButtonColor;
+             cbxTagblau.Font.Color:=ColorButton2.ButtonColor;
            end;
         1: FillCB(7);                                  {Monat}
         2: FillCB(4);                                  {Jahr}
-        3: ComboBox4.Enabled:=false;                   {nix zu wählen}
+        3: cbxTagrot.Enabled:=false;                   {nix zu wählen}
       end;
     finally
       SortList.Free;
@@ -2740,19 +2751,19 @@ procedure TForm1.RadioGroup6Click(Sender: TObject);    {Wechselrichter Type}
 begin
   btnTag.Tag:=0;                                      {Restore rücksetzen}
   btnTag.Visible:=(RadioGroup6.ItemIndex=0);
-  Timer1.Enabled:=false;
-  ComboBox1.Color:=clDefault;
+  tmrStart.Enabled:=false;
+  cbAuswerteTag.Color:=clDefault;
   XMLPropStorage1.StoredValue['InverterType']:=IntToStr(RadioGroup6.ItemIndex);
   OutList.Clear;
   DayList.Clear;
 end;
 
-procedure TForm1.ComboBox1Change(Sender: TObject);     {Tagesauswertung}
+procedure TForm1.cbAuswerteTagChange(Sender: TObject);     {Tagesauswertung}
 begin
-  DateEdit1.Date:=SDToTime(ComboBox1.Text);
+  DateEdit1.Date:=SDToTime(cbAuswerteTag.Text);
   if RadioGroup3.ItemIndex=0 then begin
-    ComboBox4.Text:=ComboBox1.Text;
-    ComboBox5.Text:=ComboBox1.Text;
+    cbxTagrot.Text:=cbAuswerteTag.Text;
+    cbxTagblau.Text:=cbAuswerteTag.Text;
   end;
   TagStat;    {Tagesstatistik neu zeichnen}
 end;
@@ -2767,13 +2778,13 @@ begin
   JahrStat;
 end;
 
-procedure TForm1.ComboBox4Change(Sender: TObject);     {Selektion ändern}
+procedure TForm1.cbxTagrotChange(Sender: TObject);     {Selektion ändern}
 begin
-  ComboBox5.Text:=ComboBox4.Text;
+  cbxTagblau.Text:=cbxTagrot.Text;
   if RadioGroup3.ItemIndex>0 then SpezAnalyse;
 end;
 
-procedure TForm1.ComboBox5Change(Sender: TObject);     {2. Tag ändern}
+procedure TForm1.cbxTagblauChange(Sender: TObject);     {2. Tag ändern}
 begin
   SpezAnalyse;
 end;
@@ -2785,15 +2796,15 @@ var s: string;
 begin
   if AcceptDate then begin
     s:=FormatDateTime(isoday, ADate);
-    p:=ComboBox1.Items.IndexOf(s);
-    if p>=0 then ComboBox1.Text:=ComboBox1.Items[p] else begin
-      if s>ComboBox1.Items[ComboBox1.Items.Count-1] then
-        ComboBox1.Text:=ComboBox1.Items[ComboBox1.Items.Count-1];
-      if s<ComboBox1.Items[0] then ComboBox1.Text:=ComboBox1.Items[0];
+    p:=cbAuswerteTag.Items.IndexOf(s);
+    if p>=0 then cbAuswerteTag.Text:=cbAuswerteTag.Items[p] else begin
+      if s>cbAuswerteTag.Items[cbAuswerteTag.Items.Count-1] then
+        cbAuswerteTag.Text:=cbAuswerteTag.Items[cbAuswerteTag.Items.Count-1];
+      if s<cbAuswerteTag.Items[0] then cbAuswerteTag.Text:=cbAuswerteTag.Items[0];
     end;
     if RadioGroup3.ItemIndex=0 then begin
-      ComboBox4.Text:=ComboBox1.Text;
-      ComboBox5.Text:=ComboBox1.Text;
+      cbxTagrot.Text:=cbAuswerteTag.Text;
+      cbxTagblau.Text:=cbAuswerteTag.Text;
     end;
     TagStat;        {Tagesstatistik neu zeichnen}
   end;
@@ -2819,15 +2830,18 @@ YYYY-MM-DDzzzzzz
 2012-05-2311632
 ...}
 function TForm1.GetOutListIDX(s: string): integer; {Zeilennummer ermitteln}
-var x: integer;
+var
+  x: integer;
+
 begin
   result:=0;                                         {default}
   try
-    for x:=0 to IDXList.Count-1 do
+    for x:=0 to IDXList.Count-1 do begin
       if copy(IDXList[x], 1, length(s))=s then begin
         result:=StrToInt(copy(IDXList[x], 11, length(IDXList[x])-10));
         break;
       end;
+    end;
   except
     result:=0;
   end;
@@ -2841,8 +2855,10 @@ begin
   Hi:=iHi;
   Pivot:=A[(Lo + Hi) div 2];
   repeat
-    while A[Lo]<Pivot do Inc(Lo);
-    while A[Hi]>Pivot do Dec(Hi);
+    while A[Lo]<Pivot do
+      Inc(Lo);
+    while A[Hi]>Pivot do
+      Dec(Hi);
     if Lo <= Hi then begin
       Tmp:=A[Lo];                                  {temporär zwischenspeichern}
       A[Lo]:=A[Hi];
@@ -2851,8 +2867,10 @@ begin
       Dec(Hi);
     end;
   until Lo>Hi;
-  if Hi>iLo then QuickSort(A, iLo, Hi);
-  if Lo<iHi then QuickSort(A, Lo, iHi);
+  if Hi>iLo then
+    QuickSort(A, iLo, Hi);
+  if Lo<iHi then
+    QuickSort(A, Lo, iHi);
 end;
 
 {Tabelle mit Werten in eine HTML-Datei schreiben. Es müssen dort >30 Leerzeilen
@@ -3038,17 +3056,20 @@ begin
           SortList.Add(copy(OutList[x],1,10)); {Datum Auslesen}
           SplitList.DelimitedText:=OutList[x];
           l:=StrToInt(SplitList[2]);
-          if l>maxlei then maxlei:=l;          {Peakleistung gesamt}
-          if l>maxld then maxld:=l;            {Peakleistung für den Tag}
+          if l>maxlei then
+            maxlei:=l;          {Peakleistung gesamt}
+          if l>maxld then
+            maxld:=l;            {Peakleistung für den Tag}
           w:=StrToInt(SplitList[3]);           {Ertragswert in W}
           if copy(OutList[x],1,10)<>ltag then begin   {neuer Tag}
             if ltag<>'' then begin
               ter:=GetKErt(ter);
               mer:=mer+ter;                    {Monatsertrag}
               ger:=ger+ter;                    {Gesamtertrag}
-              if ter>1 then ProtHTM.Insert(0, 'da[dx++]="'+
-                                FormatDateTime('dd.mm.yy', SDToTime(ltag))+
-                                '|'+IntToStr(ter)+';'+IntToStr(maxld)+'"');
+              if ter>1 then
+                ProtHTM.Insert(0, 'da[dx++]="'+
+                               FormatDateTime('dd.mm.yy', SDToTime(ltag))+
+                               '|'+IntToStr(ter)+';'+IntToStr(maxld)+'"');
               if (ltag>'') and
                  (copy(OutList[x],6,2)<>copy(ltag,6,2)) then begin  {neuer Monat}
                 if anztm=DaysInMonth(SDToTime(ltag)) then lastmer:=mer;
@@ -3069,8 +3090,9 @@ begin
               ter:=0;
               maxld:=0;                        {Peakleitung am Tag}
             end;
-            IDXList.Add(copy(OutList[x],1,10)+IntToStr(x));
-            ltag:=copy(OutList[x],1,10);
+            s:=copy(OutList[x],1,10);
+            ltag:=s;
+            IDXList.Add(s+IntToStr(x));
           end;                                 {Tag}
           if w>maxert then maxert:=w;
           if w>ter then ter:=w;                {Tagesertrag}
@@ -3079,7 +3101,8 @@ begin
           SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
         end;
       end;
-      if RadioGroup2.Tag<2 then SynMemo1.Lines.Add('');
+      if RadioGroup2.Tag<2 then
+        SynMemo1.Lines.Add('');
       anzts:=DaysInYear(SDToTime(ltag));     {Solltage letztes Jahr für
                                               spezifischen Jahresertrag}
       ter:=GetKErt(ter);
@@ -3094,7 +3117,8 @@ begin
         hstr:=ExtractFilePath(deServer.FileName)+monsjs;
         try
           MonList.SaveToFile(hstr);
-          if CheckBox4.Checked then FileList.Add(hstr);
+          if CheckBox4.Checked then
+            FileList.Add(hstr);
         except
           StatusBar1.Panels[2].Text:=ExtractFileName(hstr)+' '+msgNoSave;
           SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
@@ -3106,7 +3130,8 @@ begin
         hstr:=ExtractFilePath(deServer.FileName)+daysjs;
         try
           MonList.SaveToFile(hstr);
-          if CheckBox4.Checked then FileList.Add(hstr);
+          if CheckBox4.Checked then
+            FileList.Add(hstr);
         except
           StatusBar1.Panels[2].Text:=ExtractFileName(hstr)+' '+msgNoSave;
           SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
@@ -3171,26 +3196,26 @@ DC Spannung String 1;DC Spannung String 2;DC Spannung String 3;WR Temperatur"
         ProtHTM.Clear;
       end;
       RadioGroup3.ItemIndex:=0;
-      ComboBox1.Items.Assign(SortList);             {ComboBox1: Tage füllen}
-      ComboBox4.Items.Assign(SortList);
-      ComboBox5.Items.Assign(SortList);
-      ComboBox1.Text:=ComboBox1.Items[ComboBox1.Items.Count-1]; {letzten Wert anzeigen}
-      ComboBox4.Text:=ComboBox4.Items[ComboBox4.Items.Count-1]; {letzten Wert anzeigen}
-      ComboBox5.Text:=ComboBox4.Text;
-      DateEdit1.Enabled:=(ComboBox1.Items.Count>0);
-      DateEdit1.Date:=SDToTime(ComboBox1.Text);
+      cbAuswerteTag.Items.Assign(SortList);             {cbAuswerteTag: Tage füllen}
+      cbxTagrot.Items.Assign(SortList);
+      cbxTagblau.Items.Assign(SortList);
+      cbAuswerteTag.Text:=cbAuswerteTag.Items[cbAuswerteTag.Items.Count-1]; {letzten Wert anzeigen}
+      cbxTagrot.Text:=cbxTagrot.Items[cbxTagrot.Items.Count-1]; {letzten Wert anzeigen}
+      cbxTagblau.Text:=cbxTagrot.Text;
+      DateEdit1.Enabled:=(cbAuswerteTag.Items.Count>0);
+      DateEdit1.Date:=SDToTime(cbAuswerteTag.Text);
       SortList.Clear;
       if DayList.Count>0 then
         for x:=0 to DayList.Count-1 do Sortlist.Add(copy(DayList[x], 1, 7));
-      for x:=0 to ComboBox1.Items.Count-1 do        {ComboBox2: Monate auflisten}
-        Sortlist.Add(copy(ComboBox1.Items[x], 1, 7));
+      for x:=0 to cbAuswerteTag.Items.Count-1 do        {ComboBox2: Monate auflisten}
+        Sortlist.Add(copy(cbAuswerteTag.Items[x], 1, 7));
       ComboBox2.Items.Assign(SortList);
       ComboBox2.Text:=ComboBox2.Items[ComboBox2.Items.Count-1]; {letzten Wert anzeigen}
       SortList.Clear;
       if DayList.Count>0 then
         for x:=0 to DayList.Count-1 do Sortlist.Add(copy(DayList[x], 1, 4));
-      for x:=0 to ComboBox1.Items.Count-1 do        {ComboBox3: Jahre auflisten}
-        Sortlist.Add(copy(ComboBox1.Items[x], 1, 4));
+      for x:=0 to cbAuswerteTag.Items.Count-1 do        {ComboBox3: Jahre auflisten}
+        Sortlist.Add(copy(cbAuswerteTag.Items[x], 1, 4));
       ComboBox3.Items.Assign(SortList);
       ComboBox3.Text:=ComboBox3.Items[ComboBox3.Items.Count-1]; {letzten Wert anzeigen}
       XMLPropStorage1.StoredValue['InverterName']:=StatusBar1.Panels[0].Text;
@@ -3362,11 +3387,11 @@ Muss ggf. mit geändert werden!
             end;
             pcMain.ActivePageIndex:=0;
             hstr:=ChangeFileExt(deServer.FileName, '')+'1.png'; {Bilddateiname}
-            Chart4.SaveToFile(TPortableNetworkGraphic, hstr);
+            chTag.SaveToFile(TPortableNetworkGraphic, hstr);
             if CheckBox4.Checked then FileList.Add(hstr);
             pcMain.ActivePageIndex:=1;
             hstr:=ChangeFileExt(deServer.FileName, '')+'2.png'; {Bilddateiname}
-            Chart2.SaveToFile(TPortableNetworkGraphic, hstr);
+            chMonat.SaveToFile(TPortableNetworkGraphic, hstr);
             if CheckBox4.Checked then FileList.Add(hstr);
             pcMain.ActivePageIndex:=pcMain.Tag;
           end;                                     {Ende HTML-Generierung}
@@ -3423,9 +3448,11 @@ var
   dr: string;
 
   procedure AuswertenDanfoss; {Danfoss/IBC TLX Pro Daten in Rohdaten umwandlen}
-  var x, y, korre, ertr: integer;
-      infoon, dataon: boolean;
-      rs, ldat: string;
+  var
+    x, y, korre, ertr: integer;
+    infoon, dataon: boolean;
+    rs, ldat: string;
+
   begin
     SplitList.StrictDelimiter:=false;
     korre:=0;    {Korrekturwert bei nicht zurückgesetztem Ertrag am nächsten Tag}
@@ -3482,18 +3509,21 @@ var
                   SplitList[7]+sep+     {Spannung AC}
                   SplitList[12]+sep+    {Frequenz}
                   SplitList[0]+sep+     {Intervall}
-                  Splitlist[31];        {Isolationswiderstand}
+                  Splitlist[31]+sep+    {Isolationswiderstand}
+                  Splitlist[20];        {WR Error Nummer}
               rs:=StringReplace(rs, sep+'0.', sep, [rfReplaceAll]);
               rs:=StringReplace(rs, '.', '', [rfReplaceAll]);
               rs:=StringReplace(rs, sep+'000', sep+'0', [rfReplaceAll]);
               OutList.Add(rs);          {rawdata anlegen}
             end;
+
             if SplitList[20]<>'0' then begin  {E_WR - Error Inverter}
               StatusBar1.Panels[2].Text:=SplitList[1]+' '+SplitList[2]+
                                          'h - '+rsErrorInv+': Code '+
                                          SplitList[20];
               SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
             end;
+
           end;  {ende if (SplitList.Count>30)}
         end;
         if InList[y]=datbeg then
@@ -3561,7 +3591,8 @@ var
                 SplitList[8]+sep+                  {Spannung AC}
                 SplitList[10]+sep+                 {Frequenz}
                 SplitList[4]+sep+                  {Intervall}
-                Splitlist[31];                     {Isolationswiderstand}
+                Splitlist[31]+sep+                 {Isolationswiderstand}
+                Splitlist[20];                     {WR Error Nummer}
             rs:=StringReplace(rs, sep+'0,', sep, [rfReplaceAll]);
             rs:=StringReplace(rs, ',', '', [rfReplaceAll]);
             rs:=StringReplace(rs, sep+'000', sep+'0', [rfReplaceAll]);
@@ -3655,7 +3686,7 @@ var
                                 StrToInt(SplitList[11]))/30))+sep+ {Spannung AC}
                 '5000'+sep+                        {Netzfrequenz}
                 IntToStr(itv)+sep+                 {Meßintervall}
-                '0';                               {Isolationswiderstand}
+                '0'+sep+'0';                       {Isolationswiderstand + Error Nummer}
             zpa:=zp;                               {Zeitpunkt merken}
             OutList.Add(rs);                       {Rawdata anlegen}
           end;
@@ -3743,7 +3774,7 @@ var
                 '230'+sep+                                {Netzspannung}
                 '5000'+sep+                               {Netzfrequenz}
                 IntToStr(itv)+sep+                        {Intervall}
-                '0');                                     {Isowiderstand}
+                '0'+sep+'0');                             {Isowiderstand + Error No}
               zpa:=zp;                                    {Zeitpunkt merken}
             except                                 {Fehler in Rohdaten SMA}
               SynMemo1.Lines.Add('Format error in file '+FileList[x]);
@@ -3805,7 +3836,7 @@ var
                 IntToStr(StrToInt(SplitList[14]) div 1000)+sep+  {Netzspannung}
                 IntToStr(StrToInt(SplitList[22]) div 10)+sep+    {Netzfrequenz}
                 IntToStr(itv)+sep+                        {Intervall}
-                '0');                                     {Isowiderstand}
+                '0'+sep+'0');                             {Isowiderstand + Error Nummer}
               zpa:=zp;                                    {Zeitpunkt merken}
             except                        {Fehler in Rohdaten SMA}
               SynMemo1.Lines.Add('Format error in file '+FileList[x]);
@@ -3866,7 +3897,7 @@ begin
           3: AuswertenSMAspot;
 	  4: AuswertenDanfossMigration;
         end;
-        ComboBox1.Items.Clear;                 {Datumsliste}
+        cbAuswerteTag.Items.Clear;                 {Datumsliste}
         DateEdit1.Enabled:=false;
         ComboBox2.Items.Clear;                 {Monatsliste}
         ComboBox3.Items.Clear;                 {Jahresliste}
@@ -3877,7 +3908,7 @@ begin
         btnBackup.Enabled:=true;
         btnSimu.Enabled:=true;
         btnArch.Enabled:=true;
-        BitBtn11.Enabled:=true;             {Spez. Analyse entsperren}
+        btnStarten.Enabled:=true;             {Spez. Analyse entsperren}
         RadioGroup3.Enabled:=true;
       end;
     end else begin
@@ -3913,8 +3944,8 @@ begin
         3: red70:=StrToInt(edPeak.Text)*0.8;   {80%}
       end;
       pcMain.ActivePageIndex:=3;    {zur Anzeige auf Statistik umschalten}
-      RadioGroup1.ItemIndex:=-1;          {nichts auswählen}
-      RadioGroup1.Tag:=1;                 {Indikator für diese Funktion}
+      rgAuswertung.ItemIndex:=-1;          {nichts auswählen}
+      rgAuswertung.Tag:=1;                 {Indikator für diese Funktion}
       t:=RadioGroup7.Items[RadioGroup7.ItemIndex];
       ResList.Add(rsLimit+t+sep+rsReduct+
                   FloatToStrF(red70/1000, ffFixed, 12, 3)+'kW'+sep+sep+
@@ -3930,29 +3961,29 @@ begin
                          FloatToStrF(red70, ffFixed, 12, 0)+'W');
     end;
     try
-      Chart1.AxisList[0].Inverted:=false;
-      Chart1.AxisList[0].Title.Caption:=rsErtrag+' [kWh]';
-      Chart1.AxisList[0].Marks.Source:=nil;
-      Chart1.AxisList[0].Marks.Format:='%0:.9g';
-      Chart1.AxisList[1].Title.Caption:=rsMonatsaw;
-      Chart1.AxisList[1].Grid.Visible:=false;
-      Chart1.AxisList[1].Intervals.MaxLength:=300;
-      Chart1.AxisList[1].Marks.Format:='%0:.0g';
-      Chart1.AxisList[1].Marks.AtDataOnly:=true;
-      Chart1.Title.Text[0]:=rsLimit+t+rsReduct+
+      chStat.AxisList[0].Inverted:=false;
+      chStat.AxisList[0].Title.Caption:=rsErtrag+' [kWh]';
+      chStat.AxisList[0].Marks.Source:=nil;
+      chStat.AxisList[0].Marks.Format:='%0:.9g';
+      chStat.AxisList[1].Title.Caption:=rsMonatsaw;
+      chStat.AxisList[1].Grid.Visible:=false;
+      chStat.AxisList[1].Intervals.MaxLength:=300;
+      chStat.AxisList[1].Marks.Format:='%0:.0g';
+      chStat.AxisList[1].Marks.AtDataOnly:=true;
+      chStat.Title.Text[0]:=rsLimit+t+rsReduct+
                             FloatToStrF(red70/1000, ffFixed, 12, 3)+'kW';
-      Chart1ConstantLine1.Active:=false;
-      Chart1ConstantLine2.Active:=false;
-      Chart1BarSeries1.Clear;
-      Chart1BarSeries1.BarWidthPercent:=60;
-      Chart1BarSeries1.BarPen.Color:=clBlack;
-      Chart1BarSeries1.Depth:=0;
-      Chart1BarSeries2.Clear;
-      Chart1BarSeries2.BarWidthPercent:=60;
-      Chart1BarSeries2.BarPen.Color:=clBlack;
-      Chart1BarSeries2.Depth:=0;
-      Chart1LineSeries1.Clear;
-      Chart1LineSeries2.Clear;
+      chStatConstantLine1.Active:=false;
+      chStatConstantLine2.Active:=false;
+      chStatBarSeries1.Clear;
+      chStatBarSeries1.BarWidthPercent:=60;
+      chStatBarSeries1.BarPen.Color:=clBlack;
+      chStatBarSeries1.Depth:=0;
+      chStatBarSeries2.Clear;
+      chStatBarSeries2.BarWidthPercent:=60;
+      chStatBarSeries2.BarPen.Color:=clBlack;
+      chStatBarSeries2.Depth:=0;
+      chStatLineSeries1.Clear;
+      chStatLineSeries2.Clear;
       ee:=0;                   {Energieertrag gesamt am Tag}
       eeges:=0;                {Energieertrag gesamt im Monat}
       jges:=0;                 {Energieertrag insgesamt}
@@ -3971,8 +4002,8 @@ begin
           jges70:=jges70+ee70;
           if m<>copy(OutList[x],1,7) then begin {neuer Monat auch noch}
             if m<>'' then begin
-              Chart1BarSeries1.Add(eeges/1000, m, ColorButton12.ButtonColor);
-              Chart1BarSeries2.Add(eeges70/1000, m, ColorButton13.ButtonColor);
+              chStatBarSeries1.Add(eeges/1000, m, ColorButton12.ButtonColor);
+              chStatBarSeries2.Add(eeges70/1000, m, ColorButton13.ButtonColor);
               ResList.Add(MonToTxt(m)+' '+copy(OutList[x],1,4)+sep+
                           FloatToStrF(eeges/1000, ffFixed, 12, 3)+sep+
                           FloatToStrF(eeges70/1000, ffFixed, 12, 3)+sep+
@@ -3998,8 +4029,8 @@ begin
       eeges70:=eeges70+ee70;                {70% Ertrag für Monat aufaddieren}
       jges70:=jges70+ee70;
       if (m<>'') and (eeges>0) then begin
-        Chart1BarSeries1.Add(eeges/1000, m, ColorButton12.ButtonColor);
-        Chart1BarSeries2.Add(eeges70/1000, m, ColorButton13.ButtonColor);
+        chStatBarSeries1.Add(eeges/1000, m, ColorButton12.ButtonColor);
+        chStatBarSeries2.Add(eeges70/1000, m, ColorButton13.ButtonColor);
         ResList.Add(MonToTxt(m)+' '+copy(OutList[x],1,4)+sep+
                     FloatToStrF(eeges/1000, ffFixed, 12, 3)+sep+
                     FloatToStrF(eeges70/1000, ffFixed, 12, 3)+sep+
@@ -4063,19 +4094,19 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
     function CorrSTime(s: string): TDateTime; inline;
     begin
       result:=TToTT(s);
-      if CheckBox11.Checked then    {Sommerzeit eliminieren}
+      if cbxSommerzeit.Checked then    {Sommerzeit eliminieren}
         result:=frac(NixDST(SDToTime(SplitList[0])+result));  {Datum addiert}
     end;
 
   begin
-    Chart1.Title.Text[0]:='Tagesbeginn/-ende';
-    Chart1.AxisList[0].Inverted:=true;             {Beginn oben}
-    Chart1.AxisList[0].Title.Caption:='Tageszeit';
-    Chart1.AxisList[0].Marks.Source:=DateTimeIntervalChartSource2;
-    Chart1.AxisList[0].Marks.Format:='%2:s';
-    Chart1.AxisList[1].Marks.AtDataOnly:=false;
-    Chart1LineSeries1.SeriesColor:=ColorButton19.ButtonColor;
-    Chart1LineSeries2.SeriesColor:=ColorButton20.ButtonColor;
+    chStat.Title.Text[0]:='Tagesbeginn/-ende';
+    chStat.AxisList[0].Inverted:=true;             {Beginn oben}
+    chStat.AxisList[0].Title.Caption:='Tageszeit';
+    chStat.AxisList[0].Marks.Source:=DateTimeIntervalChartSource2;
+    chStat.AxisList[0].Marks.Format:='%2:s';
+    chStat.AxisList[1].Marks.AtDataOnly:=false;
+    chStatLineSeries1.SeriesColor:=ColorButton19.ButtonColor;
+    chStatLineSeries2.SeriesColor:=ColorButton20.ButtonColor;
     SplitList:=TStringList.Create;
     SplitList.Delimiter:=sep;
     lesw:=StrToInt(edMinPower.Text);             {Schwellwert Leistung}
@@ -4091,10 +4122,10 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
         inc(zhl);
         beg:=CorrSTime(SplitList[4]);
         if beg>fend then fend:=beg;                {spätestes Ende}
-        Chart1LineSeries2.AddXY(zhl, beg);
+        chStatLineSeries2.AddXY(zhl, beg);
         beg:=CorrSTime(SplitList[3]);
         if beg<fbeg then fbeg:=beg;                {frühester Beginn}
-        Chart1LineSeries1.AddXY(zhl, beg);
+        chStatLineSeries1.AddXY(zhl, beg);
       end;
       for x:=0 to OutList.Count-1 do begin
         SplitList.DelimitedText:=OutList[x];
@@ -4110,8 +4141,8 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
             inc(zhl);                              {Tage einfach hochzählen}
             if fa=0 then fa:=0.5;                  {12:00h als "Mitte"}
             if beg=0 then beg:=0.5;
-            Chart1LineSeries2.AddXY(zhl, fa);
-            Chart1LineSeries1.AddXY(zhl, beg);
+            chStatLineSeries2.AddXY(zhl, fa);
+            chStatLineSeries1.AddXY(zhl, beg);
           end;
           beg:=0;
           fa:=0;
@@ -4119,8 +4150,8 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
         end;
       end;
       inc(zhl);
-      Chart1LineSeries2.AddXY(zhl, fa);
-      Chart1LineSeries1.AddXY(zhl, beg);
+      chStatLineSeries2.AddXY(zhl, fa);
+      chStatLineSeries1.AddXY(zhl, beg);
       StatusBar1.Panels[2].Text:='Frühester Beginn: '+
                                  FormatDateTime('hh:mm', fbeg)+
                                  rsUhr+' / Spätestes Ende: '+
@@ -4138,12 +4169,12 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       beg, fa, ld, ldt: TDateTime;
       lesw, zhl: Integer;    {minimale Leistung für Anfang / Ende in W}
   begin
-    Chart1.Title.Text[0]:='Ertragsdauer je Tag';
-    Chart1.AxisList[0].Title.Caption:='Tägliche Produktionsdauer';
-    Chart1.AxisList[0].Marks.Source:=DateTimeIntervalChartSource2;
-    Chart1.AxisList[0].Marks.Format:='%2:s';
-    Chart1BarSeries1.SeriesColor:=ColorButton16.ButtonColor; {Farbe Ertrag}
-    Chart1BarSeries1.BarPen.Color:=Chart1BarSeries1.SeriesColor;
+    chStat.Title.Text[0]:='Ertragsdauer je Tag';
+    chStat.AxisList[0].Title.Caption:='Tägliche Produktionsdauer';
+    chStat.AxisList[0].Marks.Source:=DateTimeIntervalChartSource2;
+    chStat.AxisList[0].Marks.Format:='%2:s';
+    chStatBarSeries1.SeriesColor:=ColorButton16.ButtonColor; {Farbe Ertrag}
+    chStatBarSeries1.BarPen.Color:=chStatBarSeries1.SeriesColor;
     SplitList:=TStringList.Create;
     SplitList.Delimiter:=sep;
     lesw:=StrToInt(edMinPower.Text);
@@ -4162,7 +4193,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
           ld:=fa-beg;
           ldt:=SDToTime(copy(DayList[x],1,10))+fa; {Zeitpunkt: Datum+Ende}
         end;
-        Chart1BarSeries1.AddXY(zhl, fa-beg);
+        chStatBarSeries1.AddXY(zhl, fa-beg);
       end;
       for x:=0 to OutList.Count-1 do begin
         SplitList.DelimitedText:=OutList[x];
@@ -4177,7 +4208,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
         if copy(outList[x],1,10)<>t then begin
           if t<>'' then begin
             inc(zhl);  {Tage einfach hochzählen}
-            Chart1BarSeries1.AddXY(zhl, fa-beg);
+            chStatBarSeries1.AddXY(zhl, fa-beg);
           end;
           beg:=0;
           fa:=0;
@@ -4185,7 +4216,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
         end;
       end;
       inc(zhl);
-      Chart1BarSeries1.AddXY(zhl, fa-beg);
+      chStatBarSeries1.AddXY(zhl, fa-beg);
       StatusBar1.Panels[2].Text:='Längste Ertragsdauer: '+
                        FormatDateTime('hh:mm', ld)+'h'+rsAm+
                        FormatDateTime('dddd, dd. mmm. yyyy', ldt);
@@ -4201,9 +4232,9 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       t: string;
       maxt: TDateTime;
   begin
-    Chart1.Title.Text[0]:='Maximale '+rsLei+' je Tag';
-    Chart1.AxisList[0].Title.Caption:=rsPeakL+' [kWp]';
-    Chart1BarSeries1.BarPen.Color:=ColorButton15.ButtonColor;
+    chStat.Title.Text[0]:='Maximale '+rsLei+' je Tag';
+    chStat.AxisList[0].Title.Caption:=rsPeakL+' [kWp]';
+    chStatBarSeries1.BarPen.Color:=ColorButton15.ButtonColor;
     SplitList:=TStringList.Create;
     SplitList.Delimiter:=sep;
     peak:=0;
@@ -4216,7 +4247,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       if DayList.Count>0 then for x:=0 to DayList.Count-1 do begin
         SplitList.DelimitedText:=DayList[x];
         peak:=StrToInt(SplitList[1]);
-        Chart1BarSeries1.Add(peak/1000, copy(DayList[x],1,10), ColorButton15.ButtonColor);
+        chStatBarSeries1.Add(peak/1000, copy(DayList[x],1,10), ColorButton15.ButtonColor);
         inc(zhl);
         sumpeak:=sumpeak+peak;
         if peak>maxpeak then begin
@@ -4235,7 +4266,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
         end;
         if copy(OutList[x],1,10)<>t then begin                {neuer Tag}
           if t<>'' then begin
-            Chart1BarSeries1.Add(peak/1000, t, ColorButton15.ButtonColor);
+            chStatBarSeries1.Add(peak/1000, t, ColorButton15.ButtonColor);
             inc(zhl);
             sumpeak:=sumpeak+peak;
           end;
@@ -4243,17 +4274,17 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
           peak:=0;
         end;
       end;
-      Chart1BarSeries1.Add(peak/1000, t, ColorButton15.ButtonColor);
+      chStatBarSeries1.Add(peak/1000, t, ColorButton15.ButtonColor);
       sumpeak:=sumpeak+peak;
       StatusBar1.Panels[2].Text:=FloatToStr(maxpeak/1000)+
                                  'kW '+rsPeakL+rsAm+
                                  FormatDateTime('dddd, dd. mmm. yyyy - hh:mm', maxt)+
                                  rsUhr;
       SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
-      Chart1ConstantLine1.Position:=sumpeak/zhl/1000;         {Durchschnitt}
-      Chart1ConstantLine1.Active:=true;
-      Chart1ConstantLine2.Position:=StrToInt(edPeak.Text)/1000; {Soll}
-      Chart1ConstantLine2.Active:=true;    {projektierte Peakleistung}
+      chStatConstantLine1.Position:=sumpeak/zhl/1000;         {Durchschnitt}
+      chStatConstantLine1.Active:=true;
+      chStatConstantLine2.Position:=StrToInt(edPeak.Text)/1000; {Soll}
+      chStatConstantLine2.Active:=true;    {projektierte Peakleistung}
     finally
       SplitList.Free;
     end;
@@ -4265,9 +4296,9 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       t: string;
       maxt: TDateTime;
   begin
-    Chart1.Title.Text[0]:=rsErtrag+' je Tag';
-    Chart1.AxisList[0].Title.Caption:=rsTagErtr+' [kWh]';
-    Chart1BarSeries1.BarPen.Color:=ColorButton16.ButtonColor;
+    chStat.Title.Text[0]:=rsErtrag+' je Tag';
+    chStat.AxisList[0].Title.Caption:=rsTagErtr+' [kWh]';
+    chStatBarSeries1.BarPen.Color:=ColorButton16.ButtonColor;
     SplitList:=TStringList.Create;
     SplitList.Delimiter:=sep;
     maxee:=0;
@@ -4280,7 +4311,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       if DayList.Count>0 then for x:=0 to DayList.Count-1 do begin
         SplitList.DelimitedText:=DayList[x];
         ee:=GetKErt(StrToInt(SplitList[2]));       {Tagesertrag korrigieren}
-        Chart1BarSeries1.Add(ee/1000, copy(DayList[x],1,10), ColorButton16.ButtonColor);
+        chStatBarSeries1.Add(ee/1000, copy(DayList[x],1,10), ColorButton16.ButtonColor);
         inc(zhl);
         eeges:=eeges+ee;
         if ee>maxee then begin
@@ -4294,7 +4325,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
         if copy(OutList[x],1,10)<>t then begin     {neuer Tag}
           if t<>'' then begin
             ee:=GetKErt(ee);                       {Tagesertrag korrigieren}
-            Chart1BarSeries1.Add(ee/1000, t, ColorButton16.ButtonColor);
+            chStatBarSeries1.Add(ee/1000, t, ColorButton16.ButtonColor);
             inc(zhl);
             eeges:=eeges+ee;
             if ee>maxee then begin
@@ -4307,7 +4338,7 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
         end;
       end;
       ee:=GetKErt(ee);                             {Tagesertrag korrigieren}
-      Chart1BarSeries1.Add(ee/1000, t, ColorButton16.ButtonColor);
+      chStatBarSeries1.Add(ee/1000, t, ColorButton16.ButtonColor);
       eeges:=eeges+ee;
       if ee>maxee then begin
         maxee:=ee;
@@ -4317,8 +4348,8 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
                                  FloatToStr(maxee/1000)+'kWh'+rsAm+
                                  FormatDateTime('dddd, dd. mmm. yyyy', maxt);
       SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
-      Chart1ConstantLine1.Position:=eeges/zhl/1000;
-      Chart1ConstantLine1.Active:=true;
+      chStatConstantLine1.Position:=eeges/zhl/1000;
+      chStatConstantLine1.Active:=true;
     finally
       SplitList.Free;
     end;
@@ -4331,14 +4362,14 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       sj, maxsj: double;
   begin
     pla:=StrToInt(edPeak.Text);              {Peakleistung der Anlage}
-    Chart1.Title.Text[0]:=rsSpezJE;
-    Chart1.AxisList[0].Title.Caption:=rsSpezJE+' [kWh/kWp]';
-    Chart1.AxisList[1].Title.Caption:=rsJahresaw;
-    Chart1.AxisList[1].Marks.Style:=smsLegend;
-    Chart1.AxisList[1].Grid.Visible:=false;
-    Chart1BarSeries1.BarPen.Color:=ColorButton16.ButtonColor;
-    Chart1BarSeries1.BarWidthPercent:=80;
-    Chart1BarSeries1.Marks.Visible:=true;
+    chStat.Title.Text[0]:=rsSpezJE;
+    chStat.AxisList[0].Title.Caption:=rsSpezJE+' [kWh/kWp]';
+    chStat.AxisList[1].Title.Caption:=rsJahresaw;
+    chStat.AxisList[1].Marks.Style:=smsLegend;
+    chStat.AxisList[1].Grid.Visible:=false;
+    chStatBarSeries1.BarPen.Color:=ColorButton16.ButtonColor;
+    chStatBarSeries1.BarWidthPercent:=80;
+    chStatBarSeries1.Marks.Visible:=true;
     SplitList:=TStringList.Create;
     SplitList.Delimiter:=sep;
     maxsj:=0;
@@ -4353,8 +4384,8 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
             inc(mz);
             if copy(DayList[x], 1, 4)<>copy(t, 1, 4) then begin  {neues Jahr}
               sj:=jee/pla;
-              if mz=12 then Chart1BarSeries1.Add(sj, copy(t,1,4), ColorButton16.ButtonColor)
-                       else Chart1BarSeries1.Add(sj, copy(t,1,4), ColorButton17.ButtonColor);
+              if mz=12 then chStatBarSeries1.Add(sj, copy(t,1,4), ColorButton16.ButtonColor)
+                       else chStatBarSeries1.Add(sj, copy(t,1,4), ColorButton17.ButtonColor);
               if sj>maxsj then begin
                 maxsj:=sj;
                 maxt:=copy(t, 1, 4);
@@ -4381,8 +4412,8 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
               inc(mz);
               if copy(OutList[x], 1, 4)<>copy(t, 1, 4) then begin  {neues Jahr}
                 sj:=jee/pla;
-                if mz=12 then Chart1BarSeries1.Add(sj, copy(t,1,4), ColorButton16.ButtonColor)
-                         else Chart1BarSeries1.Add(sj, copy(t,1,4), ColorButton17.ButtonColor);
+                if mz=12 then chStatBarSeries1.Add(sj, copy(t,1,4), ColorButton16.ButtonColor)
+                         else chStatBarSeries1.Add(sj, copy(t,1,4), ColorButton17.ButtonColor);
                 if sj>maxsj then begin
                   maxsj:=sj;
                   maxt:=copy(t, 1, 4);
@@ -4399,14 +4430,14 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       ee:=GetKErt(ee);                             {Tagesertrag korrigieren}
       jee:=jee+ee;
       sj:=jee/pla;
-      if mz=12 then Chart1BarSeries1.Add(sj, copy(t,1,4), ColorButton16.ButtonColor)
-               else Chart1BarSeries1.Add(sj, copy(t,1,4), ColorButton17.ButtonColor);
+      if mz=12 then chStatBarSeries1.Add(sj, copy(t,1,4), ColorButton16.ButtonColor)
+               else chStatBarSeries1.Add(sj, copy(t,1,4), ColorButton17.ButtonColor);
       if sj>maxsj then begin
         maxsj:=sj;
         maxt:=copy(t, 1, 4);
       end;
-      Chart1ConstantLine2.Position:=GetSJE;        {grüne Linie = Soll}
-      Chart1ConstantLine2.Active:=true;
+      chStatConstantLine2.Position:=GetSJE;        {grüne Linie = Soll}
+      chStatConstantLine2.Active:=true;
       StatusBar1.Panels[2].Text:='Höchster '+rsSpezJE+': '+
                                  FloatToStrF(maxsj, ffFixed, 12, 3)+
                                  'kWh/kWp in '+maxt;
@@ -4423,10 +4454,10 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       t: string;
       soll: double;
   begin
-    Chart1BarSeries1.Depth:=Bar3D;
-    Chart1.Title.Text[0]:=rsHistoTag;
-    Chart1.AxisList[1].Title.Caption:=rsTagErtr+' [%]';
-    Chart1.AxisList[1].Grid.Visible:=false;
+    chStatBarSeries1.Depth:=Bar3D;
+    chStat.Title.Text[0]:=rsHistoTag;
+    chStat.AxisList[1].Title.Caption:=rsTagErtr+' [%]';
+    chStat.AxisList[1].Grid.Visible:=false;
     SplitList:=TStringList.Create;
     SplitList.Delimiter:=sep;
     pla:=StrToInt(edPeak.Text);
@@ -4477,12 +4508,12 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       for x:=0 to length(prozente)-1 do begin
         inc(zhl);                           {Anzahl gleicher Datenpunkte zählen}
         if prozente[x]<>w then begin        {neuer Wert gefunden}
-          if w<>0 then Chart1BarSeries1.AddXY(w, zhl);
+          if w<>0 then chStatBarSeries1.AddXY(w, zhl);
           zhl:=0;
           w:=prozente[x];
         end;
       end;
-      if w<>0 then Chart1BarSeries1.AddXY(w, zhl);
+      if w<>0 then chStatBarSeries1.AddXY(w, zhl);
       StatusBar1.Panels[2].Text:=IntToStr(sum)+' Tage mit >= 6kWh/kWp.';
       SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
       ProgressBar1.Position:=ProgressBar1.Max;
@@ -4497,13 +4528,13 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       werte: array of Integer;
       x, zhl, w: Integer;
   begin
-    Chart1.Title.Text[0]:=rsHisto+rsUAC;
+    chStat.Title.Text[0]:=rsHisto+rsUAC;
     SplitList:=TStringList.Create;
     SplitList.Delimiter:=sep;
-    Chart1BarSeries1.Depth:=Bar3D;
-    Chart1.AxisList[1].Title.Caption:=rsUAC+' [V]';
-    Chart1.AxisList[1].Grid.Visible:=false;
-    Chart1.AxisList[1].Intervals.MaxLength:=100;
+    chStatBarSeries1.Depth:=Bar3D;
+    chStat.AxisList[1].Title.Caption:=rsUAC+' [V]';
+    chStat.AxisList[1].Grid.Visible:=false;
+    chStat.AxisList[1].Intervals.MaxLength:=100;
     SetLength(werte, 0);                    {dynamisches Array initialisieren}
     ProgressBar1.Position:=1;
     Application.ProcessMessages;
@@ -4527,13 +4558,13 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
         inc(zhl);                        {Anzahl gleicher Datenpunkte zählen}
         if werte[x]<>w then begin        {neuer Wert gefunden}
           if w<>0 then begin
-            Chart1BarSeries1.AddXY(w, zhl);
+            chStatBarSeries1.AddXY(w, zhl);
             zhl:=0;
           end;
           w:=werte[x];
         end;
       end;
-      if w<>0 then Chart1BarSeries1.AddXY(w, zhl);
+      if w<>0 then chStatBarSeries1.AddXY(w, zhl);
       ProgressBar1.Position:=ProgressBar1.Max;
       StatusBar1.Panels[2].Text:=rsHisto+rsUAC;
     finally
@@ -4547,14 +4578,14 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       werte: array of Integer;
       x, zhl, w: Integer;
   begin
-    Chart1.Title.Text[0]:=rsHisto+rsFrequ;
+    chStat.Title.Text[0]:=rsHisto+rsFrequ;
     SetLength(werte, 0);      {dynamisches Array initialisieren}
     SplitList:=TStringList.Create;
     SplitList.Delimiter:=sep;
-    Chart1BarSeries1.Depth:=Bar3D;
-    Chart1.AxisList[1].Title.Caption:=rsFrequ+' [Hz]';
-    Chart1.AxisList[1].Grid.Visible:=false;
-    Chart1.AxisList[1].Intervals.MaxLength:=80;
+    chStatBarSeries1.Depth:=Bar3D;
+    chStat.AxisList[1].Title.Caption:=rsFrequ+' [Hz]';
+    chStat.AxisList[1].Grid.Visible:=false;
+    chStat.AxisList[1].Intervals.MaxLength:=80;
     ProgressBar1.Position:=1;
     Application.ProcessMessages;
     try
@@ -4577,13 +4608,13 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
         inc(zhl);                          {Anzahl gleicher Datenpunkte zählen}
         if werte[x]<>w then begin          {neuer Wert gefunden}
           if w<>0 then begin
-            Chart1BarSeries1.AddXY(w/100, zhl);
+            chStatBarSeries1.AddXY(w/100, zhl);
             zhl:=0;
           end;
           w:=werte[x];
         end;
       end;
-      if w<>0 then Chart1BarSeries1.AddXY(w/100, zhl);
+      if w<>0 then chStatBarSeries1.AddXY(w/100, zhl);
       ProgressBar1.Position:=ProgressBar1.Max;
       StatusBar1.Panels[2].Text:=rsHisto+rsFrequ;
     finally
@@ -4597,13 +4628,13 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       werte: array of Integer;
       x, zhl, w: Integer;
   begin
-    Chart1.Title.Text[0]:=rsHisto+rsWRTemp;
+    chStat.Title.Text[0]:=rsHisto+rsWRTemp;
     SetLength(werte, 0);      {dynamisches Array initialisieren}
     SplitList:=TStringList.Create;
     SplitList.Delimiter:=sep;
-    Chart1BarSeries1.Depth:=Bar3D;
-    Chart1.AxisList[1].Title.Caption:=rsWRTemp+' [°C]';
-    Chart1.AxisList[1].Grid.Visible:=false;
+    chStatBarSeries1.Depth:=Bar3D;
+    chStat.AxisList[1].Title.Caption:=rsWRTemp+' [°C]';
+    chStat.AxisList[1].Grid.Visible:=false;
     ProgressBar1.Position:=1;
     Application.ProcessMessages;
     try
@@ -4625,13 +4656,13 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
         inc(zhl);                          {Anzahl gleicher Datenpunkte zählen}
         if werte[x]<>w then begin          {neuer Wert gefunden}
           if w<>0 then begin
-            Chart1BarSeries1.AddXY(w, zhl);
+            chStatBarSeries1.AddXY(w, zhl);
             zhl:=0;
           end;
           w:=werte[x];
         end;
       end;
-      if w<>0 then Chart1BarSeries1.AddXY(w, zhl);
+      if w<>0 then chStatBarSeries1.AddXY(w, zhl);
       ProgressBar1.Position:=ProgressBar1.Max;
       StatusBar1.Panels[2].Text:=rsHisto+rsWRTemp;
     finally
@@ -4641,38 +4672,38 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
   end;
 
 begin                        {allgemeine Statistiken}
-  RadioGroup1.Tag:=0;        {keine 70%-Analyse}
-  RadioGroup1.Refresh;
+  rgAuswertung.Tag:=0;        {keine 70%-Analyse}
+  rgAuswertung.Refresh;
   if OutList.Count>1 then begin
     Screen.Cursor:=crHourGlass;
-    Chart1ConstantLine1.Active:=false;
-    Chart1ConstantLine2.Active:=false;
-    Chart1ConstantLine1.SeriesColor:=ColorButton11.ButtonColor; {Durchschnitt}
-    Chart1ConstantLine2.SeriesColor:=ColorButton8.ButtonColor;  {Soll}
-    Chart1BarSeries1.Clear;
-    Chart1BarSeries2.Clear;
-    Chart1BarSeries1.BarWidthPercent:=100;
-    Chart1BarSeries1.Marks.Visible:=false;
-    Chart1BarSeries1.BarPen.Color:=clBlack;
-    Chart1BarSeries1.SeriesColor:=ColorButton18.ButtonColor;    {Histogramm}
-    Chart1BarSeries1.Depth:=0;
-    Chart1LineSeries1.Clear;
-    Chart1LineSeries2.Clear;
-    Chart1.AxisList[0].Inverted:=false;
-    Chart1.AxisList[0].Title.Caption:=rsHfkeit;
-    Chart1.AxisList[0].Marks.Source:=nil;
-    Chart1.AxisList[0].Marks.Format:='%0:.9g';
-    Chart1.AxisList[1].Title.Caption:=rsGesZeit;
-    Chart1.AxisList[1].Intervals.MaxLength:=50;
-    Chart1.AxisList[1].Marks.Format:='%0:.3g';
-    Chart1.AxisList[1].Marks.AtDataOnly:=true;
-    Chart1.AxisList[1].Marks.Style:=smsValue;
-    Chart1.AxisList[1].Grid.Visible:=true;
+    chStatConstantLine1.Active:=false;
+    chStatConstantLine2.Active:=false;
+    chStatConstantLine1.SeriesColor:=ColorButton11.ButtonColor; {Durchschnitt}
+    chStatConstantLine2.SeriesColor:=ColorButton8.ButtonColor;  {Soll}
+    chStatBarSeries1.Clear;
+    chStatBarSeries2.Clear;
+    chStatBarSeries1.BarWidthPercent:=100;
+    chStatBarSeries1.Marks.Visible:=false;
+    chStatBarSeries1.BarPen.Color:=clBlack;
+    chStatBarSeries1.SeriesColor:=ColorButton18.ButtonColor;    {Histogramm}
+    chStatBarSeries1.Depth:=0;
+    chStatLineSeries1.Clear;
+    chStatLineSeries2.Clear;
+    chStat.AxisList[0].Inverted:=false;
+    chStat.AxisList[0].Title.Caption:=rsHfkeit;
+    chStat.AxisList[0].Marks.Source:=nil;
+    chStat.AxisList[0].Marks.Format:='%0:.9g';
+    chStat.AxisList[1].Title.Caption:=rsGesZeit;
+    chStat.AxisList[1].Intervals.MaxLength:=50;
+    chStat.AxisList[1].Marks.Format:='%0:.3g';
+    chStat.AxisList[1].Marks.AtDataOnly:=true;
+    chStat.AxisList[1].Marks.Style:=smsValue;
+    chStat.AxisList[1].Grid.Visible:=true;
     ProgressBar1.Min:=0;
     ProgressBar1.Max:=10;
     ProgressBar1.Position:=0;
     try
-      case RadioGroup1.ItemIndex of
+      case rgAuswertung.ItemIndex of
         0: PeakLeist;
         1: StartEndeZeiten;
         2: StartEndeDauer;
@@ -4690,14 +4721,16 @@ begin                        {allgemeine Statistiken}
 end;
 
 procedure TForm1.TagStat;                       {Tagesauswertung}
-var SplitList, SweepList: TStringList;
-    x, y, peak, ee, pla, umin, umax, w, itv, gw, gx, ts1, ts2, ts3: Integer;
-    er1, er2, er3: double;
-    s, fr: string;
-    dpt: TDateTime;
-    erl: boolean;
+var
+  SplitList, SweepList: TStringList;
+  x, y, peak, ee, pla, umin, umax, w, itv, gw, gx, ts1, ts2, ts3: Integer;
+  er1, er2, er3: double;
+  s, fr: string;
+  dpt: TDateTime;
+  erl: boolean;
+
 begin
-  pla:=StrToInt(edPeak.Text);             {Peakleistung der Anlage}
+  pla:=StrToInt(edPeak.Text);                   {Peakleistung der Anlage}
   umax:=0;
   umin:=9999;
   er1:=0;                                       {Ertrag pro String}
@@ -4710,40 +4743,41 @@ begin
      Shape2.Brush.Color:=ColorButton4.ButtonColor;        {String 2}
   if Shape3.Brush.Color<>clDefault then
      Shape3.Brush.Color:=ColorButton5.ButtonColor;        {String 3}
-  if ComboBox1.Text[1] in ziff then begin                 {Datumsfeld}
-    Chart4.AxisList[1].Marks.Source:=DateTimeIntervalChartSource1;
-    Chart4.AxisList[1].Marks.Format:='%2:s';
-    Chart4.AxisList[1].Title.Caption:='';       {default: nix anzeigen}
-    Chart4.AxisList[1].Title.Visible:=false;
-    Chart4.AxisList[0].Title.LabelFont.Color:=clDefault;
-    Chart4LineSeries1.SeriesColor:=ColorButton3.ButtonColor;
-    Chart4LineSeries1.LinePen.Width:=1;
-    Chart4LineSeries2.SeriesColor:=ColorButton4.ButtonColor;
-    Chart4LineSeries2.LinePen.Width:=1;
-    Chart4LineSeries3.SeriesColor:=ColorButton5.ButtonColor;
-    Chart4LineSeries3.AxisIndexY:=0;            {default: left axis}
-    Chart4LineSeries3.LinePen.Width:=1;
+  if cbAuswerteTag.Text[1] in ziff then begin                 {Datumsfeld}
+    chTag.AxisList[1].Marks.Source:=DateTimeIntervalChartSource1;
+    chTag.AxisList[1].Marks.Format:='%2:s';
+    chTag.AxisList[1].Title.Caption:='';       {default: nix anzeigen}
+    chTag.AxisList[1].Title.Visible:=false;
+    chTag.AxisList[0].Title.LabelFont.Color:=clDefault;
+    chTagLineSeries1.SeriesColor:=ColorButton3.ButtonColor;
+    chTagLineSeries1.LinePen.Width:=1;
+    chTagLineSeries2.SeriesColor:=ColorButton4.ButtonColor;
+    chTagLineSeries2.LinePen.Width:=1;
+    chTagLineSeries3.SeriesColor:=ColorButton5.ButtonColor;
+    chTagLineSeries3.AxisIndexY:=0;            {default: left axis}
+    chTagLineSeries3.LinePen.Width:=1;
     Screen.Cursor:=crHourGlass;
-    Chart4.Title.Text[0]:=rsTagesaw+' '+
-                FormatDateTime('dddd, dd. mmmm yyyy', SDToTime(ComboBox1.Text));
-    Chart4LineSeries4.LinePen.Width:=2;         {dickere Gesamtlinie}
-    Chart4LineSeries4.SeriesColor:=ColorButton6.ButtonColor; {Farbe für Gesamt}
-    Chart4LineSeries1.Clear;          {Default, String 1}
-    Chart4LineSeries2.Clear;          {String 2}
-    Chart4LineSeries3.Clear;          {String 3}
-    Chart4LineSeries4.Clear;          {Gesamt}
-    Chart4.ZoomFull;                  {Zoom und Pan rücksetzen}
+    chTag.Title.Text[0]:=rsTagesaw+' '+
+                FormatDateTime('dddd, dd. mmmm yyyy', SDToTime(cbAuswerteTag.Text));
+    chTagLineSeries4.LinePen.Width:=2;         {dickere Gesamtlinie}
+    chTagLineSeries4.SeriesColor:=ColorButton6.ButtonColor; {Farbe für Gesamt}
+    chTagLineSeries1.Clear;          {Default, String 1}
+    chTagLineSeries2.Clear;          {String 2}
+    chTagLineSeries3.Clear;          {String 3}
+    chTagLineSeries4.Clear;          {Gesamt}
+    bsT115.Clear;                    {Errorflag Fehler 115 (PV-Isolation)}
+    chTag.ZoomFull;                  {Zoom und Pan rücksetzen}
     case RadioGroup2.ItemIndex of     {Voreinstellungen entspr. Auswertung}
       0: begin                        {Ertrag}
-           Chart4.AxisList[0].Title.Caption:=rsErtrag+' [kWh]';
+           chTag.AxisList[0].Title.Caption:=rsErtrag+' [kWh]';
          end;
       1: begin                        {Leistung}
-           Chart4.AxisList[0].Title.Caption:=rsLei+' [kW]';
-           Chart4.AxisList[0].Visible:=true;
+           chTag.AxisList[0].Title.Caption:=rsLei+' [kW]';
+           chTag.AxisList[0].Visible:=true;
          end;
       2: begin                        {Strings %}
-           Chart4.AxisList[0].Title.Caption:=rsLei+' [%] per'+rsString;
-           Chart4.AxisList[0].Visible:=true;
+           chTag.AxisList[0].Title.Caption:=rsLei+' [%] per'+rsString;
+           chTag.AxisList[0].Visible:=true;
            try
              ts1:=StrToInt(LabeledEdit17.Text)*100; {Sollwerte per String}
              ts2:=StrToInt(LabeledEdit18.Text)*100;
@@ -4755,17 +4789,17 @@ begin
            end;
          end;
       3: begin                        {Spannung}
-           Chart4.AxisList[0].Title.Caption:=rsSpg+' [V]';
+           chTag.AxisList[0].Title.Caption:=rsSpg+' [V]';
          end;
       4: begin                        {Strom}
-           Chart4.AxisList[0].Title.Caption:=rsStrom+' [A]';
+           chTag.AxisList[0].Title.Caption:=rsStrom+' [A]';
          end;
       5: begin                        {Sweep: X: Leistung über Y: Spannung }
-           Chart4.AxisList[1].Marks.Source:=nil;
-           Chart4.AxisList[1].Marks.Format:='%0:.9g';
-           Chart4.AxisList[0].Title.Caption:=rsLei+' [W]';
-           Chart4.AxisList[1].Title.Caption:=rsSpg+' [V]';
-           Chart4.AxisList[1].Title.Visible:=true;
+           chTag.AxisList[1].Marks.Source:=nil;
+           chTag.AxisList[1].Marks.Format:='%0:.9g';
+           chTag.AxisList[0].Title.Caption:=rsLei+' [W]';
+           chTag.AxisList[1].Title.Caption:=rsSpg+' [V]';
+           chTag.AxisList[1].Title.Visible:=true;
            ProgressBar1.Min:=0;
            ProgressBar1.Max:=11;
            ProgressBar1.Position:=0;
@@ -4780,20 +4814,22 @@ begin
     gx:=0;
     erl:=false;
     try
-      for x:=GetOutListIDX(ComboBox1.Text) to OutList.Count-1 do begin
-        if ComboBox1.Text=copy(OutList[x], 1, 10) then begin
+      for x:=GetOutListIDX(cbAuswerteTag.Text) to OutList.Count-1 do begin
+        if cbAuswerteTag.Text=copy(OutList[x], 1, 10) then begin
           erl:=true;
           SplitList.DelimitedText:=OutList[x];
           w:=StrToInt(SplitList[2]);
-          if w>peak then peak:=w;
+          if w>peak then
+            peak:=w;
           w:=StrToInt(SplitList[3]);
-          if w>ee then ee:=w;
+          if w>ee then
+            ee:=w;
           itv:=StrToInt(SplitList[13]);        {Meßintervall  60 oder 600}
           dpt:=TToTT(SplitList[1]);            {Zeitpunkt nur einmal machen}
           case RadioGroup2.ItemIndex of
             0: begin                                                {Ertrag}
                  if w>0 then begin
-                   Chart4LineSeries4.AddXY(dpt, w/1000);
+                   chTagLineSeries4.AddXY(dpt, w/1000);
                    if CheckBox8.Checked then begin
                      er1:=er1+((StrToInt(SplitList[5])*
                                 StrToInt(SplitList[6])/10000000)*(itv/3600));
@@ -4801,9 +4837,9 @@ begin
                                 StrToInt(SplitList[8])/10000000)*(itv/3600));
                      er3:=er3+((StrToInt(SplitList[9])*
                                 StrToInt(SplitList[10])/10000000)*(itv/3600));
-                     if er1>0 then Chart4LineSeries1.AddXY(dpt, er1);
-                     if er2>0 then Chart4LineSeries2.AddXY(dpt, er2);
-                     if er3>0 then Chart4LineSeries3.AddXY(dpt, er3);
+                     if er1>0 then chTagLineSeries1.AddXY(dpt, er1);
+                     if er2>0 then chTagLineSeries2.AddXY(dpt, er2);
+                     if er3>0 then chTagLineSeries3.AddXY(dpt, er3);
                     end;
                  end;
                end;
@@ -4813,55 +4849,55 @@ begin
                    gw:=gw+w;                     {Summe für Mittelwert}
                    inc(gx);                      {Glättungsfaktor}
                    if gx=TrackBar2.Position then begin       {Gesamt geglättet}
-                     Chart4LineSeries4.AddXY(dpt, gw/TrackBar2.Position/1000);
+                     chTagLineSeries4.AddXY(dpt, gw/TrackBar2.Position/1000);
                      gw:=0;
                      gx:=0;
                    end;
-                 end else Chart4LineSeries4.AddXY(dpt, w/1000);      {Gesamt}
+                 end else chTagLineSeries4.AddXY(dpt, w/1000);      {Gesamt}
                  if CheckBox8.Checked then begin
                    w:=StrToInt(SplitList[5]);
-                   if w>0 then Chart4LineSeries1.AddXY(dpt,
+                   if w>0 then chTagLineSeries1.AddXY(dpt,
                                            w*StrToInt(SplitList[6])/10000000);
                    w:=StrToInt(SplitList[7]);
-                   if w>0 then Chart4LineSeries2.AddXY(dpt,
+                   if w>0 then chTagLineSeries2.AddXY(dpt,
                                            w*StrToInt(SplitList[8])/10000000);
                    w:=StrToInt(SplitList[9]);
-                   if w>0 then Chart4LineSeries3.AddXY(dpt,
+                   if w>0 then chTagLineSeries3.AddXY(dpt,
                                            w*StrToInt(SplitList[10])/10000000);
                  end;
                end;
             2: begin                                                 {String %}
                  w:=StrToInt(SplitList[5]);
-                 if (w>0) and (ts1>0) then Chart4LineSeries1.AddXY(dpt,
+                 if (w>0) and (ts1>0) then chTagLineSeries1.AddXY(dpt,
                                            w*StrToInt(SplitList[6])/ts1);
                  w:=StrToInt(SplitList[7]);
-                 if (w>0) and (ts2>0) then Chart4LineSeries2.AddXY(dpt,
+                 if (w>0) and (ts2>0) then chTagLineSeries2.AddXY(dpt,
                                            w*StrToInt(SplitList[8])/ts2);
                  w:=StrToInt(SplitList[9]);
-                 if (w>0) and (ts3>0) then Chart4LineSeries3.AddXY(dpt,
+                 if (w>0) and (ts3>0) then chTagLineSeries3.AddXY(dpt,
                                            w*StrToInt(SplitList[10])/ts3);
                end;
             3: begin                                                 {Spannung}
                  w:=StrToInt(SplitList[5]);
                  if Shape1.Brush.Color<>clDefault then
-                   Chart4LineSeries1.AddXY(dpt, w/10);
+                   chTagLineSeries1.AddXY(dpt, w/10);
                  w:=StrToInt(SplitList[7]);
                  if Shape2.Brush.Color<>clDefault then
-                   Chart4LineSeries2.AddXY(dpt, w/10);
+                   chTagLineSeries2.AddXY(dpt, w/10);
                  w:=StrToInt(SplitList[9]);
                  if Shape3.Brush.Color<>clDefault then
-                   Chart4LineSeries3.AddXY(dpt, w/10);
+                   chTagLineSeries3.AddXY(dpt, w/10);
                end;
             4: begin                                                 {Strom}
                  w:=StrToInt(SplitList[6]);
                  if Shape1.Brush.Color<>clDefault then
-                   Chart4LineSeries1.AddXY(dpt, w/1000);
+                   chTagLineSeries1.AddXY(dpt, w/1000);
                  w:=StrToInt(SplitList[8]);
                  if Shape2.Brush.Color<>clDefault then
-                   Chart4LineSeries2.AddXY(dpt, w/1000);
+                   chTagLineSeries2.AddXY(dpt, w/1000);
                  w:=StrToInt(SplitList[10]);
                  if Shape3.Brush.Color<>clDefault then
-                   Chart4LineSeries3.AddXY(dpt, w/1000);
+                   chTagLineSeries3.AddXY(dpt, w/1000);
                end;
             5: begin    {Sweep: erstmal Werte einsammeln und dann darstellen}
                  if StrToInt(SplitList[2])>StrToInt(edMinPower.Text) then begin
@@ -4876,26 +4912,32 @@ begin
                    if w>umax then umax:=w;         {maximale Spannung}
                    if (w>2000) and (w<umin) then umin:=w;  {minimale Spannung}
                    w:=x*100 div OutList.Count;     {nur Anzeige}
-                   if (w mod 10)=0 then ProgressBar1.Position:=w div 10;
+                   if (w mod 10)=0 then
+                     ProgressBar1.Position:=w div 10;
                  end;
                end;
           end;
+
+          if SplitList[15]='115' then begin        {V4.5 Fehler 115}
+            bsT115.AddXY(dpt, 0.5);
+          end;
+
         end else if erl then break;                {Abbrechen, wenn Tag fertig}
       end;
       ee:=GetKErt(ee);
       s:=FloatToStr(ee/1000)+'kWh';
-      Chart4.Title.Text[0]:=rsTagesaw+' '+
-              FormatDateTime('dddd, dd. mmmm yyyy', SDToTime(ComboBox1.Text))+
+      chTag.Title.Text[0]:=rsTagesaw+' '+
+              FormatDateTime('dddd, dd. mmmm yyyy', SDToTime(cbAuswerteTag.Text))+
               '    ['+s+']';
-      StatusBar1.Panels[2].Text:='Maximale '+rsLei+rsAm+ComboBox1.Text+
+      StatusBar1.Panels[2].Text:='Maximale '+rsLei+rsAm+cbAuswerteTag.Text+
                                  dtr+FloatToStr(peak/1000)+'kW';
       SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
       Label3.Caption:=FloatToStr(peak/1000)+'kW';
       Label5.Caption:=s;
       Label20.Caption:=FloatToStrF(ee/pla, ffFixed, 12, 3)+'kWh/kWp';
       Label7.Caption:=FloatToStrF(ee/1000*Geteevg, ffFixed, 12, 2)+edEuro.Text;
-      SpeedButton1.Enabled:=not (ComboBox1.ItemIndex=0);
-      SpeedButton2.Enabled:=not (ComboBox1.ItemIndex=ComboBox1.Items.Count-1);
+      SpeedButton1.Enabled:=not (cbAuswerteTag.ItemIndex=0);
+      SpeedButton2.Enabled:=not (cbAuswerteTag.ItemIndex=cbAuswerteTag.Items.Count-1);
       if RadioGroup2.ItemIndex=5 then begin  {Sweep Diagramm zeichnen}
         umax:=((umax div 100)+1)*100;        {Diagrammgrenzen festlegen}
         umin:=(umin div 100)*100;
@@ -4903,18 +4945,21 @@ begin
           for y:=0 to SweepList.Count-1 do begin
             SplitList.DelimitedText:=SweepList[y];
             w:=StrToInt(SplitList[5]);       {String 1}
-            if w=x then Chart4LineSeries1.AddXY(x/10,w*StrToInt(SplitList[6])/10000);
+            if w=x then
+              chTagLineSeries1.AddXY(x/10,w*StrToInt(SplitList[6])/10000);
             w:=StrToInt(SplitList[7]);       {String 2}
-            if w=x then Chart4LineSeries2.AddXY(x/10,w*StrToInt(SplitList[8])/10000);
+            if w=x then
+              chTagLineSeries2.AddXY(x/10,w*StrToInt(SplitList[8])/10000);
             w:=StrToInt(SplitList[9]);       {String 3}
-            if w=x then Chart4LineSeries3.AddXY(x/10,w*StrToInt(SplitList[10])/10000);
+            if w=x then
+              chTagLineSeries3.AddXY(x/10,w*StrToInt(SplitList[10])/10000);
           end;
         end;
         ProgressBar1.Position:=ProgressBar1.Max;
       end;
       if btnTag.Tag=1 then begin            {Diesen Tag wieder herstellen}
         SweepList.Clear;
-        SweepList.Add(FormatDateTime(isodate, SDToTime(ComboBox1.Text))+sep+
+        SweepList.Add(FormatDateTime(isodate, SDToTime(cbAuswerteTag.Text))+sep+
                       '000000'+sep+edUser.Text+sep+
                       StatusBar1.Panels[0].Text+sep+'+0100');
         SweepList.Add(infbeg);
@@ -4928,10 +4973,10 @@ begin
                       'P_AC_2;P_AC_3;F_AC_1;F_AC_2;F_AC_3;R_DC;PC;PCS;'+
                       'PCS_LL;COS_PHI;COS_PHI_LL;S_COS_PHI');
         for x:=0 to OutList.Count-1 do begin           {Rohdaten durchsuchen}
-          if ComboBox1.Text=copy(OutList[x], 1, 10) then begin {Tag selektieren}
+          if cbAuswerteTag.Text=copy(OutList[x], 1, 10) then begin {Tag selektieren}
             SplitList.DelimitedText:=OutList[x];
             fr:=MakeFloatStr(SplitList[12], 2, '.')+sep;
-            SweepList.Add(SplitList[13]+sep+ComboBox1.Text+' '+SplitList[1]+':00'+
+            SweepList.Add(SplitList[13]+sep+cbAuswerteTag.Text+' '+SplitList[1]+':00'+
                           sep+StatusBar1.Panels[1].Text+sep+SplitList[2]+sep+
                           MakeFloatStr(SplitList[3], 3, '.')+sep+
                           SplitList[4]+sep+SplitList[11]+sep+SplitList[11]+sep+
@@ -4950,7 +4995,7 @@ begin
         SweepList.Add(datend);
         s:=IncludeTrailingPathDelimiter(deLocal.Directory)+
            copy(edFilter.Text,1,length(edFilter.Text)-1)+
-           FormatDateTime('YYMMDD', SDToTime(ComboBox1.Text))+'000000';
+           FormatDateTime('YYMMDD', SDToTime(cbAuswerteTag.Text))+'000000';
         SweepList.SaveToFile(s);
         StatusBar1.Panels[2].Text:=ExtractFileName(s)+' wiederhergestellt';
         SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
@@ -4964,24 +5009,27 @@ begin
 end;
 
 procedure TForm1.MonStat;                            {Monatsauswertung}
-var SplitList: TStringList;
-    x, w, ee, eeges, peak, dz, pla: Integer;
-    t: string;
-    erl, gef: boolean;
+var
+  SplitList: TStringList;
+  x, w, ee, eeges, peak, dz, pla: Integer;
+  t: string;
+  erl, gef, e115: boolean;
+
 begin
-  Chart2ConstantLine1.Active:=false;      {Durchschnittlicher TE}
-  Chart2ConstantLine1.SeriesColor:=ColorButton10.ButtonColor; {default: nicht erreicht}
-  Chart2ConstantLine2.Active:=false;      {Soll}
-  Chart2ConstantLine2.SeriesColor:=ColorButton8.ButtonColor;
+  chMonatConstantLine1.Active:=false;      {Durchschnittlicher TE}
+  chMonatConstantLine1.SeriesColor:=ColorButton10.ButtonColor; {default: nicht erreicht}
+  chMonatConstantLine2.Active:=false;      {Soll}
+  chMonatConstantLine2.SeriesColor:=ColorButton8.ButtonColor;
   pla:=StrToInt(edPeak.Text);
-  if CheckBox10.Checked then Chart2.AxisList[0].Title.Caption:=rsErtrag+' '+
+  if CheckBox10.Checked then chMonat.AxisList[0].Title.Caption:=rsErtrag+' '+
                                                          rsNormiert+' [kWh/kWp]'
-                        else Chart2.AxisList[0].Title.Caption:=rsErtrag+' [kWh]';
+                        else chMonat.AxisList[0].Title.Caption:=rsErtrag+' [kWh]';
   if ComboBox2.Text[1] in ziff then begin
     Screen.Cursor:=crHourGlass;
-    Chart2.Title.Text[0]:=rsErtrag+' '+
+    chMonat.Title.Text[0]:=rsErtrag+' '+
                           FormatDateTime('mmmm yyyy', SDToTime(ComboBox2.Text));
-    Chart2BarSeries1.Clear;
+    bsMonat.Clear;
+    bsM115.Clear;
     SplitList:=TStringList.Create;
     SplitList.Delimiter:=sep;
     ee:=0;                   {Energieertrag}
@@ -4991,57 +5039,73 @@ begin
     t:='';                   {Tag}
     erl:=false;
     gef:=false;
+    e115:=false;
     try
 {Monatserträge aus dem Archiv}
-      if DayList.Count>0 then for x:=0 to DayList.Count-1 do begin
-        if ComboBox2.Text=copy(DayList[x],1,7) then begin
-          gef:=true;
-          SplitList.DelimitedText:=DayList[x];
-          w:=StrToInt(SplitList[1]);
-          if w>peak then peak:=w;
-          ee:=GetKErt(StrToInt(SplitList[2]));
-          eeges:=eeges+ee;
-          t:=Copy(DayList[x],9,2);
-          if CheckBox10.Checked then Chart2BarSeries1.Add(ee/pla, t, ColorButton7.ButtonColor)
-                                else Chart2BarSeries1.Add(ee/1000, t, ColorButton7.ButtonColor);
-          inc(dz);
-        end else if gef then begin
-          erl:=true;
-          break;
+      if DayList.Count>0 then
+        for x:=0 to DayList.Count-1 do begin
+          if ComboBox2.Text=copy(DayList[x],1,7) then begin
+            gef:=true;
+            SplitList.DelimitedText:=DayList[x];
+            w:=StrToInt(SplitList[1]);
+            if w>peak then peak:=w;
+            ee:=GetKErt(StrToInt(SplitList[2]));
+            eeges:=eeges+ee;
+            t:=Copy(DayList[x],9,2);
+            if CheckBox10.Checked then bsMonat.Add(ee/pla, t, ColorButton7.ButtonColor)
+                                  else bsMonat.Add(ee/1000, t, ColorButton7.ButtonColor);
+            inc(dz);
+          end else if gef then begin
+            erl:=true;
+            break;
+          end;
         end;
-      end;
       ee:=0;
       t:='';
-      if not erl then for x:=GetOutListIDX(ComboBox2.Text) to OutList.Count-1 do begin
-        if ComboBox2.Text=copy(OutList[x],1,7) then begin
-          erl:=true;
-          SplitList.DelimitedText:=OutList[x];
-          w:=StrToInt(SplitList[2]);
-          if w>peak then peak:=w;
-          w:=StrToInt(SplitList[3]);
-          if w>ee then ee:=w;                     {größten Wert des Tages merken}
-          if t<>Copy(OutList[x],9,2) then begin   {neuer Tag}
-            if t<>'' then begin
-              ee:=GetKErt(ee);
-              if CheckBox10.Checked then Chart2BarSeries1.Add(ee/pla, t, ColorButton7.ButtonColor)
-                                    else Chart2BarSeries1.Add(ee/1000, t, ColorButton7.ButtonColor);
-              eeges:=eeges+ee;
-              inc(dz);
+
+      if not erl then
+        for x:=GetOutListIDX(ComboBox2.Text) to OutList.Count-1 do begin
+          if ComboBox2.Text=copy(OutList[x],1,7) then begin
+            erl:=true;
+            SplitList.DelimitedText:=OutList[x];
+            w:=StrToInt(SplitList[2]);
+            if w>peak then
+              peak:=w;
+            w:=StrToInt(SplitList[3]);
+            if w>ee then
+              ee:=w;                     {größten Wert des Tages merken}
+            if splitlist[15]='115' then
+              e115:=true;
+            if t<>Copy(OutList[x],9,2) then begin   {neuer Tag}
+              if t<>'' then begin
+                if e115 then                        {PV-Isolationsfehler als roter Balken}
+                  bsM115.Add(1, t, clRed)
+                else
+                  bsM115.Add(0, t, clBlack);
+                ee:=GetKErt(ee);
+                if CheckBox10.Checked then          {normiert}
+                  bsMonat.Add(ee/pla, t, ColorButton7.ButtonColor)
+                else                                {normal in kWh}
+                  bsMonat.Add(ee/1000, t, ColorButton7.ButtonColor);
+                eeges:=eeges+ee;
+                inc(dz);
+              end;
+              t:=Copy(OutList[x],9,2);
+              ee:=0;
+              e115:=false;
             end;
-            t:=Copy(OutList[x],9,2);
-            ee:=0;
-          end;
-        end else if erl then break;
-      end;
+          end else
+            if erl then break;
+        end;
       ee:=GetKErt(ee);
       eeges:=eeges+ee;
       if (ee>0) and (t<>'') then begin
-        if CheckBox10.Checked then Chart2BarSeries1.Add(ee/pla, t, ColorButton7.ButtonColor)
-                              else Chart2BarSeries1.Add(ee/1000, t, ColorButton7.ButtonColor);
+        if CheckBox10.Checked then bsMonat.Add(ee/pla, t, ColorButton7.ButtonColor)
+                              else bsMonat.Add(ee/1000, t, ColorButton7.ButtonColor);
         inc(dz);
       end;
       t:=FloatToStr(eeges/1000)+'kWh';
-      Chart2.Title.Text[0]:=rsErtrag+' '+
+      chMonat.Title.Text[0]:=rsErtrag+' '+
                          FormatDateTime('mmmm yyyy', SDToTime(ComboBox2.Text))+
                          '     ['+t+']';
       StatusBar1.Panels[2].Text:='Durchschnittlicher Tagesertrag für '+MonToTxt(ComboBox2.Text)+
@@ -5057,23 +5121,25 @@ begin
       if (eeges/dz)>(GetSJE*pla*
           StrToIntDef(StringGrid1.Cells[StrToInt(copy(ComboBox2.Text, 6, 2))-1, 1], 0)/SumGrid/
           DaysInAMonth(StrToInt(copy(ComboBox2.Text,1,4)), StrToInt(copy(ComboBox2.Text,6,2))))
-        then Chart2ConstantLine1.SeriesColor:=ColorButton9.ButtonColor;
+        then chMonatConstantLine1.SeriesColor:=ColorButton9.ButtonColor;
       if CheckBox10.Checked then begin               {normiert}
-        Chart2ConstantLine1.Position:=eeges/pla/dz;  {durchschn. Tagesertrag}
-        Chart2ConstantLine2.Position:=GetSJE*
+        chMonatConstantLine1.Position:=eeges/pla/dz;  {durchschn. Tagesertrag}
+        chMonatConstantLine2.Position:=GetSJE*
           StrToIntDef(StringGrid1.Cells[StrToInt(copy(ComboBox2.Text, 6, 2))-1, 1], 0)/SumGrid/
           DaysInAMonth(StrToInt(copy(ComboBox2.Text,1,4)), StrToInt(copy(ComboBox2.Text,6,2)));
       end else begin                                 {absolut}
-        Chart2ConstantLine1.Position:=eeges/1000/dz; {durchschn. Tagesertrag}
-        Chart2ConstantLine2.Position:=GetSJE*pla*
+        chMonatConstantLine1.Position:=eeges/1000/dz; {durchschn. Tagesertrag}
+        chMonatConstantLine2.Position:=GetSJE*pla*
           StrToIntDef(StringGrid1.Cells[StrToInt(copy(ComboBox2.Text, 6, 2))-1, 1], 0)/SumGrid/
           1000/DaysInAMonth(StrToInt(copy(ComboBox2.Text,1,4)), StrToInt(copy(ComboBox2.Text,6,2)));
       end;
       if dz>1 then begin
-        Chart2ConstantLine1.Active:=true;
-        Chart2ConstantLine2.Active:=true;
+        chMonatConstantLine1.Active:=true;
+        chMonatConstantLine2.Active:=true;
       end;
-      if dz<4 then for x:=1 to 4 do Chart2BarSeries1.Add(0, '', clBtnFace);
+      if dz<4 then
+        for x:=1 to 4 do
+          bsMonat.Add(0, '', clBtnFace);
       SpeedButton4.Enabled:=not (ComboBox2.ItemIndex=0);
       SpeedButton3.Enabled:=not (ComboBox2.ItemIndex=ComboBox2.Items.Count-1);
     finally
@@ -5092,17 +5158,17 @@ var SplitList: TStringList;
 begin
   pla:=StrToInt(edPeak.Text);
   gsum:=SumGrid;
-  if CheckBox7.Checked then Chart3.AxisList[0].Title.Caption:=rsErtrag+' '+
+  if CheckBox7.Checked then chJahr.AxisList[0].Title.Caption:=rsErtrag+' '+
                                                         rsNormiert+' [kWh/kWp]'
-                       else Chart3.AxisList[0].Title.Caption:=rsErtrag+' [kWh]';
+                       else chJahr.AxisList[0].Title.Caption:=rsErtrag+' [kWh]';
   if ComboBox3.Text[1] in ziff then begin
     Screen.Cursor:=crHourGlass;
-    Chart3ConstantLine1.Active:=false;      {Durchschnittlicher Monatsertrag}
-    Chart3ConstantLine1.SeriesColor:=ColorButton10.ButtonColor;
-    Chart3ConstantLine2.Active:=false;      {durchschnittlicher Sollertrag}
-    Chart3ConstantLine2.SeriesColor:=ColorButton8.ButtonColor;
-    Chart3BarSeries1.Clear;
-    Chart3BarSeries2.Clear;
+    chJahrConstantLine1.Active:=false;      {Durchschnittlicher Monatsertrag}
+    chJahrConstantLine1.SeriesColor:=ColorButton10.ButtonColor;
+    chJahrConstantLine2.Active:=false;      {durchschnittlicher Sollertrag}
+    chJahrConstantLine2.SeriesColor:=ColorButton8.ButtonColor;
+    chJahrBarSeries1.Clear;
+    chJahrBarSeries2.Clear;
     SplitList:=TStringList.Create;
     SplitList.Delimiter:=sep;
     eeges:=0;                {Energieertrag gesamt im Monat}
@@ -5136,11 +5202,11 @@ begin
                   StrToIntDef(StringGrid1.Cells[StrToInt(copy(m,6,2))-1, 1], 0)/gsum/1000;
               end;
               if dz=DaysInMonth(SDToTime(m)) then begin
-                Chart3BarSeries1.Add(displ, MonToTxt(m),ColorButton12.ButtonColor);
-                Chart3BarSeries2.Add(sollw, '', ColorButton14.ButtonColor);   {Soll}
+                chJahrBarSeries1.Add(displ, MonToTxt(m),ColorButton12.ButtonColor);
+                chJahrBarSeries2.Add(sollw, '', ColorButton14.ButtonColor);   {Soll}
               end else begin
-                Chart3BarSeries1.Add(displ, MonToTxt(m),ColorButton13.ButtonColor);
-                Chart3BarSeries2.Add(sollw, '', ColorButton14.ButtonColor);
+                chJahrBarSeries1.Add(displ, MonToTxt(m),ColorButton13.ButtonColor);
+                chJahrBarSeries2.Add(sollw, '', ColorButton14.ButtonColor);
               end;
             end;
             m:=copy(DayList[x],1,7);
@@ -5185,11 +5251,11 @@ begin
                     StrToIntDef(StringGrid1.Cells[StrToInt(copy(m,6,2))-1, 1], 0)/gsum/1000;
                 end;
                 if dz=DaysInMonth(SDToTime(m)) then begin
-                  Chart3BarSeries1.Add(displ, MonToTxt(m),ColorButton12.ButtonColor);
-                  Chart3BarSeries2.Add(sollw, '', ColorButton14.ButtonColor);   {Soll}
+                  chJahrBarSeries1.Add(displ, MonToTxt(m),ColorButton12.ButtonColor);
+                  chJahrBarSeries2.Add(sollw, '', ColorButton14.ButtonColor);   {Soll}
                 end else begin
-                  Chart3BarSeries1.Add(displ, MonToTxt(m),ColorButton13.ButtonColor);
-                  Chart3BarSeries2.Add(sollw, '', ColorButton14.ButtonColor);
+                  chJahrBarSeries1.Add(displ, MonToTxt(m),ColorButton13.ButtonColor);
+                  chJahrBarSeries2.Add(sollw, '', ColorButton14.ButtonColor);
                 end;
               end;
               m:=copy(outList[x],1,7);
@@ -5221,17 +5287,17 @@ begin
             StrToIntDef(StringGrid1.Cells[StrToInt(copy(m,6,2))-1, 1], 0)/gsum/1000;
         end;
         if dz=DaysInMonth(SDToTime(m)) then begin
-          Chart3BarSeries1.Add(displ, MonToTxt(m), ColorButton12.ButtonColor);
-          Chart3BarSeries2.Add(sollw, '', ColorButton14.ButtonColor);
+          chJahrBarSeries1.Add(displ, MonToTxt(m), ColorButton12.ButtonColor);
+          chJahrBarSeries2.Add(sollw, '', ColorButton14.ButtonColor);
         end else begin
-          Chart3BarSeries1.Add(displ, MonToTxt(m), ColorButton13.ButtonColor);
-          Chart3BarSeries2.Add(sollw, '', ColorButton14.ButtonColor);
+          chJahrBarSeries1.Add(displ, MonToTxt(m), ColorButton13.ButtonColor);
+          chJahrBarSeries2.Add(sollw, '', ColorButton14.ButtonColor);
         end;
       end;
       mz:=0;                  {Anzahl Monate im ausgewählten Jahr zählen}
       for x:=0 to ComboBox2.Items.Count-1 do
         if ComboBox3.Text=copy(ComboBox2.Items[x], 1, 4) then inc(mz);
-      Chart3.Title.Text[0]:=rsYearPr+ComboBox3.Text+dtr+FloatToStr(jges/1000)+'kWh';
+      chJahr.Title.Text[0]:=rsYearPr+ComboBox3.Text+dtr+FloatToStr(jges/1000)+'kWh';
       StatusBar1.Panels[2].Text:=rsAvProdM+dtr+
                                  FloatToStrf(jges/1000/mz, ffFixed,12, 3)+'kWh';
       SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
@@ -5243,16 +5309,16 @@ begin
       Label24.Caption:=FloatToStrF(jges/pla/zhl*DaysInAYear(StrToInt(ComboBox3.Text)),
                                    ffFixed, 12, 3)+'kWh/kWp';
 {durchschn. Monatsertrag als Linie anzeigen}
-      if (jges/mz)>(GetSJE*pla/12) then Chart3ConstantLine1.SeriesColor:=ColorButton9.ButtonColor;
+      if (jges/mz)>(GetSJE*pla/12) then chJahrConstantLine1.SeriesColor:=ColorButton9.ButtonColor;
       if CheckBox7.Checked then begin      {normiert}
-        Chart3ConstantLine1.Position:=jges/pla/mz;
-        Chart3ConstantLine2.Position:=GetSJE/12;
+        chJahrConstantLine1.Position:=jges/pla/mz;
+        chJahrConstantLine2.Position:=GetSJE/12;
       end else begin                       {absolut}
-        Chart3ConstantLine1.Position:=jges/1000/mz;
-        Chart3ConstantLine2.Position:=GetSJE*pla/12000;
+        chJahrConstantLine1.Position:=jges/1000/mz;
+        chJahrConstantLine2.Position:=GetSJE*pla/12000;
       end;
-      Chart3ConstantLine1.Active:=true;  {Durchschnittlicher Monatsertrag}
-      Chart3ConstantLine2.Active:=true;  {durchschnittlicher Sollertrag}
+      chJahrConstantLine1.Active:=true;  {Durchschnittlicher Monatsertrag}
+      chJahrConstantLine2.Active:=true;  {durchschnittlicher Sollertrag}
       SpeedButton6.Enabled:=not (ComboBox3.ItemIndex=0);
       SpeedButton5.Enabled:=not (ComboBox3.ItemIndex=ComboBox3.Items.Count-1);
     finally
