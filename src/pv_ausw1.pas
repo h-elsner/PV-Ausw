@@ -2,7 +2,7 @@
           {                                                        }
           {       Danfoss TripleLynx Pro WR Datenauswertung        }
           {                                                        }
-          {       Copyright (c) 2011-2022 Helmut Elsner            }
+          {       Copyright (c) 2011-2024 Helmut Elsner            }
           {                                                        }
           {       Compiler: FPC 3.2.2   /    Lazarus 2.2.0         }
           {                                                        }
@@ -155,6 +155,7 @@ unit PV_Ausw1;
   2020-02-28      Fehler bei Jahresstatistik Balken anklichen, wenn 3 Monate vom
                   Vorjahr noch angezeigt werden
   2023-02-27 V4.5 Fehler 115 (PV-Isolation) visualisieren
+  2024-04-11 V4.6 Monatsvergleich
 
   This library is free software; you can redistribute it and/or modify it
   under the terms of the GNU Library General Public License as published by
@@ -259,14 +260,14 @@ type
     cbxSommerzeit: TCheckBox;
     CheckBox12: TCheckBox;
     CheckBox13: TCheckBox;
-    CheckBox2:  TCheckBox;
-    CheckBox3:  TCheckBox;
-    CheckBox4:  TCheckBox;
-    CheckBox5:  TCheckBox;
-    CheckBox6:  TCheckBox;
+    cbActFTP:  TCheckBox;
+    cbSameAccount:  TCheckBox;
+    cbActFTPhtml:  TCheckBox;
+    cbPassShow:  TCheckBox;
+    cbPassShowHTML:  TCheckBox;
     CheckBox7:  TCheckBox;
     CheckBox8:  TCheckBox;
-    CheckBox9:  TCheckBox;
+    cbPassivFTP:  TCheckBox;
     ColorButton1: TColorButton;
     ColorButton10: TColorButton;
     ColorButton11: TColorButton;
@@ -289,8 +290,8 @@ type
     ColorButton9: TColorButton;
     ColorDialog1: TColorDialog;
     cbAuswerteTag:  TComboBox;
-    ComboBox2:  TComboBox;
-    ComboBox3:  TComboBox;
+    cbMonat:  TComboBox;
+    cbJahr:  TComboBox;
     cbxTagrot:  TComboBox;
     cbxTagblau:  TComboBox;
     DateEdit1:  TDateEdit;
@@ -315,6 +316,7 @@ type
     GroupBox8: TGroupBox;
     GroupBox9: TGroupBox;
     IdFTP1:  TIdFTP;
+    imgStrings: TImage;
     Label1:  TLabel;
     Label10: TLabel;
     Label11: TLabel;
@@ -430,6 +432,7 @@ type
     StringGrid1:  TStringGrid;
     SynAnySyn1: TSynAnySyn;
     SynMemo1:   TSynMemo;
+    tsPlan: TTabSheet;
     tsTag:  TTabSheet;
     tsSpiel: TTabSheet;
     tsColors: TTabSheet;
@@ -477,18 +480,18 @@ type
     procedure CheckBox12Change(Sender: TObject);
     procedure CheckBox13Change(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
-    procedure CheckBox2Change(Sender: TObject);
-    procedure CheckBox3Change(Sender: TObject);
-    procedure CheckBox4Change(Sender: TObject);
-    procedure CheckBox5Change(Sender: TObject);
-    procedure CheckBox6Change(Sender: TObject);
+    procedure cbActFTPChange(Sender: TObject);
+    procedure cbSameAccountChange(Sender: TObject);
+    procedure cbActFTPhtmlChange(Sender: TObject);
+    procedure cbPassShowChange(Sender: TObject);
+    procedure cbPassShowHTMLChange(Sender: TObject);
     procedure CheckBox7Change(Sender: TObject);
     procedure CheckBox8Change(Sender: TObject);
-    procedure CheckBox9Change(Sender: TObject);
+    procedure cbPassivFTPChange(Sender: TObject);
     procedure ColorButton1ColorChanged(Sender: TObject);
     procedure cbAuswerteTagChange(Sender: TObject);
-    procedure ComboBox2Change(Sender: TObject);
-    procedure ComboBox3Change(Sender: TObject);
+    procedure cbMonatChange(Sender: TObject);
+    procedure cbJahrChange(Sender: TObject);
     procedure cbxTagrotChange(Sender: TObject);
     procedure cbxTagblauChange(Sender: TObject);
     procedure DateEdit1AcceptDate(Sender: TObject; var ADate: TDateTime;
@@ -583,7 +586,7 @@ public
   end;
 
 const
-  Version ='V4.5  02/2023';
+  Version ='V4.6  04/2024';
   homepage='http://h-elsner.mooo.com';             {meine Homepage}
   meinname='Helmut Elsner';
   email   ='helmut.elsner@live.com';               {meine e-mail Adresse}
@@ -609,6 +612,7 @@ const
   defint=300;        {5 min = 300 sec als default Meßintervall für Kaco und SMA}
   isodate ='YYYYMMDD';       {Datumsformat kurz}
   isoday  ='yyyy-mm-dd';     {Datumsformat ISO 8601}
+  HTMLthr =500;              {Schwellwert Ertrag, ab dem auf Webseite hochgeladen wird in Wh}
 
 {siehe http://wiki.sonnenertrag.eu/datenimport:voraussetzung:voraussetzung
  (SolarLog Standard)
@@ -663,8 +667,8 @@ begin
   SynMemo1.Lines.Add('Start  : '+FormatDateTime(isoday+' hh:nn:ss', now));
   SynMemo1.Lines.Add('');
   cbAuswerteTag.Text:='Day';
-  ComboBox2.Text:='Month';
-  ComboBox3.Text:='Year';
+  cbMonat.Text:='Month';
+  cbJahr.Text:='Year';
   DateEdit1.Enabled:=false;
   RadioGroup2.Tag:=0;               {zählt die FTP Downloads}
 {Ressourcen zuweisen}
@@ -836,13 +840,13 @@ begin
   Label54.Caption:=capUpdInt;
   CheckBox1.Caption:=capExtAusw;
   CheckBox1.Hint:=hntExtAusw;
-  CheckBox2.Caption:=capFTPakt;
-  CheckBox2.Hint:=hntFTPaktDW;
-  CheckBox3.Caption:=capFTPcop;
-  CheckBox4.Caption:=capFTPakt;
-  CheckBox4.Hint:=hntFTPaktHP;
-  CheckBox5.Caption:=capShowPW;
-  CheckBox6.Caption:=capShowPW;
+  cbActFTP.Caption:=capFTPakt;
+  cbActFTP.Hint:=hntFTPaktDW;
+  cbSameAccount.Caption:=capFTPcop;
+  cbActFTPhtml.Caption:=capFTPakt;
+  cbActFTPhtml.Hint:=hntFTPaktHP;
+  cbPassShow.Caption:=capShowPW;
+  cbPassShowHTML.Caption:=capShowPW;
   CheckBox7.Caption:=capNormiert;
   CheckBox7.Hint:=hntNormiert;
   CheckBox10.Caption:=capNormiert;
@@ -855,8 +859,8 @@ begin
   cbxSommerzeit.Hint:=hntNoDST;
   CheckBox8.Caption:=capShowStr;
   CheckBox8.Hint:=hntShowStr;
-  CheckBox9.Caption:=capFTPpasv;
-  CheckBox9.Hint:=hntFTPpasv;
+  cbPassivFTP.Caption:=capFTPpasv;
+  cbPassivFTP.Hint:=hntFTPpasv;
   deLocal.Hint:=hntDiredit;
   deServer.Hint:=hntHTMLfile;
   Label51.Hint:=hntManual;
@@ -871,6 +875,7 @@ begin
   rgAuswertung.Items.Add(rsEdauer);
   rgAuswertung.Items.Add(rsErtrag);
   rgAuswertung.Items.Add(rsSpYP);
+  rgAuswertung.Items.Add(rsComMonth);
   rgAuswertung.Items.Add(rsRelErtr);
   rgAuswertung.Items.Add(rsUAC);
   rgAuswertung.Items.Add(rsFrequ);
@@ -932,16 +937,16 @@ begin
   edEuro.Text:=XMLPropStorage1.StoredValue['CurrStr'];
   edKorrFak.Text:=XMLPropStorage1.StoredValue['KorrE'];
   CheckBox1.Checked:=StrToBool(XMLPropStorage1.StoredValue['JSDateienAnlegen']);
-  CheckBox2.Checked:=StrToBool(XMLPropStorage1.StoredValue['FTP_DWakt']);
-  CheckBox4.Checked:=StrToBool(XMLPropStorage1.StoredValue['FTP_HPakt']);
-  CheckBox3.Checked:=StrToBool(XMLPropStorage1.StoredValue['FTP_single']);
+  cbActFTP.Checked:=StrToBool(XMLPropStorage1.StoredValue['FTP_DWakt']);
+  cbActFTPhtml.Checked:=StrToBool(XMLPropStorage1.StoredValue['FTP_HPakt']);
+  cbSameAccount.Checked:=StrToBool(XMLPropStorage1.StoredValue['FTP_single']);
   CheckBox7.Checked:=StrToBool(XMLPropStorage1.StoredValue['JNormiert']);
   CheckBox10.Checked:=StrToBool(XMLPropStorage1.StoredValue['MNormiert']);
   CheckBox12.Checked:=StrToBool(XMLPropStorage1.StoredValue['NoFileList']);
   CheckBox13.Checked:=StrToBool(XMLPropStorage1.StoredValue['NoReduction']);
   cbxSommerzeit.Checked:=StrToBool(XMLPropStorage1.StoredValue['NoDST']);
   CheckBox8.Checked:=StrToBool(XMLPropStorage1.StoredValue['ShowStrings']);
-  CheckBox9.Checked:=StrToBool(XMLPropStorage1.StoredValue['FTPpasv']);
+  cbPassivFTP.Checked:=StrToBool(XMLPropStorage1.StoredValue['FTPpasv']);
   speArchPeriod.Value:=StrToInt(XMLPropStorage1.StoredValue['ToArchive']);
   spePeriod.Value:=StrToInt(XMLPropStorage1.StoredValue['AutoReload']);
   RadioGroup4.ItemIndex:=StrToInt(XMLPropStorage1.StoredValue['PGlY']);
@@ -949,7 +954,7 @@ begin
   RadioGroup6.ItemIndex:=StrToInt(XMLPropStorage1.StoredValue['InverterType']);
   SpinEdit4.Value:=StrToInt(XMLPropStorage1.StoredValue['FTPReadTimeout']);
   btnTag.Visible:=(RadioGroup6.ItemIndex=0); {Tag wiederherstellen - nur Danfoss}
-  IdFTP1.Passive:=CheckBox9.Checked;
+  IdFTP1.Passive:=cbPassivFTP.Checked;
   IdFTP1.ReadTimeout:=SpinEdit4.Value*1000;
   IdFTP1.ListenTimeout:=IdFTP1.ReadTimeout;
   edVerg.EditLabel.Caption:=rsEEGV+  ' ['+edEuro.Text+'/kWh]';
@@ -982,19 +987,19 @@ begin
   TrackBar1.Position:=StrToInt(XMLPropStorage1.StoredValue['Histogrammerzeugung']);
   TrackBar2.Position:=StrToInt(XMLPropStorage1.StoredValue['Smooth']);
   p:=StrToInt(XMLPropStorage1.StoredValue['LastEval']);
-  if (Trackbar1.Position>3) or (p<5) then rgAuswertung.ItemIndex:=p
+  if (Trackbar1.Position>3) or (p<6) then rgAuswertung.ItemIndex:=p
                                      else rgAuswertung.ItemIndex:=3; {Ertrag=default};
   StatusBar1.Panels[0].Text:=XMLPropStorage1.StoredValue['InverterName'];
   StatusBar1.Panels[1].Text:=XMLPropStorage1.StoredValue['InverterID'];
   StatusBar1.Panels[2].Text:=deLocal.Directory;
   Form1.Caption:=capForm+StatusBar1.Panels[1].Text;
-  if CheckBox3.Checked then begin
-    CheckBox6.Enabled:=false;
+  if cbSameAccount.Checked then begin
+    cbPassShowHTML.Enabled:=false;
     edHTMLserver.Enabled:=false;
     edHTMLuser.Enabled:=false;
     edHTMLpasw.Enabled:=false;
   end else begin
-    CheckBox6.Enabled:=true;
+    cbPassShowHTML.Enabled:=true;
     edHTMLserver.Enabled:=true;
     edHTMLuser.Enabled:=true;
     edHTMLpasw.Enabled:=true;
@@ -1319,7 +1324,7 @@ var
   s: string;
 
 begin
-  if (CheckBox2.Checked)    and    {FTP download aktiviert}
+  if (cbActFTP.Checked)    and    {FTP download aktiviert}
      (edServerName.Text>'') and    {Host}
      (edUser.Text>'') and    {Account}
      (edPasw.Text>'') and    {Password}
@@ -1494,7 +1499,7 @@ var x, y, ter, maxld, ertr, korre, ld: integer;
 begin
   if deLocal.Directory>'' then begin               {nur, wenn ein Verzeichnis angegeben}
     dr:=IncludeTrailingPathDelimiter(deLocal.Directory);
-    isftp:=(CheckBox2.Checked)    and              {FTP download aktiviert}
+    isftp:=(cbActFTP.Checked)    and              {FTP download aktiviert}
            (edServerName.Text>'') and              {Host}
            (edUser.Text>'') and                    {Account}
            (edPasw.Text>'') and                    {Password}
@@ -1659,7 +1664,11 @@ begin
     0: StatusBar1.Panels[2].Text:=rsTagesaw;
     1: StatusBar1.Panels[2].Text:=rsMonatsaw;
     2: StatusBar1.Panels[2].Text:=rsJahresaw;
-    3: StatusBar1.Panels[2].Text:=rsStatistikerz+'..';
+    3: begin
+         StatusBar1.Panels[2].Text:=rsStatistikerz+'..';
+         if (cbMonat.Tag=1) and (rgAuswertung.ItemIndex=5) then
+           Statistik;
+       end;
     4: case pcSettings.ActivePageIndex of
          0: StatusBar1.Panels[2].Text:=rsUmgvar;
          1: StatusBar1.Panels[2].Text:=rsEinst+' / '+rsTools;
@@ -1741,12 +1750,12 @@ begin
   end;
 end;
 
-procedure TForm1.CheckBox3Change(Sender: TObject);  {gleiche FTP-Daten für Homepage}
+procedure TForm1.cbSameAccountChange(Sender: TObject);  {gleiche FTP-Daten für Homepage}
 begin
-  XMLPropStorage1.StoredValue['FTP_single']:=BoolToStr(CheckBox3.Checked);
-  if CheckBox3.Checked then begin
-    CheckBox6.Checked:=false;
-    CheckBox6.Enabled:=false;
+  XMLPropStorage1.StoredValue['FTP_single']:=BoolToStr(cbSameAccount.Checked);
+  if cbSameAccount.Checked then begin
+    cbPassShowHTML.Checked:=false;
+    cbPassShowHTML.Enabled:=false;
     edHTMLserver.Text:=edServerName.Text;
     edHTMLserver.Enabled:=false;
     edHTMLuser.Text:=edUser.Text;
@@ -1754,35 +1763,35 @@ begin
     edHTMLpasw.Text:=edPasw.Text;
     edHTMLpasw.Enabled:=false;
   end else begin
-    CheckBox6.Enabled:=true;
+    cbPassShowHTML.Enabled:=true;
     edHTMLserver.Enabled:=true;
     edHTMLuser.Enabled:=true;
     edHTMLpasw.Enabled:=true;
   end;
 end;
 
-procedure TForm1.CheckBox2Change(Sender: TObject);  {FTP Datawarehouse aktivieren}
+procedure TForm1.cbActFTPChange(Sender: TObject);  {FTP Datawarehouse aktivieren}
 begin
-  XMLPropStorage1.StoredValue['FTP_DWakt']:=BoolToStr(CheckBox2.Checked);
+  XMLPropStorage1.StoredValue['FTP_DWakt']:=BoolToStr(cbActFTP.Checked);
 end;
 
-procedure TForm1.CheckBox4Change(Sender: TObject);  {FTP Homepage aktivieren}
+procedure TForm1.cbActFTPhtmlChange(Sender: TObject);  {FTP Homepage aktivieren}
 begin
-  XMLPropStorage1.StoredValue['FTP_HPakt']:=BoolToStr(CheckBox4.Checked);
+  XMLPropStorage1.StoredValue['FTP_HPakt']:=BoolToStr(cbActFTPhtml.Checked);
 end;
 
-procedure TForm1.CheckBox5Change(Sender: TObject);  {Zeige Warehouse Passwort}
+procedure TForm1.cbPassShowChange(Sender: TObject);  {Zeige Warehouse Passwort}
 begin
-  if CheckBox5.Checked then
+  if cbPassShow.Checked then
     edPasw.PasswordChar:=#0
   else
     edPasw.PasswordChar:='*';
   edPasw.Refresh;
 end;
 
-procedure TForm1.CheckBox6Change(Sender: TObject);  {Zeige Homepage Passwort}
+procedure TForm1.cbPassShowHTMLChange(Sender: TObject);  {Zeige Homepage Passwort}
 begin
-  if CheckBox6.Checked then
+  if cbPassShowHTML.Checked then
     edHTMLpasw.PasswordChar:=#0
   else
     edHTMLpasw.PasswordChar:='*';
@@ -1822,10 +1831,10 @@ begin
   if RadioGroup2.ItemIndex<3 then TagStat; {Ertrag oder Leistung neu zeichnen}
 end;
 
-procedure TForm1.CheckBox9Change(Sender: TObject);  {Passive FTP einstellen}
+procedure TForm1.cbPassivFTPChange(Sender: TObject);  {Passive FTP einstellen}
 begin
-  XMLPropStorage1.StoredValue['FTPpasv']:=BoolToStr(CheckBox9.Checked);
-  if CheckBox9.Checked then begin
+  XMLPropStorage1.StoredValue['FTPpasv']:=BoolToStr(cbPassivFTP.Checked);
+  if cbPassivFTP.Checked then begin
     IdFTP1.Passive:=true;
     SynMemo1.Lines.Add(capFTPpasv);                {im Log protokollieren}
   end else
@@ -2031,7 +2040,7 @@ var NewDay: string;
     p: integer;
 begin
   if (ChartToolset2DataPointClickTool1.Series is TBarSeries) then begin
-    Newday:=ComboBox2.Text+datsep+
+    Newday:=cbMonat.Text+datsep+
             Format('%.2d', [ChartToolset2DataPointClickTool1.PointIndex+1]);
     p:=cbAuswerteTag.Items.IndexOf(NewDay);
     if p>=0 then begin
@@ -2054,7 +2063,7 @@ var idx, year: integer;
 begin
   if (ChartToolset3DataPointClickTool1.Series is TBarSeries) then begin
     idx:=ChartToolset3DataPointClickTool1.PointIndex+1;
-    year:=StrToInt(ComboBox3.Text);
+    year:=StrToInt(cbJahr.Text);
     if (YearOf(now)=year) and (MonthOf(now)<4) then begin
       idx:=idx-3;
       if idx<1 then begin                          {Subtract 3 month}
@@ -2062,7 +2071,7 @@ begin
         idx:=idx+12;
       end;
     end;
-    ComboBox2.Text:=IntToStr(year)+datsep+Format('%.2d', [idx]);
+    cbMonat.Text:=IntToStr(year)+datsep+Format('%.2d', [idx]);
     pcMain.ActivePageIndex:=1;
     pcMain.Tag:=1;                           {TabSheet merken}
     MonStat;
@@ -2264,42 +2273,42 @@ end;
 
 procedure TForm1.SpeedButton3Click(Sender: TObject);   {Monat vor}
 begin
-  if ComboBox2.ItemIndex<(ComboBox2.Items.Count-1) then begin
-    ComboBox2.ItemIndex:=ComboBox2.ItemIndex+1;
+  if cbMonat.ItemIndex<(cbMonat.Items.Count-1) then begin
+    cbMonat.ItemIndex:=cbMonat.ItemIndex+1;
     MonStat;
   end;
-  SpeedButton4.Enabled:=not (ComboBox2.ItemIndex=0);
-  SpeedButton3.Enabled:=not (ComboBox2.ItemIndex=ComboBox2.Items.Count-1);
+  SpeedButton4.Enabled:=not (cbMonat.ItemIndex=0);
+  SpeedButton3.Enabled:=not (cbMonat.ItemIndex=cbMonat.Items.Count-1);
 end;
 
 procedure TForm1.SpeedButton4Click(Sender: TObject);   {Monat zurück}
 begin
-  If ComboBox2.ItemIndex>0 then begin
-    ComboBox2.ItemIndex:=ComboBox2.ItemIndex-1;
+  If cbMonat.ItemIndex>0 then begin
+    cbMonat.ItemIndex:=cbMonat.ItemIndex-1;
     MonStat;
   end;
-  SpeedButton4.Enabled:=not (ComboBox2.ItemIndex=0);
-  SpeedButton3.Enabled:=not (ComboBox2.ItemIndex=ComboBox2.Items.Count-1);
+  SpeedButton4.Enabled:=not (cbMonat.ItemIndex=0);
+  SpeedButton3.Enabled:=not (cbMonat.ItemIndex=cbMonat.Items.Count-1);
 end;
 
 procedure TForm1.SpeedButton5Click(Sender: TObject);   {Jahr vor}
 begin
-  if ComboBox3.ItemIndex<(ComboBox3.Items.Count-1) then begin
-    ComboBox3.ItemIndex:=ComboBox3.ItemIndex+1;
+  if cbJahr.ItemIndex<(cbJahr.Items.Count-1) then begin
+    cbJahr.ItemIndex:=cbJahr.ItemIndex+1;
     JahrStat;
   end;
-  SpeedButton6.Enabled:=not (ComboBox3.ItemIndex=0);
-  SpeedButton5.Enabled:=not (ComboBox3.ItemIndex=ComboBox3.Items.Count-1);
+  SpeedButton6.Enabled:=not (cbJahr.ItemIndex=0);
+  SpeedButton5.Enabled:=not (cbJahr.ItemIndex=cbJahr.Items.Count-1);
 end;
 
 procedure TForm1.SpeedButton6Click(Sender: TObject);   {Jahr zurück}
 begin
-  If ComboBox3.ItemIndex>0 then begin
-    ComboBox3.ItemIndex:=ComboBox3.ItemIndex-1;
+  If cbJahr.ItemIndex>0 then begin
+    cbJahr.ItemIndex:=cbJahr.ItemIndex-1;
     JahrStat;
   end;
-  SpeedButton6.Enabled:=not (ComboBox3.ItemIndex=0);
-  SpeedButton5.Enabled:=not (ComboBox3.ItemIndex=ComboBox3.Items.Count-1);
+  SpeedButton6.Enabled:=not (cbJahr.ItemIndex=0);
+  SpeedButton5.Enabled:=not (cbJahr.ItemIndex=cbJahr.Items.Count-1);
 end;
 
 procedure TForm1.btnEinlesenClick(Sender: TObject);        {Auswertung starten}
@@ -2768,12 +2777,12 @@ begin
   TagStat;    {Tagesstatistik neu zeichnen}
 end;
 
-procedure TForm1.ComboBox2Change(Sender: TObject);     {Monatsauswertung}
+procedure TForm1.cbMonatChange(Sender: TObject);     {Monatsauswertung}
 begin
   MonStat;
 end;
 
-procedure TForm1.ComboBox3Change(Sender: TObject);     {Jahreserträge}
+procedure TForm1.cbJahrChange(Sender: TObject);     {Jahreserträge}
 begin
   JahrStat;
 end;
@@ -2877,7 +2886,9 @@ end;
  reserviert werden, die dann überschrieben werden können. Die Zeile, ab der
  überschrieben wird, ist administrierbar. Damit ist es möglich, beliebige
  HTML-Seiten (Layout auch mit CSS) mit der Wertetabelle zu versorgen.
- Außerdem werden Inputdateien für sonnenertrag.eu erzeugt, wenn eingestellt}
+ Außerdem werden Inputdateien für sonnenertrag.eu erzeugt, wenn eingestellt.
+
+ 2024: Sonnenertrag schon lange nicht mehr erreichbar.}
 
 procedure TForm1.OutListLesen(crf: boolean);
 const intgt='<td style="color:#009900;">';       {grün: im Soll}
@@ -3000,7 +3011,7 @@ begin
         ProtHTM.Add('var DATALOGGER_VERSION="'+version+'"');
         try
           ProtHTM.SaveToFile(ltag);
-          if CheckBox4.Checked then FileList.Add(ltag);
+          if cbActFTPhtml.Checked then FileList.Add(ltag);
         except
           StatusBar1.Panels[2].Text:=ExtractFileName(ltag)+' '+msgNoSave;
           SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
@@ -3117,7 +3128,7 @@ begin
         hstr:=ExtractFilePath(deServer.FileName)+monsjs;
         try
           MonList.SaveToFile(hstr);
-          if CheckBox4.Checked then
+          if cbActFTPhtml.Checked then
             FileList.Add(hstr);
         except
           StatusBar1.Panels[2].Text:=ExtractFileName(hstr)+' '+msgNoSave;
@@ -3130,7 +3141,7 @@ begin
         hstr:=ExtractFilePath(deServer.FileName)+daysjs;
         try
           MonList.SaveToFile(hstr);
-          if CheckBox4.Checked then
+          if cbActFTPhtml.Checked then
             FileList.Add(hstr);
         except
           StatusBar1.Panels[2].Text:=ExtractFileName(hstr)+' '+msgNoSave;
@@ -3187,7 +3198,7 @@ DC Spannung String 1;DC Spannung String 2;DC Spannung String 3;WR Temperatur"
           hstr:=ExtractFilePath(deServer.FileName)+histjs;
           try
             ProtHTM.SaveToFile(hstr);
-            if CheckBox4.Checked then FileList.Add(hstr);
+            if cbActFTPhtml.Checked then FileList.Add(hstr);
           except
             StatusBar1.Panels[2].Text:=ExtractFileName(hstr)+' '+msgNoSave;
             SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
@@ -3207,17 +3218,17 @@ DC Spannung String 1;DC Spannung String 2;DC Spannung String 3;WR Temperatur"
       SortList.Clear;
       if DayList.Count>0 then
         for x:=0 to DayList.Count-1 do Sortlist.Add(copy(DayList[x], 1, 7));
-      for x:=0 to cbAuswerteTag.Items.Count-1 do        {ComboBox2: Monate auflisten}
+      for x:=0 to cbAuswerteTag.Items.Count-1 do        {cbMonat: Monate auflisten}
         Sortlist.Add(copy(cbAuswerteTag.Items[x], 1, 7));
-      ComboBox2.Items.Assign(SortList);
-      ComboBox2.Text:=ComboBox2.Items[ComboBox2.Items.Count-1]; {letzten Wert anzeigen}
+      cbMonat.Items.Assign(SortList);
+      cbMonat.Text:=cbMonat.Items[cbMonat.Items.Count-1]; {letzten Wert anzeigen}
       SortList.Clear;
       if DayList.Count>0 then
         for x:=0 to DayList.Count-1 do Sortlist.Add(copy(DayList[x], 1, 4));
-      for x:=0 to cbAuswerteTag.Items.Count-1 do        {ComboBox3: Jahre auflisten}
+      for x:=0 to cbAuswerteTag.Items.Count-1 do        {cbJahr: Jahre auflisten}
         Sortlist.Add(copy(cbAuswerteTag.Items[x], 1, 4));
-      ComboBox3.Items.Assign(SortList);
-      ComboBox3.Text:=ComboBox3.Items[ComboBox3.Items.Count-1]; {letzten Wert anzeigen}
+      cbJahr.Items.Assign(SortList);
+      cbJahr.Text:=cbJahr.Items[cbJahr.Items.Count-1]; {letzten Wert anzeigen}
       XMLPropStorage1.StoredValue['InverterName']:=StatusBar1.Panels[0].Text;
       XMLPropStorage1.StoredValue['InverterID']:=StatusBar1.Panels[1].Text;
       Application.ProcessMessages;
@@ -3381,22 +3392,24 @@ Muss ggf. mit geändert werden!
             ProtHTM[edHTMLzeile.Value+30]:=' </table>';
             try
               ProtHTM.SaveToFile(deServer.FileName);
-              if CheckBox4.Checked then FileList.Add(deServer.FileName);
+              if cbActFTPhtml.Checked then FileList.Add(deServer.FileName);
             except
               SynMemo1.Lines.Add('Could not save '+deServer.FileName);
             end;
             pcMain.ActivePageIndex:=0;
             hstr:=ChangeFileExt(deServer.FileName, '')+'1.png'; {Bilddateiname}
             chTag.SaveToFile(TPortableNetworkGraphic, hstr);
-            if CheckBox4.Checked then FileList.Add(hstr);
+            if cbActFTPhtml.Checked and (ter>HTMLthr) then {Schwellwert Ertrag, ab dem der Chart hochgeladen wird}
+              FileList.Add(hstr);
             pcMain.ActivePageIndex:=1;
             hstr:=ChangeFileExt(deServer.FileName, '')+'2.png'; {Bilddateiname}
             chMonat.SaveToFile(TPortableNetworkGraphic, hstr);
-            if CheckBox4.Checked then FileList.Add(hstr);
+            if cbActFTPhtml.Checked then
+              FileList.Add(hstr);
             pcMain.ActivePageIndex:=pcMain.Tag;
           end;                                     {Ende HTML-Generierung}
 
-        end else if CheckBox4.Checked and          {Datei lokal nicht vorhanden}
+        end else if cbActFTPhtml.Checked and          {Datei lokal nicht vorhanden}
                     (not Application.HasOption('n', 'noftp'))  then begin
           FTPAnzeige(clGreen);                     {FTP Download anstoßen}
           try
@@ -3899,8 +3912,8 @@ begin
         end;
         cbAuswerteTag.Items.Clear;                 {Datumsliste}
         DateEdit1.Enabled:=false;
-        ComboBox2.Items.Clear;                 {Monatsliste}
-        ComboBox3.Items.Clear;                 {Jahresliste}
+        cbMonat.Items.Clear;                 {Monatsliste}
+        cbJahr.Items.Clear;                 {Jahresliste}
         OutListLesen(true);
         if OutList.Count>0 then StatusBar1.Panels[2].Text:=
           'Stand: '+copy(OutList[OutList.Count-1],12,5)+rsUhr;
@@ -4666,13 +4679,112 @@ procedure TForm1.Statistik;   {Diverse Statistiken als Unterprozeduren}
       ProgressBar1.Position:=ProgressBar1.Max;
       StatusBar1.Panels[2].Text:=rsHisto+rsWRTemp;
     finally
-      SetLength(werte, 0);   {Speicher dyn . Array freigeben}
+      SetLength(werte, 0);                           {Speicher dyn . Array freigeben}
       SplitList.Free;
     end;
   end;
 
-begin                        {allgemeine Statistiken}
-  rgAuswertung.Tag:=0;        {keine 70%-Analyse}
+  procedure CompMonth;                               {Monate vergleichen}
+  var
+    SplitList: TStringList;
+    x, ee, jee, dz: Integer;
+    t, talt, maxt, m: string;
+    maxsj: double;
+
+    procedure AnzeigeBar;
+    begin
+      if jee>0 then begin
+        if dz=30 then chStatBarSeries1.Add(jee/1000, copy(talt,1,4), ColorButton16.ButtonColor)
+                 else chStatBarSeries1.Add(jee/1000, copy(talt,1,4), ColorButton17.ButtonColor);
+        if jee>maxsj then begin
+          maxsj:=jee;
+          maxt:=copy(t, 1, 7);
+        end;
+      end;
+    end;
+
+  begin
+    cbMonat.Tag:=0;
+    chStat.Title.Text[0]:=rsMonErtr;
+    chStat.AxisList[0].Title.Caption:=rsMonErtr+' [kWh]';
+    chStat.AxisList[1].Title.Caption:=rsMonErtge+MonToTxt(cbMonat.Text);
+    chStat.AxisList[1].Marks.Style:=smsLegend;
+    chStat.AxisList[1].Grid.Visible:=false;
+    chStatBarSeries1.BarPen.Color:=ColorButton16.ButtonColor;
+    chStatBarSeries1.BarWidthPercent:=80;
+    chStatBarSeries1.Marks.Visible:=true;
+    SplitList:=TStringList.Create;
+    SplitList.Delimiter:=sep;
+    maxsj:=0;
+    ee:=0;
+    jee:=0;                                          {Jahresertrag}
+    t:='';
+    talt:='';
+    dz:=0;                                           {Tageszähler}
+    m:=copy(cbMonat.Text, 6,2);                      {aktueller Monat zur Auswertung aus Monatsübersicht}
+    try
+
+      if DayList.Count>0 then begin
+        for x:=0 to DayList.Count-1 do begin
+          if t<>talt then begin                      {neuer Tag}
+            if (copy(t, 6, 2)=m) then
+              inc(dz);
+            if copy(t, 1, 4)<>copy(talt, 1, 4) then begin    {neues Jahr}
+              AnzeigeBar;
+              jee:=0;
+              dz:=0;
+            end;
+            talt:=t;
+          end;
+          SplitList.DelimitedText:=DayList[x];
+          t:=copy(DayList[x],1,10);
+          if (copy(t, 6, 2)=m) then begin
+            ee:=GetKErt(StrToInt(SplitList[2]));     {Tagesertrag korrigieren}
+            jee:=jee+ee;
+          end;
+        end;
+      end;
+
+      ee:=0;
+//      inc(dz);                                       {Zählt irgendwie die Tage falsch beim Übergang}
+      for x:=0 to OutList.Count-1 do begin
+        if (copy(outlist[x], 6, 2)=m) then begin     {nur den ausgewählten Monat machen}
+          SplitList.DelimitedText:=OutList[x];
+          if StrToInt(SplitList[3])>ee then          {den höchsten Ertrag für den Tag}
+            ee:=StrToInt(SplitList[3]);
+          if copy(OutList[x],1,10)<>talt then begin     {neuer Tag}
+            inc(dz);
+            if t<>'' then begin
+              ee:=GetKErt(ee);                       {Tagesertrag korrigieren}
+              jee:=jee+ee;
+              if copy(OutList[x], 1, 4)<>copy(talt, 1, 4) then begin  {neues Jahr}
+                AnzeigeBar;
+                jee:=0;
+                dz:=0;
+              end;
+            end;
+            talt:=copy(OutList[x],1,10);
+            ee:=0;
+          end;
+        end;
+      end;
+
+      ee:=GetKErt(ee);                               {Tagesertrag korrigieren}
+      jee:=jee+ee;
+      AnzeigeBar;
+//      chStatConstantLine2.Position:=GetSJE;        {grüne Linie = Soll für den Monat}
+//      chStatConstantLine2.Active:=true;
+      StatusBar1.Panels[2].Text:='Höchster '+rsMonErtr+': '+
+                                 FloatToStrF(maxsj, ffFixed, 12, 3)+
+                                 'kWh in '+maxt;
+      SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
+    finally
+      SplitList.Free;
+    end;
+  end;
+
+begin                                                {allgemeine Statistiken}
+  rgAuswertung.Tag:=0;                               {keine 70%-Analyse}
   rgAuswertung.Refresh;
   if OutList.Count>1 then begin
     Screen.Cursor:=crHourGlass;
@@ -4709,10 +4821,11 @@ begin                        {allgemeine Statistiken}
         2: StartEndeDauer;
         3: MaxErtrag;
         4: SpezJE;
-        5: ErtragRel;
-        6: NetzSpg;
-        7: NetzFreq;
-        8: Temperatur;
+        5: CompMonth;
+        6: ErtragRel;
+        7: NetzSpg;
+        8: NetzFreq;
+        9: Temperatur;
       end;
     finally
       Screen.Cursor:=crDefault;
@@ -5024,10 +5137,10 @@ begin
   if CheckBox10.Checked then chMonat.AxisList[0].Title.Caption:=rsErtrag+' '+
                                                          rsNormiert+' [kWh/kWp]'
                         else chMonat.AxisList[0].Title.Caption:=rsErtrag+' [kWh]';
-  if ComboBox2.Text[1] in ziff then begin
+  if cbMonat.Text[1] in ziff then begin
     Screen.Cursor:=crHourGlass;
     chMonat.Title.Text[0]:=rsErtrag+' '+
-                          FormatDateTime('mmmm yyyy', SDToTime(ComboBox2.Text));
+                          FormatDateTime('mmmm yyyy', SDToTime(cbMonat.Text));
     bsMonat.Clear;
     bsM115.Clear;
     SplitList:=TStringList.Create;
@@ -5044,7 +5157,7 @@ begin
 {Monatserträge aus dem Archiv}
       if DayList.Count>0 then
         for x:=0 to DayList.Count-1 do begin
-          if ComboBox2.Text=copy(DayList[x],1,7) then begin
+          if cbMonat.Text=copy(DayList[x],1,7) then begin
             gef:=true;
             SplitList.DelimitedText:=DayList[x];
             w:=StrToInt(SplitList[1]);
@@ -5064,8 +5177,8 @@ begin
       t:='';
 
       if not erl then
-        for x:=GetOutListIDX(ComboBox2.Text) to OutList.Count-1 do begin
-          if ComboBox2.Text=copy(OutList[x],1,7) then begin
+        for x:=GetOutListIDX(cbMonat.Text) to OutList.Count-1 do begin
+          if cbMonat.Text=copy(OutList[x],1,7) then begin
             erl:=true;
             SplitList.DelimitedText:=OutList[x];
             w:=StrToInt(SplitList[2]);
@@ -5106,32 +5219,32 @@ begin
       end;
       t:=FloatToStr(eeges/1000)+'kWh';
       chMonat.Title.Text[0]:=rsErtrag+' '+
-                         FormatDateTime('mmmm yyyy', SDToTime(ComboBox2.Text))+
+                         FormatDateTime('mmmm yyyy', SDToTime(cbMonat.Text))+
                          '     ['+t+']';
-      StatusBar1.Panels[2].Text:='Durchschnittlicher Tagesertrag für '+MonToTxt(ComboBox2.Text)+
+      StatusBar1.Panels[2].Text:='Durchschnittlicher Tagesertrag für '+MonToTxt(cbMonat.Text)+
                                  dtr+FloatToStrF(eeges/1000/dz, ffFixed,12, 3)+'kWh';
       SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
       Label9.Caption:=FloatToStr(peak/1000)+'kW';    {Peakleistung}
       Label42.Caption:=FloatToStrF(GetSJE*pla*       {Soll}
-        StrToIntDef(StringGrid1.Cells[StrToInt(copy(ComboBox2.Text, 6, 2))-1, 1], 0)/
+        StrToIntDef(StringGrid1.Cells[StrToInt(copy(cbMonat.Text, 6, 2))-1, 1], 0)/
                                    SumGrid/1000, ffFixed, 12, 3)+'kWh';
       Label11.Caption:=t;
       Label21.Caption:=FloatToStrF(eeges/pla, ffFixed, 12, 3)+'kWh/kWp';
       Label13.Caption:=FloatToStrF(eeges/1000*Geteevg, ffFixed, 12, 2)+edEuro.Text;
       if (eeges/dz)>(GetSJE*pla*
-          StrToIntDef(StringGrid1.Cells[StrToInt(copy(ComboBox2.Text, 6, 2))-1, 1], 0)/SumGrid/
-          DaysInAMonth(StrToInt(copy(ComboBox2.Text,1,4)), StrToInt(copy(ComboBox2.Text,6,2))))
+          StrToIntDef(StringGrid1.Cells[StrToInt(copy(cbMonat.Text, 6, 2))-1, 1], 0)/SumGrid/
+          DaysInAMonth(StrToInt(copy(cbMonat.Text,1,4)), StrToInt(copy(cbMonat.Text,6,2))))
         then chMonatConstantLine1.SeriesColor:=ColorButton9.ButtonColor;
       if CheckBox10.Checked then begin               {normiert}
         chMonatConstantLine1.Position:=eeges/pla/dz;  {durchschn. Tagesertrag}
         chMonatConstantLine2.Position:=GetSJE*
-          StrToIntDef(StringGrid1.Cells[StrToInt(copy(ComboBox2.Text, 6, 2))-1, 1], 0)/SumGrid/
-          DaysInAMonth(StrToInt(copy(ComboBox2.Text,1,4)), StrToInt(copy(ComboBox2.Text,6,2)));
+          StrToIntDef(StringGrid1.Cells[StrToInt(copy(cbMonat.Text, 6, 2))-1, 1], 0)/SumGrid/
+          DaysInAMonth(StrToInt(copy(cbMonat.Text,1,4)), StrToInt(copy(cbMonat.Text,6,2)));
       end else begin                                 {absolut}
         chMonatConstantLine1.Position:=eeges/1000/dz; {durchschn. Tagesertrag}
         chMonatConstantLine2.Position:=GetSJE*pla*
-          StrToIntDef(StringGrid1.Cells[StrToInt(copy(ComboBox2.Text, 6, 2))-1, 1], 0)/SumGrid/
-          1000/DaysInAMonth(StrToInt(copy(ComboBox2.Text,1,4)), StrToInt(copy(ComboBox2.Text,6,2)));
+          StrToIntDef(StringGrid1.Cells[StrToInt(copy(cbMonat.Text, 6, 2))-1, 1], 0)/SumGrid/
+          1000/DaysInAMonth(StrToInt(copy(cbMonat.Text,1,4)), StrToInt(copy(cbMonat.Text,6,2)));
       end;
       if dz>1 then begin
         chMonatConstantLine1.Active:=true;
@@ -5140,8 +5253,9 @@ begin
       if dz<4 then
         for x:=1 to 4 do
           bsMonat.Add(0, '', clBtnFace);
-      SpeedButton4.Enabled:=not (ComboBox2.ItemIndex=0);
-      SpeedButton3.Enabled:=not (ComboBox2.ItemIndex=ComboBox2.Items.Count-1);
+      SpeedButton4.Enabled:=not (cbMonat.ItemIndex=0);
+      SpeedButton3.Enabled:=not (cbMonat.ItemIndex=cbMonat.Items.Count-1);
+      cbMonat.Tag:=1;
     finally
       SplitList.Free;
       Screen.Cursor:=crDefault;
@@ -5161,7 +5275,7 @@ begin
   if CheckBox7.Checked then chJahr.AxisList[0].Title.Caption:=rsErtrag+' '+
                                                         rsNormiert+' [kWh/kWp]'
                        else chJahr.AxisList[0].Title.Caption:=rsErtrag+' [kWh]';
-  if ComboBox3.Text[1] in ziff then begin
+  if cbJahr.Text[1] in ziff then begin
     Screen.Cursor:=crHourGlass;
     chJahrConstantLine1.Active:=false;      {Durchschnittlicher Monatsertrag}
     chJahrConstantLine1.SeriesColor:=ColorButton10.ButtonColor;
@@ -5182,11 +5296,11 @@ begin
     erl:=false;
     gef:=false;
     if (copy(OutList[OutList.Count-1],6,2)<'04') and    {Letzten Tag prüfen}
-       (copy(OutList[OutList.Count-1],1,4)=ComboBox3.Text)
+       (copy(OutList[OutList.Count-1],1,4)=cbJahr.Text)
       then vj:=IntToStr(StrToInt(copy(OutList[OutList.Count-1],1,4))-1);
     try
       if DayList.Count>0 then for x:=0 to DayList.Count-1 do begin
-        if (ComboBox3.Text=copy(DayList[x],1,4)) or
+        if (cbJahr.Text=copy(DayList[x],1,4)) or
            ((copy(DayList[x],1,4)=vj) and (copy(DayList[x],6,1)='1')) then begin
           SplitList.DelimitedText:=DayList[x];
           gef:=true;
@@ -5217,7 +5331,7 @@ begin
           if ee>peak then peak:=ee;
           ee:=GetKErt(StrToInt(SplitList[2]));    {korrigierter Tagesertrag}
           eeges:=eeges+ee;               {Ertrag für Monat aufaddieren}
-          if ComboBox3.Text=copy(DayList[x],1,4) then begin
+          if cbJahr.Text=copy(DayList[x],1,4) then begin
             jges:=jges+ee;               {Jahresertrag}
             inc(zhl);
           end;
@@ -5228,17 +5342,17 @@ begin
         end;
       end;
       ee:=0;                   {Energieertrag gesamt am Tag}
-      if vj='' then w:=GetOutListIDX(ComboBox3.Text)
+      if vj='' then w:=GetOutListIDX(cbJahr.Text)
                else w:=GetOutListIDX(vj+'-10-01');
       if not erl then for x:=w to OutList.Count-1 do begin
-        if (ComboBox3.Text=copy(OutList[x],1,4)) or
+        if (cbJahr.Text=copy(OutList[x],1,4)) or
            ((copy(OutList[x],1,4)=vj) and (copy(OutList[x],6,1)='1')) then begin
           erl:=true;
           SplitList.DelimitedText:=OutList[x];
           if t<>copy(OutList[x],1,10) then begin  {neuer Tag}
             ee:=GetKErt(ee);
             eeges:=eeges+ee;                      {Ertrag für Monat aufaddieren}
-            if ComboBox3.Text=copy(t,1,4) then jges:=jges+ee;
+            if cbJahr.Text=copy(t,1,4) then jges:=jges+ee;
             if m<>copy(OutList[x],1,7) then begin {neuer Monat auch noch}
               if m<>'' then begin
                 if CheckBox7.Checked then begin
@@ -5263,19 +5377,19 @@ begin
               dz:=0;
             end;
             t:=Copy(OutList[x],1,10);
-            if ComboBox3.Text=copy(t,1,4) then inc(zhl);
+            if cbJahr.Text=copy(t,1,4) then inc(zhl);
             inc(dz);
             ee:=0;
           end;
           w:=StrToInt(SplitList[2]);
-          if (ComboBox3.Text=copy(OutList[x],1,4)) and (w>peak) then peak:=w;
+          if (cbJahr.Text=copy(OutList[x],1,4)) and (w>peak) then peak:=w;
           w:=StrToInt(SplitList[3]);
           if w>ee then ee:=w;               {größten Wert des Tages merken}
         end else if erl then break;
       end;
       ee:=GetKErt(ee);
       eeges:=eeges+ee;                      {Ertrag für Monat aufaddieren}
-      if ComboBox3.Text=copy(t,1,4) then jges:=jges+ee;
+      if cbJahr.Text=copy(t,1,4) then jges:=jges+ee;
       if (m<>'') and (eeges>0) then begin
         if CheckBox7.Checked then begin     {normiert in kWh/kWp}
           displ:=eeges/pla;
@@ -5295,9 +5409,9 @@ begin
         end;
       end;
       mz:=0;                  {Anzahl Monate im ausgewählten Jahr zählen}
-      for x:=0 to ComboBox2.Items.Count-1 do
-        if ComboBox3.Text=copy(ComboBox2.Items[x], 1, 4) then inc(mz);
-      chJahr.Title.Text[0]:=rsYearPr+ComboBox3.Text+dtr+FloatToStr(jges/1000)+'kWh';
+      for x:=0 to cbMonat.Items.Count-1 do
+        if cbJahr.Text=copy(cbMonat.Items[x], 1, 4) then inc(mz);
+      chJahr.Title.Text[0]:=rsYearPr+cbJahr.Text+dtr+FloatToStr(jges/1000)+'kWh';
       StatusBar1.Panels[2].Text:=rsAvProdM+dtr+
                                  FloatToStrf(jges/1000/mz, ffFixed,12, 3)+'kWh';
       SynMemo1.Lines.Add(StatusBar1.Panels[2].Text);
@@ -5306,7 +5420,7 @@ begin
       Label22.Caption:=FloatToStrF(jges/pla, ffFixed, 12, 3)+'kWh/kWp';
       Label19.Caption:=FloatToStrF(jges/1000*Geteevg, ffFixed, 12, 2)+edEuro.Text;
 {spezifischer Jahresertrag, hochgerechnet, wenn Jahr noch nicht voll}
-      Label24.Caption:=FloatToStrF(jges/pla/zhl*DaysInAYear(StrToInt(ComboBox3.Text)),
+      Label24.Caption:=FloatToStrF(jges/pla/zhl*DaysInAYear(StrToInt(cbJahr.Text)),
                                    ffFixed, 12, 3)+'kWh/kWp';
 {durchschn. Monatsertrag als Linie anzeigen}
       if (jges/mz)>(GetSJE*pla/12) then chJahrConstantLine1.SeriesColor:=ColorButton9.ButtonColor;
@@ -5319,8 +5433,8 @@ begin
       end;
       chJahrConstantLine1.Active:=true;  {Durchschnittlicher Monatsertrag}
       chJahrConstantLine2.Active:=true;  {durchschnittlicher Sollertrag}
-      SpeedButton6.Enabled:=not (ComboBox3.ItemIndex=0);
-      SpeedButton5.Enabled:=not (ComboBox3.ItemIndex=ComboBox3.Items.Count-1);
+      SpeedButton6.Enabled:=not (cbJahr.ItemIndex=0);
+      SpeedButton5.Enabled:=not (cbJahr.ItemIndex=cbJahr.Items.Count-1);
     finally
       SplitList.Free;
       Screen.Cursor:=crDefault;

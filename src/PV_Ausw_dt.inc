@@ -37,6 +37,7 @@ resourcestring
   hntEEGV    ='Einspeisevergütung vom Energieversorger pro kWh. 2011 in Deutschland gemäß EEG zum Beispiel 0,2874.';
   rsTagErtr  ='Tagesertrag';
   rsMonErtr  ='Monatesertrag';
+  rsMonErtge ='Monatserträge für ';
   rsErtrag   ='Ertrag';
   rsName     ='Name';
   rsStrings  ='Strings';
@@ -219,6 +220,7 @@ resourcestring
   rsStartE   ='Start/Ende';
   rsEDauer   ='Ertragsdauer';
   rsSpYP     ='Spez. JE';
+  rsComMonth ='Monate';
   rsRelErtr  ='Ertrag relativ';
   rsWRTemp1  ='WR-Temperatur';
   rsTag      ='Tag';

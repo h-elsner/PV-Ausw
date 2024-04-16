@@ -1,11 +1,11 @@
 object Form1: TForm1
-  Left = 1765
-  Height = 645
-  Top = 163
-  Width = 827
+  Left = 1707
+  Height = 780
+  Top = 140
+  Width = 937
   AllowDropFiles = True
-  ClientHeight = 645
-  ClientWidth = 827
+  ClientHeight = 780
+  ClientWidth = 937
   Constraints.MinHeight = 400
   Constraints.MinWidth = 730
   OnCreate = FormCreate
@@ -13,12 +13,12 @@ object Form1: TForm1
   OnDropFiles = FormDropFiles
   Position = poDefaultPosOnly
   SessionProperties = 'WindowState;Height;Width'
-  LCLVersion = '2.2.4.0'
+  LCLVersion = '2.2.6.0'
   object StatusBar1: TStatusBar
     Left = 0
-    Height = 24
-    Top = 621
-    Width = 827
+    Height = 23
+    Top = 757
+    Width = 937
     Panels = <    
       item
         Width = 100
@@ -35,10 +35,10 @@ object Form1: TForm1
     Left = 8
     Height = 88
     Top = 8
-    Width = 809
+    Width = 919
     Anchors = [akTop, akLeft, akRight]
-    ClientHeight = 86
-    ClientWidth = 807
+    ClientHeight = 66
+    ClientWidth = 915
     ParentShowHint = False
     ShowHint = True
     TabOrder = 1
@@ -83,12 +83,12 @@ object Form1: TForm1
       Left = 6
       Height = 10
       Top = 48
-      Width = 756
+      Width = 864
       Anchors = [akTop, akLeft, akRight]
       TabOrder = 4
     end
     object btnClose: TBitBtn
-      Left = 661
+      Left = 769
       Height = 30
       Top = 8
       Width = 136
@@ -197,7 +197,7 @@ object Form1: TForm1
       TabOrder = 2
     end
     object Shape4: TShape
-      Left = 769
+      Left = 877
       Height = 10
       Top = 48
       Width = 28
@@ -208,36 +208,36 @@ object Form1: TForm1
   end
   object pcMain: TPageControl
     Left = 8
-    Height = 515
+    Height = 650
     Top = 104
-    Width = 816
-    ActivePage = tsSpiel
+    Width = 926
+    ActivePage = tsStatistik
     Anchors = [akTop, akLeft, akRight, akBottom]
     ParentShowHint = False
     ShowHint = True
-    TabIndex = 4
+    TabIndex = 3
     TabOrder = 2
     OnChange = pcMainChange
     OnMouseUp = pcMainMouseUp
     object tsTag: TTabSheet
-      ClientHeight = 481
-      ClientWidth = 810
+      ClientHeight = 620
+      ClientWidth = 918
       object cbAuswerteTag: TComboBox
         Left = 10
-        Height = 28
+        Height = 25
         Hint = 'Tag auswählen'
         Top = 174
         Width = 118
-        ItemHeight = 0
+        ItemHeight = 17
         OnChange = cbAuswerteTagChange
         OnDblClick = cbAuswerteTagChange
         TabOrder = 1
       end
       object chTag: TChart
         Left = 136
-        Height = 481
+        Height = 620
         Top = 0
-        Width = 674
+        Width = 782
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -334,7 +334,7 @@ object Form1: TForm1
       end
       object Label2: TLabel
         Left = 11
-        Height = 16
+        Height = 17
         Top = 248
         Width = 3
         Caption = ':'
@@ -342,9 +342,9 @@ object Form1: TForm1
       end
       object Label3: TLabel
         Left = 11
-        Height = 16
+        Height = 17
         Top = 264
-        Width = 19
+        Width = 18
         Caption = 'kW'
         ParentColor = False
         ParentShowHint = False
@@ -352,7 +352,7 @@ object Form1: TForm1
       end
       object Label4: TLabel
         Left = 10
-        Height = 16
+        Height = 17
         Top = 296
         Width = 3
         Caption = ':'
@@ -360,9 +360,9 @@ object Form1: TForm1
       end
       object Label5: TLabel
         Left = 10
-        Height = 16
+        Height = 17
         Top = 312
-        Width = 27
+        Width = 25
         Caption = 'kWh'
         ParentColor = False
         ParentShowHint = False
@@ -370,7 +370,7 @@ object Form1: TForm1
       end
       object Label6: TLabel
         Left = 10
-        Height = 16
+        Height = 17
         Top = 352
         Width = 3
         Caption = ':'
@@ -378,9 +378,9 @@ object Form1: TForm1
       end
       object Label7: TLabel
         Left = 10
-        Height = 16
+        Height = 17
         Top = 368
-        Width = 8
+        Width = 7
         Caption = '€'
         ParentColor = False
         ParentShowHint = False
@@ -388,9 +388,9 @@ object Form1: TForm1
       end
       object Label20: TLabel
         Left = 10
-        Height = 16
+        Height = 17
         Top = 328
-        Width = 59
+        Width = 56
         Caption = 'kWh/kWp'
         ParentColor = False
         ParentShowHint = False
@@ -440,15 +440,15 @@ object Form1: TForm1
       end
       object Label39: TLabel
         Left = 11
-        Height = 16
+        Height = 17
         Top = 393
-        Width = 48
+        Width = 47
         Caption = 'Strings: '
         ParentColor = False
       end
       object CheckBox8: TCheckBox
         Left = 10
-        Height = 22
+        Height = 21
         Top = 152
         Width = 22
         OnChange = CheckBox8Change
@@ -472,24 +472,24 @@ object Form1: TForm1
       end
     end
     object tsMonat: TTabSheet
-      ClientHeight = 481
-      ClientWidth = 810
-      object ComboBox2: TComboBox
+      ClientHeight = 620
+      ClientWidth = 918
+      object cbMonat: TComboBox
         Left = 12
-        Height = 28
+        Height = 25
         Hint = 'Monat auswählen'
         Top = 15
         Width = 105
-        ItemHeight = 0
-        OnChange = ComboBox2Change
-        OnDblClick = ComboBox2Change
+        ItemHeight = 17
+        OnChange = cbMonatChange
+        OnDblClick = cbMonatChange
         TabOrder = 0
       end
       object chMonat: TChart
         Left = 128
-        Height = 481
+        Height = 620
         Top = 0
-        Width = 680
+        Width = 788
         AxisList = <        
           item
             Marks.Format = '%0:.4g'
@@ -590,7 +590,7 @@ object Form1: TForm1
       end
       object Label8: TLabel
         Left = 12
-        Height = 16
+        Height = 17
         Top = 128
         Width = 3
         Caption = ':'
@@ -599,9 +599,9 @@ object Form1: TForm1
       end
       object Label9: TLabel
         Left = 12
-        Height = 16
+        Height = 17
         Top = 144
-        Width = 19
+        Width = 18
         Caption = 'kW'
         ParentColor = False
         ParentShowHint = False
@@ -609,7 +609,7 @@ object Form1: TForm1
       end
       object Label10: TLabel
         Left = 12
-        Height = 16
+        Height = 17
         Top = 208
         Width = 3
         Caption = ':'
@@ -617,9 +617,9 @@ object Form1: TForm1
       end
       object Label11: TLabel
         Left = 12
-        Height = 16
+        Height = 17
         Top = 224
-        Width = 27
+        Width = 25
         Caption = 'kWh'
         ParentColor = False
         ParentShowHint = False
@@ -627,7 +627,7 @@ object Form1: TForm1
       end
       object Label12: TLabel
         Left = 12
-        Height = 16
+        Height = 17
         Top = 272
         Width = 3
         Caption = ':'
@@ -635,9 +635,9 @@ object Form1: TForm1
       end
       object Label13: TLabel
         Left = 12
-        Height = 16
+        Height = 17
         Top = 288
-        Width = 8
+        Width = 7
         Caption = '€'
         ParentColor = False
         ParentShowHint = False
@@ -645,9 +645,9 @@ object Form1: TForm1
       end
       object Label21: TLabel
         Left = 12
-        Height = 16
+        Height = 17
         Top = 240
-        Width = 59
+        Width = 56
         Caption = 'kWh/kWp'
         ParentColor = False
         ParentShowHint = False
@@ -655,23 +655,23 @@ object Form1: TForm1
       end
       object Label41: TLabel
         Left = 12
-        Height = 16
+        Height = 17
         Top = 168
-        Width = 26
+        Width = 24
         Caption = 'Soll:'
         ParentColor = False
       end
       object Label42: TLabel
         Left = 13
-        Height = 16
+        Height = 17
         Top = 184
-        Width = 27
+        Width = 25
         Caption = 'kWh'
         ParentColor = False
       end
       object CheckBox10: TCheckBox
         Left = 13
-        Height = 22
+        Height = 21
         Top = 94
         Width = 22
         OnChange = CheckBox10Change
@@ -679,24 +679,24 @@ object Form1: TForm1
       end
     end
     object tsJahr: TTabSheet
-      ClientHeight = 481
-      ClientWidth = 810
-      object ComboBox3: TComboBox
+      ClientHeight = 620
+      ClientWidth = 918
+      object cbJahr: TComboBox
         Left = 12
-        Height = 28
+        Height = 25
         Hint = 'Jahr auswählen'
         Top = 15
         Width = 105
-        ItemHeight = 0
-        OnChange = ComboBox3Change
-        OnDblClick = ComboBox3Change
+        ItemHeight = 17
+        OnChange = cbJahrChange
+        OnDblClick = cbJahrChange
         TabOrder = 0
       end
       object chJahr: TChart
         Left = 128
-        Height = 481
+        Height = 620
         Top = 0
-        Width = 688
+        Width = 796
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -797,7 +797,7 @@ object Form1: TForm1
       end
       object Label14: TLabel
         Left = 13
-        Height = 16
+        Height = 17
         Top = 128
         Width = 3
         Caption = ':'
@@ -805,9 +805,9 @@ object Form1: TForm1
       end
       object Label15: TLabel
         Left = 13
-        Height = 16
+        Height = 17
         Top = 144
-        Width = 19
+        Width = 18
         Caption = 'kW'
         ParentColor = False
         ParentShowHint = False
@@ -815,7 +815,7 @@ object Form1: TForm1
       end
       object Label16: TLabel
         Left = 12
-        Height = 16
+        Height = 17
         Top = 176
         Width = 3
         Caption = ':'
@@ -823,9 +823,9 @@ object Form1: TForm1
       end
       object Label17: TLabel
         Left = 12
-        Height = 16
+        Height = 17
         Top = 192
-        Width = 27
+        Width = 25
         Caption = 'kWh'
         ParentColor = False
         ParentShowHint = False
@@ -833,7 +833,7 @@ object Form1: TForm1
       end
       object Label18: TLabel
         Left = 13
-        Height = 16
+        Height = 17
         Top = 240
         Width = 3
         Caption = ':'
@@ -841,9 +841,9 @@ object Form1: TForm1
       end
       object Label19: TLabel
         Left = 13
-        Height = 16
+        Height = 17
         Top = 256
-        Width = 8
+        Width = 7
         Caption = '€'
         ParentColor = False
         ParentShowHint = False
@@ -851,9 +851,9 @@ object Form1: TForm1
       end
       object Label22: TLabel
         Left = 13
-        Height = 16
+        Height = 17
         Top = 208
-        Width = 59
+        Width = 56
         Caption = 'kWh/kWp'
         ParentColor = False
         ParentShowHint = False
@@ -861,7 +861,7 @@ object Form1: TForm1
       end
       object Label23: TLabel
         Left = 13
-        Height = 16
+        Height = 17
         Top = 288
         Width = 3
         Caption = ':'
@@ -869,9 +869,9 @@ object Form1: TForm1
       end
       object Label24: TLabel
         Left = 13
-        Height = 16
+        Height = 17
         Top = 304
-        Width = 59
+        Width = 56
         Caption = 'kWh/kWp'
         ParentColor = False
         ParentShowHint = False
@@ -879,7 +879,7 @@ object Form1: TForm1
       end
       object CheckBox7: TCheckBox
         Left = 12
-        Height = 22
+        Height = 21
         Top = 93
         Width = 22
         OnChange = CheckBox7Change
@@ -887,11 +887,11 @@ object Form1: TForm1
       end
     end
     object tsStatistik: TTabSheet
-      ClientHeight = 481
-      ClientWidth = 810
+      ClientHeight = 620
+      ClientWidth = 918
       object rgAuswertung: TRadioGroup
         Left = 5
-        Height = 217
+        Height = 241
         Top = 7
         Width = 119
         AutoFill = True
@@ -904,27 +904,19 @@ object Form1: TForm1
         ChildSizing.ShrinkVertical = crsScaleChilds
         ChildSizing.Layout = cclLeftToRightThenTopToBottom
         ChildSizing.ControlsPerLine = 1
-        ClientHeight = 200
-        ClientWidth = 117
+        ClientHeight = 219
+        ClientWidth = 115
         Items.Strings = (
-          'Peakleistung'
-          'Start/Ende'
-          'Ertragsdauer'
-          'Ertrag'
-          'Spez. JE'
-          'Ertrag relativ'
-          'Netzspannung'
-          'Netzfrequenz'
-          'WR-Temperatur'
+          'rgAuswertung'
         )
         OnClick = rgAuswertungClick
         TabOrder = 0
       end
       object chStat: TChart
         Left = 130
-        Height = 481
+        Height = 620
         Top = 0
-        Width = 674
+        Width = 782
         AxisList = <        
           item
             Marks.Format = '%2:s'
@@ -986,102 +978,102 @@ object Form1: TForm1
         end
       end
       object Label30: TLabel
-        Left = 5
-        Height = 16
-        Top = 408
-        Width = 59
+        Left = 6
+        Height = 17
+        Top = 448
+        Width = 56
         Caption = 'kWh/kWp'
         ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label31: TLabel
-        Left = 5
-        Height = 16
-        Top = 392
+        Left = 6
+        Height = 17
+        Top = 432
         Width = 3
         Caption = ':'
         ParentColor = False
       end
       object Label32: TLabel
-        Left = 5
-        Height = 16
-        Top = 360
-        Width = 8
+        Left = 6
+        Height = 17
+        Top = 400
+        Width = 7
         Caption = '€'
         ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label33: TLabel
-        Left = 5
-        Height = 16
-        Top = 344
+        Left = 6
+        Height = 17
+        Top = 384
         Width = 3
         Caption = ':'
         ParentColor = False
       end
       object Label34: TLabel
-        Left = 5
-        Height = 16
-        Top = 312
-        Width = 59
+        Left = 6
+        Height = 17
+        Top = 352
+        Width = 56
         Caption = 'kWh/kWp'
         ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label35: TLabel
-        Left = 4
-        Height = 16
-        Top = 296
-        Width = 27
+        Left = 5
+        Height = 17
+        Top = 336
+        Width = 25
         Caption = 'kWh'
         ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label36: TLabel
-        Left = 5
-        Height = 16
-        Top = 280
+        Left = 6
+        Height = 17
+        Top = 320
         Width = 3
         Caption = ':'
         ParentColor = False
       end
       object Label37: TLabel
-        Left = 6
-        Height = 16
-        Top = 248
-        Width = 19
+        Left = 7
+        Height = 17
+        Top = 288
+        Width = 18
         Caption = 'kW'
         ParentColor = False
         ParentShowHint = False
         ShowHint = True
       end
       object Label38: TLabel
-        Left = 6
-        Height = 16
-        Top = 232
+        Left = 7
+        Height = 17
+        Top = 272
         Width = 3
         Caption = ':'
         ParentColor = False
       end
     end
     object tsSpiel: TTabSheet
-      ClientHeight = 481
-      ClientWidth = 810
+      ClientHeight = 620
+      ClientWidth = 918
       object GroupBox8: TGroupBox
         Left = 4
-        Height = 138
-        Top = 336
+        Height = 192
+        Top = 376
         Width = 232
-        ClientHeight = 136
-        ClientWidth = 230
+        ClientHeight = 170
+        ClientWidth = 228
         TabOrder = 1
         object RadioGroup3: TRadioGroup
           Left = 8
-          Height = 96
+          Height = 112
           Top = 0
           Width = 105
           AutoFill = True
@@ -1093,8 +1085,8 @@ object Form1: TForm1
           ChildSizing.ShrinkVertical = crsScaleChilds
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 94
-          ClientWidth = 103
+          ClientHeight = 90
+          ClientWidth = 101
           Items.Strings = (
             'Tag'
             'Monat'
@@ -1107,26 +1099,26 @@ object Form1: TForm1
         end
         object cbxTagrot: TComboBox
           Left = 126
-          Height = 28
+          Height = 25
           Top = 16
           Width = 96
-          ItemHeight = 0
+          ItemHeight = 17
           OnChange = cbxTagrotChange
           TabOrder = 1
           Text = 'Day'
         end
         object Label47: TLabel
           Left = 126
-          Height = 16
+          Height = 17
           Top = 0
-          Width = 18
+          Width = 17
           Caption = 'Sel'
           ParentColor = False
         end
         object btnStarten: TBitBtn
           Left = 126
           Height = 30
-          Top = 80
+          Top = 112
           Width = 96
           Glyph.Data = {
             36030000424D3603000000000000360000002800000010000000100000000100
@@ -1161,19 +1153,19 @@ object Form1: TForm1
         end
         object cbxTagblau: TComboBox
           Left = 126
-          Height = 28
-          Top = 40
+          Height = 25
+          Top = 56
           Width = 96
-          ItemHeight = 0
+          ItemHeight = 17
           OnChange = cbxTagblauChange
           TabOrder = 2
           Text = 'Day'
         end
         object cbxSommerzeit: TCheckBox
           Left = 14
-          Height = 22
-          Top = 96
-          Width = 115
+          Height = 21
+          Top = 128
+          Width = 111
           Caption = 'cbxSommerzeit'
           OnChange = cbxSommerzeitChange
           TabOrder = 4
@@ -1181,16 +1173,16 @@ object Form1: TForm1
       end
       object GroupBox9: TGroupBox
         Left = 4
-        Height = 328
+        Height = 360
         Top = 8
         Width = 232
         Caption = 'Y-Achsen'
-        ClientHeight = 311
-        ClientWidth = 230
+        ClientHeight = 338
+        ClientWidth = 228
         TabOrder = 0
         object RadioGroup4: TRadioGroup
           Left = 7
-          Height = 304
+          Height = 328
           Top = 0
           Width = 101
           AutoFill = True
@@ -1202,8 +1194,8 @@ object Form1: TForm1
           ChildSizing.ShrinkVertical = crsScaleChilds
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 302
-          ClientWidth = 99
+          ClientHeight = 306
+          ClientWidth = 97
           Items.Strings = (
             'P_AC'
             'P_DC*'
@@ -1228,7 +1220,7 @@ object Form1: TForm1
         end
         object RadioGroup5: TRadioGroup
           Left = 118
-          Height = 304
+          Height = 328
           Top = 0
           Width = 104
           AutoFill = True
@@ -1240,8 +1232,8 @@ object Form1: TForm1
           ChildSizing.ShrinkVertical = crsScaleChilds
           ChildSizing.Layout = cclLeftToRightThenTopToBottom
           ChildSizing.ControlsPerLine = 1
-          ClientHeight = 302
-          ClientWidth = 102
+          ClientHeight = 306
+          ClientWidth = 100
           Items.Strings = (
             'P_AC'
             'P_DC*'
@@ -1266,9 +1258,9 @@ object Form1: TForm1
       end
       object chSplw: TChart
         Left = 243
-        Height = 481
+        Height = 620
         Top = 0
-        Width = 560
+        Width = 668
         AxisList = <        
           item
             Marks.LabelBrush.Style = bsClear
@@ -1321,43 +1313,43 @@ object Form1: TForm1
       end
     end
     object tsSetOpt: TTabSheet
-      ClientHeight = 481
-      ClientWidth = 810
+      ClientHeight = 620
+      ClientWidth = 918
       object pcSettings: TPageControl
-        Left = 4
-        Height = 474
+        Left = 0
+        Height = 613
         Top = 8
-        Width = 798
-        ActivePage = tsProt
+        Width = 906
+        ActivePage = tsFTP
         Anchors = [akTop, akLeft, akRight, akBottom]
-        TabIndex = 4
+        TabIndex = 2
         TabOrder = 0
         OnChange = pcSettingsChange
         object tsBasics: TTabSheet
-          ClientHeight = 440
-          ClientWidth = 792
+          ClientHeight = 583
+          ClientWidth = 898
           object GroupBox2: TGroupBox
             Left = 4
             Height = 192
             Top = 8
-            Width = 768
+            Width = 874
             Anchors = [akTop, akLeft, akRight]
-            ClientHeight = 190
-            ClientWidth = 766
+            ClientHeight = 170
+            ClientWidth = 870
             ParentColor = False
             ParentFont = False
             TabOrder = 0
             object Label1: TLabel
               Left = 9
-              Height = 16
+              Height = 17
               Top = 10
-              Width = 9
+              Width = 8
               Caption = 'V'
               ParentColor = False
             end
             object deLocal: TDirectoryEdit
               Left = 9
-              Height = 26
+              Height = 25
               Top = 30
               Width = 277
               ShowHidden = False
@@ -1370,7 +1362,7 @@ object Form1: TForm1
             end
             object edHTMLzeile: TSpinEdit
               Left = 487
-              Height = 26
+              Height = 25
               Top = 80
               Width = 200
               Color = clCream
@@ -1379,11 +1371,11 @@ object Form1: TForm1
             end
             object edFilter: TLabeledEdit
               Left = 487
-              Height = 26
+              Height = 25
               Top = 30
               Width = 200
               Color = clCream
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 200
               EditLabel.Caption = 'edFilter'
               EditLabel.ParentColor = False
@@ -1393,7 +1385,7 @@ object Form1: TForm1
             end
             object Label25: TLabel
               Left = 9
-              Height = 16
+              Height = 17
               Top = 62
               Width = 9
               Caption = 'H'
@@ -1401,15 +1393,15 @@ object Form1: TForm1
             end
             object Label26: TLabel
               Left = 487
-              Height = 16
+              Height = 17
               Top = 62
-              Width = 8
+              Width = 7
               Caption = 'Z'
               ParentColor = False
             end
             object deServer: TFileNameEdit
               Left = 9
-              Height = 26
+              Height = 25
               Top = 80
               Width = 277
               DialogOptions = []
@@ -1424,7 +1416,7 @@ object Form1: TForm1
             end
             object CheckBox1: TCheckBox
               Left = 9
-              Height = 22
+              Height = 21
               Top = 112
               Width = 22
               OnChange = CheckBox1Change
@@ -1445,8 +1437,8 @@ object Form1: TForm1
               ChildSizing.ShrinkVertical = crsScaleChilds
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 1
-              ClientHeight = 135
-              ClientWidth = 156
+              ClientHeight = 130
+              ClientWidth = 154
               Items.Strings = (
                 'Danfoss TLX Pro'
                 'Kaco Powador'
@@ -1459,15 +1451,15 @@ object Form1: TForm1
             end
             object Label54: TLabel
               Left = 487
-              Height = 16
+              Height = 17
               Top = 112
-              Width = 49
+              Width = 45
               Caption = 'Label54'
               ParentColor = False
             end
             object spePeriod: TSpinEdit
               Left = 487
-              Height = 26
+              Height = 25
               Top = 136
               Width = 71
               OnChange = spePeriodChange
@@ -1478,18 +1470,18 @@ object Form1: TForm1
             Left = 4
             Height = 144
             Top = 208
-            Width = 768
+            Width = 874
             Anchors = [akTop, akLeft, akRight]
-            ClientHeight = 142
-            ClientWidth = 766
+            ClientHeight = 122
+            ClientWidth = 870
             TabOrder = 1
             object edPeak: TLabeledEdit
               Left = 9
-              Height = 26
+              Height = 25
               Top = 32
               Width = 200
               Color = clMoneyGreen
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 200
               EditLabel.Caption = 'edPeak'
               EditLabel.ParentColor = False
@@ -1498,11 +1490,11 @@ object Form1: TForm1
             end
             object edSpezJE: TLabeledEdit
               Left = 9
-              Height = 26
+              Height = 25
               Top = 80
               Width = 200
               Color = clMoneyGreen
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 200
               EditLabel.Caption = 'edSpezJE'
               EditLabel.ParentColor = False
@@ -1511,11 +1503,11 @@ object Form1: TForm1
             end
             object edVerg: TLabeledEdit
               Left = 487
-              Height = 26
+              Height = 25
               Top = 32
               Width = 200
               Color = clMoneyGreen
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 200
               EditLabel.Caption = 'edVerg'
               EditLabel.ParentColor = False
@@ -1524,11 +1516,11 @@ object Form1: TForm1
             end
             object edEuro: TLabeledEdit
               Left = 487
-              Height = 26
+              Height = 25
               Top = 80
               Width = 200
               Color = clMoneyGreen
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 200
               EditLabel.Caption = 'edEuro'
               EditLabel.ParentColor = False
@@ -1537,9 +1529,9 @@ object Form1: TForm1
             end
             object Label49: TLabel
               Left = 238
-              Height = 16
+              Height = 17
               Top = 9
-              Width = 49
+              Width = 45
               Caption = 'Label49'
               Color = clDefault
               ParentColor = False
@@ -1547,12 +1539,12 @@ object Form1: TForm1
             end
             object LabeledEdit17: TLabeledEdit
               Left = 286
-              Height = 26
+              Height = 25
               Top = 32
               Width = 112
               Color = clMoneyGreen
-              EditLabel.Height = 16
-              EditLabel.Width = 47
+              EditLabel.Height = 17
+              EditLabel.Width = 45
               EditLabel.Caption = 'String 1'
               EditLabel.ParentColor = False
               LabelPosition = lpLeft
@@ -1561,12 +1553,12 @@ object Form1: TForm1
             end
             object LabeledEdit18: TLabeledEdit
               Left = 286
-              Height = 26
+              Height = 25
               Top = 56
               Width = 112
               Color = clMoneyGreen
-              EditLabel.Height = 16
-              EditLabel.Width = 47
+              EditLabel.Height = 17
+              EditLabel.Width = 45
               EditLabel.Caption = 'String 2'
               EditLabel.ParentColor = False
               LabelPosition = lpLeft
@@ -1575,12 +1567,12 @@ object Form1: TForm1
             end
             object LabeledEdit19: TLabeledEdit
               Left = 286
-              Height = 26
+              Height = 25
               Top = 80
               Width = 112
               Color = clMoneyGreen
-              EditLabel.Height = 16
-              EditLabel.Width = 47
+              EditLabel.Height = 17
+              EditLabel.Width = 45
               EditLabel.Caption = 'String 3'
               EditLabel.ParentColor = False
               LabelPosition = lpLeft
@@ -1590,24 +1582,24 @@ object Form1: TForm1
           end
         end
         object tsOptions: TTabSheet
-          ClientHeight = 440
-          ClientWidth = 792
+          ClientHeight = 583
+          ClientWidth = 898
           object GroupBox4: TGroupBox
             Left = 12
             Height = 216
             Top = 16
-            Width = 775
+            Width = 881
             Anchors = [akTop, akLeft, akRight]
-            ClientHeight = 214
-            ClientWidth = 773
+            ClientHeight = 194
+            ClientWidth = 877
             TabOrder = 0
             object edMinPower: TLabeledEdit
               Left = 9
-              Height = 26
+              Height = 25
               Top = 24
               Width = 118
               Color = clCream
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 118
               EditLabel.Caption = 'edMinPower'
               EditLabel.ParentColor = False
@@ -1626,7 +1618,7 @@ object Form1: TForm1
             end
             object Label27: TLabel
               Left = 150
-              Height = 16
+              Height = 17
               Top = 64
               Width = 8
               Caption = 'g'
@@ -1634,7 +1626,7 @@ object Form1: TForm1
             end
             object Label28: TLabel
               Left = 279
-              Height = 16
+              Height = 17
               Top = 64
               Width = 6
               Caption = 's'
@@ -1642,9 +1634,9 @@ object Form1: TForm1
             end
             object Label29: TLabel
               Left = 165
-              Height = 16
+              Height = 17
               Top = 8
-              Width = 49
+              Width = 45
               Caption = 'Label29'
               ParentColor = False
             end
@@ -1717,23 +1709,23 @@ object Form1: TForm1
             end
             object Label40: TLabel
               Left = 347
-              Height = 16
+              Height = 17
               Top = 8
-              Width = 49
+              Width = 45
               Caption = 'Label40'
               ParentColor = False
             end
             object Label43: TLabel
               Left = 9
-              Height = 16
+              Height = 17
               Top = 112
-              Width = 49
+              Width = 45
               Caption = 'Label43'
               ParentColor = False
             end
             object speArchPeriod: TSpinEdit
               Left = 9
-              Height = 26
+              Height = 25
               Top = 136
               Width = 120
               Color = clCream
@@ -1745,9 +1737,9 @@ object Form1: TForm1
             end
             object Label44: TLabel
               Left = 166
-              Height = 16
+              Height = 17
               Top = 112
-              Width = 49
+              Width = 45
               Caption = 'Label44'
               ParentColor = False
             end
@@ -1764,27 +1756,27 @@ object Form1: TForm1
             end
             object Label45: TLabel
               Left = 150
-              Height = 16
+              Height = 17
               Top = 176
-              Width = 49
+              Width = 45
               Caption = 'Label45'
               ParentColor = False
             end
             object Label46: TLabel
               Left = 279
-              Height = 16
+              Height = 17
               Top = 176
-              Width = 49
+              Width = 45
               Caption = 'Label46'
               ParentColor = False
             end
             object edKorrFak: TLabeledEdit
               Left = 347
-              Height = 26
+              Height = 25
               Top = 136
               Width = 121
               Color = clCream
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 121
               EditLabel.Caption = 'edKorrFak'
               EditLabel.ParentColor = False
@@ -1794,7 +1786,7 @@ object Form1: TForm1
             end
             object Label48: TLabel
               Left = 469
-              Height = 16
+              Height = 17
               Top = 140
               Width = 11
               Caption = '%'
@@ -1802,9 +1794,9 @@ object Form1: TForm1
             end
             object CheckBox13: TCheckBox
               Left = 534
-              Height = 22
+              Height = 21
               Top = 140
-              Width = 100
+              Width = 91
               Caption = 'CheckBox13'
               OnChange = CheckBox13Change
               TabOrder = 6
@@ -1814,10 +1806,10 @@ object Form1: TForm1
             Left = 4
             Height = 168
             Top = 240
-            Width = 775
+            Width = 881
             Anchors = [akTop, akLeft, akRight]
-            ClientHeight = 166
-            ClientWidth = 773
+            ClientHeight = 146
+            ClientWidth = 877
             TabOrder = 1
             object btnBackup: TBitBtn
               Left = 9
@@ -1895,7 +1887,7 @@ object Form1: TForm1
               TabOrder = 1
             end
             object btnAbout: TBitBtn
-              Left = 612
+              Left = 716
               Height = 29
               Top = 8
               Width = 142
@@ -2004,10 +1996,10 @@ object Form1: TForm1
               TabOrder = 4
             end
             object Label51: TLabel
-              Left = 705
-              Height = 16
+              Left = 813
+              Height = 17
               Top = 48
-              Width = 49
+              Width = 45
               Anchors = [akTop, akRight]
               Caption = 'Label51'
               Font.Color = clNavy
@@ -2019,8 +2011,8 @@ object Form1: TForm1
               OnMouseLeave = Label51MouseLeave
             end
             object Label52: TLabel
-              Left = 689
-              Height = 16
+              Left = 793
+              Height = 17
               Top = 104
               Width = 65
               Anchors = [akTop, akRight]
@@ -2034,10 +2026,10 @@ object Form1: TForm1
               OnMouseLeave = Label52MouseLeave
             end
             object Label53: TLabel
-              Left = 645
-              Height = 16
+              Left = 754
+              Height = 17
               Top = 77
-              Width = 109
+              Width = 104
               Anchors = [akTop, akRight]
               Caption = 'Download update'
               Font.Color = clNavy
@@ -2063,8 +2055,8 @@ object Form1: TForm1
               ChildSizing.ShrinkVertical = crsScaleChilds
               ChildSizing.Layout = cclLeftToRightThenTopToBottom
               ChildSizing.ControlsPerLine = 4
-              ClientHeight = 27
-              ClientWidth = 280
+              ClientHeight = 22
+              ClientWidth = 278
               Columns = 4
               Items.Strings = (
                 ' 50%'
@@ -2077,27 +2069,27 @@ object Form1: TForm1
           end
         end
         object tsFTP: TTabSheet
-          ClientHeight = 440
-          ClientWidth = 792
+          ClientHeight = 583
+          ClientWidth = 898
           object GroupBox5: TGroupBox
             Left = 12
             Height = 176
             Top = 8
-            Width = 764
+            Width = 870
             Anchors = [akTop, akLeft, akRight]
             Caption = 'WR-Datawarehouse'
-            ClientHeight = 174
-            ClientWidth = 762
+            ClientHeight = 154
+            ClientWidth = 866
             ParentColor = False
             TabOrder = 0
             object edServerName: TLabeledEdit
               Left = 8
-              Height = 26
+              Height = 25
               Hint = 'Hostname oder IP-Adresse des Datawarehouse, wie beim Wechselrichter eingestellt'
               Top = 24
               Width = 512
               Color = clCream
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 512
               EditLabel.Caption = 'edServerName'
               EditLabel.ParentColor = False
@@ -2106,12 +2098,12 @@ object Form1: TForm1
             end
             object edUser: TLabeledEdit
               Left = 8
-              Height = 26
+              Height = 25
               Hint = 'Benutzername für Datawarehouse'
               Top = 72
               Width = 248
               Color = clMoneyGreen
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 248
               EditLabel.Caption = 'edUser'
               EditLabel.ParentColor = False
@@ -2120,13 +2112,13 @@ object Form1: TForm1
             end
             object edPasw: TLabeledEdit
               Left = 273
-              Height = 26
+              Height = 25
               Hint = 'Passwort für Datawarehouse'
               Top = 72
               Width = 246
               Color = clSkyBlue
               EchoMode = emPassword
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 246
               EditLabel.Caption = 'edPasw'
               EditLabel.ParentColor = False
@@ -2136,32 +2128,32 @@ object Form1: TForm1
             end
             object edFolder: TLabeledEdit
               Left = 8
-              Height = 26
+              Height = 25
               Hint = 'Eventuell zusätzliches Verzeichnis, kann aber auch leer bleiben'
               Top = 120
               Width = 248
               Color = clCream
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 248
               EditLabel.Caption = 'edFolder'
               EditLabel.ParentColor = False
               TabOrder = 4
               OnChange = edFolderChange
             end
-            object CheckBox2: TCheckBox
+            object cbActFTP: TCheckBox
               Left = 545
-              Height = 22
+              Height = 21
               Top = 28
               Width = 22
-              OnChange = CheckBox2Change
+              OnChange = cbActFTPChange
               TabOrder = 1
             end
-            object CheckBox5: TCheckBox
+            object cbPassShow: TCheckBox
               Left = 545
-              Height = 22
+              Height = 21
               Top = 76
               Width = 22
-              OnChange = CheckBox5Change
+              OnChange = cbPassShowChange
               TabOrder = 5
             end
             object btnTestFTP: TButton
@@ -2172,25 +2164,25 @@ object Form1: TForm1
               OnClick = btnTestFTPClick
               TabOrder = 6
             end
-            object CheckBox9: TCheckBox
+            object cbPassivFTP: TCheckBox
               Left = 275
-              Height = 22
+              Height = 21
               Top = 121
               Width = 22
-              OnChange = CheckBox9Change
+              OnChange = cbPassivFTPChange
               TabOrder = 7
             end
             object Label50: TLabel
               Left = 469
-              Height = 16
+              Height = 17
               Top = 100
-              Width = 49
+              Width = 45
               Caption = 'Label50'
               ParentColor = False
             end
             object SpinEdit4: TSpinEdit
               Left = 469
-              Height = 26
+              Height = 25
               Top = 122
               Width = 50
               OnChange = SpinEdit4Change
@@ -2201,50 +2193,50 @@ object Form1: TForm1
             Left = 8
             Height = 217
             Top = 192
-            Width = 764
+            Width = 870
             Anchors = [akTop, akLeft, akRight]
             Caption = 'Webspace/Homepage'
-            ClientHeight = 215
-            ClientWidth = 762
+            ClientHeight = 195
+            ClientWidth = 866
             TabOrder = 1
             object edHTMLserver: TLabeledEdit
               Left = 8
-              Height = 26
+              Height = 25
               Hint = 'Hostname oder IP-Adresse der Homepage'
               Top = 64
               Width = 512
               Color = clCream
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 512
               EditLabel.Caption = 'edHTMLserver'
               EditLabel.ParentColor = False
               TabOrder = 1
               OnChange = edHTMLserverChange
             end
-            object CheckBox3: TCheckBox
+            object cbSameAccount: TCheckBox
               Left = 8
-              Height = 22
+              Height = 21
               Top = 16
               Width = 22
-              OnChange = CheckBox3Change
+              OnChange = cbSameAccountChange
               TabOrder = 0
             end
-            object CheckBox4: TCheckBox
+            object cbActFTPhtml: TCheckBox
               Left = 545
-              Height = 22
+              Height = 21
               Top = 68
               Width = 22
-              OnChange = CheckBox4Change
+              OnChange = cbActFTPhtmlChange
               TabOrder = 2
             end
             object edHTMLuser: TLabeledEdit
               Left = 8
-              Height = 26
+              Height = 25
               Hint = 'Benutzername für Homepage'
               Top = 112
               Width = 248
               Color = clMoneyGreen
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 248
               EditLabel.Caption = 'edHTMLuser'
               EditLabel.ParentColor = False
@@ -2253,13 +2245,13 @@ object Form1: TForm1
             end
             object edHTMLpasw: TLabeledEdit
               Left = 273
-              Height = 26
+              Height = 25
               Hint = 'Passwort für Homepage'
               Top = 112
               Width = 248
               Color = clSkyBlue
               EchoMode = emPassword
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 248
               EditLabel.Caption = 'edHTMLpasw'
               EditLabel.ParentColor = False
@@ -2269,33 +2261,33 @@ object Form1: TForm1
             end
             object edHTMLfolder: TLabeledEdit
               Left = 8
-              Height = 26
+              Height = 25
               Hint = 'Eventuell anderes Verzeichnis, kann aber auch leer bleiben'
               Top = 160
               Width = 248
               Color = clCream
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 248
               EditLabel.Caption = 'edHTMLfolder'
               EditLabel.ParentColor = False
               TabOrder = 5
               OnChange = edHTMLfolderChange
             end
-            object CheckBox6: TCheckBox
+            object cbPassShowHTML: TCheckBox
               Left = 545
-              Height = 22
+              Height = 21
               Top = 116
               Width = 22
-              OnChange = CheckBox6Change
+              OnChange = cbPassShowHTMLChange
               TabOrder = 8
             end
             object edHTMLfile: TLabeledEdit
               Left = 272
-              Height = 26
+              Height = 25
               Hint = 'Dateiname der HTML-Protokolldatei, die aktualisiert werden soll. Siehe Basisdaten.'
               Top = 160
               Width = 248
-              EditLabel.Height = 16
+              EditLabel.Height = 17
               EditLabel.Width = 248
               EditLabel.Caption = 'edHTMLfile'
               EditLabel.ParentColor = False
@@ -2317,22 +2309,22 @@ object Form1: TForm1
         end
         object tsColors: TTabSheet
           Caption = 'tsColors'
-          ClientHeight = 440
-          ClientWidth = 792
+          ClientHeight = 583
+          ClientWidth = 898
           object GroupBox10: TGroupBox
             Left = 12
             Height = 160
             Top = 8
             Width = 200
             Caption = 'GroupBox10'
-            ClientHeight = 143
-            ClientWidth = 198
+            ClientHeight = 138
+            ClientWidth = 196
             TabOrder = 0
             object ColorButton8: TColorButton
               Left = 6
               Height = 25
               Top = 8
-              Width = 185
+              Width = 183
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2345,7 +2337,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 40
-              Width = 185
+              Width = 183
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2358,7 +2350,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 72
-              Width = 185
+              Width = 183
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2371,7 +2363,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 104
-              Width = 185
+              Width = 183
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2387,14 +2379,14 @@ object Form1: TForm1
             Top = 168
             Width = 200
             Caption = 'GroupBox11'
-            ClientHeight = 143
-            ClientWidth = 198
+            ClientHeight = 138
+            ClientWidth = 196
             TabOrder = 3
             object ColorButton3: TColorButton
               Left = 6
               Height = 25
               Top = 8
-              Width = 185
+              Width = 183
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2407,7 +2399,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 40
-              Width = 185
+              Width = 183
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2420,7 +2412,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 72
-              Width = 185
+              Width = 183
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2433,7 +2425,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 104
-              Width = 185
+              Width = 183
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2449,14 +2441,14 @@ object Form1: TForm1
             Top = 263
             Width = 200
             Caption = 'GroupBox12'
-            ClientHeight = 48
-            ClientWidth = 198
+            ClientHeight = 43
+            ClientWidth = 196
             TabOrder = 4
             object ColorButton7: TColorButton
               Left = 6
               Height = 25
               Top = 9
-              Width = 184
+              Width = 182
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2472,14 +2464,14 @@ object Form1: TForm1
             Top = 200
             Width = 200
             Caption = 'GroupBox13'
-            ClientHeight = 111
-            ClientWidth = 198
+            ClientHeight = 106
+            ClientWidth = 196
             TabOrder = 5
             object ColorButton12: TColorButton
               Left = 6
               Height = 25
               Top = 8
-              Width = 184
+              Width = 182
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2492,7 +2484,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 40
-              Width = 184
+              Width = 182
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2505,7 +2497,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 72
-              Width = 184
+              Width = 182
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2521,14 +2513,14 @@ object Form1: TForm1
             Top = 8
             Width = 200
             Caption = 'GroupBox14'
-            ClientHeight = 207
-            ClientWidth = 198
+            ClientHeight = 202
+            ClientWidth = 196
             TabOrder = 1
             object ColorButton15: TColorButton
               Left = 6
               Height = 25
               Top = 8
-              Width = 185
+              Width = 183
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2541,7 +2533,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 40
-              Width = 185
+              Width = 183
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2554,7 +2546,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 72
-              Width = 185
+              Width = 183
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2567,7 +2559,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 104
-              Width = 185
+              Width = 183
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2580,7 +2572,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 136
-              Width = 184
+              Width = 182
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2593,7 +2585,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 168
-              Width = 184
+              Width = 182
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2609,14 +2601,14 @@ object Form1: TForm1
             Top = 8
             Width = 200
             Caption = 'GroupBox15'
-            ClientHeight = 80
-            ClientWidth = 198
+            ClientHeight = 75
+            ClientWidth = 196
             TabOrder = 2
             object ColorButton1: TColorButton
               Left = 6
               Height = 25
               Top = 8
-              Width = 185
+              Width = 183
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2629,7 +2621,7 @@ object Form1: TForm1
               Left = 6
               Height = 25
               Top = 40
-              Width = 185
+              Width = 183
               Anchors = [akTop, akLeft, akRight]
               BorderWidth = 2
               ButtonColorSize = 16
@@ -2842,12 +2834,12 @@ object Form1: TForm1
           end
         end
         object tsProt: TTabSheet
-          ClientHeight = 440
-          ClientWidth = 792
+          ClientHeight = 583
+          ClientWidth = 898
           object btnSaveProt: TBitBtn
             Left = 4
             Height = 33
-            Top = 386
+            Top = 529
             Width = 118
             Anchors = [akLeft, akBottom]
             Glyph.Data = {
@@ -2884,9 +2876,9 @@ object Form1: TForm1
           inline SynMemo1: TSynMemo
             Cursor = crIBeam
             Left = 4
-            Height = 372
+            Height = 515
             Top = 7
-            Width = 768
+            Width = 874
             Anchors = [akTop, akLeft, akRight, akBottom]
             Color = clCream
             Font.Height = -13
@@ -3492,15 +3484,313 @@ object Form1: TForm1
           end
           object CheckBox12: TCheckBox
             Left = 140
-            Height = 22
-            Top = 390
-            Width = 100
+            Height = 21
+            Top = 534
+            Width = 91
             Anchors = [akLeft, akBottom]
             Caption = 'CheckBox12'
             OnChange = CheckBox12Change
             TabOrder = 2
           end
         end
+      end
+    end
+    object tsPlan: TTabSheet
+      Caption = 'Stringplan'
+      ClientHeight = 620
+      ClientWidth = 918
+      object imgStrings: TImage
+        Left = 0
+        Height = 620
+        Top = 0
+        Width = 918
+        Align = alClient
+        Center = True
+        Picture.Data = {
+          1754506F727461626C654E6574776F726B477261706869632523000089504E47
+          0D0A1A0A0000000D494844520000028F0000018C0806000000BBEC4848000000
+          0473424954080808087C0864880000200049444154789CEDDD69985C7599B0F1
+          FB54F596F4967D232104C3BE861D1C591481010485A082A3B26850D441514767
+          14238CC235302203BC384630B8810B2A084820010C064176485803095B9AAC9D
+          4EA7935EABCEFB21388619AAF34FBAAA4F2DF7EFBAF8407771EA3974579DBBCF
+          56D1499389912449920244F10CE3519224496152490F204992A4D2613C4A9224
+          2998F1284992A460C6A324499282198F9224490A663C4A92242998F1284992A4
+          60C6A324499282198F9224490A663C4A92242998F1284992A460C6A324499282
+          198F9224490A663C4A92242998F1284992A460C6A324499282198F9224490A66
+          3C4A92242998F1284992A460C6A324499282198F9224490A663C4A9224295855
+          D2030C966856D213E86FE219494F201507DF97A4F25309DBB8289E419CF41083
+          219A05172D9A90F418033273CF96B25887382EED5FB9F9F3E773C41147243DC6
+          80B80EC5218A222E98FD44D2630CC815674D731D8A80EB501CAE386B1A474E80
+          FB4E4C7A92C2F2B0B52449529EFCA925E9090ACF789424495230E351922449C1
+          2AE6821949AA0471E70B3CFBFB6B78FC912768ED8021130E64F793BECC21FB4F
+          F40D5F525EB8E75192CA45BC8617669FC7DD7317B06A5D0F51D445C76B7FE2E1
+          6B3FC39F16B657C6D591920ACE7894A43211B7CE65E1136B896BA7F1EE99F7F1
+          851FDCCE71FB0F27CAB6F0FC038F92497A404965C1A318925426A2911FE5D4AB
+          DF4F7B7B4CC3987AA2B897AAAA141051DBD84C94F4805205A884D799F1284965
+          245537926175D0FBECB5DC7CD3EF58B66C2D35933FC2FB4E98463AE9E1249505
+          0F5B4B52D9C9D2FEF202DE78630D196AA96BAC23EECD263D94A432613C4A52D9
+          49D17CF47FF3B91FDCC107DF37910DCFDCC01DD7CE6695273D4ACA03E35192CA
+          50D59026AAEB2630E5F8E98C4FC7F4BD7E2F4B96BBF751D2C079CEA354011E7C
+          F0C1B7FDFBF2E5CBFFCFD70A258E63860E1DCABEFBEE3B28CF57C9326FDCC15F
+          EEF90B6DD5EFE1C8D38FA33102E2B78231EE23D3E7CD7A240D9CF12895B9D75E
+          7B8DC30E3B8CBDF7DE3BEFCB8EE32DC7C8F2E5CB696A6AE2A5975ECAFBF3EBED
+          A2F80D5EB9FF8FAC4ABD48C3DE0772C46E116FDC7D0B6F66206ADE93F1E3BC64
+          46D2C0198F5205686C6CE4A9A79E4AE4B9AFBFFE7A2EBDF4D2449EBBD2A4264E
+          E7E0837ECF1D7F7D8927AE3896A7AB20D39B816804533E740E3BD4263DA1A472
+          E0398F92542EA291EC7CD62C4E3CFE48C60CAB83B896FA498773C0B9D7F181C3
+          2756C4FDE724159E7B1E25A99CD46CCF4ED3BFCF4ED3931E4452B972CFA32449
+          9282B9E73187EB3FBE9AD79FEA212AB2E33C17EDD392F765CE7C6A42DE972949
+          92CA93F198C38AC5BD1CFEA906F63B6D68D2A3FC8FEFBF7F25E7CF1993D765BE
+          705F370BFFD8C95EC70FC9EB7225495279321E738822A86B4A316C7C71FD2FCA
+          F73C8FFF6E2DCDE3D2C6A324490AE2398F9224497972DE1E494F5078C6A32449
+          529E5CF3EEA427283CE351922449C18C4749922405331E25499214CC78942449
+          5230E351922449C18C474992A43C397B7ED213149EF12849922AC683B7FE9005
+          375F55B0E5CF7EA1608B2E1AC5F5F12992244905B4F295E7E8E9DA90F41825CD
+          3D8F9224490A663C4A92242998F1284992A460C6A324499282198FFD681C934E
+          7A044992A4A2623C4A92242998F1284992A460C6A324499282198F156E48A3BF
+          029224299CE5204992A460C6A324499282198F9224490A663C4A92242998F128
+          4992A460C6A324499282198F9224490A663C4A92242998F1284992A460C6A324
+          499282198F9224490A663C4A92242998F1284992A460C6A32449529E44490F30
+          088C4749922405331E25499214CC789424495230E351AA00711C273D8224A94C
+          188F9224490A663C4A92242998F1284992A460C6A324499282198F9224490A66
+          3C4A92242998F1284992A460C6A35401A2A8123E6D559234188C474992240533
+          1E25499214CC789424495230E351922449C18C4749922405331E25499214CC78
+          94244952B0AAA407905458711CD3D1D1412A95DCDF8ABBECB24B62CF2D49CA2F
+          E3512A7393274F269BCDBEED6BF3E7CFE788238E486822495229F3B0B5244992
+          82198F9224490A663C4A92242998F1284992A460C6A324499282198F9224490A
+          663C4A92242998F1284992A460C6A324499282198F9224490A663C4A92242998
+          F1284992A460C6A32449928245F10CE2A487180CD1ACA427902449E52E02B233
+          929EA2B0AA921E60305DB46842F0632F3DF44D4EBC70187B1D3FA480136D9D99
+          7BB66CD53A84B8E1AC35D4D4479C71CD88BC2E379742ACC360731D8A43B9ACC3
+          05B39F487A8C01B9E2AC69AE4311701DC2DDFA5F5FA4A76B03A77DED47795FF6
+          15674DCBFB328B9187AD25499214CC789424495230E351922449C18CC77CC866
+          78FCBC3799B9D7727E3FBF22AE3F92244915CA781CB098E53F6B63DE02A35192
+          2495BF8ABADA3ADFFA56F4F0D8956DDC73471FDD59365D9F2F499254C6DCF3B8
+          ADE22C4F5DB8863FDED6473CA58671CD490F2449925478C6E3400C4933F5CCE1
+          7CFAA74D4C69487A184992A4C2F3B0F5B68A524CBB620CFBA781BE9EA4A79124
+          491A14EE791C80543AE9092449920697F1284992A460C6630E2377A8A669ACBB
+          1625499236E7398F39CCB86954D223489224151DF73C4A92242998F1284992A4
+          601EB6CE87AA1A8EBB6B02C7253D8724495281198F156EC7436AA91FE90E6849
+          9214C678AC60CB9FEFE59E6BDA01F8C3456D83F6BC33F76C29FC9314F873C667
+          EE3508EB5060AEC33B3BFB86514CDEBF26EFCB9554190E1C93F40485673C56B0
+          61DBA5F9D2DD83FB5BFEFDF7AFE44B734BFB95F5FDF7AF1CF4FF6FF9E63AE436
+          6CBC6F8B92B6DD5F3F98F40485E7BB6405AB6B4C51D738F887ACCB61E3EC3A14
+          87725807492A35BEF34A92A48AB1F791A7D2DDB921E9314A9AF12849C0BC2BDB
+          193EB18AFDA70F4D7A14490534659FF7243D42C9F3325B4902162FE8E6F5A77A
+          921E43928A9EF1284992A460C6A324499282198F9224497972D25D494F5078C6
+          A32449529EDCF66AD213149EF1284965ECF987E6F0FC4373921E435219F1563D
+          9254C616CEFF2D00BB1E725CC293482A17EE799424495230E351922449C18C47
+          49922405331E25499214CC789424495230E351922449C18C4749922405331E25
+          499214CC789424495230E351922449C18C4749922405331E25499214CC789424
+          495230E351922449C18C4749922405331E25499214CC7894A4325653579FF408
+          92CA8CF1284992A460C6A324499282198F9224490A663C4A92242998F1284992
+          A460C6A32449529E44490F30088C4749922405331E25499214CC789424495230
+          E351922449C18C4749922405331E25499214CC789424495230E351922449C18C
+          4749922405331E25499214CC789424495230E351922449C18C4749922405331E
+          25499214CC789424495230E351922449C18C4749922405331E25499214CC7894
+          A4B76C5C9B4D7A04492A7AC6A324499282198F9224490A663C4A92242998F128
+          4992A460C6A324499282198F9224490A663C4A92242998F1284992A460C6A324
+          499282198F9224490A663C4A92242998F1284992A460C6A324499282198F9224
+          490A663C4A92242998F1284992A460513C8338E9210643342BE909244952B98B
+          80EC8CA4A728ACAAA407184C172D9A90F408033273CF16D7A108B80EC521DFEB
+          F083E9AB681E97E68C6B46E46D995B3273CF162E98FD44419FE3D6FFFA223D5D
+          1B38ED6B3F2AC8F2AF386B5AC1D7A1D05C87E2502EEB50093C6C2D4992A460C6
+          A324499282198F9224490A663C4A92242998F1284992A460C6A324499282198F
+          9224490A663C4A92242998F1284992A460C6A32449928255D4C7134A9234F8BA
+          687FF9095A37C6FFF39568C8F64C983A91EA04A792B695F1280DB24C5B1F6FFC
+          B59B5717F6F2E6E23EDADECCB0BE35A6BB33A6AF1752B511350D110D63D2346F
+          5FCDB83DAA99B47F2D53F64853E3B102A9E4645B6EE28ECBAEE6CD9EBFC7636A
+          87CFF3890BCF6184AF699520E3511A0CD92CCBE76EE491DF6E64D15FFBE8CAF4
+          F3D0CE98BE4ED8B82AC3CA677A587C271041F5E86A7639A99E033F32841DC647
+          8336BAA401C82E63D14D37B07CB370944A9DF12815544CDBFD1DCCF9DE065E58
+          9225BBADDB8F187A57F6B2E8BA369EF9D97AA69CDEC43F7E760863EAF33A6C45
+          DBE7C421348E49273D86CA4A1F6BFFF45D163CD38EE9A872623C4A85D2D9C793
+          97ACE58FB7F6D29DCDDF62E3EE0C4B6E58CBACFBBA78FF65CD1CB4470AF7430E
+          DC616736243D82CA4CCFCBB3B8F3D70FD16539AACC78B6855400F1DA6EE69DB3
+          9A5B7E9FDF70DC5CEFAB9DDC79F61AEE9C9FA1404F21691B6557DDC1DDD75ECF
+          F26ECB51E5C73D8F529EC51D3DDCFBD956162C8A830F55455511B58D11D569E8
+          ED88E9EE8E8903FEE378432F0F7FB995D4D52339F650F740EAFFDA6E97FDC8F4
+          F6243D464589DBE673EF9517F362AB7FD6A93C198F523E65332C9CB99605CFF4
+          1F8E512A62C4A143D9F7B85A76DCAF86B19352546F761CA0774D1FCB17F6F0D2
+          3D9D3C35A79BB64E722E2FEEEAE5A17F59CBA89F8FE080C9E6A3DEEE80E33E91
+          F40815255E3B9F7BBFF7759E6E31D855BE8C47298FDA6F5FC79CB999DC17C644
+          503FAD9E63FFAD91BD77CDBDA7B07A6415938EAC62D2914339FCFC1E1EBB721D
+          F7FCA197AE1C3B32E2B5DDDC3573033B5CDFC028AFF99012D1B7FC0EE65E7931
+          CFAD301C55DE3CE751CA978E2EEEBBAA8B0DB98E544511E3CF18C1B93F6E669F
+          7EC2F17F4B8FAAE1A0EF8CE253170D61444DEEC7F53CDEC1DDB765BCAA531A74
+          593A5FF811B75CFA2DC35115C17894F264CD6F3B58B822C737A38851A70DE7E3
+          5FAFA3799BF6F7478CFED0303E7E611D8DB95EB5D92C8B7FBC8196DE6D59BEA4
+          6D12AF67C5BCAF71D3F77EC06BED9EE3A8CA603C4AF9D0D7CB93BFEBA137C76E
+          BFAA5D1B38F56B75D40FE894C488111F1CC6C91F4AE77CE1665FE9E4F147DDF7
+          280D86B8FD491EBBF663FCEAC679B4E57AF1ABE29CB747D213149EF128E541E6
+          994E162DCDF1CD549A7DBFD8C084DA3C3C519462EA179AD8B929C7F7B3195E9C
+          D7433F1F602369A0E28DB43E7C05BF99F969E63FFA3A7D7663C95938FF772CB8
+          F9AA822CFB9A771764B145C57894F260D5826EDA721CB14AEF3494830EC9DF55
+          D0D1A83A0E3C269DF39CC98E277A58653D4A0510D3D372370BAE388D9FFFF7CF
+          78A3ADAF9FC7A6A86E1A4EB53740284A2D2F3DC52B0BFF92F41825CB7894062A
+          CEF0FA137D396FD43DEABD758CCEEB15D011DBBFA786BA1C1BA5F8F53E5677E7
+          F3F924F5AD7984277F7216B3677E9D8717B5F4BFB7314AD3B0E73F73CA39270C
+          F05415A93879AB1E69A07AFB687921C796249562E2B4AABCFF9556F5AE6A46A6
+          3B79E31D767CC4BD19D6AD0226E7F949A50A957DE96A7E71F96CD6F4041C9F8E
+          9A197FCC459C70DA11342CBDA2F0C3699BF47677253D4249331EA5018A5BFB68
+          EDC8F1CD7415A3B6CFFFAE8768588A21B98A34CED2BD31EF4F2955ACB8B3958D
+          5BBC202622D5348DFDCEBC98774FDB8E34F8B1A1452CD3EBE19981301EA5018A
+          3BA161D72A862FCFB27E4D96BECDB718A9140DC30BF0A4D9DC9F3803047DB4A1
+          A43C89EA1979D06738FA8C33D8AEC9B3C14A45EDD0C6A4472859C6A33440A929
+          F59C7653FDA67FC9C674AECED0BE22CBFA9519DA5B536C3724FFCF19AFCAB03E
+          D74531518ADAA1F97F4E49FF5B8A9AF14771E0E917B0FF5E13DCA0AA62F8BB2E
+          E5532A62C8982A868C81B1057C9AAEE77B69CD714C2CAA4ED13CBA804F2E55BC
+          8854E36EECF6812FF1EEA30EA0C12DA92A8CBFF27972FF0F3BA8AA85C3CE6C48
+          7A1495BB38CBD2FB7B725EED194DAA6674DDE08E2455868854C34E4C3D7A0687
+          1E731423739E78AC6297E9F3632407C278CC93250F7553531F71D899494FA272
+          17AFEEE2C907B239CF79ACDFB7865179BD359054E952D48E3D949D8F3A83FD0E
+          7F37C373DD274B2523D3D74BBAAA3AE9314A96F128959498E5BFDEC0CB1B727C
+          3B95E25D47D4F8C296F228BDDBD7F8C4253554D98C65255D5593F40825CB6D8C
+          5442E2373BB9E717BD6472DD5672F410F63ED82D9C945755FE41266DCE1336A4
+          5291CDB0E83FD7F3527B8EEF471163A60F658AE73B4A920AC878944AC4BADBD7
+          31676E26E7B98ED1C83A8EF868B52F6A49DA82EE8DEB931EA1A4B99D914A40EF
+          731DDC7C49171DB93EB2224A31E5338DEC5A881B924B5219AA6B682EC872A7FE
+          B2208B2D2AC6A354E4B2CB3BB9ED8BEB793DD747200275073472C2F4FC7F86B6
+          2469EBBC9CEBD4A232E2B6462A62F1DA6EEEFE7C1B4F2F8B731FAE1E5EC73117
+          D733CA33FA254983C078948A54BCAE877B3FB796879EEF271CABD24CBB7818FB
+          4D1AD4D124A9A465FA7A931EA1A4198F52118ADB7AB8F7BC56FEFC74EE9B8193
+          4A31F9FC111C7F540A6FCE2349E1327DBD54D70E497A8C92E5812EA9C8C4ABBB
+          B9EBBC561E7A36F71E47A288B1670CE7236756E3672448D2D6ABAAF1BE66DBCA
+          78948A48665927B77FB68D2796F41F8EA34E19CE3FFD4B2D43DDE528491A64C6
+          A354247A9EDFC0CD9F6FE7C5E55B08C70F0DE713DFAAA3C9934E244909301EA5
+          22D0F1603BBFFC7207AFF7778B872862EC4786F34FFF66384AD240F4766F4C7A
+          8492663C4A898A59F5FB366EFC4E27ADDDFD3C2C9562E259C339E3FC5AEA0D47
+          491A302F98D976C6A394946C9697AF6EE537D7F7D099EB936380289562C72F8D
+          E0C367D650E7398E929417C6E3B6331EA504C41B7A79E41BADDC754F86BE9C27
+          3842545BC55E334770F24955BE58254945C1ED9134C8322D5DDCF5C5361E7EB6
+          9F7B380251630D875D3E9CA3FF21ED0D59254945C378940651F7331BB8F99FDB
+          59BCA29F2BAA81F4F83A8EBD6A3807ED1679037049CAB3BE9E6E6AEAEA931EA3
+          64198FD22059FFE7766EFC6A072D1DFD3FAE76F77A4EBDAA995DC60DCE5C9254
+          898CC76D673C4A0517B3E6F6367EF1AD4ED6F4F4F3B028A2F9C8263E7A693D13
+          1A066D384992B68AF1281554CCCA5FADE5679774D19EE9E761A91413CE18C6E9
+          5FADA3293D68C34992B4D58C47A9606296FFA2959FFD47371DFDDD8AA72ACDCE
+          5F1DC1A9675453EB098E92547099BEDEA4472869C6A3541031AB7EBD969F6F29
+          1CEBAB39F092111CF7BE34EE7094A4C1533BC4731EB795F12815C0BA396DFCFC
+          922ED6F7138EA991B5BCF7AAE1FCC33E29AFA896A44156ED0533DBCC7894F2AC
+          FBF1766EBAB093B6BEDC8F496F3784137F308CFD76341B2549A5C57894F2285E
+          D1C91FBEDAC1F2CEDC8FA9DA6128A7CC6A668F0986A324A9F4188F52BE64FA78
+          F4C2753CB3829C37004F6F37840FFD68187B8C1FD4C924499BC964FA3934A42D
+          F253CFA43C59F3AB75CC7B30F7470E464DB51C7DCD30F6341C2529714DA37C33
+          DE56C6A39407F18A8DDC756D375D39CA314AA5D9EBDBC33874270F554B5239AB
+          847779E3318F323DFD7D5AB1CA57CCD259EB59DC96E3DB11347FA899E3DF9FAE
+          883715495279F39CC73CCA78CFD18A142FDBC8FD7FC890FBAE3C11DD7F69E7BA
+          0FB40FCE40A914BBCF1CC9FBF6375525E91DC5FDDC474D5B643C4A03B4FCB71B
+          78B59FABAB89633ADFECA3BF87E4552A45C7A03D9924959E3886DA218D498F51
+          B23C6C2D0D446F0F4FDFD9D7CF5E47495231AA1DDA90F40825CB78940620BBB8
+          8BC52D494F2149D2E0311EA501D8F86C2F6BDDED2849AA20C6A33400EDCB3264
+          BDC85E924A8C6FDC03613C4ADB2CA677A36F4092A4CAE2D5D6D2368B98FCAF63
+          99F9AF49CF21A918A5A65EC0D9D75F90F4187A47DECA6C20DCF3284992A460C6
+          A324499282198F9224A962B4AF7933E9114A9EF12849922A4A94327F06C2FF7B
+          9224490A663C4A92242998F12849922A46F786F5498F50F28C4749925431BA3B
+          3B8822EFF33810C6A32449AA28A9543AE9114A9AF1982735F5FE15234992CA9F
+          F12849922A466FD786A4472879C6A32449AA18DD9DC6E340198F9224A9A2A4AB
+          AA931EA1A4198F9224490A663C4A92242998F12849922A468F17CC0C98F12849
+          922A464FD70652E9AAA4C72869513C8338E9210643342BE909244952B98B80EC
+          8CA4A728AC8A4AEF8B164D28D8B26FFC7C2B3D1B62CE9C3DB260CF3173CF9682
+          AEC360701D8A83EB501C66EED9C205B39F487A8C01B9E2AC69AE4311701DC23D
+          3AE7A73C36E7A79C7BE5BCBC2FFB8AB3A6E57D99C5C8C3D69224490A663C4A92
+          A48AB1B1BD35E9114A9EF12849922A4A2AED4DC207A2A2CE7994A47E75F6B1E8
+          87ED3C70470F2B56C5D48CAB66EAA98D1C73762D4DE9A487DB7AF19A5BB9F5DB
+          17B3A46B1F8EBCE43AF61BEDFE0209FC849981321E250920CEB2E85B6BB8794E
+          8618485541E71B3D2CBCAA9515EB47F2E90B6AA8497AC6AD11AFE1C55F5FCDD2
+          8EACEFF492F2CA3F432509885FDFC843F332C4A92AF6BF6A2CDF7C6C3C9FFD72
+          2D75C4ACBC79034B3A939E706BC4743E7D35F73FBAA632EEC5266950198F9204
+          C4DD29261C53C7CEC7D573D0E169D2A9883147D5322A0D7465E9D898F4845BA1
+          F3111EBCF176D6A76BA98A921E462A2E9DEBD7263D42C9F360862401A99D8672
+          FC7F0C7DDBD73A17F6B0260BD1A82A46352534D856EBA2E5F6CB58B8AA9A7127
+          9CC190BB7ECC52773F4A6F53533774CB0F524EEE7994A47790796D23B77DBF8B
+          CE3862EC2943995422E7D7675EFD29F7CD5D02DB9DCE51C7ECE41E024979673C
+          4AD2FF9259D6C92DE7AEE3B99550BB5703279D5D4D495C6C9D59CA13BFF8092B
+          3213D9EBF4731857E3316B49F9673C4AD26632CB3AB9E5536D3CFD7A4CCDAEF5
+          7CF8EA46B6AB4B7AAA1059D6DD7F197F7DA98BFA033EC3013B46F47577930520
+          43A6A793BEBE6CC2334AC9EBEA5897F40825CF231A92F496B8B59B399FDD148E
+          B57B36F0D16B9BD87144D25385DAC0B2A71FA73BCED2FDF037B8EEE1CDBFF734
+          7FFEE6112C3AE1277C72FA1EEE3550C54B5797D48DB78A8EF1284900D90C0BBF
+          B3964796C444CDB51CFE95A134ADEB63F53A208A689894A6AE248E5D4BDA92AA
+          EADAA4472869C6A3240199451B987F4F76D37D11D77533F7CC95CCFDDB37AB6B
+          38FECE511C3C2EB9F9B6AC91DDCFFF2BBB6FFEA5EEBBB8ED0B5F67713CCD4F98
+          919437C6A32401AB1674D39A497A0A4985B6CBC1C7D1DB5D4A376E2D3EC6A324
+          01E3CE1BCDCCF3929E22CF6A8FE503B38E4D7A0AA9A8EC7AC871498F50F23C86
+          214992A460C6A324499282198F9224490A663C4A92242998F1284992A460C6A3
+          24499282198F9224490A663C4A92242998F1284992A4607EC24C9EEC70400D7D
+          DD494F2149925458C6639E1C766643D2234892A484ED322CE9090ACFC3D69224
+          4979F2DC87939EA0F08C4749922405331E25499214CC789424495230E3519224
+          49C18C4749922405331E25499214CC789424495230E351922449C18C47499224
+          05331E25499214CC789424495230E351922449C18C4749922405331E25499214
+          CC789424495230E351922449C18C4749922405331E25499214CC789424495230
+          E351922449C18C4749922405331E25499214CC789424495230E351922449C18C
+          4749922405331E25499214CC789424495230E351922449C18C4749922405331E
+          25499214CC789424495230E351922449C18C4749922405331E25499214CC7894
+          24495230E351922449C18C4749922405331E25499214CC789424495230E35192
+          2449C18C4749922405331E25499214CC789424495230E351922449C18C474992
+          2405331E25499214CC789424495230E351922449C18C4749922405331E254992
+          14CC789424495230E351922449C18C4749922405331E25499214CC7894244952
+          30E351922449C18C4749922405331E25499214CC7894244952B0289E419CF410
+          83219A95F4049224A9DCC533929EA0F0AA921E60B054C20F539224A9D03C6C2D
+          4992A460C6A324499282198F9224490A663CE6C9DA16D8E777F06436E949B6DE
+          EBAFC1C93743E3F530EC46F8C422589BF4505BE9C597E1E85F41FDF530FE66F8
+          97A5D093F450DB28EE8219BF84E92F273DC9D67BFE49A899B5E902B56816443F
+          8273DF487AAAADD3DB01DFB80BC6CD86869FC3879F86D6A487DA0AAB9E87BACD
+          7F066FFD33EC3EE84E7AB8ADD0BA1C3EFCDB4DEF4B236E82739E83F5490FB595
+          56B4C0A93743C38F61F22D70F99B504A9B8877DAAE75B6C239B740D3F530F666
+          F84E0B457DD56D7FDBE652DE6E27AD622E9829A46716C3C71F80671B929E64EB
+          653BE09CFB60E23FC0B229D0B9123E3E172E6884D993939E2E4CA6153EB600DE
+          7734DC3101562F837F9C073B8C86F34AF06772EB4370C37A3829E941B6C1232B
+          E0C003E1973B43F4D6D71AEA121D69EB64E1B2B970F77878F468A85F0B1FBB13
+          BE3912AEDD2EE9E1C28C9C0A2F4FFAFB06BD730D4C9F0FA7EF05B5894EB615FA
+          E09BF741CD01D032153A57C02973E03FC7C04523931E2E4CB603CE9A0BD13478
+          790FD8F8064CBF07869E049F6B4A7ABA2D7BC7ED5A06BE7D0FBCB6332CF900AC
+          5C0227DF0BEF3A154E1F92D8A839F5B76D2EE5ED763170CFE3003DF2081CFB0C
+          7C7A6F684E7A986DD0BB11C6EC0417EE084D29183B0E3E351E1E5F0D7D490F17
+          283D1CE67D14FE7DBB4D1BC7EE3E88AB607409FE69D4F2327C63037CB2443690
+          6F938507D7407A354CBF03DE3B1766AD81FA74D28385EB5D01D777C36507C0C4
+          340C1F05D79D009F1B91F464E15255B05D3D4CAC8789B530FB6118BB3F7C7554
+          D293858BFB606927106DDA48A5529BFE29A5DFA535CBE0CF8D70F95E30360D53
+          26C357C6C00D4B2093F4705B906BBBD6BB127ED3035FDB1346A561F7A9F08566
+          F8E9ABC5B7F7B1BF6D73A96FB78B81F138403BEF0ECF9D0C678FFAFB9E965252
+          3B067E7E184C796BF8B80B6E5F09078C2EA1DDD21134D7426A1D1CFD53D8792E
+          6CB72F9C504A7BBCD8B4A7E2738FC197DE033B95E02B33D30E8F76C1B8F170C3
+          3FC2F5BBC0AFEE816FAF4C7AB2706FAE8135C360F5D370D8AFE15DBF85CB5B61
+          4A11EE5509F1EC3330AB1AFE6B5728A1EE22AA832FEC0AB7DD07CDD7C1985BA1
+          761A9C3F2CE9C9C2F566806AA8DFEC6BD52958BAAEF8E331D776AD6D1DAC6EDA
+          ECFD29829D9B61715BF1ED6CE86FDB5CEADBED6250829BA8E2D25C0F8D65F2DB
+          17F7C0A5F3E0A109F0EF93929E66EBA59BE0EE4F42CB89B0F13138FFB5E2FB6B
+          38A72CFC680144FBC2D98D490FB36DD2C3E0814FC28D7BC26E8DF09EDDE0BBDB
+          C34F5E2C9DF34FDBBAA1BB057ED807571D0B37ED030B1E80AF94D8799B00F4C0
+          E58BE0E469B05BA9BDD3C790A982CF1C05ABCE81A5C7C1C627E19BCB931E2CDC
+          D871B0CB6AB8F455E80256AF80FFB70C7A32C5FFBE946BBBB6A10FE2340CDDEC
+          7B43AAA0B3B7F8D6A9BF6D73396DB793526A6F292A90AE7570EE6DF0BBE130EF
+          7098508A2FACB70E718D190F5FD91E6E7F157A939EF629D175000002D0494441
+          5429D0F3CFC295D570CD4EA5FDA2AC4EBF7D8FF58E4DB06E63E9FC1C6AD210D5
+          C3770F80039AE1A0A9F0EF53E0B6574A2780FF66F56BF0876A387762D2936CBD
+          F657E0DCE5F09977C1F0144C9E0417ED00372E2E9D9F437A04DC70282CF81334
+          FF18F679080E9F0CC36B4A776FD7902A8832D0B9592976F5415D55E9AE93B64D
+          C91C9954E1B4AD8053E6C1A86970DFEE506A3BBEDA96C2418BE0F727C21E6FBD
+          83756560685D89BCA1C5F09B1761491BECFE934D5FEAE983BEF9B0D30A78E630
+          A84976C2206D4BE1B067E05727C05E6FFD8F5FD20EE39B4A637E8049C3A03E7E
+          FB61C5AA14A4A212F95DDACC7DAFC0A8C9B05F09FE35D2DA01EDF1DBAF4C4EA7
+          28AD4B95B3307A7B786C6758DFBB291A67CF815D7680EAA467DB46239A61E47A
+          783986ED23208617D7C18E538D894A53826F2BCAA76C079C39171AF685CB27C3
+          BA0DF0C60658512A7FDE034DA361E7B530F30568CFC28B4BE19265F0B1A925F2
+          261DC13F1F072F9C064F9E0A4F9E02E70F87F71D0CF7EE573AE1D5341A26AF81
+          8B5F80F55958BC04BEBD0CCEDDB5447E0E40FD04981EC3C50BE1CD3E58B502FE
+          E315F8E094D2590700B2F0C02A38645C696ED4274E805DD6C0CCC5B03E8615CB
+          E1BB4BE0E429A5F37AC8AC87537E0397ACDE148E8B5F82CB5AE1D33B94DE1F22
+          7F533D064EA982EF3E0DAB339B5EE3D7AC858F6D5FBAEBA46D538AEF2BCAA3C7
+          9F853B3642DF0370DB037FFFFAD4BDE1D9434A6383996A801F1F0DE73D08131E
+          80FA26F8D49170E1E8A4270BD73C74B3ABFE62189E86FA3A98544217FDA41A60
+          F6DF7E0E7FD9F473F8EC7BE18B2574910335F0BD63E1AB7F813D1E8378087CF8
+          40B86442D2836D9DB8175EEE82434AE09630EFA46A24DCFC5EF8C2A330610154
+          0F858F1C0C9797D021F87433FCE06038771E7CAF07C68D84AF1C03D34BF4E22B
+          00D2F0EDF7C2E717C0BB1E83EAC64DAFF14FD46FF93F557989E21945779EAB24
+          49928A9487AD25499214ECFF03C20D5BDCB8F43F900000000049454E44AE4260
+          82
+        }
       end
     end
   end
